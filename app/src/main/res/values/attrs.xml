@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer"/>
+        <attr name="animDuration" format="integer"/>
+        <attr name="contentRes" format="integer"/>
+        <attr name="collapseRes" format="integer"/>
+        <attr name="animAlphaStart" format="float"/>
+        <attr name="expandDrawable" format="reference"/>
+        <attr name="collapseDrawable" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DashedLineView">
+        <attr name="dashedColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EditViewHelper">
+        <attr name="point" format="string" />
+        <attr name="isNum" format="boolean" />
+        <attr name="maxLength" format="integer" />
+        <attr name="intLength" format="integer" />
+        <attr name="pointAlignRight" format="boolean"/>
+        <attr name="inputType">
+            <enum name="number" value="2" />
+            <enum name="text" value="1" />
+            <enum name="signed" value="3" />
+            <enum name="decimal" value="8192" />
+        </attr>
+    </declare-styleable>
+
+</resources>

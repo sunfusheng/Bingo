@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/actionsheet_top_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/actionsheet_top_normal"/>
+
+</selector><!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/drawable/slt_as_ios7_other_bt_top.xml -->

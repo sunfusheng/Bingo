@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 内容界面 -->
+        <include layout="@layout/drawer_content_layout"/>
+
+        <!-- 侧滑菜单内容 -->
+        <android.support.design.widget.NavigationView
+            android:id="@+id/main_navigation_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_slide_header_layout"
+            app:menu="@menu/drawer_slide_menu"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</LinearLayout>

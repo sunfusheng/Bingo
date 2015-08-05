@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.sun.bingo"
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.jakewharton:butterknife:5.1.2'
+
+    compile 'com.android.support:appcompat-v7:22.2.+'
+    compile 'com.android.support:cardview-v7:22.2.+'
+    compile 'com.android.support:recyclerview-v7:22.2.+'
+    compile 'com.android.support:palette-v7:22.2.+'
+    compile 'com.android.support:design:22.2.+'
+
+    compile project(':extras:ImageLoader') //ImageLoader
+
+    //SharedPreferences
+    apt 'de.devland.esperandro:esperandro:2.1.0'
+    compile 'de.devland.esperandro:esperandro-api:2.1.0'
+
+    //SystemBarTint
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'cn.bingoogolapple:bga-refreshlayout:1.0.4@aar'
+
+    //Material Dialog
+    compile 'com.afollestad:material-dialogs:0.7.6.0'
+
+    //Floating Action Button
+    compile 'com.shamanland:fab:0.0.8'
+
+    //Shape Image View
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+
+    //LogUtils
+    compile 'com.apkfuns.logutils:library:1.0.4'
+
+    //MaterialEditText
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    //GoogleProgressBar
+    compile 'com.jpardogo.googleprogressbar:library:1.2.0'
+
+    //RichEditor
+    compile 'jp.wasabeef:richeditor-android:0.1'
+
+    //Facebook Fresco
+    compile 'com.facebook.fresco:fresco:0.6.0+'
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval">
+    <solid android:color="@android:color/white"/>
+    <size
+        android:width="@dimen/floating_action_button_size_normal"
+        android:height="@dimen/floating_action_button_size_normal"/>
+</shape>
+<!-- From: file:/home/main/Projects/floating-action-button/lib/src/main/res/drawable/com_shamanland_fab_circle_normal.xml -->

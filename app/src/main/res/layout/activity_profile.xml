@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:gravity="center_horizontal">
+
+    <include layout="@layout/app_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_user_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@drawable/selector_bg_pressed_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="头像"
+                android:textColor="@color/font_black_2"
+                android:textSize="16sp"/>
+
+            <com.sun.bingo.widget.UploadAvatarView
+                android:id="@+id/civ_user_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:minWidth="80dp"
+                android:minHeight="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_user"
+                android:scaleType="centerCrop"
+                app:siBorderWidth="2dp"
+                app:siBorderColor="@color/font_black_6"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/font_black_6"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_nick_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_pressed_white">
+
+            <TextView
+                android:id="@+id/tv_nick_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:text="昵称"
+                android:textColor="@color/font_black_2"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_nick_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_nick_name_title"
+                android:gravity="right"
+                android:padding="15dp"
+                android:text="孙福生"
+                android:singleLine="true"
+                android:textColor="@color/font_black_4"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/font_black_6"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_user_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_pressed_white">
+
+            <TextView
+                android:id="@+id/tv_user_sign_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:text="个性签名"
+                android:textColor="@color/font_black_2"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_user_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_user_sign_title"
+                android:gravity="right"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:text="相信一切皆有可能"
+                android:textColor="@color/font_black_4"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/my_image_view"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        app:placeholderImage="@drawable/ic_user"
+        android:visibility="gone"/>
+
+</LinearLayout>

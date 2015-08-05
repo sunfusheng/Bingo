@@ -1,0 +1,24 @@
+<resources>
+
+    <dimen name="font_size_smaller">12sp</dimen>
+    <dimen name="font_size_small">14sp</dimen>
+    <dimen name="font_size_base">16sp</dimen>
+    <dimen name="font_size_big">18sp</dimen>
+    <dimen name="font_size_big2">20sp</dimen>
+    <dimen name="font_size_big3">24sp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="base_margin_stack_10">10dp</dimen>
+    <dimen name="base_margin_stack_15">15dp</dimen>
+    <dimen name="base_margin_stack_20">20dp</dimen>
+    <dimen name="base_margin_stack_25">20dp</dimen>
+    <dimen name="base_margin_stack_30">20dp</dimen>
+
+    <dimen name="base_padding_10">10dp</dimen>
+    <dimen name="base_padding_15">15dp</dimen>
+
+    <dimen name="gap_pics">4sp</dimen>
+
+</resources>

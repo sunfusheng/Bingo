@@ -1,0 +1,5 @@
+int raw editor 0x7f020000
+int raw normalize 0x7f020001
+int raw rich_editor 0x7f020002
+int raw style 0x7f020003
+int string app_name 0x7f030000

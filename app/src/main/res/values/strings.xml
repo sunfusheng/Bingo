@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bingo</string>
+    <string name="app_copyright">Copyright ©2015 版权所有</string>
+
+    <string name="ok">确认</string>
+    <string name="cancel">取消</string>
+    <string name="about">关于</string>
+    <string name="exit">退出</string>
+
+    <string name="square_bingo_title">广场BINGO</string>
+    <string name="my_bingo_title">我的BINGO</string>
+
+    <string name="action_settings">设置</string>
+    <string name="action_notification">通知消息</string>
+
+    <string name="please_choose">请选择</string>
+    <string name="copy_message">复制</string>
+    <string name="delete_message">删除</string>
+
+    <string name="msg_now">刚刚</string>
+    <string name="msg_today">今天</string>
+    <string name="msg_yesterday">昨天</string>
+    <string name="msg_few_minutes_ago">分钟前</string>
+    <string name="msg_male">男</string>
+    <string name="msg_female">女</string>
+    <string name="msg_gender_unknow">未知</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="login_verify_code">获取验证码</string>
+    <string name="login_get_verify_code">获取验证码(%s)</string>
+
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_root_view"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <include layout="@layout/app_toolbar"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/met_phone_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tv_verify_code"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="请输入手机号码"
+        android:textSize="14sp"
+        android:inputType="number"
+        android:maxLength="11"
+        app:met_baseColor="?colorPrimary"
+        app:met_floatingLabel="highlight"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="?colorPrimary"
+        app:met_singleLineEllipsis="true" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/met_verify_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_verify_code"
+            android:layout_marginRight="15dp"
+            android:hint="请输入验证码"
+            android:textSize="14sp"
+            android:inputType="number"
+            app:met_baseColor="?colorPrimary"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="?colorPrimary"
+            app:met_singleLineEllipsis="true" />
+
+        <TextView
+            android:id="@+id/tv_verify_code"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/color_primary_selector"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="@string/login_verify_code"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/color_primary_selector"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</LinearLayout>

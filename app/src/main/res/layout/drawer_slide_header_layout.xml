@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="?attr/colorPrimary"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="10dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <com.github.siyamed.shapeimageview.CircularImageView
+        android:id="@+id/civ_user_avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_user"
+        app:siBorderWidth="2dp"
+        app:siBorderColor="@color/font_black_6"/>
+
+    <TextView
+        android:id="@+id/tv_nick_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="孙福生"
+        android:textColor="@color/font_black_6"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_user_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="相信一切皆有可能！"
+        android:textColor="@color/font_black_6"
+        android:textSize="14sp"/>
+
+</LinearLayout>

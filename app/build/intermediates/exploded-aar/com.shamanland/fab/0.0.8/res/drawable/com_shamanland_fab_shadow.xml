@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="100"
+        android:startColor="#f000"
+        android:endColor="#0000"
+        />
+    <padding
+        android:left="@dimen/floating_action_button_shadow_radius"
+        android:top="@dimen/floating_action_button_shadow_radius"
+        android:right="@dimen/floating_action_button_shadow_radius"
+        android:bottom="@dimen/floating_action_button_shadow_radius"/>
+</shape>
+<!-- From: file:/home/main/Projects/floating-action-button/lib/src/main/res/drawable/com_shamanland_fab_shadow.xml -->
