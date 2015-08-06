@@ -2,7 +2,7 @@ package com.sun.bingo.ui.fragment;
 
 import com.apkfuns.logutils.LogUtils;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
-import com.sun.bingo.entity.NewBingoEntity;
+import com.sun.bingo.entity.BingoEntity;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ public class MyBingoFragment extends BaseFragment {
 
     @Override
     protected void getBingoEntityList() {
-        BmobQuery<NewBingoEntity> newBingoEntities = new BmobQuery<>();
+        BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(getActivity()).getObjectId());
         newBingoEntities.order("-createdAt");
-        newBingoEntities.findObjects(getActivity(), new FindListener<NewBingoEntity>() {
+        newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
             @Override
-            public void onSuccess(List<NewBingoEntity> entities) {
+            public void onSuccess(List<BingoEntity> entities) {
                 LogUtils.d(entities);
                 recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
                 completeRefresh();

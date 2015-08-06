@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.sun.bingo.R;
-import com.sun.bingo.entity.NewBingoEntity;
+import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.UserEntityUtil;
@@ -35,12 +35,12 @@ import cn.bmob.v3.BmobUser;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<NewBingoEntity> mEntities;
+    private List<BingoEntity> mEntities;
 
     private UserEntity userEntity;
     private DisplayImageOptions userImageOptions;
 
-    public RecyclerViewAdapter(Context context, List<NewBingoEntity> entities) {
+    public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
         this.mContext = context;
         this.mEntities = entities;
 
@@ -60,14 +60,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        NewBingoEntity entity = mEntities.get(position);
+        BingoEntity entity = mEntities.get(position);
 
         UserEntityUtil.setUserAvatarView(holder.civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(holder.tvNickName, userEntity.getNickName());
 
-        holder.tvTitle.setText(entity.getTitle());
-        holder.tvTitle.setVisibility(View.GONE);
-        holder.tvContent.setText(entity.getContent());
+        holder.tvDescribe.setText(entity.getDescribe());
 
         if (entity.getCreateTime() > 0) {
             holder.tvTime.setVisibility(View.VISIBLE);
@@ -146,10 +144,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView ivItemMore;
         @InjectView(R.id.ll_icons)
         LinearLayout llIcons;
-        @InjectView(R.id.tv_title)
-        TextView tvTitle;
-        @InjectView(R.id.tv_content)
-        TextView tvContent;
+        @InjectView(R.id.tv_describe)
+        TextView tvDescribe;
         @InjectView(R.id.ll_root_view)
         LinearLayout llRootView;
         @InjectView(R.id.giv_image_group)

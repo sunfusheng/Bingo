@@ -125,7 +125,6 @@ public class GroupImageView extends ViewGroup {
                     height = imgH * 3 + gap * 2;
                     break;
             }
-
             layoutParams = new LinearLayout.LayoutParams(mWidth, height);
 
             //当只有一个图片的时候，特殊处理

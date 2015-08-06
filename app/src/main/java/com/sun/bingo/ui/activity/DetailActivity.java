@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import com.apkfuns.logutils.LogUtils;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
-import com.sun.bingo.entity.NewBingoEntity;
+import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.util.PhoneUtil;
 import com.sun.bingo.widget.CircleRefreshLayout;
 import com.sun.bingo.widget.ProgressWheel;
@@ -85,12 +85,12 @@ public class DetailActivity extends BaseActivity implements CircleRefreshLayout.
     }
 
     private void getBingoEntityList() {
-        BmobQuery<NewBingoEntity> newBingoEntities = new BmobQuery<>();
+        BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.addWhereEqualTo("imei", PhoneUtil.getIMEI(this));
         newBingoEntities.order("-createdAt");
-        newBingoEntities.findObjects(this, new FindListener<NewBingoEntity>() {
+        newBingoEntities.findObjects(this, new FindListener<BingoEntity>() {
             @Override
-            public void onSuccess(List<NewBingoEntity> entities) {
+            public void onSuccess(List<BingoEntity> entities) {
                 LogUtils.d(entities);
                 recyclerView.setAdapter(new RecyclerViewAdapter(DetailActivity.this, entities));
                 completeRefresh();

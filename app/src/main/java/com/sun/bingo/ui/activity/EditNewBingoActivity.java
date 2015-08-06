@@ -26,7 +26,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
-import com.sun.bingo.entity.NewBingoEntity;
+import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
@@ -50,27 +50,26 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.et_title)
-    EditText etTitle;
-    @InjectView(R.id.et_content)
-    EditText etContent;
-    @InjectView(R.id.tv_commit)
-    TextView tvCommit;
-    @InjectView(R.id.cv_title)
-    CardView cvTitle;
-    @InjectView(R.id.cv_content)
-    CardView cvContent;
-    @InjectView(R.id.iv_image)
-    ImageView ivImage;
-    @InjectView(R.id.rl_bottom_layout)
-    RelativeLayout rlBottomLayout;
+    @InjectView(R.id.et_website)
+    EditText etWebsite;
+    @InjectView(R.id.cv_website)
+    CardView cvWebsite;
+    @InjectView(R.id.et_describe)
+    EditText etDescribe;
+    @InjectView(R.id.cv_describe)
+    CardView cvDescribe;
     @InjectView(R.id.ll_container)
     LinearLayout llContainer;
     @InjectView(R.id.hs_images)
     HorizontalScrollView hsImages;
-
+    @InjectView(R.id.iv_image)
+    ImageView ivImage;
+    @InjectView(R.id.tv_commit)
+    TextView tvCommit;
+    @InjectView(R.id.rl_bottom_layout)
+    RelativeLayout rlBottomLayout;
     private String takePicturePath;
-    private NewBingoEntity bingoEntity;
+    private BingoEntity bingoEntity;
     private List<UploadImageView> uploadImageViews;
 
     @Override
@@ -85,7 +84,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initData() {
-        bingoEntity = new NewBingoEntity();
+        bingoEntity = new BingoEntity();
     }
 
     private void initView() {
@@ -99,20 +98,20 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void commitNewBingo() {
-        String title = etTitle.getText().toString().trim();
-        if (TextUtils.isEmpty(title)) {
-            Toast.makeText(this, "请输入标题", Toast.LENGTH_SHORT).show();
+        String website = etWebsite.getText().toString().trim();
+        if (TextUtils.isEmpty(website)) {
+            Toast.makeText(this, getString(R.string.hint_input_website), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String content = etContent.getText().toString().trim();
-        if (TextUtils.isEmpty(content)) {
-            Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
+        String describe = etDescribe.getText().toString().trim();
+        if (TextUtils.isEmpty(describe)) {
+            Toast.makeText(this, getString(R.string.hint_input_describe), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        bingoEntity.setTitle(title);
-        bingoEntity.setContent(content);
+        bingoEntity.setWebsite(website);
+        bingoEntity.setDescribe(describe);
         bingoEntity.setUserEntity(BmobUser.getCurrentUser(this, UserEntity.class));
         bingoEntity.setCreateTime(DateUtil.getCurrentMillis());
 
@@ -121,7 +120,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
             int size = list.size();
             BmobProFile.getInstance(this).uploadBatch(list.toArray(new String[size]), new UploadBatchListener() {
                 @Override
-                public void onSuccess(boolean isFinish, String[] fileNames,String[] urls,BmobFile[] files) {
+                public void onSuccess(boolean isFinish, String[] fileNames, String[] urls, BmobFile[] files) {
                     if (isFinish) {
                         for (UploadImageView item : uploadImageViews) {
                             item.setProgressFinish();
@@ -146,8 +145,8 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                 }
 
                 @Override
-                public void onProgress(int curIndex, int curPercent, int total,int totalPercent) {
-                    uploadImageViews.get(curIndex-1).setProgress(curPercent);
+                public void onProgress(int curIndex, int curPercent, int total, int totalPercent) {
+                    uploadImageViews.get(curIndex - 1).setProgress(curPercent);
                 }
 
                 @Override
@@ -172,7 +171,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
     private List<String> getBmobUrls(BmobFile[] files) {
         List<String> list = new ArrayList<>();
-        for (BmobFile item:files) {
+        for (BmobFile item : files) {
             list.add(item.getUrl());
         }
         return list;
@@ -202,7 +201,8 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                 .setCancelableOnTouchOutside(true)
                 .setListener(new ActionSheet.ActionSheetListener() {
                     @Override
-                    public void onDismiss(ActionSheet actionSheet, boolean isCancel) {}
+                    public void onDismiss(ActionSheet actionSheet, boolean isCancel) {
+                    }
 
                     @Override
                     public void onOtherButtonClick(ActionSheet actionSheet, int index) {
