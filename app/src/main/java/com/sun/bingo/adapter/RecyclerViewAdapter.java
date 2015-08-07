@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.sun.bingo.R;
+import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.util.DateUtil;
@@ -60,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        BingoEntity entity = mEntities.get(position);
+        final BingoEntity entity = mEntities.get(position);
 
         UserEntityUtil.setUserAvatarView(holder.civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(holder.tvNickName, userEntity.getNickName());
@@ -88,8 +88,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 animator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        Toast.makeText(mContext, "Todo", Toast.LENGTH_SHORT).show();
-//                        mContext.startActivity(new Intent(mContext, DetailActivity.class));
+                        NavigateManager.gotoBingoDetailActivity(mContext, entity);
                     }
                 });
                 animator.start();

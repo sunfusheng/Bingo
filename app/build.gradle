@@ -65,4 +65,8 @@ dependencies {
 
     //Facebook Fresco
     compile 'com.facebook.fresco:fresco:0.6.0+'
+
+    //SmoothProgressBar
+    compile 'com.github.castorflex.smoothprogressbar:library:1.1.0'
+
 }

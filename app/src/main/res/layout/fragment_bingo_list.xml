@@ -23,6 +23,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        app:type="chrome_floating_circles"/>
+        app:type="folding_circles"/>
 
 </FrameLayout>

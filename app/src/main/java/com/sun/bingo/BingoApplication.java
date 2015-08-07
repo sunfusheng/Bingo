@@ -31,8 +31,7 @@ public class BingoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        instance = this;
-        initImageLoader(instance);
+        initImageLoader(this);
         Bmob.initialize(this, ConstantParams.BMOB_APP_ID);
 
         Fresco.initialize(this);
@@ -41,7 +40,10 @@ public class BingoApplication extends Application {
         LogUtils.configTagPrefix = "Bingo-"; //配置日志前缀
     }
 
-    public BingoApplication getInstance() {
+    public static synchronized BingoApplication getInstance() {
+        if (instance == null) {
+            instance = new BingoApplication();
+        }
         return instance;
     }
 

@@ -45,7 +45,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
-        <activity android:name=".ui.activity.DetailActivity"
+        <activity android:name=".ui.activity.BingoDetailActivity"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.EditNewBingoActivity"
