@@ -28,13 +28,13 @@
 
     <com.shamanland.fab.FloatingActionButton
         android:id="@+id/floating_action_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/ic_action_edit_dark"
         android:elevation="3dp"
-        app:floatingActionButtonImplicitElevation="false"
+        app:floatingActionButtonImplicitElevation="true"
         android:background="@drawable/color_primary_selector"
         android:layout_gravity="end|bottom"
-        android:layout_margin="10dp"/>
+        android:layout_margin="15dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

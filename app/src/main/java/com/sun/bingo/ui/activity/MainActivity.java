@@ -1,5 +1,6 @@
 package com.sun.bingo.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -27,6 +28,7 @@ import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
+import com.sun.bingo.util.theme.Selector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,12 +79,14 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         }
     }
 
+    @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
         initTabLayout();
 
+        floatingActionButton.setBackground(Selector.createOvalShapeSelector(getColorPrimary()));
         civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
         tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);
         tvUserSign = (TextView) mainNavigationLayout.findViewById(R.id.tv_user_sign);
@@ -90,7 +94,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
         UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
-
 
     }
 

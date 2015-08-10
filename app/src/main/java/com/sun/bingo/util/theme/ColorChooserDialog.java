@@ -4,12 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -34,7 +30,7 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
     public void onClick(View v) {
         if (v.getTag() != null) {
             Integer index = (Integer) v.getTag();
-            mCallback.onColorSelection(index, mColors[index], shiftColor(mColors[index]));
+            mCallback.onColorSelection(index, mColors[index], Selector.shiftColor(mColors[index]));
             dismiss();
         }
     }
@@ -68,14 +64,14 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
             child.setOnClickListener(this);
             child.getChildAt(0).setVisibility(preselect == i ? View.VISIBLE : View.GONE);
 
-            Drawable selector = createSelector(mColors[i]);
+            Drawable selector = Selector.createOvalShapeSelector(mColors[i]);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 int[][] states = new int[][]{
                         new int[]{-android.R.attr.state_pressed},
                         new int[]{android.R.attr.state_pressed}
                 };
                 int[] colors = new int[]{
-                        shiftColor(mColors[i]),
+                        Selector.shiftColor(mColors[i]),
                         mColors[i]
                 };
                 ColorStateList rippleColors = new ColorStateList(states, colors);
@@ -94,25 +90,6 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
             //noinspection deprecation
             view.setBackgroundDrawable(d);
         }
-    }
-
-    private int shiftColor(int color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] *= 0.9f; // value component
-        return Color.HSVToColor(hsv);
-    }
-
-    private Drawable createSelector(int color) {
-        ShapeDrawable coloredCircle = new ShapeDrawable(new OvalShape());
-        coloredCircle.getPaint().setColor(color);
-        ShapeDrawable darkerCircle = new ShapeDrawable(new OvalShape());
-        darkerCircle.getPaint().setColor(shiftColor(color));
-
-        StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, coloredCircle);
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, darkerCircle);
-        return stateListDrawable;
     }
 
     @Override
