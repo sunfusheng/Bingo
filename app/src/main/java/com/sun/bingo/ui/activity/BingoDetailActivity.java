@@ -42,7 +42,6 @@ public class BingoDetailActivity extends BaseActivity {
         initToolBar(toolbar, true, "Bingo详情");
         initData();
         initView();
-
     }
 
     private void initData() {
@@ -84,7 +83,7 @@ public class BingoDetailActivity extends BaseActivity {
                 super.onReceivedError(view, errorCode, description, failingUrl);
                 if (!TextUtils.isEmpty(description)) {
                     tvErrorMsg.setVisibility(View.VISIBLE);
-                    tvErrorMsg.setText("errorCode: "+errorCode+"\ndescription: "+description);
+                    tvErrorMsg.setText("errorCode: " + errorCode + "\ndescription: " + description);
                 }
             }
         });

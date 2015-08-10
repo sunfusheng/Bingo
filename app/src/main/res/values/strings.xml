@@ -12,6 +12,8 @@
     <string name="square_bingo_title">广场BINGO</string>
     <string name="my_bingo_title">我的BINGO</string>
 
+    <string name="menu_change_theme">设置主题</string>
+
     <string name="action_settings">设置</string>
     <string name="action_notification">通知消息</string>
 

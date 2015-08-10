@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -14,7 +15,9 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
+import com.sun.bingo.util.theme.ThemeUtil;
 
 import cn.bmob.v3.BmobUser;
 import de.devland.esperandro.Esperandro;
@@ -26,9 +29,10 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeUtil.changeTheme(this);
         super.onCreate(savedInstanceState);
 
-        initSystemBarTint(true, R.color.color_primary);
+        initSystemBarTint(true);
         initData();
     }
 
@@ -44,12 +48,12 @@ public class BaseActivity extends AppCompatActivity {
         GlobalParams.screenHeight = DisplayUtil.getWindowHeight(this);
     }
 
-    public void initSystemBarTint(boolean on, int res) {
+    public void initSystemBarTint(boolean on) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(on);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(on);
-            tintManager.setStatusBarTintResource(res);
+            tintManager.setStatusBarTintColor(getColorPrimary());
         }
     }
 
@@ -62,6 +66,22 @@ public class BaseActivity extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    public int getStatusBarColor(){
+        return getColorPrimary();
+    }
+
+    public int getColorPrimary() {
+        TypedValue typedValue = new  TypedValue();
+        getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
+    }
+
+    public int getDarkColorPrimary() {
+        TypedValue typedValue = new  TypedValue();
+        getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
+        return typedValue.data;
     }
 
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
@@ -92,6 +112,10 @@ public class BaseActivity extends AppCompatActivity {
 
     public <P> P getSharePrefence(Class<P> spClass) {
         return Esperandro.getPreferences(spClass, this);
+    }
+
+    public SettingsSharedPreferences getSettingsSharedPreferences() {
+        return getSharePrefence(SettingsSharedPreferences.class);
     }
 
 }

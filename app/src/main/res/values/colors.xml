@@ -28,56 +28,9 @@
     <color name="font_black_5">#bdbdbd</color>
     <color name="font_black_6">#e0e0e0</color>
 
-    <color name="font_brown">#897f78</color>
-    <color name="font_red">#FE4648</color>
-    <color name="font_orange">#f97b5c</color>
-    <color name="font_up">#F58129</color>
-    <color name="font_down">#99ab45</color>
-    <color name="font_green">#43aea8</color>
-    <color name="font_blue">#4882ea</color>
-    <color name="font_blue_deep">#248FAF</color>
-    <color name="require">#d71345</color>
-    <color name="remark_color">#FBF0AD</color>
-    <color name="remark_text_color">#897A2A</color>
-
     <!-- divider -->
     <color name="divider_1">#e2e2e2</color>
     <color name="divider_2">#e6e6e6</color>
-
-    <color name="spinner_checked">#6bb8b4</color>
-    <color name="nav_bg">#222828</color>
-
-    <color name="share_bk">#f7f6f1</color>
-    <color name="share_bk_line">#cfccbd</color>
-    <color name="weclcome_bk">#4b3727</color>
-
-    <color name="icon_color">#CAC19B</color>
-    <color name="btn_entry_bk">#F8F5F0</color>
-
-
-    <color name="warning_button_pressed">#4465bc60</color>
-    <color name="bg_dash_line">#b9b9b9</color>
-
-    <!-- grid view selector-->
-    <color name="transparent">#00000000</color>
-
-    <!-- IM color -->
-    <color name="speak_color">#465F89</color>
-    <color name="loading_font">#717171</color>
-
-    <!-- table-->
-    <color name="row_color1">#F0F7FE</color>
-    <color name="row_color2">#F7FBFF</color>
-    <color name="table_header_bg">#DCE6F3</color>
-    <color name="table_header_text">#94A2B4</color>
-    <color name="table_boader">#D7E3F1</color>
-
-    <!-- chart -->
-    <color name="chart_out_border">#C9DBE4</color>
-    <color name="chart_in_border">#E5ECEE</color>
-    <color name="chart_x_text">#B2CCD9</color>
-    <color name="chart_line1">#62BE5B</color>
-    <color name="chart_line2">#FB7B56</color>
 
     <color name="tab_bg_light">#F3EEDE</color>
     <color name="tab_bg_line">#9B937B</color>
@@ -94,4 +47,5 @@
         <item>@color/gplus_color_3</item>
         <item>@color/gplus_color_4</item>
     </integer-array>
+
 </resources>

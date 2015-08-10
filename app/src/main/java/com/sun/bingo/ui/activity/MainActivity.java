@@ -26,6 +26,7 @@ import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
 import com.sun.bingo.util.UserEntityUtil;
+import com.sun.bingo.util.theme.ColorChooserDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -93,10 +94,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void changeSkinColor() {
-
-    }
-
     private void initTabLayout() {
         List<String> titles = new ArrayList<>();
         titles.add(getResources().getString(R.string.square_bingo_title));
@@ -126,7 +123,7 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.nav_switch_theme:
-                        changeSkinColor();
+                        changeTheme();
                         break;
                     case R.id.nav_favorite_bingo:
                         break;
@@ -141,6 +138,16 @@ public class MainActivity extends BaseActivity {
                 NavigateManager.gotoProfileActivity(MainActivity.this);
             }
         });
+    }
+
+    private void changeTheme() {
+        new ColorChooserDialog().show(this, -1);
+    }
+
+    @Override
+    public void onColorSelection(int index, int color, int darker) {
+        getSettingsSharedPreferences().themeValue(index);
+        recreate();
     }
 
     @Override

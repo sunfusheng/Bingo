@@ -12,4 +12,7 @@ public interface SettingsSharedPreferences extends SharedPreferenceActions {
 
     boolean isReceivePush();
     void isReceivePush(boolean isReceivePush);
+
+    int themeValue();
+    void themeValue(int themeValue);
 }
