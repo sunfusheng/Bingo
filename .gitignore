@@ -3,4 +3,7 @@
 /.idea
 .DS_Store
 /build
+/gradle
+/app/build
 /captures
+/app/signing.properties

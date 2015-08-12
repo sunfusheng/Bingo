@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
+Properties prop = new Properties()
+prop.load(new FileInputStream(file("signing.properties")))
+
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -12,12 +15,28 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storeFile file(prop['KEYSTORE_FILEPATH'])
+            storePassword prop['STORE_PASSWORD']
+            keyAlias prop['KEY_ALIAS']
+            keyPassword prop['KEY_PASSWORD']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug{
+            signingConfig signingConfigs.release
+        }
     }
+
 }
 
 dependencies {

@@ -1,5 +1,6 @@
 package com.sun.bingo.util.theme;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.res.ColorStateList;
@@ -80,11 +81,12 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
         return dialog;
     }
 
+    @SuppressLint("NewApi")
     private void setBackgroundCompat(View view, Drawable d) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(d);
         } else {
-            view.setBackgroundDrawable(d);
+            view.setBackground(d);
         }
     }
 

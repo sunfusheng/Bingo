@@ -38,7 +38,7 @@ public class Selector {
         return createSelector(color, new OvalShape());
     }
 
-    //创建矩形Selector
+    //创建圆角矩形Selector
     public static Drawable createRoundRectShapeSelector(int color) {
         float[] roundRect = new float[] { 8, 8, 8, 8, 8, 8, 8, 8 };
         RoundRectShape roundRectShape = new RoundRectShape(roundRect, null, roundRect);
