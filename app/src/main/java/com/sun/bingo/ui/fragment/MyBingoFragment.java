@@ -17,6 +17,7 @@ public class MyBingoFragment extends BaseFragment {
         BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(getActivity()).getObjectId());
         newBingoEntities.order("-createdAt");
+        newBingoEntities.include("userEntity");
         newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
             @Override
             public void onSuccess(List<BingoEntity> entities) {

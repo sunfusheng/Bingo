@@ -22,6 +22,7 @@ public class SquareBingoFragment extends BaseFragment {
     protected void getBingoEntityList() {
         BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.order("-createdAt");
+        newBingoEntities.include("userEntity");
         newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
             @Override
             public void onSuccess(List<BingoEntity> entities) {

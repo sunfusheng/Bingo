@@ -28,6 +28,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.dialog.TipDialog;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
@@ -122,6 +123,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
         bingoEntity.setUserEntity(BmobUser.getCurrentUser(this, UserEntity.class));
         bingoEntity.setCreateTime(DateUtil.getCurrentMillis());
 
+        LoadingDialog.show(this);
         if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() > 0) {
             List<String> list = bingoEntity.getImageList();
             int size = list.size();
@@ -139,11 +141,13 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                         bingoEntity.save(EditNewBingoActivity.this, new SaveListener() {
                             @Override
                             public void onSuccess() {
+                                LoadingDialog.dismiss();
                                 finish();
                             }
 
                             @Override
                             public void onFailure(int i, String s) {
+                                LoadingDialog.dismiss();
                                 TipDialog.showToastDialog(EditNewBingoActivity.this, "提交失败");
                                 finish();
                             }
@@ -158,17 +162,21 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
                 @Override
                 public void onError(int statuscode, String errormsg) {
+                    LoadingDialog.dismiss();
+                    TipDialog.showToastDialog(EditNewBingoActivity.this, "上传图片失败，请重试");
                 }
             });
         } else {
             bingoEntity.save(EditNewBingoActivity.this, new SaveListener() {
                 @Override
                 public void onSuccess() {
+                    LoadingDialog.dismiss();
                     finish();
                 }
 
                 @Override
                 public void onFailure(int i, String s) {
+                    LoadingDialog.dismiss();
                     TipDialog.showToastDialog(EditNewBingoActivity.this, "提交失败");
                     finish();
                 }

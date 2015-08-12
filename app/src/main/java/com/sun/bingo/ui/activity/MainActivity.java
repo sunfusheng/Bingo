@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.shamanland.fab.FloatingActionButton;
@@ -137,6 +136,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                         break;
                     case R.id.nav_favorite_bingo:
                         break;
+                    case R.id.nav_share:
+                        break;
                 }
                 return false;
             }
@@ -170,7 +171,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_setting:
-                Toast.makeText(MainActivity.this, "menu_setting", Toast.LENGTH_SHORT).show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

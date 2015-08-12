@@ -16,11 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
@@ -30,26 +28,15 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import cn.bmob.v3.BmobUser;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;
     private List<BingoEntity> mEntities;
 
-    private UserEntity userEntity;
-    private DisplayImageOptions userImageOptions;
-
     public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
         this.mContext = context;
         this.mEntities = entities;
-
-        userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
-        userImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
-                .showImageOnLoading(R.drawable.ic_user)
-                .showImageForEmptyUri(R.drawable.ic_user)
-                .showImageOnFail(R.drawable.ic_user)
-                .build();
     }
 
     @Override
@@ -62,8 +49,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final BingoEntity entity = mEntities.get(position);
 
-        UserEntityUtil.setUserAvatarView(holder.civUserAvatar, userEntity.getUserAvatar());
-        UserEntityUtil.setTextViewData(holder.tvNickName, userEntity.getNickName());
+        UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
+        UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
 
         holder.tvDescribe.setText(entity.getDescribe());
 

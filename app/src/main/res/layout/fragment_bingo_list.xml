@@ -6,7 +6,7 @@
 
     <com.sun.bingo.widget.CircleRefreshLayout
         android:id="@+id/circle_refresh_layout"
-        app:AniBackColor="@color/color_primary_light"
+        app:AniBackColor="@color/font_black_5"
         app:AniForeColor="@color/white"
         app:CircleSmaller="10"
         android:layout_width="match_parent"
