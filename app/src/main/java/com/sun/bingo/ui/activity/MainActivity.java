@@ -72,8 +72,15 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         initListener();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initData() {
-        if (BmobUser.getCurrentUser(this, UserEntity.class) == null) {
+        userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
+        if (userEntity == null) {
             NavigateManager.gotoLoginActivity(this);
             finish();
         }
@@ -144,7 +151,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     }
 
     private void changeTheme() {
-        new ColorChooserDialog().show(this, -1);
+        new ColorChooserDialog().show(this, getSettingsSharedPreferences().themeValue());
     }
 
     @Override
@@ -162,9 +169,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                Toast.makeText(MainActivity.this, "action_search", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.menu_setting:
                 Toast.makeText(MainActivity.this, "menu_setting", Toast.LENGTH_SHORT).show();
                 return true;

@@ -29,6 +29,7 @@ import com.sun.bingo.widget.UploadAvatarView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -56,6 +57,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     TextView tvNickName;
     @InjectView(R.id.rl_nick_name)
     RelativeLayout rlNickName;
+    @InjectView(R.id.tv_logout)
+    TextView tvLogout;
 
     private String takePicturePath = "/" + BingoApplication.APP_CACHE_DIR + "/avatar.jpg";
     private String imagePath;
@@ -80,6 +83,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     private void initView() {
         initToolBar(toolbar, true, "个人中心");
+        tvLogout.setTextColor(getColorPrimary());
 
         UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
@@ -90,6 +94,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         rlUserAvatar.setOnClickListener(this);
         rlNickName.setOnClickListener(this);
         rlUserSign.setOnClickListener(this);
+        tvLogout.setOnClickListener(this);
     }
 
     public void showSelectAvatarDialog() {
@@ -196,7 +201,31 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             case R.id.rl_user_sign:
                 updateNickName("个性签名", USER_SIGN, userEntity.getUserSign());
                 break;
+            case R.id.tv_logout:
+                logout();
+                break;
         }
+    }
+
+    private void logout() {
+        new MaterialDialog.Builder(this)
+                .content("确认退出登录？")
+                .contentColor(getResources().getColor(R.color.font_black_3))
+                .positiveText(R.string.ok)
+                .negativeText(R.string.cancel)
+                .negativeColor(getResources().getColor(R.color.font_black_3))
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        BmobUser.logOut(ProfileActivity.this);
+                        NavigateManager.gotoMainActivity(ProfileActivity.this);
+                        finish();
+                    }
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                    }
+                })
+                .show();
     }
 
     private View view;
@@ -206,7 +235,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private void updateNickName(final String title, final String type, final String content) {
         MaterialDialog materialDialog = new MaterialDialog.Builder(this)
                 .title(title)
-                .titleColor(getResources().getColor(R.color.font_black_2))
                 .customView(R.layout.material_dialog_input_layout, true)
                 .positiveText(R.string.ok)
                 .negativeText(R.string.cancel)
@@ -242,7 +270,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                                 @Override
                                 public void onFailure(int i, String s) {
-                                    Toast.makeText(ProfileActivity.this, "修改"+title+"失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ProfileActivity.this, "修改" + title + "失败", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -253,8 +281,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         editText = ButterKnife.findById(view, R.id.et_dialog_input);
         if (!TextUtils.isEmpty(content)) {
             editText.setText(content);
+            editText.setSelection(content.length());
         } else {
-            editText.setHint("请输入"+title);
+            editText.setHint("请输入" + title);
         }
         materialDialog.show();
     }

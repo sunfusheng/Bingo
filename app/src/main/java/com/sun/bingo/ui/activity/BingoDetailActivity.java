@@ -1,6 +1,7 @@
 package com.sun.bingo.ui.activity;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -32,6 +33,7 @@ public class BingoDetailActivity extends BaseActivity {
     TextView tvErrorMsg;
 
     private BingoEntity bingoEntity;
+    private WebSettings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +54,37 @@ public class BingoDetailActivity extends BaseActivity {
     }
 
     private void initView() {
-        WebSettings settings = webView.getSettings();
+        settings = webView.getSettings();
         settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
+        settings.setUseWideViewPort(true); //将图片调整到适合WebView的大小
+        settings.setSupportZoom(true); //支持缩放
+        settings.setBuiltInZoomControls(true); //支持手势缩放
+        settings.setDisplayZoomControls(false); //是否显示缩放按钮
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setLoadWithOverviewMode(true); //自适应屏幕
+        settings.setMinimumFontSize(18); //设置最小的字体大小
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            settings.setLoadsImagesAutomatically(true); //支持自动加载图片
+        } else {
+            settings.setLoadsImagesAutomatically(false);
+        }
+
+        settings.setDomStorageEnabled(true);
+        settings.setAppCacheEnabled(true);
+        settings.setSaveFormData(true);
+        settings.setSupportMultipleWindows(true);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //优先使用缓存
-        settings.setLoadsImagesAutomatically(true); //支持自动加载图片
+
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY); //可使滚动条不占位
+        webView.setHorizontalScrollbarOverlay(true);
+        webView.setHorizontalScrollBarEnabled(true);
+        webView.requestFocus();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //启动硬件加速
+        }
 
         webView.loadUrl(bingoEntity.getWebsite());
         webView.setWebViewClient(new WebViewClient() {
@@ -76,6 +105,9 @@ public class BingoDetailActivity extends BaseActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 smoothProgressBar.setVisibility(View.GONE);
+                if (!settings.getLoadsImagesAutomatically()) {
+                    settings.setLoadsImagesAutomatically(true);
+                }
             }
 
             @Override
@@ -98,13 +130,9 @@ public class BingoDetailActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (webView.canGoBack()) {
-                webView.goBack();//返回上一页面
-                return true;
-            } else {
-                finish();
-            }
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            webView.goBack();//返回上一页面
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

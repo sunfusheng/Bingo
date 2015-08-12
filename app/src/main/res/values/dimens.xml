@@ -21,6 +21,6 @@
 
     <dimen name="gap_pics">4sp</dimen>
     <dimen name="color_chooser">50dp</dimen>
-    <dimen name="color_chooser_margin">6dp</dimen>
+    <dimen name="color_chooser_margin">8dp</dimen>
 
 </resources>

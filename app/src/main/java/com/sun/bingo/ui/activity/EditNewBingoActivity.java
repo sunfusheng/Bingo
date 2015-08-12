@@ -1,5 +1,6 @@
 package com.sun.bingo.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -89,12 +90,13 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
         bingoEntity = new BingoEntity();
     }
 
+    @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, true, "新Bingo");
         hsImages.setVisibility(View.GONE);
         rlBottomLayout.setBackgroundColor(getColorPrimary());
-        ivImage.setBackground(Selector.createRectShapeSelector(getColorPrimary()));
-        tvCommit.setBackground(Selector.createRectShapeSelector(getColorPrimary()));
+        ivImage.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        tvCommit.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
     }
 
     private void initListener() {

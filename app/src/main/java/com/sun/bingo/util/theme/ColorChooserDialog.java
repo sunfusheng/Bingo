@@ -39,9 +39,6 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
         void onColorSelection(int index, int color, int darker);
     }
 
-    public ColorChooserDialog() {
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
@@ -87,7 +84,6 @@ public class ColorChooserDialog extends DialogFragment implements View.OnClickLi
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.setBackground(d);
         } else {
-            //noinspection deprecation
             view.setBackgroundDrawable(d);
         }
     }

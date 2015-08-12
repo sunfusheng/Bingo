@@ -1,8 +1,10 @@
 package com.sun.bingo.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -14,7 +16,9 @@ import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.TipDialog;
 import com.sun.bingo.util.KeyBoardUtil;
+import com.sun.bingo.util.theme.Selector;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -59,8 +63,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         countDownThread = new CountDownThread();
     }
 
+    @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, false, "登录");
+        tvVerifyCode.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        tvCommit.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
     }
 
     private void initListener() {
@@ -88,11 +95,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void requestSMSCode() {
+        String phoneNum = metPhoneNum.getText().toString().trim();
+        if (TextUtils.isEmpty(phoneNum)) {
+            TipDialog.showToastDialog(LoginActivity.this, "请输入手机号码");
+            return ;
+        }
+        if (phoneNum.length() != 11) {
+            TipDialog.showToastDialog(LoginActivity.this, "请输入有效的手机号码");
+            return ;
+        }
         BmobSMS.requestSMSCode(this, metPhoneNum.getText().toString().trim(), ConstantParams.SMS_LOGIN_VERIFY_CODE, new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null) {
-                    Toast.makeText(LoginActivity.this, "验证码发送成功", Toast.LENGTH_SHORT).show();
+                    TipDialog.showToastDialog(LoginActivity.this, "验证码发送成功，注意查收");
                     mHandler.post(countDownThread);
                 }
             }
@@ -107,7 +123,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void done(UserEntity userEntity, BmobException e) {
                         if (e == null) {
-                            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                             NavigateManager.gotoMainActivity(LoginActivity.this);
                             finish();
                         } else {

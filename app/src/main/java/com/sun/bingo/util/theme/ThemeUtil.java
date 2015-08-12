@@ -55,7 +55,7 @@ public class ThemeUtil {
                 style = R.style.GreyTheme;
                 break;
             default:
-                style = R.style.BrownTheme;
+                style = R.style.BlueTheme;
                 break;
         }
         activity.setTheme(style);

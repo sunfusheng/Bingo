@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:title="收藏"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_action_star"
         android:id="@+id/pop_copy"/>
+
     <item
-        android:title="转发"
-        android:icon="@drawable/ic_launcher"
+        android:title="分享"
+        android:icon="@drawable/ic_action_share"
         android:id="@+id/pop_share"/>
+
 </menu>  

@@ -6,6 +6,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.graphics.drawable.shapes.Shape;
 
 /**
@@ -21,21 +22,30 @@ public class Selector {
     }
 
     public static Drawable createSelector(int color, Shape shape) {
-        ShapeDrawable coloredCircle = new ShapeDrawable(shape);
-        coloredCircle.getPaint().setColor(color);
-        ShapeDrawable darkerCircle = new ShapeDrawable(shape);
-        darkerCircle.getPaint().setColor(shiftColor(color));
+        ShapeDrawable shapeDrawable = new ShapeDrawable(shape);
+        shapeDrawable.getPaint().setColor(color);
+        ShapeDrawable darkerShapeDrawablee = new ShapeDrawable(shape);
+        darkerShapeDrawablee.getPaint().setColor(shiftColor(color));
 
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, coloredCircle);
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, darkerCircle);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed}, shapeDrawable);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, darkerShapeDrawablee);
         return stateListDrawable;
     }
 
+    //创建圆形Selector
     public static Drawable createOvalShapeSelector(int color) {
         return createSelector(color, new OvalShape());
     }
 
+    //创建矩形Selector
+    public static Drawable createRoundRectShapeSelector(int color) {
+        float[] roundRect = new float[] { 8, 8, 8, 8, 8, 8, 8, 8 };
+        RoundRectShape roundRectShape = new RoundRectShape(roundRect, null, roundRect);
+        return createSelector(color, roundRectShape);
+    }
+
+    //创建矩形Selector
     public static Drawable createRectShapeSelector(int color) {
         return createSelector(color, new RectShape());
     }
