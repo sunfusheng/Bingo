@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/pop_favorite"
         android:title="收藏"
-        android:icon="@drawable/ic_action_star"
-        android:id="@+id/pop_copy"/>
+        android:icon="@drawable/ic_action_star"/>
 
     <item
+        android:id="@+id/pop_share"
         android:title="分享"
-        android:icon="@drawable/ic_action_share"
-        android:id="@+id/pop_share"/>
+        android:icon="@drawable/ic_action_share"/>
 
 </menu>  

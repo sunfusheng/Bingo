@@ -1,5 +1,7 @@
 package com.sun.bingo.entity;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobUser;
 
 /**
@@ -10,6 +12,7 @@ public class UserEntity extends BmobUser {
     private String userAvatar;
     private String nickName;
     private String userSign;
+    private List<String> favoriteList;
 
     public String getUserAvatar() {
         return userAvatar;
@@ -33,5 +36,13 @@ public class UserEntity extends BmobUser {
 
     public void setUserSign(String userSign) {
         this.userSign = userSign;
+    }
+
+    public List<String> getFavoriteList() {
+        return favoriteList;
+    }
+
+    public void setFavoriteList(List<String> favoriteList) {
+        this.favoriteList = favoriteList;
     }
 }

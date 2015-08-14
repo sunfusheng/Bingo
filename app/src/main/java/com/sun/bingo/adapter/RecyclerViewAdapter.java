@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.support.v7.internal.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,24 +18,40 @@ import com.github.siyamed.shapeimageview.CircularImageView;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
+import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.LoadingDialog;
+import com.sun.bingo.framework.dialog.TipDialog;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.UpdateListener;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Context mContext;
     private List<BingoEntity> mEntities;
+    private UserEntity userEntity;
+    private int type = NORMAL;
+
+    public static final int NORMAL = 0;
+    public static final int CANCEL_FAVORITE = 1;
 
     public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
         this.mContext = context;
         this.mEntities = entities;
+        userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
+    }
+
+    public RecyclerViewAdapter(Context context, List<BingoEntity> entities, int type) {
+        this(context, entities);
+        this.type = type;
     }
 
     @Override
@@ -48,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final BingoEntity entity = mEntities.get(position);
+        final int mPosition = position;
 
         UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
         UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
@@ -85,33 +101,98 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.ivItemMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopMenu(v);
+                showPopMenu(v, mPosition);
             }
         });
     }
 
-    private void showPopMenu(View ancho) {
+    private void showPopMenu(View ancho, final int position) {
+        userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
+        final BingoEntity entity = mEntities.get(position);
+        List<String> favoriteList = userEntity.getFavoriteList();
+
+
         PopupMenu popupMenu = new PopupMenu(mContext, ancho);
         popupMenu.getMenuInflater().inflate(R.menu.item_pop_menu, popupMenu.getMenu());
-        //menu item的点击事件监听
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                //switch判断
+                switch (item.getItemId()) {
+                    case R.id.pop_favorite:
+                        LoadingDialog.show(mContext);
+                        if (item.getTitle().equals("取消收藏")) {
+                            cancelFavoriteBingo(entity.getObjectId(), position);
+                        } else {
+                            handleFavoriteBingo(entity.getObjectId());
+                        }
+                        userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
+                        return true;
+                    case R.id.pop_share:
+
+                        return true;
+                }
                 return false;
             }
         });
-
-        //通过反射获取MenuPopupHelper实例，然后设置setForceShowIcon为true
-        try {
-            Field mFieldPopup = popupMenu.getClass().getDeclaredField("mPopup");
-            mFieldPopup.setAccessible(true);
-            MenuPopupHelper mPopup = (MenuPopupHelper) mFieldPopup.get(popupMenu);
-            mPopup.setForceShowIcon(true);
-        } catch (Exception e){}
-
-        //显示弹出式菜单
+        if (type == CANCEL_FAVORITE || (favoriteList != null && favoriteList.indexOf(entity.getObjectId()) >= 0)) {
+            MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_favorite);
+            menuItem.setTitle("取消收藏");
+        }
         popupMenu.show();
+    }
+
+    private void handleFavoriteBingo(String bingoId) {
+        List<String> favoriteList = userEntity.getFavoriteList();
+        if (favoriteList == null) {
+            favoriteList = new ArrayList<>();
+        }
+        if (favoriteList.indexOf(bingoId) >= 0) {
+            TipDialog.showToastDialog(mContext, "您已收藏过了");
+            return;
+        }
+        favoriteList.add(bingoId);
+        userEntity.setFavoriteList(favoriteList);
+        userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                LoadingDialog.dismiss();
+                TipDialog.showToastDialog(mContext, "收藏成功");
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                LoadingDialog.dismiss();
+                TipDialog.showToastDialog(mContext, "收藏失败");
+            }
+        });
+    }
+
+    private void cancelFavoriteBingo(String bingoId, final int position) {
+        List<String> favoriteList = userEntity.getFavoriteList();
+        if (favoriteList == null) {
+            favoriteList = new ArrayList<>();
+        }
+        if (favoriteList.indexOf(bingoId) < 0) {
+            TipDialog.showToastDialog(mContext, "您已取消收藏了");
+            return;
+        }
+        favoriteList.remove(bingoId);
+        userEntity.setFavoriteList(favoriteList);
+        userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
+            @Override
+            public void onSuccess() {
+                LoadingDialog.dismiss();
+                TipDialog.showToastDialog(mContext, "取消成功");
+                mEntities.remove(position);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                LoadingDialog.dismiss();
+                TipDialog.showToastDialog(mContext, "取消失败");
+            }
+        });
     }
 
     @Override

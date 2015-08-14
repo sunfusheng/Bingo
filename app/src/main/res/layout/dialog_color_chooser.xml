@@ -164,7 +164,7 @@
         <FrameLayout
             android:layout_width="@dimen/color_chooser"
             android:layout_height="@dimen/color_chooser"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/color_chooser_margin"
             tools:background="#000">
 
             <ImageView

@@ -109,6 +109,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         titles.add(getResources().getString(R.string.my_bingo_title));
         tabLayout.addTab(tabLayout.newTab().setText(titles.get(0)));
         tabLayout.addTab(tabLayout.newTab().setText(titles.get(1)));
+
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new SquareBingoFragment());
         fragments.add(new MyBingoFragment());
@@ -135,6 +136,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                         changeTheme();
                         break;
                     case R.id.nav_favorite_bingo:
+                        NavigateManager.gotoFavoriteActivity(MainActivity.this);
                         break;
                     case R.id.nav_share:
                         break;
