@@ -181,7 +181,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_setting:
+            case R.id.item_menu_author:
+
+                return true;
+            case R.id.item_menu_app:
 
                 return true;
             default:

@@ -8,6 +8,8 @@
     <string name="cancel">取消</string>
     <string name="about">关于</string>
     <string name="exit">退出</string>
+    <string name="about_author">关于作者</string>
+    <string name="about_app">关于软件</string>
 
     <string name="square_bingo_title">广场BINGO</string>
     <string name="my_bingo_title">我的BINGO</string>
