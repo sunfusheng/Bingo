@@ -25,6 +25,7 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
+import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
 import com.sun.bingo.util.theme.Selector;
@@ -138,7 +139,14 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                     case R.id.nav_favorite_bingo:
                         NavigateManager.gotoFavoriteActivity(MainActivity.this);
                         break;
+                    case R.id.nav_feedback:
+                        ShareUtil.feedback(MainActivity.this);
+                        break;
+                    case R.id.nav_send_to_friend:
+                        ShareUtil.sendToFriend(MainActivity.this);
+                        break;
                     case R.id.nav_share:
+                        ShareUtil.share(MainActivity.this, null);
                         break;
                 }
                 return false;
@@ -153,6 +161,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         });
     }
 
+    //设置主题
     private void changeTheme() {
         new ColorChooserDialog().show(this, getSettingsSharedPreferences().themeValue());
     }

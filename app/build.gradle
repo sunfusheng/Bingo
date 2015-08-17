@@ -30,6 +30,9 @@ android {
             minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                appendVersionNameVersionCode(variant, defaultConfig)
+            }
         }
 
         debug{
@@ -37,6 +40,20 @@ android {
         }
     }
 
+}
+
+def appendVersionNameVersionCode(variant, defaultConfig) {
+    variant.outputs.each { output ->
+        if (output.zipAlign) {
+            def file = output.outputFile
+            def fileName = file.name.replace(".apk", "_" + defaultConfig.versionName +".apk").replaceFirst("app","bingo_world").replace("-","_")
+            output.outputFile = new File(file.parent, fileName)
+        }
+
+        def file = output.packageApplication.outputFile
+        def fileName = file.name.replace(".apk", "_" + defaultConfig.versionName  + ".apk").replaceFirst("app","bingo_world").replace("-","_")
+        output.packageApplication.outputFile = new File(file.parent, fileName)
+    }
 }
 
 dependencies {

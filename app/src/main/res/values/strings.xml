@@ -14,9 +14,19 @@
 
     <string name="menu_change_theme">设置主题</string>
     <string name="menu_my_favorite">我的收藏</string>
+    <string name="menu_feedback">意见反馈</string>
+    <string name="menu_send_to_friend">发送给好友</string>
+    <string name="menu_share">分享</string>
 
     <string name="action_settings">设置</string>
     <string name="action_notification">通知消息</string>
+
+    <string name="share_text" formatted="false">BingoWorld拥有丰富内容，包含Android、iOS技术文章和相关面试题，
+        推荐你也来用用，你也可以发布自己的Bingo。</string>
+    <string name="download_url" >下载地址</string>
+    <string name="share">分享到</string>
+    <string name="no_email_app_tip">请先安装邮件应用并设置账户，或直接发送邮件至sfsheng0322@126.com。</string>
+    <string name="transfer_apk_to_friend">发送%1$s安装包给好友</string>
 
     <string name="please_choose">请选择</string>
     <string name="copy_message">复制</string>

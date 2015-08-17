@@ -183,8 +183,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onSuccess() {
                 LoadingDialog.dismiss();
                 TipDialog.showToastDialog(mContext, "取消成功");
-                mEntities.remove(position);
-                notifyDataSetChanged();
+                if (type == CANCEL_FAVORITE) {
+                    mEntities.remove(position);
+                    notifyDataSetChanged();
+                }
             }
 
             @Override

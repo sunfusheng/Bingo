@@ -12,9 +12,19 @@
             android:title="@string/menu_my_favorite"/>
 
         <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_action_feedback"
+            android:title="@string/menu_feedback"/>
+
+        <item
+            android:id="@+id/nav_send_to_friend"
+            android:icon="@drawable/ic_action_msg"
+            android:title="@string/menu_send_to_friend"/>
+
+        <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_action_share"
-            android:title="分享"/>
+            android:title="@string/menu_share"/>
     </group>
 
 </menu>

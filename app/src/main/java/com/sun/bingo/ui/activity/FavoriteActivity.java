@@ -31,13 +31,10 @@ public class FavoriteActivity extends BaseListActivity {
         List<String> favoriteList = userEntity.getFavoriteList();
         BmobQuery<BingoEntity> bmobQuery = new BmobQuery<>();
         bmobQuery.addWhereContainedIn("objectId", favoriteList);
-//        bmobQuery.order("-updatedAt");
         bmobQuery.include("userEntity");
         bmobQuery.findObjects(this, new FindListener<BingoEntity>() {
             @Override
             public void onSuccess(List<BingoEntity> entities) {
-//                LogUtils.d(entities);
-//                Collections.reverse(entities);
                 LogUtils.d(entities);
                 recyclerView.setAdapter(new RecyclerViewAdapter(FavoriteActivity.this, entities, RecyclerViewAdapter.CANCEL_FAVORITE));
                 completeRefresh();
