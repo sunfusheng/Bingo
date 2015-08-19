@@ -1,6 +1,7 @@
 package com.sun.bingo.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,13 +26,15 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
     @InjectView(R.id.google_progressBar)
     GoogleProgressBar googleProgressBar;
 
+    private Handler mHandler = new Handler();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bingo_list, container, false);
         ButterKnife.inject(this, rootView);
 
         initView();
-        startRefresh();
+        getBingoEntityList();
         return rootView;
     }
 
@@ -58,7 +61,12 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
 
     @Override
     public void startRefresh() {
-        getBingoEntityList();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getBingoEntityList();
+            }
+        }, 1000);
     }
 
     protected abstract void getBingoEntityList();

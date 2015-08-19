@@ -10,3 +10,8 @@ Bingo 这个单词还有一层意思，是指“因出乎意料的成功而兴�
 ②Mary 的隐形眼镜不慎掉了，Bill 帮他找到了，Mary 兴奋地说：“I’ve found it!  Bingo!”（我找到了，好棒！）<br/>
 
 在现在电影中出现该词语，一般翻译成“正确，对，没错” ；在日常生活中该词语也有这样的用法。
+
+
+###BingoWorld下载网页
+
+https://fir.im/bingoworld

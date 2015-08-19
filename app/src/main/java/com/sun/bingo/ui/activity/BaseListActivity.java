@@ -1,6 +1,7 @@
 package com.sun.bingo.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +28,8 @@ public abstract class BaseListActivity extends BaseActivity implements CircleRef
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
 
+    private Handler mHandler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,7 @@ public abstract class BaseListActivity extends BaseActivity implements CircleRef
         ButterKnife.inject(this);
 
         initView();
-        startRefresh();
+        getBingoEntityList();
     }
 
     private void initView() {
@@ -54,7 +57,12 @@ public abstract class BaseListActivity extends BaseActivity implements CircleRef
 
     @Override
     public void startRefresh() {
-        getBingoEntityList();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getBingoEntityList();
+            }
+        }, 1000);
     }
 
     protected abstract void getBingoEntityList();
