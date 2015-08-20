@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LabeledIntent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import com.sun.bingo.R;
 import com.sun.bingo.entity.AppEntity;
-import com.sun.bingo.framework.dialog.TipDialog;
+import com.sun.bingo.framework.dialog.ToastTip;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,12 +31,18 @@ public class ShareUtil {
     public static AppEntity getAppEntity(Context context) {
         AppEntity entity = new AppEntity();
         PackageManager packageManager = context.getPackageManager();
+
         try {
             ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 0);
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+
             entity.setAppName(applicationInfo.loadLabel(packageManager).toString());
             entity.setPackageName(context.getPackageName());
             entity.setSrcPath(applicationInfo.publicSourceDir);
             entity.setAppIcon(applicationInfo.loadLogo(packageManager));
+
+            entity.setVersionCode(packageInfo.versionCode);
+            entity.setVersionName(packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -99,7 +106,7 @@ public class ShareUtil {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> infos = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         if (infos == null || infos.size() <= 0){
-            TipDialog.showToastDialog(context, context.getString(R.string.no_email_app_tip));
+            ToastTip.showToastDialog(context, context.getString(R.string.no_email_app_tip));
             return;
         }
         context.startActivity(intent);

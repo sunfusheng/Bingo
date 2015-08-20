@@ -9,11 +9,11 @@ import java.io.Serializable;
  */
 public class AppEntity implements Serializable {
 
-    private String appName="";
-    private String packageName="";
-    private String versionName="";
-    private int versionCode=0;
-    private Drawable appIcon=null;
+    private String appName = "";
+    private String packageName = "";
+    private String versionName = "";
+    private int versionCode;
+    private Drawable appIcon;
     private String srcPath;
 
     public String getAppName() {

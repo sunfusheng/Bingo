@@ -12,9 +12,11 @@ import android.view.WindowManager;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
 import com.sun.bingo.util.theme.ThemeUtil;
@@ -26,6 +28,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected UserEntity userEntity;
     protected DisplayImageOptions userImageOptions;
+    protected HttpControl mControl = BingoApplication.getInstance().getHttpControl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,8 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void setTranslucentStatus(boolean on) {
-        Window win = getWindow(); WindowManager.LayoutParams winParams = win.getAttributes();
+        Window win = getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
         int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
         if (on) {
             winParams.flags |= bits;

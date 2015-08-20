@@ -17,6 +17,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.sun.bingo.constant.ConstantParams;
+import com.sun.bingo.framework.http.HttpControl.HttpControl;
 
 import cn.bmob.v3.Bmob;
 
@@ -27,6 +28,8 @@ public class BingoApplication extends Application {
 
     public static final String APP_CACHE_DIR = "Bingo/cache";
     private static BingoApplication instance;
+    private static HttpControl mHttpControl;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,6 +48,13 @@ public class BingoApplication extends Application {
             instance = new BingoApplication();
         }
         return instance;
+    }
+
+    public HttpControl getHttpControl(){
+        if(mHttpControl==null){
+            mHttpControl=new HttpControl();
+        }
+        return mHttpControl;
     }
 
     /**

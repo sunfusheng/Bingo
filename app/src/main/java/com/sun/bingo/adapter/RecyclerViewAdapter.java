@@ -20,7 +20,7 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.LoadingDialog;
-import com.sun.bingo.framework.dialog.TipDialog;
+import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
@@ -147,7 +147,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             favoriteList = new ArrayList<>();
         }
         if (favoriteList.indexOf(bingoId) >= 0) {
-            TipDialog.showToastDialog(mContext, "您已收藏过了");
+            ToastTip.showToastDialog(mContext, "您已收藏过了");
             return;
         }
         favoriteList.add(bingoId);
@@ -156,13 +156,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onSuccess() {
                 LoadingDialog.dismiss();
-                TipDialog.showToastDialog(mContext, "收藏成功");
+                ToastTip.showToastDialog(mContext, "收藏成功");
             }
 
             @Override
             public void onFailure(int i, String s) {
                 LoadingDialog.dismiss();
-                TipDialog.showToastDialog(mContext, "收藏失败");
+                ToastTip.showToastDialog(mContext, "收藏失败");
             }
         });
     }
@@ -173,7 +173,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             favoriteList = new ArrayList<>();
         }
         if (favoriteList.indexOf(bingoId) < 0) {
-            TipDialog.showToastDialog(mContext, "您已取消收藏了");
+            ToastTip.showToastDialog(mContext, "您已取消收藏了");
             return;
         }
         favoriteList.remove(bingoId);
@@ -182,7 +182,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onSuccess() {
                 LoadingDialog.dismiss();
-                TipDialog.showToastDialog(mContext, "取消成功");
+                ToastTip.showToastDialog(mContext, "取消成功");
                 if (type == CANCEL_FAVORITE) {
                     mEntities.remove(position);
                     notifyDataSetChanged();
@@ -192,7 +192,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onFailure(int i, String s) {
                 LoadingDialog.dismiss();
-                TipDialog.showToastDialog(mContext, "取消失败");
+                ToastTip.showToastDialog(mContext, "取消失败");
             }
         });
     }

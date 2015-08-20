@@ -29,7 +29,7 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.LoadingDialog;
-import com.sun.bingo.framework.dialog.TipDialog;
+import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
@@ -108,13 +108,13 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     private void commitNewBingo() {
         String website = etWebsite.getText().toString().trim();
         if (TextUtils.isEmpty(website)) {
-            TipDialog.showToastDialog(this, getString(R.string.hint_input_website));
+            ToastTip.showToastDialog(this, getString(R.string.hint_input_website));
             return;
         }
 
         String describe = etDescribe.getText().toString().trim();
         if (TextUtils.isEmpty(describe)) {
-            TipDialog.showToastDialog(this, getString(R.string.hint_input_describe));
+            ToastTip.showToastDialog(this, getString(R.string.hint_input_describe));
             return;
         }
 
@@ -148,7 +148,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                             @Override
                             public void onFailure(int i, String s) {
                                 LoadingDialog.dismiss();
-                                TipDialog.showToastDialog(EditNewBingoActivity.this, "提交失败");
+                                ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败");
                                 finish();
                             }
                         });
@@ -163,7 +163,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onError(int statuscode, String errormsg) {
                     LoadingDialog.dismiss();
-                    TipDialog.showToastDialog(EditNewBingoActivity.this, "上传图片失败，请重试");
+                    ToastTip.showToastDialog(EditNewBingoActivity.this, "上传图片失败，请重试");
                 }
             });
         } else {
@@ -177,7 +177,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onFailure(int i, String s) {
                     LoadingDialog.dismiss();
-                    TipDialog.showToastDialog(EditNewBingoActivity.this, "提交失败");
+                    ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败");
                     finish();
                 }
             });
@@ -197,7 +197,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.iv_image:
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    TipDialog.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(this);
                     showSelectImageDialog();
@@ -269,7 +269,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    TipDialog.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(EditNewBingoActivity.this);
                     showSelectImageDialog();

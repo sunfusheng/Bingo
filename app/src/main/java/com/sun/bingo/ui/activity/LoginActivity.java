@@ -16,7 +16,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.TipDialog;
+import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
 
@@ -97,18 +97,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void requestSMSCode() {
         String phoneNum = metPhoneNum.getText().toString().trim();
         if (TextUtils.isEmpty(phoneNum)) {
-            TipDialog.showToastDialog(LoginActivity.this, "请输入手机号码");
+            ToastTip.showToastDialog(LoginActivity.this, "请输入手机号码");
             return ;
         }
         if (phoneNum.length() != 11) {
-            TipDialog.showToastDialog(LoginActivity.this, "请输入有效的手机号码");
+            ToastTip.showToastDialog(LoginActivity.this, "请输入有效的手机号码");
             return ;
         }
         BmobSMS.requestSMSCode(this, metPhoneNum.getText().toString().trim(), ConstantParams.SMS_LOGIN_VERIFY_CODE, new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null) {
-                    TipDialog.showToastDialog(LoginActivity.this, "验证码发送成功，注意查收");
+                    ToastTip.showToastDialog(LoginActivity.this, "验证码发送成功，注意查收");
                     mHandler.post(countDownThread);
                 }
             }

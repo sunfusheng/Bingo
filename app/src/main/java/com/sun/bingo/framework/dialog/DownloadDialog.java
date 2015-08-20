@@ -9,13 +9,22 @@ import com.afollestad.materialdialogs.MaterialDialog;
  */
 public class DownloadDialog {
 
-    private static MaterialDialog materialDialog;
+    private Context mContext;
+    private MaterialDialog materialDialog;
 
-    public static void show(Context context) {
+    public DownloadDialog(Context context) {
+        this.mContext = context;
+    }
+
+    public MaterialDialog getMaterialDialog() {
+        return materialDialog;
+    }
+
+    public void show() {
         if (materialDialog == null) {
-            materialDialog = new MaterialDialog.Builder(context)
+            materialDialog = new MaterialDialog.Builder(mContext)
                     .content("正在下载...")
-                    .progress(false, 100, false)
+                    .progress(false, 100, true)
                     .build();
         }
         if (!materialDialog.isShowing()) {
@@ -23,7 +32,7 @@ public class DownloadDialog {
         }
     }
 
-    public static void dismiss() {
+    public void dismiss() {
         if (materialDialog != null && materialDialog.isShowing()) {
             materialDialog.dismiss();
             materialDialog = null;

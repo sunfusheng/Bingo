@@ -21,6 +21,7 @@
 
     <!-- 文件存储 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
@@ -28,8 +29,10 @@
         android:name=".BingoApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
+        android:logo="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name"
@@ -40,6 +43,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".framework.update.MutilDownloader"
+            android:process=":downloader" />
 
         <activity android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"
@@ -60,7 +67,7 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.FavoriteActivity"
-                  android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"/>
 
     </application>
 

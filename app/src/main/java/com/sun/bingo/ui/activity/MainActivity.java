@@ -23,6 +23,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.adapter.FragmentAdapter;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.update.DownloadApk;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
 import com.sun.bingo.util.ShareUtil;
@@ -67,6 +68,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        initVersion();
         initData();
         initView();
         initListener();
@@ -76,6 +78,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     protected void onResume() {
         super.onResume();
         initData();
+    }
+
+    private void initVersion() {
+        new DownloadApk(this).checkVersion();
     }
 
     private void initData() {

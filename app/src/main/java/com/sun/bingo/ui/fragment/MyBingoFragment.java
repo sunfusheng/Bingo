@@ -1,6 +1,5 @@
 package com.sun.bingo.ui.fragment;
 
-import com.apkfuns.logutils.LogUtils;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
 import com.sun.bingo.entity.BingoEntity;
 
@@ -21,7 +20,6 @@ public class MyBingoFragment extends BaseFragment {
         newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
             @Override
             public void onSuccess(List<BingoEntity> entities) {
-                LogUtils.d(entities);
                 recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
                 completeRefresh();
             }

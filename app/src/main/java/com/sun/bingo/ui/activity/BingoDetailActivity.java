@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.sun.bingo.R;
 import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.framework.dialog.TipDialog;
+import com.sun.bingo.framework.dialog.ToastTip;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -49,7 +49,7 @@ public class BingoDetailActivity extends BaseActivity {
     private void initData() {
         bingoEntity = (BingoEntity) getIntent().getSerializableExtra("entity");
         if (bingoEntity == null) {
-            TipDialog.showToastDialog(this, "该作者提交的Bingo有问题");
+            ToastTip.showToastDialog(this, "该作者提交的Bingo有问题");
         }
     }
 
