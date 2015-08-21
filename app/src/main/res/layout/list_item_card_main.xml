@@ -39,7 +39,7 @@
                     android:id="@+id/tv_nick_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="孙福生"
+                    android:text="未知"
                     android:singleLine="true"
                     android:textSize="14sp"
                     android:textColor="@color/font_black_1"/>

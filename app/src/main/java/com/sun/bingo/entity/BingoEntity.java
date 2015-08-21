@@ -9,12 +9,21 @@ import cn.bmob.v3.BmobObject;
  */
 public class BingoEntity extends BmobObject {
 
+    private int id;
     private UserEntity userEntity;
     private String website;
     private String describe;
     private long createTime;
     private long updateTime;
     private List<String> imageList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getWebsite() {
         return website;

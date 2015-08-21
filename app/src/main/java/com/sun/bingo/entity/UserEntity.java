@@ -9,10 +9,19 @@ import cn.bmob.v3.BmobUser;
  */
 public class UserEntity extends BmobUser {
 
+    private int id;
     private String userAvatar;
     private String nickName;
     private String userSign;
     private List<String> favoriteList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUserAvatar() {
         return userAvatar;

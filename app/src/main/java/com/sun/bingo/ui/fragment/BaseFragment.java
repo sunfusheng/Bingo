@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 import com.sun.bingo.R;
+import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.bmob.v3.BmobUser;
 
 
 public abstract class BaseFragment extends Fragment implements CircleRefreshLayout.OnCircleRefreshListener {
@@ -27,6 +29,13 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
     GoogleProgressBar googleProgressBar;
 
     private Handler mHandler = new Handler();
+    protected UserEntity userEntity;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initData();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +45,10 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
         initView();
         getBingoEntityList();
         return rootView;
+    }
+
+    private void initData() {
+        userEntity = BmobUser.getCurrentUser(getActivity(), UserEntity.class);
     }
 
     private void initView() {
@@ -48,7 +61,7 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
         if (circleRefreshLayout != null) {
             circleRefreshLayout.completeRefresh();
         }
-        if (googleProgressBar.getVisibility() == View.VISIBLE) {
+        if (googleProgressBar != null && googleProgressBar.getVisibility() == View.VISIBLE) {
             googleProgressBar.setVisibility(View.GONE);
         }
     }

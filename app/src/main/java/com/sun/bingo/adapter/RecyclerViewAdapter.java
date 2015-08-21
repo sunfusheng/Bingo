@@ -65,8 +65,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         final BingoEntity entity = mEntities.get(position);
         final int mPosition = position;
 
-        UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
-        UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
+        if (entity.getUserEntity() != null) {
+            UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
+            UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
+        }
 
         holder.tvDescribe.setText(entity.getDescribe());
 
