@@ -26,8 +26,6 @@ public class MyBingoFragment extends BaseFragment {
 
     @Override
     protected void getBingoEntityList() {
-//        recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), bingoEntities));
-//        return;
         BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(getActivity()).getObjectId());
         newBingoEntities.order("-createdAt");
@@ -37,8 +35,6 @@ public class MyBingoFragment extends BaseFragment {
             public void onSuccess(List<BingoEntity> entities) {
                 if (entities == null || entities.size() == 0) {
                     entities = bingoEntities;
-                } else {
-                    dbHelper.saveList(entities);
                 }
                 recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
                 completeRefresh();

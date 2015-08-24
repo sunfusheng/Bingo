@@ -34,7 +34,7 @@ public class SquareBingoFragment extends BaseFragment {
                 if (entities == null || entities.size() == 0) {
                     entities = bingoEntities;
                 } else {
-                    dbHelper.saveList(entities);
+//                    dbHelper.saveList(entities);
                 }
                 recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
                 completeRefresh();

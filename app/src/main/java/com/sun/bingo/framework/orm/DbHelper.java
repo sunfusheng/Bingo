@@ -18,12 +18,17 @@ public class DbHelper<T> {
     private Context mContext;
     private DbUtils dbUtils;
 
-    public DbHelper(Context context, Class<T> clz) {
+    public DbHelper(Context context) {
         this.mContext = context;
+    }
+
+    public DbHelper(Context context, Class<T> clz) {
+        this(context);
         DbUtils.DaoConfig config = new DbUtils.DaoConfig(context);
-        config.setDbName(clz.getName()+".db");
-        config.setDbVersion(1);
+        config.setDbName(clz.getName() + ".db");
         dbUtils = DbUtils.create(config);
+        dbUtils.configAllowTransaction(true);
+        dbUtils.configDebug(true);
         try {
             dbUtils.createTableIfNotExist(clz);
         } catch (DbException e) {
@@ -47,10 +52,18 @@ public class DbHelper<T> {
         }
     }
 
+    public void updateList(List<T> list) {
+        try {
+            dbUtils.updateAll(list);
+        } catch (DbException e) {
+            LogUtils.e(e.getMessage());
+        }
+    }
+
     public List<T> findList(Class<T> clz, String userId) {
         try {
             if (dbUtils.tableIsExist(clz)) {
-                return dbUtils.findAll(Selector.from(clz).where("objectId", "=", userId));
+                return dbUtils.findAll(Selector.from(clz).where("userId", "=", userId));
             }
         } catch (DbException e) {
             LogUtils.e(e.getMessage());

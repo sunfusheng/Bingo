@@ -9,11 +9,20 @@ import com.afollestad.materialdialogs.MaterialDialog;
  */
 public class LoadingDialog {
 
-    private static MaterialDialog materialDialog;
+    private Context mContext;
+    private MaterialDialog materialDialog;
 
-    public static void show(Context context) {
+    public LoadingDialog(Context context) {
+        this.mContext = context;
+    }
+
+    public MaterialDialog getMaterialDialog() {
+        return materialDialog;
+    }
+
+    public void show() {
         if (materialDialog == null) {
-            materialDialog = new MaterialDialog.Builder(context)
+            materialDialog = new MaterialDialog.Builder(mContext)
                     .content("加载中...")
                     .progress(true, 0)
                     .progressIndeterminateStyle(false)
@@ -24,7 +33,7 @@ public class LoadingDialog {
         }
     }
 
-    public static void dismiss() {
+    public void dismiss() {
         if (materialDialog != null && materialDialog.isShowing()) {
             materialDialog.dismiss();
             materialDialog = null;

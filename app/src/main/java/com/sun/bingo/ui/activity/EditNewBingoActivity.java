@@ -28,8 +28,8 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.framework.orm.DbHelper;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
@@ -75,6 +75,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     private String takePicturePath;
     private BingoEntity bingoEntity;
     private List<UploadImageView> uploadImageViews;
+    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
     private void initData() {
         bingoEntity = new BingoEntity();
+        dbHelper = new DbHelper(this);
     }
 
     @SuppressLint("NewApi")
@@ -120,10 +122,12 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
         bingoEntity.setWebsite(website);
         bingoEntity.setDescribe(describe);
-        bingoEntity.setUserEntity(BmobUser.getCurrentUser(this, UserEntity.class));
         bingoEntity.setCreateTime(DateUtil.getCurrentMillis());
+        userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
+        bingoEntity.setUserId(userEntity.getObjectId());
+        bingoEntity.setUserEntity(userEntity);
 
-        LoadingDialog.show(this);
+        loadingDialog.show();
         if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() > 0) {
             List<String> list = bingoEntity.getImageList();
             int size = list.size();
@@ -141,15 +145,12 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                         bingoEntity.save(EditNewBingoActivity.this, new SaveListener() {
                             @Override
                             public void onSuccess() {
-                                LoadingDialog.dismiss();
-                                finish();
+                                resultSuccess();
                             }
 
                             @Override
                             public void onFailure(int i, String s) {
-                                LoadingDialog.dismiss();
-                                ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败");
-                                finish();
+                                resultFail();
                             }
                         });
                     }
@@ -162,26 +163,33 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
                 @Override
                 public void onError(int statuscode, String errormsg) {
-                    LoadingDialog.dismiss();
-                    ToastTip.showToastDialog(EditNewBingoActivity.this, "上传图片失败，请重试");
+                    resultFail();
                 }
             });
         } else {
             bingoEntity.save(EditNewBingoActivity.this, new SaveListener() {
                 @Override
                 public void onSuccess() {
-                    LoadingDialog.dismiss();
-                    finish();
+                    resultSuccess();
                 }
 
                 @Override
                 public void onFailure(int i, String s) {
-                    LoadingDialog.dismiss();
-                    ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败");
-                    finish();
+                    resultFail();
                 }
             });
         }
+    }
+
+    private void resultSuccess() {
+        dbHelper.saveEntity(bingoEntity);
+        loadingDialog.dismiss();
+        finish();
+    }
+
+    private void resultFail() {
+        loadingDialog.dismiss();
+        ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败，请重试");
     }
 
     private List<String> getBmobUrls(BmobFile[] files) {

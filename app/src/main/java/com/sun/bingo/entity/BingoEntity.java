@@ -1,5 +1,8 @@
 package com.sun.bingo.entity;
 
+import com.lidroid.xutils.db.annotation.Foreign;
+import com.lidroid.xutils.db.annotation.Table;
+
 import java.util.List;
 
 import cn.bmob.v3.BmobObject;
@@ -7,15 +10,18 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by sunfusheng on 15/7/18.
  */
+@Table(name = "bingoTable")
 public class BingoEntity extends BmobObject {
 
-    private int id;
-    private UserEntity userEntity;
-    private String website;
-    private String describe;
-    private long createTime;
-    private long updateTime;
-    private List<String> imageList;
+    public int id;
+    @Foreign(column = "userTableId", foreign = "id")
+    public UserEntity userEntity;
+    public String userId;
+    public String website;
+    public String describe;
+    public long createTime;
+    public long updateTime;
+    public List<String> imageList;
 
     public int getId() {
         return id;
@@ -23,6 +29,14 @@ public class BingoEntity extends BmobObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getWebsite() {

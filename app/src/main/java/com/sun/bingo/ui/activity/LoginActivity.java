@@ -108,7 +108,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null) {
-                    ToastTip.showToastDialog(LoginActivity.this, "验证码发送成功，注意查收");
+                    ToastTip.showToastDialog(LoginActivity.this, "验证码发送成功，请注意查收");
                     mHandler.post(countDownThread);
                 }
             }

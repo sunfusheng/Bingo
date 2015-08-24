@@ -16,6 +16,7 @@ import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
@@ -29,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     protected UserEntity userEntity;
     protected DisplayImageOptions userImageOptions;
     protected HttpControl mControl = BingoApplication.getInstance().getHttpControl();
+    protected LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class BaseActivity extends AppCompatActivity {
 
         GlobalParams.screenWidth = DisplayUtil.getWindowWidth(this);
         GlobalParams.screenHeight = DisplayUtil.getWindowHeight(this);
+        loadingDialog = new LoadingDialog(this);
     }
 
     public void initSystemBarTint(boolean on) {

@@ -1,5 +1,8 @@
 package com.sun.bingo.entity;
 
+import com.lidroid.xutils.db.annotation.Column;
+import com.lidroid.xutils.db.annotation.Table;
+
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -7,13 +10,15 @@ import cn.bmob.v3.BmobUser;
 /**
  * Created by sunfusheng on 15/7/27.
  */
+@Table(name = "userTable")
 public class UserEntity extends BmobUser {
 
-    private int id;
-    private String userAvatar;
-    private String nickName;
-    private String userSign;
-    private List<String> favoriteList;
+    public int id;
+    @Column(column = "nickName")
+    public String nickName;
+    public String userAvatar;
+    public String userSign;
+    public List<String> favoriteList;
 
     public int getId() {
         return id;
