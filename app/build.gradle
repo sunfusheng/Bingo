@@ -68,6 +68,7 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:22.2.+'
 
     compile project(':extras:ImageLoader') //ImageLoader
+    compile project(':orm-library') //Afinal DB
 
     //SharedPreferences
     apt 'de.devland.esperandro:esperandro:2.1.0'

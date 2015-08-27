@@ -29,7 +29,6 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.framework.orm.DbHelper;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
@@ -75,7 +74,6 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     private String takePicturePath;
     private BingoEntity bingoEntity;
     private List<UploadImageView> uploadImageViews;
-    private DbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +88,6 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
 
     private void initData() {
         bingoEntity = new BingoEntity();
-        dbHelper = new DbHelper(this);
     }
 
     @SuppressLint("NewApi")
@@ -182,7 +179,6 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void resultSuccess() {
-        dbHelper.saveEntity(bingoEntity);
         loadingDialog.dismiss();
         finish();
     }

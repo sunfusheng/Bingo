@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.widget.CircleRefreshLayout;
@@ -53,8 +54,32 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
 
     private void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addOnScrollListener(new PauseOnScrollListener());
         googleProgressBar.setVisibility(View.VISIBLE);
         circleRefreshLayout.setOnRefreshListener(this);
+    }
+
+    /**
+     *
+     */
+    class PauseOnScrollListener extends RecyclerView.OnScrollListener {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+            switch (newState) {
+                case RecyclerView.SCROLL_STATE_IDLE:
+                    ImageLoader.getInstance().resume();
+                    break;
+                case RecyclerView.SCROLL_STATE_DRAGGING:
+                    ImageLoader.getInstance().pause();
+                    break;
+            }
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+        }
     }
 
     protected void completeRefresh() {
