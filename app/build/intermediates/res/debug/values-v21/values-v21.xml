@@ -309,4 +309,8 @@
         <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
         <item name="android:colorButtonNormal">?attr/colorButtonNormal</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values-v21/values.xml -->
+    <eat-comment/>
+    <style name="SPB" parent="android:Widget.Material.ProgressBar.Horizontal">
+    </style>
 </resources>

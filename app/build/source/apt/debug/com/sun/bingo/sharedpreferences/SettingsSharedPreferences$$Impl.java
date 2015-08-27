@@ -30,6 +30,21 @@ public class SettingsSharedPreferences$$Impl
   }
 
   @Override
+  public int themeValue() {
+    return preferences.getInt("themeValue", -1);
+  }
+
+  @Override
+  @SuppressLint("NewApi")
+  public void themeValue(int themeValue) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
+      preferences.edit().putInt("themeValue", themeValue).commit();
+    } else {
+      preferences.edit().putInt("themeValue", themeValue).apply();
+    }
+  }
+
+  @Override
   public SharedPreferences get() {
     return preferences;
   }
@@ -74,6 +89,7 @@ public class SettingsSharedPreferences$$Impl
   public void clearDefined() {
     SharedPreferences.Editor editor = preferences.edit();
     editor.remove("isReceivePush");
+    editor.remove("themeValue");
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD) {
       editor.commit();
     } else {
@@ -84,6 +100,7 @@ public class SettingsSharedPreferences$$Impl
   @Override
   public void initDefaults() {
     this.isReceivePush(this.isReceivePush());
+    this.themeValue(this.themeValue());
   }
 
 }

@@ -8,17 +8,17 @@ package com.jpardogo.android.googleprogressbar.library;
 
 public final class R {
 	public static final class array {
-		public static final int google_colors = 0x7f0c0000;
+		public static final int google_colors = 0x7f0c0001;
 	}
 	public static final class attr {
 		public static final int colors = 0x7f0100ae;
 		public static final int type = 0x7f0100ad;
 	}
 	public static final class color {
-		public static final int blue = 0x7f0d000e;
-		public static final int green = 0x7f0d0042;
-		public static final int red = 0x7f0d0060;
-		public static final int yellow = 0x7f0d0082;
+		public static final int blue = 0x7f0d000d;
+		public static final int green = 0x7f0d0039;
+		public static final int red = 0x7f0d0059;
+		public static final int yellow = 0x7f0d006e;
 	}
 	public static final class id {
 		public static final int chrome_floating_circles = 0x7f0e0034;

@@ -7,23 +7,21 @@ import butterknife.ButterKnife.Finder;
 public class RecyclerViewAdapter$ViewHolder$$ViewInjector {
   public static void inject(Finder finder, final com.sun.bingo.adapter.RecyclerViewAdapter.ViewHolder target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131624078, "field 'civUserAvatar'");
+    view = finder.findRequiredView(source, 2131624090, "field 'civUserAvatar'");
     target.civUserAvatar = (com.github.siyamed.shapeimageview.CircularImageView) view;
-    view = finder.findRequiredView(source, 2131624081, "field 'tvNickName'");
+    view = finder.findRequiredView(source, 2131624093, "field 'tvNickName'");
     target.tvNickName = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624121, "field 'tvTime'");
+    view = finder.findRequiredView(source, 2131624133, "field 'tvTime'");
     target.tvTime = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624122, "field 'ivItemMore'");
+    view = finder.findRequiredView(source, 2131624134, "field 'ivItemMore'");
     target.ivItemMore = (android.widget.ImageView) view;
-    view = finder.findRequiredView(source, 2131624120, "field 'llIcons'");
+    view = finder.findRequiredView(source, 2131624132, "field 'llIcons'");
     target.llIcons = (android.widget.LinearLayout) view;
-    view = finder.findRequiredView(source, 2131624123, "field 'tvTitle'");
-    target.tvTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624124, "field 'tvContent'");
-    target.tvContent = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624071, "field 'llRootView'");
+    view = finder.findRequiredView(source, 2131624135, "field 'tvDescribe'");
+    target.tvDescribe = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131624083, "field 'llRootView'");
     target.llRootView = (android.widget.LinearLayout) view;
-    view = finder.findRequiredView(source, 2131624125, "field 'givImageGroup'");
+    view = finder.findRequiredView(source, 2131624136, "field 'givImageGroup'");
     target.givImageGroup = (com.sun.bingo.widget.GroupImageView.GroupImageView) view;
   }
 
@@ -33,8 +31,7 @@ public class RecyclerViewAdapter$ViewHolder$$ViewInjector {
     target.tvTime = null;
     target.ivItemMore = null;
     target.llIcons = null;
-    target.tvTitle = null;
-    target.tvContent = null;
+    target.tvDescribe = null;
     target.llRootView = null;
     target.givImageGroup = null;
   }

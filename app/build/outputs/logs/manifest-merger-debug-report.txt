@@ -83,6 +83,8 @@ MERGED from com.android.support:design:22.2.0:22:5
 MERGED from com.android.support:appcompat-v7:22.2.0:22:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
+MERGED from com.android.support:gridlayout-v7:22.2.0:22:5
+MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from Bingo.extras:ImageLoader:unspecified:12:5
 MERGED from com.afollestad:material-dialogs:0.7.6.0:12:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
@@ -94,6 +96,7 @@ MERGED from com.apkfuns.logutils:library:1.0.4:11:5
 MERGED from com.android.support:appcompat-v7:22.2.0:22:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from com.jpardogo.googleprogressbar:library:1.2.0:12:5
+MERGED from com.github.castorflex.smoothprogressbar:library:1.1.0:12:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 MERGED from com.android.support:support-v4:22.2.0:22:5
 	android:label
@@ -132,7 +135,7 @@ ADDED from AndroidManifest.xml:44:9
 		ADDED from AndroidManifest.xml:46:13
 	android:name
 		ADDED from AndroidManifest.xml:44:19
-activity#com.sun.bingo.ui.activity.DetailActivity
+activity#com.sun.bingo.ui.activity.BingoDetailActivity
 ADDED from AndroidManifest.xml:48:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:49:13
@@ -160,6 +163,12 @@ ADDED from AndroidManifest.xml:59:9
 		ADDED from AndroidManifest.xml:60:13
 	android:name
 		ADDED from AndroidManifest.xml:59:19
+activity#com.sun.bingo.ui.activity.FavoriteActivity
+ADDED from AndroidManifest.xml:62:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:63:19
+	android:name
+		ADDED from AndroidManifest.xml:62:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5
@@ -172,6 +181,8 @@ MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from com.android.support:design:22.2.0:20:5
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
+MERGED from com.android.support:support-v4:22.2.0:20:5
+MERGED from com.android.support:gridlayout-v7:22.2.0:20:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from Bingo.extras:ImageLoader:unspecified:8:5
 MERGED from cn.bingoogolapple:bga-refreshlayout:1.0.4:6:5
@@ -188,6 +199,7 @@ MERGED from com.rengwuxian.materialedittext:library:2.1.4:6:5
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5
 MERGED from com.android.support:support-v4:22.2.0:20:5
 MERGED from com.jpardogo.googleprogressbar:library:1.2.0:8:5
+MERGED from com.github.castorflex.smoothprogressbar:library:1.1.0:8:5
 MERGED from jp.wasabeef:richeditor-android:0.1:8:5
 MERGED from com.facebook.fresco:fresco:0.6.0:5:5
 MERGED from com.facebook.fresco:drawee:0.6.0:5:5

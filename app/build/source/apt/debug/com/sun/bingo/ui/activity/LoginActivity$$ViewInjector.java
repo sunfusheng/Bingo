@@ -7,17 +7,17 @@ import butterknife.ButterKnife.Finder;
 public class LoginActivity$$ViewInjector {
   public static void inject(Finder finder, final com.sun.bingo.ui.activity.LoginActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131624058, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131624072, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131624072, "field 'metPhoneNum'");
+    view = finder.findRequiredView(source, 2131624084, "field 'metPhoneNum'");
     target.metPhoneNum = (com.rengwuxian.materialedittext.MaterialEditText) view;
-    view = finder.findRequiredView(source, 2131624074, "field 'metVerifyCode'");
+    view = finder.findRequiredView(source, 2131624086, "field 'metVerifyCode'");
     target.metVerifyCode = (com.rengwuxian.materialedittext.MaterialEditText) view;
-    view = finder.findRequiredView(source, 2131624073, "field 'tvVerifyCode'");
+    view = finder.findRequiredView(source, 2131624085, "field 'tvVerifyCode'");
     target.tvVerifyCode = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624070, "field 'tvCommit'");
+    view = finder.findRequiredView(source, 2131624082, "field 'tvCommit'");
     target.tvCommit = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624071, "field 'llRootView'");
+    view = finder.findRequiredView(source, 2131624083, "field 'llRootView'");
     target.llRootView = (android.widget.LinearLayout) view;
   }
 

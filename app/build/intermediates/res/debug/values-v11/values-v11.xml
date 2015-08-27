@@ -202,4 +202,8 @@
         <item name="android:actionModeCopyDrawable">?actionModeCopyDrawable</item>
         <item name="android:actionModePasteDrawable">?actionModePasteDrawable</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values-v11/values.xml -->
+    <eat-comment/>
+    <style name="SPB" parent="android:Widget.Holo.ProgressBar.Horizontal">
+    </style>
 </resources>

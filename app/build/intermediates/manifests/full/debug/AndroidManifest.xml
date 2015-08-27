@@ -50,7 +50,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name="com.sun.bingo.ui.activity.DetailActivity"
+            android:name="com.sun.bingo.ui.activity.BingoDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.sun.bingo.ui.activity.EditNewBingoActivity"
@@ -62,6 +62,9 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.sun.bingo.ui.activity.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.sun.bingo.ui.activity.FavoriteActivity"
             android:screenOrientation="portrait" />
     </application>
 

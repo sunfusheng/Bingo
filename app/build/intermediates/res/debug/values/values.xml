@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
+    <eat-comment/>
+    <array name="colors">
+        <item>@color/red</item>
+        <item>@color/pink</item>
+        <item>@color/purple</item>
+        <item>@color/indigo</item>
+
+        <item>@color/blue</item>
+        <item>@color/cyan</item>
+        <item>@color/teal</item>
+        <item>@color/green</item>
+
+        <item>@color/orange</item>
+        <item>@color/yellow</item>
+        <item>@color/brown</item>
+        <item>@color/grey</item>
+    </array>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.jpardogo.googleprogressbar/library/1.2.0/res/values/values.xml -->
     <eat-comment/>
     <integer-array name="google_colors">
@@ -7,6 +25,14 @@
         <item>@color/blue</item>
         <item>@color/yellow</item>
         <item>@color/green</item>
+    </integer-array>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
     </integer-array>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -96,6 +122,13 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_closeDialogWhenTouchOutside">true</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <bool name="spb_default_mirror_mode">false</bool>
+    <bool name="spb_default_progressiveStart_activated">false</bool>
+    <bool name="spb_default_reversed">false</bool>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
@@ -109,12 +142,11 @@
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="bg">#FFF5F5F5</color>
-    <color name="bg_dash_line">#b9b9b9</color>
     <color name="bg_pressed">#FFF2F2F2</color>
     <color name="black">#000000</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.jpardogo.googleprogressbar/library/1.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="blue">#FF375BF1</color>
+    <color name="blue">#5677fc</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
@@ -123,9 +155,9 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="btn_entry_bk">#F8F5F0</color>
+    <color name="brown">#795548</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="button_material_dark">#ff5a595b</color>
@@ -138,11 +170,6 @@
     <color name="cardview_shadow_start_color">#37000000</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="chart_in_border">#E5ECEE</color>
-    <color name="chart_line1">#62BE5B</color>
-    <color name="chart_line2">#FB7B56</color>
-    <color name="chart_out_border">#C9DBE4</color>
-    <color name="chart_x_text">#B2CCD9</color>
     <color name="color_accent">#f97b5c</color>
     <color name="color_primary">#607d8b</color>
     <color name="color_primary1">#009688</color>
@@ -150,6 +177,9 @@
     <color name="color_primary_dark1">#00796b</color>
     <color name="color_primary_light">#90a4ae</color>
     <color name="color_primary_light1">#4db6ac</color>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
+    <eat-comment/>
+    <color name="cyan">#00bcd4</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
@@ -176,35 +206,27 @@
     <color name="font_black_4">#9e9e9e</color>
     <color name="font_black_5">#bdbdbd</color>
     <color name="font_black_6">#e0e0e0</color>
-    <color name="font_blue">#4882ea</color>
-    <color name="font_blue_deep">#248FAF</color>
-    <color name="font_brown">#897f78</color>
-    <color name="font_down">#99ab45</color>
-    <color name="font_green">#43aea8</color>
-    <color name="font_orange">#f97b5c</color>
-    <color name="font_red">#FE4648</color>
-    <color name="font_up">#F58129</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.jpardogo.googleprogressbar/library/1.2.0/res/values/values.xml -->
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="green">#FF34A350</color>
+    <color name="green">#259b24</color>
+    <color name="grey">#607d8b</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="icon_color">#CAC19B</color>
+    <color name="indigo">#3f51b5</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
-    <eat-comment/>
-    <color name="loading_font">#717171</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
-    <eat-comment/>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
@@ -219,9 +241,10 @@
     <color name="md_edittext_error">#DD2C00</color>
     <color name="md_material_blue_600">#1E88E5</color>
     <color name="md_material_blue_800">#1565C0</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="nav_bg">#222828</color>
+    <color name="orange">#ff9800</color>
+    <color name="pink">#e91e63</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="primary_dark_material_dark">#ff000000</color>
@@ -232,24 +255,14 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.jpardogo.googleprogressbar/library/1.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="red">#FFC93437</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
-    <eat-comment/>
-    <color name="remark_color">#FBF0AD</color>
-    <color name="remark_text_color">#897A2A</color>
-    <color name="require">#d71345</color>
+    <color name="purple">#9c27b0</color>
+    <color name="red">#e51c23</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="ripple_material_dark">#4dffffff</color>
     <color name="ripple_material_light">#1f000000</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
-    <eat-comment/>
-    <color name="row_color1">#F0F7FE</color>
-    <color name="row_color2">#F7FBFF</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
-    <eat-comment/>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
@@ -259,17 +272,10 @@
     <color name="shadow_end_color">@android:color/transparent</color>
     <color name="shadow_mid_color">#14000000</color>
     <color name="shadow_start_color">#44000000</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
-    <eat-comment/>
-    <color name="share_bk">#f7f6f1</color>
-    <color name="share_bk_line">#cfccbd</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
-    <eat-comment/>
     <color name="snackbar_background_color">#323232</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
     <eat-comment/>
-    <color name="speak_color">#465F89</color>
-    <color name="spinner_checked">#6bb8b4</color>
+    <color name="spb_default_color">#33b5e5</color>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
@@ -280,17 +286,16 @@
     <eat-comment/>
     <color name="tab_bg_light">#F3EEDE</color>
     <color name="tab_bg_line">#9B937B</color>
-    <color name="table_boader">#D7E3F1</color>
-    <color name="table_header_bg">#DCE6F3</color>
-    <color name="table_header_text">#94A2B4</color>
-    <color name="toggle_button_on">#b6c761</color>
-    <color name="transparent">#00000000</color>
-    <color name="warning_button_pressed">#4465bc60</color>
-    <color name="weclcome_bk">#4b3727</color>
-    <color name="white">#FFFFFF</color>
-    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.jpardogo.googleprogressbar/library/1.2.0/res/values/values.xml -->
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
     <eat-comment/>
-    <color name="yellow">#FFF7D23E</color>
+    <color name="teal">#009688</color>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="toggle_button_on">#b6c761</color>
+    <color name="white">#FFFFFF</color>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-arrays.xml -->
+    <eat-comment/>
+    <color name="yellow">#ffeb3b</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -318,6 +323,8 @@
     <declare-styleable name="FloatingActionButton"><attr format="color|reference" name="floatingActionButtonColor"/><attr format="enum" name="floatingActionButtonSize"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr format="boolean" name="floatingActionButtonImplicitElevation"/><attr format="boolean" name="floatingActionButtonShadow"/><attr name="android:background"/><attr name="backgroundTint"/><attr name="backgroundTintMode"/><attr format="color" name="rippleColor"/><attr name="fabSize"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr name="elevation"/><attr format="dimension" name="pressedTranslationZ"/><attr format="dimension" name="borderWidth"/></declare-styleable>
     <declare-styleable name="GenericDraweeView"><attr format="integer" name="fadeDuration"/><attr format="float" name="viewAspectRatio"/><attr format="reference" name="placeholderImage"/><attr format="string" name="placeholderImageScaleType"/><attr format="reference" name="retryImage"/><attr format="string" name="retryImageScaleType"/><attr format="reference" name="failureImage"/><attr format="string" name="failureImageScaleType"/><attr format="reference" name="progressBarImage"/><attr format="string" name="progressBarImageScaleType"/><attr format="integer" name="progressBarAutoRotateInterval"/><attr format="string" name="actualImageScaleType"/><attr format="reference" name="backgroundImage"/><attr format="reference" name="overlayImage"/><attr format="reference" name="pressedStateOverlayImage"/><attr format="boolean" name="roundAsCircle"/><attr format="dimension" name="roundedCornerRadius"/><attr format="boolean" name="roundTopLeft"/><attr format="boolean" name="roundTopRight"/><attr format="boolean" name="roundBottomRight"/><attr format="boolean" name="roundBottomLeft"/><attr format="color" name="roundWithOverlayColor"/><attr format="dimension" name="roundingBorderWidth"/><attr format="color" name="roundingBorderColor"/></declare-styleable>
     <declare-styleable name="GoogleProgressBar"><attr format="enum" name="type"><enum name="folding_circles" value="0"/><enum name="google_music_dices" value="1"/><enum name="nexus_rotation_cross" value="2"/><enum name="chrome_floating_circles" value="3"/></attr><attr format="reference" name="colors"/></declare-styleable>
+    <declare-styleable name="GridLayout"><attr name="orientation"><enum name="horizontal" value="0"/><enum name="vertical" value="1"/></attr><attr format="integer" name="rowCount"/><attr format="integer" name="columnCount"/><attr format="boolean" name="useDefaultMargins"/><attr name="alignmentMode"><enum name="alignBounds" value="0"/><enum name="alignMargins" value="1"/></attr><attr format="boolean" name="rowOrderPreserved"/><attr format="boolean" name="columnOrderPreserved"/></declare-styleable>
+    <declare-styleable name="GridLayout_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_margin"/><attr name="android:layout_marginLeft"/><attr name="android:layout_marginTop"/><attr name="android:layout_marginRight"/><attr name="android:layout_marginBottom"/><attr format="integer" name="layout_row"/><attr format="integer" min="1" name="layout_rowSpan"/><attr format="float" name="layout_rowWeight"/><attr format="integer" name="layout_column"/><attr format="integer" min="1" name="layout_columnSpan"/><attr format="float" name="layout_columnWeight"/><attr name="layout_gravity"><flag name="top" value="0x30"/><flag name="bottom" value="0x50"/><flag name="left" value="0x03"/><flag name="right" value="0x05"/><flag name="center_vertical" value="0x10"/><flag name="fill_vertical" value="0x70"/><flag name="center_horizontal" value="0x01"/><flag name="fill_horizontal" value="0x07"/><flag name="center" value="0x11"/><flag name="fill" value="0x77"/><flag name="clip_vertical" value="0x80"/><flag name="clip_horizontal" value="0x08"/><flag name="start" value="0x00800003"/><flag name="end" value="0x00800005"/></attr></declare-styleable>
     <declare-styleable name="LinearLayoutCompat"><attr name="android:orientation"/><attr name="android:gravity"/><attr name="android:baselineAligned"/><attr name="android:baselineAlignedChildIndex"/><attr name="android:weightSum"/><attr format="boolean" name="measureWithLargestChild"/><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_weight"/><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ListPopupWindow"><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/></declare-styleable>
@@ -335,6 +342,7 @@
     <declare-styleable name="ScrollingViewBehavior_Params"><attr format="dimension" name="behavior_overlapTop"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr format="string" name="defaultQueryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="searchHintIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
     <declare-styleable name="ShaderImageView"><attr format="boolean" name="siSquare"/><attr format="color" name="siBorderColor"/><attr format="dimension" name="siBorderWidth"/><attr format="float" name="siBorderAlpha"/><attr format="integer|reference" name="siForeground"/><attr format="dimension" name="siRadius"/><attr name="siArrowPosition"/><attr format="dimension" name="siTriangleHeight"/><attr format="integer|reference" name="siShape"/><attr name="siBorderType"/><attr name="siStrokeCap"/><attr name="siStrokeJoin"/><attr format="dimension" name="siStrokeMiter"/></declare-styleable>
+    <declare-styleable name="SmoothProgressBar"><attr format="reference" name="spbStyle"/><attr format="color" name="spb_color"/><attr format="dimension" name="spb_stroke_width"/><attr format="dimension" name="spb_stroke_separator_length"/><attr format="integer" name="spb_sections_count"/><attr format="float" name="spb_speed"/><attr format="float" name="spb_progressiveStart_speed"/><attr format="float" name="spb_progressiveStop_speed"/><attr format="enum" name="spb_interpolator"><enum name="spb_interpolator_accelerate" value="0"/><enum name="spb_interpolator_linear" value="1"/><enum name="spb_interpolator_acceleratedecelerate" value="2"/><enum name="spb_interpolator_decelerate" value="3"/></attr><attr format="boolean" name="spb_reversed"/><attr format="boolean" name="spb_mirror_mode"/><attr format="reference" name="spb_colors"/><attr format="boolean" name="spb_progressiveStart_activated"/><attr format="reference" name="spb_background"/><attr format="boolean" name="spb_generate_background_with_colors"/><attr format="boolean" name="spb_gradients"/></declare-styleable>
     <declare-styleable name="SnackbarLayout"><attr name="android:maxWidth"/><attr name="elevation"/><attr format="dimension" name="maxActionInlineWidth"/></declare-styleable>
     <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/><attr name="android:background"/></declare-styleable>
     <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
@@ -435,6 +443,13 @@
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.6.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="circular_progress_border">4dp</dimen>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="color_chooser">50dp</dimen>
+    <dimen name="color_chooser_margin">8dp</dimen>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="default_gap">8dip</dimen>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.rengwuxian.materialedittext/library/2.1.4/res/values/values.xml -->
     <eat-comment/>
     <dimen name="default_padding_bottom">8dp</dimen>
@@ -544,6 +559,12 @@
     <dimen name="snackbar_padding_vertical">14dp</dimen>
     <dimen name="snackbar_padding_vertical_2lines">24dp</dimen>
     <dimen name="snackbar_text_size">14sp</dimen>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="spb_default_stroke_separator_length">4dp</dimen>
+    <dimen name="spb_default_stroke_width">4dp</dimen>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <dimen name="tab_max_width">264dp</dimen>
     <dimen name="tab_min_width">72dp</dimen>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
@@ -578,6 +599,10 @@
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="snackbar_text_max_lines">2</integer>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <integer name="spb_default_interpolator">0</integer>
+    <integer name="spb_default_sections_count">4</integer>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="status_bar_notification_info_maxnum">999</integer>
@@ -604,7 +629,7 @@
     <string name="action_notification">通知消息</string>
     <string name="action_settings">设置</string>
     <string name="app_copyright">Copyright ©2015 版权所有</string>
-    <string name="app_name">Bingo</string>
+    <string name="app_name">BingoWorld</string>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/design/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
@@ -612,10 +637,36 @@
     <eat-comment/>
     <string name="cancel">取消</string>
     <string name="copy_message">复制</string>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <string name="define_smoothprogressbar"/>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="delete_message">删除</string>
+    <string name="download_url">下载地址</string>
     <string name="exit">退出</string>
+    <string name="hint_input_describe">请输入描述</string>
+    <string name="hint_input_website">请输入网址</string>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <string name="library_smoothprogressbar_author">Antoine Merle</string>
+    <string name="library_smoothprogressbar_authorWebsite">https://github.com/castorflex</string>
+    <string name="library_smoothprogressbar_isOpenSource">true</string>
+    <string name="library_smoothprogressbar_libraryDescription">Small library allowing you to make a smooth indeterminate progress bar. You can either user your progress bars and set this drawable or use directly the SmoothProgressBarView.</string>
+    <string name="library_smoothprogressbar_libraryName">SmoothProgressBar</string>
+    <string name="library_smoothprogressbar_libraryVersion">1.0.0</string>
+    <string name="library_smoothprogressbar_libraryWebsite">https://github.com/castorflex/SmoothProgressBar</string>
+    <string name="library_smoothprogressbar_licenseId">apache_2_0</string>
+    <string name="library_smoothprogressbar_repositoryLink">https://github.com/castorflex/SmoothProgressBar.git</string>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="login_get_verify_code">获取验证码(%s)</string>
     <string name="login_verify_code">获取验证码</string>
+    <string name="menu_change_theme">设置主题</string>
+    <string name="menu_feedback">意见反馈</string>
+    <string name="menu_my_favorite">我的收藏</string>
+    <string name="menu_send_to_friend">发送给好友</string>
+    <string name="menu_share">分享</string>
     <string name="msg_female">女</string>
     <string name="msg_few_minutes_ago">分钟前</string>
     <string name="msg_gender_unknow">未知</string>
@@ -624,14 +675,24 @@
     <string name="msg_today">今天</string>
     <string name="msg_yesterday">昨天</string>
     <string name="my_bingo_title">我的BINGO</string>
+    <string name="no_email_app_tip">请先安装邮件应用并设置账户，或直接发送邮件至sfsheng0322@126.com。</string>
     <string name="ok">确认</string>
     <string name="please_choose">请选择</string>
+    <string name="share">分享到</string>
+    <string formatted="false" name="share_text">BingoWorld拥有丰富内容，包含Android、iOS技术文章和相关面试题，
+        推荐你也来用用，你也可以发布自己的Bingo。</string>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <item format="float" name="spb_default_speed" type="string">1</item>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="square_bingo_title">广场BINGO</string>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="transfer_apk_to_friend">发送%1$s安装包给好友</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="xlistview_header_hint_loading">正在加载...</string>
@@ -1609,6 +1670,18 @@
         <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="BlueTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+    </style>
+    <style name="BrownTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/brown</item>
+        <item name="colorPrimaryDark">@color/brown</item>
+        <item name="colorAccent">@color/brown</item>
+    </style>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
     <style name="CardView">
@@ -1624,6 +1697,13 @@
     </style>
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="CyanTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/cyan</item>
+        <item name="colorPrimaryDark">@color/cyan</item>
+        <item name="colorAccent">@color/cyan</item>
     </style>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.8/res/values/values.xml -->
     <eat-comment/>
@@ -1644,6 +1724,32 @@
     </style>
     <style name="FloatingActionButton.Mini" parent="FloatingActionButton">
         <item name="floatingActionButtonSize">mini</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="GPlusProgressBar" parent="SmoothProgressBar">
+        <item name="spb_stroke_separator_length">12dp</item>
+        <item name="spb_sections_count">4</item>
+        <item name="spb_speed">0.7</item>
+        <item name="spb_interpolator">spb_interpolator_linear</item>
+        <item name="spb_colors">@array/gplus_colors</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="GreenTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/green</item>
+        <item name="colorAccent">@color/green</item>
+    </style>
+    <style name="GreyTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/grey</item>
+        <item name="colorPrimaryDark">@color/grey</item>
+        <item name="colorAccent">@color/grey</item>
+    </style>
+    <style name="IndigoTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/indigo</item>
+        <item name="colorPrimaryDark">@color/indigo</item>
+        <item name="colorAccent">@color/indigo</item>
     </style>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.afollestad/material-dialogs/0.7.6.0/res/values/values.xml -->
     <eat-comment/>
@@ -1698,6 +1804,18 @@
     <style name="MD_WindowAnimation">
         <item name="android:windowEnterAnimation">@anim/popup_enter</item>
         <item name="android:windowExitAnimation">@anim/popup_exit</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="OrangeTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orange</item>
+        <item name="colorAccent">@color/orange</item>
+    </style>
+    <style name="PinkTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/pink</item>
+        <item name="colorPrimaryDark">@color/pink</item>
+        <item name="colorAccent">@color/pink</item>
     </style>
     <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
     <eat-comment/>
@@ -1797,6 +1915,20 @@
         <item name="android:autoCompleteTextViewStyle">@style/Widget.AppCompat.Light.AutoCompleteTextView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="PurpleTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorPrimaryDark">@color/purple</item>
+        <item name="colorAccent">@color/purple</item>
+    </style>
+    <style name="RedTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/red</item>
+        <item name="colorAccent">@color/red</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
     </style>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
@@ -1842,6 +1974,29 @@
     <style name="RtlOverlay.Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:paddingLeft">@dimen/abc_action_bar_navigation_padding_start_material</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <style name="SPB" parent="android:Widget.ProgressBar.Horizontal">
+    </style>
+    <style name="SmoothProgressBar" parent="SPB">
+        <item name="spb_color">@color/spb_default_color</item>
+        <item name="spb_sections_count">@integer/spb_default_sections_count</item>
+        <item name="spb_speed">@string/spb_default_speed</item>
+        <item name="spb_stroke_width">@dimen/spb_default_stroke_width</item>
+        <item name="spb_stroke_separator_length">@dimen/spb_default_stroke_separator_length</item>
+        <item name="spb_reversed">@bool/spb_default_reversed</item>
+        <item name="spb_mirror_mode">@bool/spb_default_mirror_mode</item>
+        <item name="spb_interpolator">@integer/spb_default_interpolator</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="TealTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryDark">@color/teal</item>
+        <item name="colorAccent">@color/teal</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
     <style name="TextAppearance.AppCompat.Body2" parent="Base.TextAppearance.AppCompat.Body2"/>
@@ -1953,6 +2108,13 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.github.castorflex.smoothprogressbar/library/1.1.0/res/values/values.xml -->
+    <eat-comment/>
+    <style name="Theme.SmoothProgressBarDefaults" parent="android:Theme">
+        <item name="spbStyle">@style/SmoothProgressBar</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/res/values/values.xml -->
+    <eat-comment/>
     <style name="ThemeOverlay.AppCompat" parent="Base.ThemeOverlay.AppCompat"/>
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="Base.ThemeOverlay.AppCompat.ActionBar"/>
     <style name="ThemeOverlay.AppCompat.Dark" parent="Base.ThemeOverlay.AppCompat.Dark"/>
@@ -2100,5 +2262,12 @@
     <style name="Widget.Design.TextInputLayout" parent="android:Widget">
         <item name="hintTextAppearance">@style/TextAppearance.Design.Hint</item>
         <item name="errorTextAppearance">@style/TextAppearance.Design.Error</item>
+    </style>
+    <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/values/theme-styles.xml -->
+    <eat-comment/>
+    <style name="YellowTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorPrimaryDark">@color/yellow</item>
+        <item name="colorAccent">@color/yellow</item>
     </style>
 </resources>

@@ -6,7 +6,7 @@
 
     <com.sun.bingo.widget.CircleRefreshLayout
         android:id="@+id/circle_refresh_layout"
-        app:AniBackColor="@color/color_primary_light"
+        app:AniBackColor="@color/font_black_5"
         app:AniForeColor="@color/white"
         app:CircleSmaller="10"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        app:type="chrome_floating_circles"/>
+        app:type="folding_circles"/>
 
 </FrameLayout>
 <!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/layout/fragment_bingo_list.xml -->

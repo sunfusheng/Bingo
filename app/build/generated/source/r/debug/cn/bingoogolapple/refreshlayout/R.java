@@ -11,31 +11,31 @@ public final class R {
 		public static final int bga_refresh_loding = 0x7f05000a;
 	}
 	public static final class attr {
-		public static final int layoutManager = 0x7f0100e8;
+		public static final int layoutManager = 0x7f0100f6;
 		public static final int mv_originalImg = 0x7f010054;
 		public static final int mv_ultimateColor = 0x7f010053;
-		public static final int reverseLayout = 0x7f0100ea;
-		public static final int spanCount = 0x7f0100e9;
-		public static final int stackFromEnd = 0x7f0100eb;
+		public static final int reverseLayout = 0x7f0100f8;
+		public static final int spanCount = 0x7f0100f7;
+		public static final int stackFromEnd = 0x7f0100f9;
 	}
 	public static final class dimen {
-		public static final int item_touch_helper_max_drag_scroll_per_frame = 0x7f080075;
+		public static final int item_touch_helper_max_drag_scroll_per_frame = 0x7f080078;
 	}
 	public static final class id {
 		public static final int item_touch_helper_previous_elevation = 0x7f0e0005;
-		public static final int iv_normal_refresh_footer_chrysanthemum = 0x7f0e00e1;
-		public static final int iv_normal_refresh_header_arrow = 0x7f0e00e4;
-		public static final int iv_normal_refresh_header_chrysanthemum = 0x7f0e00e5;
-		public static final int moocView = 0x7f0e00e3;
-		public static final int stickinessRefreshView = 0x7f0e00e7;
-		public static final int tv_normal_refresh_footer_status = 0x7f0e00e2;
-		public static final int tv_normal_refresh_header_status = 0x7f0e00e6;
+		public static final int iv_normal_refresh_footer_chrysanthemum = 0x7f0e00ec;
+		public static final int iv_normal_refresh_header_arrow = 0x7f0e00ef;
+		public static final int iv_normal_refresh_header_chrysanthemum = 0x7f0e00f0;
+		public static final int moocView = 0x7f0e00ee;
+		public static final int stickinessRefreshView = 0x7f0e00f2;
+		public static final int tv_normal_refresh_footer_status = 0x7f0e00ed;
+		public static final int tv_normal_refresh_header_status = 0x7f0e00f1;
 	}
 	public static final class layout {
-		public static final int view_normal_refresh_footer = 0x7f04004c;
-		public static final int view_refresh_header_mooc_style = 0x7f04004d;
-		public static final int view_refresh_header_normal = 0x7f04004e;
-		public static final int view_refresh_header_stickiness = 0x7f04004f;
+		public static final int view_normal_refresh_footer = 0x7f04004f;
+		public static final int view_refresh_header_mooc_style = 0x7f040050;
+		public static final int view_refresh_header_normal = 0x7f040051;
+		public static final int view_refresh_header_stickiness = 0x7f040052;
 	}
 	public static final class mipmap {
 		public static final int bga_refresh_loading = 0x7f030000;
@@ -60,7 +60,7 @@ public final class R {
 		public static final int[] BGAMoocStyleRefreshView = { 0x7f010053, 0x7f010054 };
 		public static final int BGAMoocStyleRefreshView_mv_originalImg = 1;
 		public static final int BGAMoocStyleRefreshView_mv_ultimateColor = 0;
-		public static final int[] RecyclerView = { 0x010100c4, 0x7f0100e8, 0x7f0100e9, 0x7f0100ea, 0x7f0100eb };
+		public static final int[] RecyclerView = { 0x010100c4, 0x7f0100f6, 0x7f0100f7, 0x7f0100f8, 0x7f0100f9 };
 		public static final int RecyclerView_android_orientation = 0;
 		public static final int RecyclerView_layoutManager = 1;
 		public static final int RecyclerView_reverseLayout = 3;

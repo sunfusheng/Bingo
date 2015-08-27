@@ -7,24 +7,26 @@ import butterknife.ButterKnife.Finder;
 public class ProfileActivity$$ViewInjector {
   public static void inject(Finder finder, final com.sun.bingo.ui.activity.ProfileActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131624058, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131624072, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131624078, "field 'civUserAvatar'");
+    view = finder.findRequiredView(source, 2131624090, "field 'civUserAvatar'");
     target.civUserAvatar = (com.sun.bingo.widget.UploadAvatarView) view;
-    view = finder.findRequiredView(source, 2131624077, "field 'rlUserAvatar'");
+    view = finder.findRequiredView(source, 2131624089, "field 'rlUserAvatar'");
     target.rlUserAvatar = (android.widget.RelativeLayout) view;
-    view = finder.findRequiredView(source, 2131624083, "field 'tvUserSignTitle'");
+    view = finder.findRequiredView(source, 2131624095, "field 'tvUserSignTitle'");
     target.tvUserSignTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624084, "field 'tvUserSign'");
+    view = finder.findRequiredView(source, 2131624096, "field 'tvUserSign'");
     target.tvUserSign = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624082, "field 'rlUserSign'");
+    view = finder.findRequiredView(source, 2131624094, "field 'rlUserSign'");
     target.rlUserSign = (android.widget.RelativeLayout) view;
-    view = finder.findRequiredView(source, 2131624080, "field 'tvNickNameTitle'");
+    view = finder.findRequiredView(source, 2131624092, "field 'tvNickNameTitle'");
     target.tvNickNameTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624081, "field 'tvNickName'");
+    view = finder.findRequiredView(source, 2131624093, "field 'tvNickName'");
     target.tvNickName = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131624079, "field 'rlNickName'");
+    view = finder.findRequiredView(source, 2131624091, "field 'rlNickName'");
     target.rlNickName = (android.widget.RelativeLayout) view;
+    view = finder.findRequiredView(source, 2131624097, "field 'tvLogout'");
+    target.tvLogout = (android.widget.TextView) view;
   }
 
   public static void reset(com.sun.bingo.ui.activity.ProfileActivity target) {
@@ -37,5 +39,6 @@ public class ProfileActivity$$ViewInjector {
     target.tvNickNameTitle = null;
     target.tvNickName = null;
     target.rlNickName = null;
+    target.tvLogout = null;
   }
 }

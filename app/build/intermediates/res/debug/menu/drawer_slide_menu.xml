@@ -4,22 +4,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_switch_theme"
-            android:icon="@drawable/ic_dashboard"
-            android:title="更换皮肤"/>
+            android:icon="@drawable/ic_action_theme"
+            android:title="@string/menu_change_theme"/>
         <item
             android:id="@+id/nav_favorite_bingo"
-            android:icon="@drawable/ic_dashboard"
-            android:title="我的收藏"/>
+            android:icon="@drawable/ic_action_star"
+            android:title="@string/menu_my_favorite"/>
 
         <item
-            android:id="@+id/nav_scan"
-            android:icon="@drawable/ic_dashboard"
-            android:title="扫一扫"/>
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_action_feedback"
+            android:title="@string/menu_feedback"/>
+
+        <item
+            android:id="@+id/nav_send_to_friend"
+            android:icon="@drawable/ic_action_msg"
+            android:title="@string/menu_send_to_friend"/>
 
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/ic_dashboard"
-            android:title="分享"/>
+            android:icon="@drawable/ic_action_share"
+            android:title="@string/menu_share"/>
     </group>
 
 </menu>

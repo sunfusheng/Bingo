@@ -19,14 +19,14 @@ public final class R {
 		public static final int floatingActionButtonStyle = 0x7f010001;
 	}
 	public static final class dimen {
-		public static final int floating_action_button_elevation = 0x7f080066;
+		public static final int floating_action_button_elevation = 0x7f080069;
 		public static final int floating_action_button_margin_mini = 0x7f080017;
 		public static final int floating_action_button_margin_mini_minus = 0x7f080018;
 		public static final int floating_action_button_margin_normal = 0x7f080019;
 		public static final int floating_action_button_margin_normal_minus = 0x7f08001a;
-		public static final int floating_action_button_shadow_radius = 0x7f080067;
-		public static final int floating_action_button_size_mini = 0x7f080068;
-		public static final int floating_action_button_size_normal = 0x7f080069;
+		public static final int floating_action_button_shadow_radius = 0x7f08006a;
+		public static final int floating_action_button_size_mini = 0x7f08006b;
+		public static final int floating_action_button_size_normal = 0x7f08006c;
 	}
 	public static final class drawable {
 		public static final int com_shamanland_fab_circle_mini = 0x7f020048;
@@ -40,15 +40,15 @@ public final class R {
 		public static final int normal = 0x7f0e0018;
 	}
 	public static final class style {
-		public static final int FloatingActionButton = 0x7f0900ae;
-		public static final int FloatingActionButton_Dark = 0x7f0900af;
-		public static final int FloatingActionButton_Dark_Mini = 0x7f0900b0;
-		public static final int FloatingActionButton_Light = 0x7f0900b1;
-		public static final int FloatingActionButton_Light_Mini = 0x7f0900b2;
-		public static final int FloatingActionButton_Mini = 0x7f0900b3;
+		public static final int FloatingActionButton = 0x7f0900b2;
+		public static final int FloatingActionButton_Dark = 0x7f0900b3;
+		public static final int FloatingActionButton_Dark_Mini = 0x7f0900b4;
+		public static final int FloatingActionButton_Light = 0x7f0900b5;
+		public static final int FloatingActionButton_Light_Mini = 0x7f0900b6;
+		public static final int FloatingActionButton_Mini = 0x7f0900b7;
 	}
 	public static final class styleable {
-		public static final int[] FloatingActionButton = { 0x010100d4, 0x7f010039, 0x7f01008d, 0x7f01008e, 0x7f01008f, 0x7f010090, 0x7f010091, 0x7f010092, 0x7f010093, 0x7f010094, 0x7f01019b, 0x7f01019c };
+		public static final int[] FloatingActionButton = { 0x010100d4, 0x7f010039, 0x7f01008d, 0x7f01008e, 0x7f01008f, 0x7f010090, 0x7f010091, 0x7f010092, 0x7f010093, 0x7f010094, 0x7f0101b9, 0x7f0101ba };
 		public static final int FloatingActionButton_floatingActionButtonColor = 2;
 		public static final int FloatingActionButton_floatingActionButtonImplicitElevation = 4;
 		public static final int FloatingActionButton_floatingActionButtonShadow = 5;
