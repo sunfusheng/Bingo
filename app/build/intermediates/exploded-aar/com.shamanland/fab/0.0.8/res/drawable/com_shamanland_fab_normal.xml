@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/com_shamanland_fab_shadow"/>
-    <item android:drawable="@drawable/com_shamanland_fab_circle_normal"/>
-</layer-list>
-<!-- From: file:/home/main/Projects/floating-action-button/lib/src/main/res/drawable/com_shamanland_fab_normal.xml -->

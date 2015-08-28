@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:drawable="@drawable/delete_image_p" android:state_pressed="true"/>
-    <item android:drawable="@drawable/delete_image"/>
-
-</selector><!-- From: file:/Users/sunfusheng/Android/GitHub/Bingo/app/src/main/res/drawable/selector_delete_image.xml -->

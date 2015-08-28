@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/home/main/Projects/floating-action-button/lib/src/main/res/values-v21/dimens.xml -->
-    <eat-comment/>
-    <dimen name="floating_action_button_margin_mini">20dp</dimen>
-    <dimen name="floating_action_button_margin_mini_minus">-20dp</dimen>
-    <dimen name="floating_action_button_margin_normal">28dp</dimen>
-    <dimen name="floating_action_button_margin_normal_minus">-28dp</dimen>
-</resources>
