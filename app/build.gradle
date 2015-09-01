@@ -107,4 +107,7 @@ dependencies {
     //Facebook Fresco
     compile 'com.facebook.fresco:fresco:0.6.0'
 
+    //PhotoView
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+
 }

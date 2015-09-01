@@ -16,10 +16,12 @@ import com.sun.bingo.util.DisplayUtil;
 
 import java.util.List;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 /**
  * Created by sunfusheng on 15/8/3.
  */
-public class GroupImageView extends ViewGroup {
+public class GroupImageView extends ViewGroup implements View.OnClickListener {
 
     public static final String TAG = GroupImageView.class.getSimpleName();
     private Context mContext;
@@ -32,6 +34,8 @@ public class GroupImageView extends ViewGroup {
 
     private static Rect[] smallRectArr = null;
     private DisplayImageOptions picOptions;
+
+    private PhotoViewAttacher mAttacher;
 
     public GroupImageView(Context context) {
         super(context);
@@ -185,6 +189,9 @@ public class GroupImageView extends ViewGroup {
                 //隐藏多余的View
                 getChildAt(i).setVisibility(View.GONE);
             } else {
+                imgView.setOnClickListener(this);
+                imgView.setTag("<" + i + "> " + picUrls.get(i));
+
                 Rect imgRect = picRects[i];
                 imgView.setVisibility(View.VISIBLE);
                 imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -194,4 +201,8 @@ public class GroupImageView extends ViewGroup {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        mAttacher = new PhotoViewAttacher((ImageView)v);
+    }
 }
