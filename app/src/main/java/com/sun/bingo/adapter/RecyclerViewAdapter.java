@@ -22,6 +22,7 @@ import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.DateUtil;
+import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
@@ -115,8 +116,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         final BingoEntity entity = mEntities.get(position);
         List<String> favoriteList = userEntity.getFavoriteList();
 
-
-
         PopupMenu popupMenu = new PopupMenu(mContext, ancho);
         popupMenu.getMenuInflater().inflate(R.menu.item_pop_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -133,7 +132,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
                         return true;
                     case R.id.pop_share:
-
+                        ShareUtil.share(mContext, entity.getWebsite()+"\n"+entity.getDescribe()+"\n来自"+mContext.getString(R.string.app_name)+"的分享");
                         return true;
                 }
                 return false;

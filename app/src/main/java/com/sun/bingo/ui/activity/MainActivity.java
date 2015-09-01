@@ -152,7 +152,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                         ShareUtil.sendToFriend(MainActivity.this);
                         break;
                     case R.id.nav_share:
-                        ShareUtil.share(MainActivity.this, null);
+                        ShareUtil.share(MainActivity.this);
                         break;
                 }
                 return false;

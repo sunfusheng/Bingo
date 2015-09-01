@@ -80,18 +80,20 @@ public class ShareUtil {
 
     /**
      * 分享
-     * @param uri 图片Uri
      */
-    public static void share(Context context, Uri uri){
+    public static void share(Context context){
+        share(context, context.getString(R.string.share_text));
+    }
+
+    /**
+     * 分享
+     * @param content
+     */
+    public static void share(Context context, String content){
         Intent intent=new Intent(Intent.ACTION_SEND);
-        if (uri != null){
-            intent.setType("image/*");
-            intent.putExtra(Intent.EXTRA_STREAM, uri);
-        }else {
-            intent.setType("text/plain");
-        }
+        intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.share));
-        intent.putExtra(Intent.EXTRA_TEXT, context.getString(R.string.share_text));
+        intent.putExtra(Intent.EXTRA_TEXT, content);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(Intent.createChooser(intent, context.getString(R.string.share)));
     }
