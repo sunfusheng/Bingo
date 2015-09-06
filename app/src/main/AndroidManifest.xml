@@ -69,6 +69,10 @@
         <activity android:name=".ui.activity.FavoriteActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.activity.ImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Image"/>
+
     </application>
 
 </manifest>

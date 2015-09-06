@@ -21,4 +21,11 @@
         <item name="actionSheetTextSize">16sp</item>
     </style>
 
+    <style name="AppTheme.Image" parent="AppTheme">
+        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
 </resources>

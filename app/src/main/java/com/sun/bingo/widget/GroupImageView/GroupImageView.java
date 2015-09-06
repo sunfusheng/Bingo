@@ -1,6 +1,7 @@
 package com.sun.bingo.widget.GroupImageView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
+import com.sun.bingo.ui.activity.ImageActivity;
 import com.sun.bingo.util.DisplayUtil;
 
 import java.util.List;
@@ -190,7 +192,8 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
                 getChildAt(i).setVisibility(View.GONE);
             } else {
                 imgView.setOnClickListener(this);
-                imgView.setTag("<" + i + "> " + picUrls.get(i));
+                imgView.setTag(R.id.tag_index, i);
+                imgView.setTag(R.id.tag_pic_urls, picUrls);
 
                 Rect imgRect = picRects[i];
                 imgView.setVisibility(View.VISIBLE);
@@ -203,6 +206,16 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mAttacher = new PhotoViewAttacher((ImageView)v);
+        int index = (int) v.getTag(R.id.tag_index);
+        List<String> picUrls = (List<String>) v.getTag(R.id.tag_pic_urls);
+        gotoImageActivity(index, picUrls);
+
+    }
+
+    private void gotoImageActivity(int index, List<String> picUrls) {
+        Intent intent = new Intent(mContext, ImageActivity.class);
+        intent.putExtra("index", index);
+        intent.putExtra("picUrls", picUrls.toArray(new String[picUrls.size()]));
+        mContext.startActivity(intent);
     }
 }

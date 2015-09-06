@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         ThemeUtil.changeTheme(this);
         super.onCreate(savedInstanceState);
 
-        initSystemBarTint(true);
+        initSystemBarTint(true, getColorPrimary());
         initData();
     }
 
@@ -54,12 +54,12 @@ public class BaseActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(this);
     }
 
-    public void initSystemBarTint(boolean on) {
+    public void initSystemBarTint(boolean on, int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(on);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(on);
-            tintManager.setStatusBarTintColor(getColorPrimary());
+            tintManager.setStatusBarTintColor(color);
         }
     }
 
@@ -73,10 +73,6 @@ public class BaseActivity extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
-    }
-
-    public int getStatusBarColor(){
-        return getColorPrimary();
     }
 
     public int getColorPrimary() {

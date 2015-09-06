@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sun.bingo.widget.ViewPagerFixed xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_pager"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
