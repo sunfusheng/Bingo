@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.apkfuns.logutils.LogUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
@@ -37,18 +36,13 @@ public class ImageActivity extends BaseActivity {
         setContentView(R.layout.activity_image);
         ButterKnife.inject(this);
 
-        initData(savedInstanceState);
+        initData();
         initView();
     }
 
-    private void initData(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            index = getIntent().getIntExtra("index", 0);
-            picUrls = getIntent().getStringArrayExtra("picUrls");
-        } else {
-            index = savedInstanceState.getInt("index", 0);
-            picUrls = savedInstanceState.getStringArray("picUrls");
-        }
+    private void initData() {
+        index = getIntent().getIntExtra("index", 0);
+        picUrls = getIntent().getStringArrayExtra("picUrls");
         size = picUrls.length;
     }
 
@@ -68,15 +62,9 @@ public class ImageActivity extends BaseActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("index", index);
-        outState.putStringArray("picUrls", picUrls);
     }
 
     static class CheckImageAdapter extends PagerAdapter {
