@@ -70,8 +70,7 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.ImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Image"/>
+            android:screenOrientation="portrait"/>
 
     </application>
 

@@ -2,6 +2,8 @@ package com.sun.bingo.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,8 +24,11 @@ public class ImageActivity extends BaseActivity {
 
     @InjectView(R.id.view_pager)
     ViewPagerFixed viewPager;
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
 
     private int index;
+    private int size;
     private String[] picUrls;
 
     @Override
@@ -32,24 +37,39 @@ public class ImageActivity extends BaseActivity {
         setContentView(R.layout.activity_image);
         ButterKnife.inject(this);
 
-        initSystemBarTint(true, getResources().getColor(android.R.color.transparent));
         initData(savedInstanceState);
-
+        initView();
     }
 
     private void initData(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             index = getIntent().getIntExtra("index", 0);
             picUrls = getIntent().getStringArrayExtra("picUrls");
-            LogUtils.d("------------> savedInstanceState == null");
         } else {
             index = savedInstanceState.getInt("index", 0);
             picUrls = savedInstanceState.getStringArray("picUrls");
-            LogUtils.d("------------> savedInstanceState");
         }
+        size = picUrls.length;
+    }
 
+    private void initView() {
+        initToolBar(toolbar, true, index + 1 + "/"+size);
         viewPager.setAdapter(new CheckImageAdapter(picUrls));
         viewPager.setCurrentItem(index);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                toolbar.setTitle(position + 1 + "/" + size);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
     @Override
@@ -57,7 +77,6 @@ public class ImageActivity extends BaseActivity {
         super.onSaveInstanceState(outState);
         outState.putInt("index", index);
         outState.putStringArray("picUrls", picUrls);
-        LogUtils.d("------------> onSaveInstanceState(Bundle outState)");
     }
 
     static class CheckImageAdapter extends PagerAdapter {
@@ -69,7 +88,6 @@ public class ImageActivity extends BaseActivity {
         public CheckImageAdapter(String[] picUrls) {
             this.picUrls = picUrls;
             this.size = picUrls.length;
-
             picOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
                     .showImageOnLoading(R.color.font_black_6)
                     .showImageForEmptyUri(R.color.font_black_6)
@@ -81,7 +99,7 @@ public class ImageActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             PhotoView photoView = new PhotoView(container.getContext());
             ImageLoader.getInstance().displayImage(picUrls[position], photoView, picOptions);
-            container.addView(photoView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            container.addView(photoView);
             return photoView;
         }
 
