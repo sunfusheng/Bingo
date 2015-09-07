@@ -3,28 +3,44 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_switch_theme"
-            android:icon="@drawable/ic_action_theme"
-            android:title="@string/menu_change_theme"/>
+            android:id="@+id/nav_square_bingo"
+            android:icon="@drawable/ic_action_home"
+            android:checked="true"
+            android:title="@string/menu_square_bingo"/>
+
+        <item
+            android:id="@+id/nav_my_bingo"
+            android:icon="@drawable/ic_action_me"
+            android:title="@string/menu_my_bingo"/>
+
         <item
             android:id="@+id/nav_favorite_bingo"
             android:icon="@drawable/ic_action_star"
             android:title="@string/menu_my_favorite"/>
-
-        <item
-            android:id="@+id/nav_feedback"
-            android:icon="@drawable/ic_action_feedback"
-            android:title="@string/menu_feedback"/>
-
-        <item
-            android:id="@+id/nav_send_to_friend"
-            android:icon="@drawable/ic_action_msg"
-            android:title="@string/menu_send_to_friend"/>
-
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_action_share"
-            android:title="@string/menu_share"/>
     </group>
+
+    <item android:title="其它">
+        <menu>
+            <item
+                android:id="@+id/nav_switch_theme"
+                android:icon="@drawable/ic_action_theme"
+                android:title="@string/menu_change_theme"/>
+
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_action_feedback"
+                android:title="@string/menu_feedback"/>
+
+            <item
+                android:id="@+id/nav_send_to_friend"
+                android:icon="@drawable/ic_action_msg"
+                android:title="@string/menu_send_to_friend"/>
+
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_action_share"
+                android:title="@string/menu_share"/>
+        </menu>
+    </item>
 
 </menu>

@@ -16,11 +16,10 @@
     <string name="update_no">暂不</string>
     <string name="new_version_yet">已是最新版本</string>
 
-    <string name="square_bingo_title">广场BINGO</string>
-    <string name="my_bingo_title">我的BINGO</string>
-
-    <string name="menu_change_theme">设置主题</string>
+    <string name="menu_square_bingo">Bingo首页</string>
+    <string name="menu_my_bingo">我的Bingo</string>
     <string name="menu_my_favorite">我的收藏</string>
+    <string name="menu_change_theme">设置主题</string>
     <string name="menu_feedback">意见反馈</string>
     <string name="menu_send_to_friend">发送给好友</string>
     <string name="menu_share">分享</string>

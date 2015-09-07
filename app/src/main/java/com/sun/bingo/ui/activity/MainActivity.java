@@ -3,36 +3,32 @@ package com.sun.bingo.ui.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.shamanland.fab.FloatingActionButton;
 import com.sun.bingo.R;
-import com.sun.bingo.adapter.FragmentAdapter;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.update.DownloadApk;
+import com.sun.bingo.ui.fragment.FavoriteFragment;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
 import com.sun.bingo.util.theme.Selector;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -43,20 +39,17 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.tab_layout)
-    TabLayout tabLayout;
-    @InjectView(R.id.app_bar_layout)
-    AppBarLayout appBarLayout;
-    @InjectView(R.id.view_pager)
-    ViewPager viewPager;
-    @InjectView(R.id.main_coordinator_layout)
-    CoordinatorLayout mainCoordinatorLayout;
+    @InjectView(R.id.fl_container)
+    FrameLayout flContainer;
+    @InjectView(R.id.floating_action_button)
+    FloatingActionButton floatingActionButton;
     @InjectView(R.id.main_navigation_layout)
     NavigationView mainNavigationLayout;
     @InjectView(R.id.main_drawer_layout)
     DrawerLayout mainDrawerLayout;
-    @InjectView(R.id.floating_action_button)
-    FloatingActionButton floatingActionButton;
+
+    private String[] titles;
+    private int mCurrentPosition = 0;
 
     private CircularImageView civUserAvatar;
     private TextView tvNickName;
@@ -69,6 +62,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         ButterKnife.inject(this);
 
         initVersion();
+        checkToken();
         initData();
         initView();
         initListener();
@@ -77,14 +71,14 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+        checkToken();
     }
 
     private void initVersion() {
         new DownloadApk(this).checkVersion();
     }
 
-    private void initData() {
+    private void checkToken() {
         userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         if (userEntity == null) {
             NavigateManager.gotoLoginActivity(this);
@@ -92,12 +86,19 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         }
     }
 
+    private void initData() {
+        titles = new String[3];
+        titles[0] = getString(R.string.menu_square_bingo);
+        titles[1] = getString(R.string.menu_my_bingo);
+        titles[2] = getString(R.string.menu_my_favorite);
+    }
+
     @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
-        initTabLayout();
+        controlShowFragment(0);
 
         floatingActionButton.setBackground(Selector.createOvalShapeSelector(getColorPrimary()));
         civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
@@ -107,23 +108,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
         UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
-
-    }
-
-    private void initTabLayout() {
-        List<String> titles = new ArrayList<>();
-        titles.add(getResources().getString(R.string.square_bingo_title));
-        titles.add(getResources().getString(R.string.my_bingo_title));
-        tabLayout.addTab(tabLayout.newTab().setText(titles.get(0)));
-        tabLayout.addTab(tabLayout.newTab().setText(titles.get(1)));
-
-        List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new SquareBingoFragment());
-        fragments.add(new MyBingoFragment());
-        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), fragments, titles);
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabsFromPagerAdapter(adapter);
     }
 
     private void initListener() {
@@ -131,7 +115,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             @Override
             public void onClick(View v) {
                 NavigateManager.gotoEditNewBingoActivity(MainActivity.this);
-//                NavigateManager.gotoRichEditorActivity(MainActivity.this);
             }
         });
 
@@ -139,11 +122,17 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case R.id.nav_switch_theme:
-                        changeTheme();
+                    case R.id.nav_square_bingo:
+                        controlShowFragment(0);
+                        break;
+                    case R.id.nav_my_bingo:
+                        controlShowFragment(1);
                         break;
                     case R.id.nav_favorite_bingo:
-                        NavigateManager.gotoFavoriteActivity(MainActivity.this);
+                        controlShowFragment(2);
+                        break;
+                    case R.id.nav_switch_theme:
+                        changeTheme();
                         break;
                     case R.id.nav_feedback:
                         ShareUtil.feedback(MainActivity.this);
@@ -155,7 +144,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                         ShareUtil.share(MainActivity.this);
                         break;
                 }
-                return false;
+                menuItem.setChecked(true);
+                return true;
             }
         });
 
@@ -165,6 +155,58 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                 NavigateManager.gotoProfileActivity(MainActivity.this);
             }
         });
+    }
+
+    private void controlShowFragment(int position) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Fragment oldFragment = fragmentManager.findFragmentByTag(makeTag(mCurrentPosition));
+        if (oldFragment != null) {
+            fragmentTransaction.hide(oldFragment);
+        }
+        mCurrentPosition = position;
+
+        Fragment currentFragment = fragmentManager.findFragmentByTag(makeTag(position));
+        if (currentFragment != null) {
+            fragmentTransaction.show(currentFragment);
+        } else {
+            fragmentTransaction.add(R.id.fl_container, getFragment(position), makeTag(position));
+        }
+        fragmentTransaction.commitAllowingStateLoss();
+
+        if (mainDrawerLayout.isShown()) {
+            mainDrawerLayout.closeDrawers();
+        }
+        toolbar.setTitle(titles[position]);
+    }
+
+    private String makeTag(int position) {
+        return R.id.fl_container + "" + position;
+    }
+
+    private Fragment getFragment(int position) {
+        Fragment fragment;
+        switch (position) {
+            case 0:
+                fragment = new SquareBingoFragment();
+                break;
+            case 1:
+                fragment = new MyBingoFragment();
+                break;
+            case 2:
+                fragment = new FavoriteFragment();
+                break;
+            default:
+                fragment = new SquareBingoFragment();
+                break;
+        }
+        return fragment;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //修复Fragment重叠问题
     }
 
     //设置主题
