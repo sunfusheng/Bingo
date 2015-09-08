@@ -132,7 +132,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
                         return true;
                     case R.id.pop_share:
-                        ShareUtil.share(mContext, entity.getWebsite()+"\n"+entity.getDescribe()+"\n来自"+mContext.getString(R.string.app_name)+"的分享");
+                        ShareUtil.share(mContext, entity.getDescribe()+entity.getWebsite()+"\n[来自"+mContext.getString(R.string.app_name)+"的分享，下载地址：https://fir.im/bingoworld]");
                         return true;
                 }
                 return false;

@@ -18,11 +18,9 @@
             android:layout_height="match_parent" />
     </com.sun.bingo.widget.CircleRefreshLayout>
 
-    <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
-        android:id="@+id/google_progressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        app:type="folding_circles"/>
+    <com.mingle.widget.LoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

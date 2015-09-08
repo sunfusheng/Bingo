@@ -110,4 +110,10 @@ dependencies {
     //PhotoView
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
 
+    //LoadingView
+    compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
+
+    //Stetho Chrome debug app
+    compile 'com.facebook.stetho:stetho:1.1.1'
+
 }

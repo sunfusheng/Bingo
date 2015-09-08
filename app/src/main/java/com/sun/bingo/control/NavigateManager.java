@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import com.sun.bingo.entity.BingoEntity;
+import com.sun.bingo.ui.activity.AboutAppActivity;
 import com.sun.bingo.ui.activity.BingoDetailActivity;
 import com.sun.bingo.ui.activity.EditNewBingoActivity;
 import com.sun.bingo.ui.activity.FavoriteActivity;
@@ -73,5 +74,10 @@ public class NavigateManager {
     public static void gotoFavoriteActivity(Activity activity) {
         Intent intent = new Intent(activity, FavoriteActivity.class);
         activity.startActivity(intent);
+    }
+
+    public static void gotoAboutAppActivity(Context context) {
+        Intent intent = new Intent(context, AboutAppActivity.class);
+        context.startActivity(intent);
     }
 }

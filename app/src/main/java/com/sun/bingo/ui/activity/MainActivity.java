@@ -98,16 +98,20 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
-        controlShowFragment(0);
+        if (userEntity != null) {
+            controlShowFragment(0);
+        }
 
         floatingActionButton.setBackground(Selector.createOvalShapeSelector(getColorPrimary()));
         civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
         tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);
         tvUserSign = (TextView) mainNavigationLayout.findViewById(R.id.tv_user_sign);
 
-        UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-        UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
-        UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+        if (userEntity != null) {
+            UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
+            UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
+            UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+        }
     }
 
     private void initListener() {
@@ -229,10 +233,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.item_menu_author:
-
-                return true;
             case R.id.item_menu_app:
+                NavigateManager.gotoAboutAppActivity(this);
+                return true;
+            case R.id.item_menu_author:
 
                 return true;
             default:
@@ -245,10 +249,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case NavigateManager.PROFILE_REQUEST_CODE:
-                userEntity = BmobUser.getCurrentUser(MainActivity.this, UserEntity.class);
-                UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-                UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
-                UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+                if (userEntity != null) {
+                    userEntity = BmobUser.getCurrentUser(MainActivity.this, UserEntity.class);
+                    UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
+                    UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
+                    UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+                }
                 break;
         }
     }

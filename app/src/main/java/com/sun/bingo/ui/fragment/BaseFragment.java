@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
+import com.mingle.widget.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.entity.UserEntity;
@@ -26,8 +26,8 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
     RecyclerView recyclerView;
     @InjectView(R.id.circle_refresh_layout)
     CircleRefreshLayout circleRefreshLayout;
-    @InjectView(R.id.google_progressBar)
-    GoogleProgressBar googleProgressBar;
+    @InjectView(R.id.loadingView)
+    LoadingView loadingView;
 
     private Handler mHandler = new Handler();
     protected UserEntity userEntity;
@@ -44,7 +44,7 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
         ButterKnife.inject(this, rootView);
 
         initView();
-        getBingoEntityList();
+        startRefresh();
         return rootView;
     }
 
@@ -55,7 +55,7 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
     private void initView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addOnScrollListener(new PauseOnScrollListener());
-        googleProgressBar.setVisibility(View.VISIBLE);
+        loadingView.setVisibility(View.VISIBLE);
         circleRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -86,8 +86,8 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
         if (circleRefreshLayout != null) {
             circleRefreshLayout.completeRefresh();
         }
-        if (googleProgressBar != null && googleProgressBar.getVisibility() == View.VISIBLE) {
-            googleProgressBar.setVisibility(View.GONE);
+        if (loadingView != null && loadingView.getVisibility() == View.VISIBLE) {
+            loadingView.setVisibility(View.GONE);
         }
     }
 
@@ -104,7 +104,7 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
             public void run() {
                 getBingoEntityList();
             }
-        }, 1000);
+        }, 1500);
     }
 
     protected abstract void getBingoEntityList();

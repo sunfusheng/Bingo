@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 
 import com.apkfuns.logutils.LogUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -41,6 +42,11 @@ public class BingoApplication extends Application {
 
         LogUtils.configAllowLog = true; //配置日志是否输出(默认true)
         LogUtils.configTagPrefix = "Bingo-"; //配置日志前缀
+
+        Stetho.initialize(Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build());
     }
 
     public static synchronized BingoApplication getInstance() {
