@@ -33,4 +33,9 @@
         <item name="spb_colors">@array/gplus_colors</item>
     </style>
 
+    <style name="CollapsingToolbarTitleStyle"
+           parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
 </resources>

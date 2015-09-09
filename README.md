@@ -1,17 +1,41 @@
-#Bingo
 
-###Bingo 的几层意思
+###BingoWorld介绍
 
-Bingo 是一种填写格子的游戏，在游戏中第一个成功者以喊“Bingo”表示取胜而得名。
+	BingoWorld是一款IT阅读学习类软件，在不久的将来会拥有丰富的学习内容，包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
 
-Bingo 这个单词还有一层意思，是指“因出乎意料的成功而兴奋的叫声”。<br/>
-所以，若和下面两种情况类似，你也可以大声地说“Bingo”。<br/>
-①Frank 在针线盒里找一颗与自己衬衫相配的扣子，费了九牛二虎之力，他总算找到了。于是他高兴极了，说：“Bingo!  Here it is!”（太棒了！就是这一颗了）。<br/>
-②Mary 的隐形眼镜不慎掉了，Bill 帮他找到了，Mary 兴奋地说：“I’ve found it!  Bingo!”（我找到了，好棒！）<br/>
+###[APP下载地址](https://fir.im/bingoworld)
 
-在现在电影中出现该词语，一般翻译成“正确，对，没错” ；在日常生活中该词语也有这样的用法。
+	欢迎您的加入，共同收集好的技术文章，一起学习共同进步！
+	
+###[GitHub开源地址](https://github.com/sfsheng0322/Bingo)
 
+	欢迎各路大神Star、Fork、Pull requests.
 
-###BingoWorld下载网页
+###用到的开源库
 
-https://fir.im/bingoworld
+* esperandro保存本地数据
+* SystemBarTint沉浸式状态栏
+* Material Dialog对话框
+* LogUtils打印日志信息
+* PhotoView查看图片
+* LoadingView加载动画
+
+###Version 1.2
+
+* 使用PhotoView增加图片查看功能
+* 修改了几个Bug
+* 使用正式版的证书
+
+###Version 1.1
+
+* 用户登录后可以收藏自己的技术链接文章
+* 使用WebView打开链接文章
+* 使用fir.im平台增加在线升级功能
+* 增加主题设置功能和分享功能
+
+###Version 1.0
+
+* 使用Bmob后端云服务
+* 采用Android MD设计风格
+* 目标只有一个收集好的技术文章
+* 大量使用Github开源库

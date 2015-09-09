@@ -59,9 +59,6 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
         circleRefreshLayout.setOnRefreshListener(this);
     }
 
-    /**
-     *
-     */
     class PauseOnScrollListener extends RecyclerView.OnScrollListener {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -99,6 +96,7 @@ public abstract class BaseFragment extends Fragment implements CircleRefreshLayo
 
     @Override
     public void startRefresh() {
+        //让子弹飞一会儿，防止刷新太快哦
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
