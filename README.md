@@ -12,10 +12,10 @@
 
 	欢迎各路大神Star、Fork、Pull requests.
 
-[](/screenshots/icon_bingo_1.png)
-[](/screenshots/icon_bingo_2.png)
-[](/screenshots/icon_bingo_3.png)
-[](/screenshots/icon_bingo_4.png)
+![](/screenshots/icon_bingo_1.png)
+![](/screenshots/icon_bingo_2.png)
+![](/screenshots/icon_bingo_3.png)
+![](/screenshots/icon_bingo_4.png)
 
 ###用到的开源库
 
