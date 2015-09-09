@@ -1,7 +1,8 @@
 
 ###BingoWorld介绍
 
-	BingoWorld是一款IT阅读学习类软件，在不久的将来会拥有丰富的学习内容，包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
+	BingoWorld是一款IT阅读学习类软件，在不久的将来会拥有丰富的学习内容，
+	包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
 
 ###[APP下载地址](https://fir.im/bingoworld)
 
@@ -10,6 +11,11 @@
 ###[GitHub开源地址](https://github.com/sfsheng0322/Bingo)
 
 	欢迎各路大神Star、Fork、Pull requests.
+
+[](/screenshots/icon_bingo_1.png)
+[](/screenshots/icon_bingo_2.png)
+[](/screenshots/icon_bingo_3.png)
+[](/screenshots/icon_bingo_4.png)
 
 ###用到的开源库
 
