@@ -2,7 +2,6 @@ package com.sun.bingo.ui.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.base.FWBaseActivity;
 import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
@@ -25,7 +25,7 @@ import com.sun.bingo.util.theme.ThemeUtil;
 import cn.bmob.v3.BmobUser;
 import de.devland.esperandro.Esperandro;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends FWBaseActivity {
 
     protected UserEntity userEntity;
     protected DisplayImageOptions userImageOptions;

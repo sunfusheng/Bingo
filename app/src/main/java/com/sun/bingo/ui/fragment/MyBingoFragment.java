@@ -19,7 +19,7 @@ public class MyBingoFragment extends BaseFragment {
     }
 
     @Override
-    protected void getBingoEntityList() {
+    protected void refreshingData() {
         BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(getActivity()).getObjectId());
         newBingoEntities.order("-createdAt");
@@ -36,5 +36,10 @@ public class MyBingoFragment extends BaseFragment {
                 completeRefresh();
             }
         });
+    }
+
+    @Override
+    protected void loadingingData() {
+
     }
 }

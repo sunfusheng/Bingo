@@ -10,34 +10,53 @@ import com.afollestad.materialdialogs.MaterialDialog;
 public class LoadingDialog {
 
     private Context mContext;
-    private MaterialDialog materialDialog;
+    private MaterialDialog dialog;
 
     public LoadingDialog(Context context) {
         this.mContext = context;
     }
 
-    public MaterialDialog getMaterialDialog() {
-        return materialDialog;
+    public MaterialDialog getDialog() {
+        return dialog;
     }
 
     public void show() {
-        if (materialDialog == null) {
-            materialDialog = new MaterialDialog.Builder(mContext)
+        if (dialog == null) {
+            dialog = new MaterialDialog.Builder(mContext)
                     .content("加载中...")
                     .progress(true, 0)
                     .progressIndeterminateStyle(false)
                     .build();
+            dialog.setCanceledOnTouchOutside(true);
         }
-        if (!materialDialog.isShowing()) {
-            materialDialog.show();
+        if (!dialog.isShowing()) {
+            dialog.show();
+        }
+    }
+
+    public void showCancelDialog() {
+        if (dialog == null) {
+            dialog = new MaterialDialog.Builder(mContext)
+                    .content("加载中...")
+                    .progress(true, 0)
+                    .progressIndeterminateStyle(false)
+                    .build();
+            dialog.setCanceledOnTouchOutside(false);
+        }
+        if (!dialog.isShowing()) {
+            dialog.show();
         }
     }
 
     public void dismiss() {
-        if (materialDialog != null && materialDialog.isShowing()) {
-            materialDialog.dismiss();
-            materialDialog = null;
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+            dialog = null;
         }
+    }
+
+    public boolean isShowing() {
+        return dialog.isShowing();
     }
 
 }

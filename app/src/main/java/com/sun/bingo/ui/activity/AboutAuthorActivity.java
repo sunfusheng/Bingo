@@ -5,10 +5,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 import com.sun.bingo.R;
-import com.sun.bingo.util.theme.AppUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -16,10 +14,8 @@ import butterknife.InjectView;
 /**
  * Created by sunfusheng on 15/9/8.
  */
-public class AboutAppActivity extends BaseActivity {
+public class AboutAuthorActivity extends BaseActivity {
 
-    @InjectView(R.id.tv_version)
-    TextView tvVersion;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
     @InjectView(R.id.collapsing_toolbar)
@@ -30,7 +26,7 @@ public class AboutAppActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_app);
+        setContentView(R.layout.activity_about_author);
         ButterKnife.inject(this);
 
         initView();
@@ -38,12 +34,11 @@ public class AboutAppActivity extends BaseActivity {
 
     private void initView() {
         initToolBar(toolbar, true, "");
-        collapsingToolbar.setTitle(getString(R.string.about_app));
+        collapsingToolbar.setTitle(getString(R.string.about_author));
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/about_app.html");
-        tvVersion.setText("Version "+AppUtil.getVersionName(this));
+        webView.loadUrl("file:///android_asset/about_author.html");
     }
 
 }

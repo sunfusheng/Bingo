@@ -34,7 +34,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.UpdateListener;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;
     private List<BingoEntity> mEntities;
@@ -45,8 +45,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static final int CANCEL_FAVORITE = 1;
     protected LoadingDialog loadingDialog;
 
-    public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
+    private static final int TYPE_LIST = 0;
+    private static final int TYPE_FOOT_VIEW = 1;
+
+    public RecyclerViewAdapter(Context context) {
         this.mContext = context;
+    }
+
+    public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
+        this(context);
         this.mEntities = entities;
         userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         loadingDialog = new LoadingDialog(context);
@@ -58,59 +65,88 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
-        return new ViewHolder(view);
+    public int getItemCount() {
+        return mEntities.size() + 1;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        final BingoEntity entity = mEntities.get(position);
-        final int mPosition = position;
-
-        if (entity.getUserEntity() != null) {
-            UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
-            UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
-        }
-
-        holder.tvDescribe.setText(entity.getDescribe());
-
-        if (entity.getCreateTime() > 0) {
-            holder.tvTime.setVisibility(View.VISIBLE);
-            holder.tvTime.setText(DateUtil.getDateStr(mContext, entity.getCreateTime()));
+    public int getItemViewType(int position) {
+        if (position + 1 == getItemCount()) {
+            return TYPE_FOOT_VIEW;
         } else {
-            holder.tvTime.setVisibility(View.GONE);
+            return TYPE_LIST;
         }
-
-        if (entity.getImageList() != null && entity.getImageList().size() > 0) {
-            holder.givImageGroup.setVisibility(View.VISIBLE);
-            holder.givImageGroup.setPics(entity.getImageList());
-        } else {
-            holder.givImageGroup.setVisibility(View.GONE);
-        }
-
-        holder.llRootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator animator = ObjectAnimator.ofFloat(holder.llRootView, "translationZ", 20, 0);
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        NavigateManager.gotoBingoDetailActivity(mContext, entity);
-                    }
-                });
-                animator.start();
-            }
-        });
-
-        holder.ivItemMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopMenu(v, mPosition);
-            }
-        });
     }
 
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+        switch (viewType) {
+            case TYPE_LIST:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
+                return new ListViewHolder(view);
+            case TYPE_FOOT_VIEW:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_footview_layout, parent, false);
+                return new FootViewHolder(view);
+
+        }
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ListViewHolder) {
+            final ListViewHolder viewHolder = (ListViewHolder) holder;
+            final BingoEntity entity = mEntities.get(position);
+            final int mPosition = position;
+
+            if (entity.getUserEntity() != null) {
+                UserEntityUtil.setUserAvatarView(viewHolder.civUserAvatar, entity.getUserEntity().getUserAvatar());
+                UserEntityUtil.setTextViewData(viewHolder.tvNickName, entity.getUserEntity().getNickName());
+            }
+
+            viewHolder.tvDescribe.setText(entity.getDescribe());
+
+            if (entity.getCreateTime() > 0) {
+                viewHolder.tvTime.setVisibility(View.VISIBLE);
+                viewHolder.tvTime.setText(DateUtil.getDateStr(mContext, entity.getCreateTime()));
+            } else {
+                viewHolder.tvTime.setVisibility(View.GONE);
+            }
+
+            if (entity.getImageList() != null && entity.getImageList().size() > 0) {
+                viewHolder.givImageGroup.setVisibility(View.VISIBLE);
+                viewHolder.givImageGroup.setPics(entity.getImageList());
+            } else {
+                viewHolder.givImageGroup.setVisibility(View.GONE);
+            }
+
+            viewHolder.llRootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(viewHolder.llRootView, "translationZ", 20, 0);
+                    animator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            NavigateManager.gotoBingoDetailActivity(mContext, entity);
+                        }
+                    });
+                    animator.start();
+                }
+            });
+
+            viewHolder.ivItemMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showPopMenu(v, mPosition);
+                }
+            });
+        }
+    }
+
+    /**
+     * 弹出菜单
+     */
     private void showPopMenu(View ancho, final int position) {
         userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
         final BingoEntity entity = mEntities.get(position);
@@ -132,7 +168,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
                         return true;
                     case R.id.pop_share:
-                        ShareUtil.share(mContext, entity.getDescribe()+entity.getWebsite()+"\n[来自"+mContext.getString(R.string.app_name)+"的分享，下载地址：https://fir.im/bingoworld]");
+                        ShareUtil.share(mContext, entity.getDescribe() + entity.getWebsite() + "\n[来自" + mContext.getString(R.string.app_name) + "的分享，下载地址：https://fir.im/bingoworld]");
                         return true;
                 }
                 return false;
@@ -145,6 +181,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         popupMenu.show();
     }
 
+    /**
+     * 收藏
+     */
     private void handleFavoriteBingo(String bingoId) {
         List<String> favoriteList = userEntity.getFavoriteList();
         if (favoriteList == null) {
@@ -171,6 +210,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
     }
 
+    /**
+     * 取消收藏
+     */
     private void cancelFavoriteBingo(String bingoId, final int position) {
         List<String> favoriteList = userEntity.getFavoriteList();
         if (favoriteList == null) {
@@ -201,12 +243,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
     }
 
-    @Override
-    public int getItemCount() {
-        return mEntities.size();
-    }
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ListViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.civ_user_avatar)
         CircularImageView civUserAvatar;
         @InjectView(R.id.tv_nick_name)
@@ -224,7 +261,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @InjectView(R.id.giv_image_group)
         GroupImageView givImageGroup;
 
-        ViewHolder(View view) {
+        public ListViewHolder(View view) {
+            super(view);
+            ButterKnife.inject(this, view);
+        }
+    }
+
+    static class FootViewHolder extends RecyclerView.ViewHolder {
+        @InjectView(R.id.tv_loading_more)
+        TextView tvLoadingMore;
+
+        public FootViewHolder(View view) {
             super(view);
             ButterKnife.inject(this, view);
         }

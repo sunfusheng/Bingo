@@ -16,6 +16,7 @@
 
 ![](/screenshots/icon_bingo_1.png) (图一)
 ![](/screenshots/icon_bingo_2.png) (图二)
+
 ![](/screenshots/icon_bingo_3.png) (图三)
 ![](/screenshots/icon_bingo_4.png) (图四)
 

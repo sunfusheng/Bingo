@@ -8,6 +8,15 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.sun.bingo"
         minSdkVersion 14
@@ -91,6 +100,7 @@ dependencies {
 
     //LogUtils
     compile 'com.apkfuns.logutils:library:1.0.4'
+    compile 'com.orhanobut:logger:1.4'
 
     //MaterialEditText
     compile 'com.rengwuxian.materialedittext:library:2.1.4'

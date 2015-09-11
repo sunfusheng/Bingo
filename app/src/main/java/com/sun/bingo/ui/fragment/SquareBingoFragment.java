@@ -2,8 +2,9 @@ package com.sun.bingo.ui.fragment;
 
 import android.os.Bundle;
 
-import com.sun.bingo.adapter.RecyclerViewAdapter;
+import com.apkfuns.logutils.LogUtils;
 import com.sun.bingo.entity.BingoEntity;
+import com.sun.bingo.framework.dialog.ToastTip;
 
 import java.util.List;
 
@@ -18,14 +19,45 @@ public class SquareBingoFragment extends BaseFragment {
     }
 
     @Override
-    protected void getBingoEntityList() {
+    protected void refreshingData() {
         BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
         newBingoEntities.order("-createdAt");
+        newBingoEntities.setLimit(pageCount);
         newBingoEntities.include("userEntity");
         newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
             @Override
             public void onSuccess(List<BingoEntity> entities) {
-                recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
+                LogUtils.d("refreshingData: pageCount->"+pageCount+"  entities.size()->"+entities.size());
+                mEntities.clear();
+                mEntities.addAll(entities);
+                mAdapter.notifyDataSetChanged();
+                completeRefresh();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                completeRefresh();
+            }
+        });
+    }
+
+    @Override
+    protected void loadingingData() {
+        BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
+        newBingoEntities.order("-createdAt");
+        newBingoEntities.setSkip(pageCount);
+        newBingoEntities.include("userEntity");
+        newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
+            @Override
+            public void onSuccess(List<BingoEntity> entities) {
+                if (entities == null || entities.size() == 0) {
+                    ToastTip.showToastDialog(getActivity(), "已全部加载完毕");
+                    return;
+                }
+                LogUtils.d("loadingingData: pageCount->"+pageCount+"  entities.size()->"+entities.size());
+                mEntities.addAll(pageCount, entities);
+                pageCount += entities.size();
+                mAdapter.notifyDataSetChanged();
                 completeRefresh();
             }
 

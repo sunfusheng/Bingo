@@ -20,7 +20,7 @@ public class FavoriteFragment extends BaseFragment {
     }
 
     @Override
-    protected void getBingoEntityList() {
+    protected void refreshingData() {
         userEntity = BmobUser.getCurrentUser(getActivity(), UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
         BmobQuery<BingoEntity> bmobQuery = new BmobQuery<>();
@@ -38,5 +38,10 @@ public class FavoriteFragment extends BaseFragment {
                 completeRefresh();
             }
         });
+    }
+
+    @Override
+    protected void loadingingData() {
+
     }
 }
