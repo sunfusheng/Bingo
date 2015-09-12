@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="加载中..."
+        android:text="@string/loading_data"
         android:textSize="16sp"
         android:textColor="@color/font_black_3"/>
 

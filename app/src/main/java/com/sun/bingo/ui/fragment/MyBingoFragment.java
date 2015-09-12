@@ -1,46 +1,22 @@
 package com.sun.bingo.ui.fragment;
 
-import android.os.Bundle;
-
-import com.sun.bingo.adapter.RecyclerViewAdapter;
+import com.sun.bingo.R;
 import com.sun.bingo.control.PageControl;
-import com.sun.bingo.entity.BingoEntity;
 
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.FindListener;
-
-public class MyBingoFragment extends BaseFragment<PageControl> {
+public class MyBingoFragment extends BaseListFragment<PageControl> {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onRefreshStart() {
+        mControl.getMyBingoListData(getActivity());
     }
 
     @Override
-    protected void refreshingData() {
-        BmobQuery<BingoEntity> newBingoEntities = new BmobQuery<>();
-        newBingoEntities.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(getActivity()).getObjectId());
-        newBingoEntities.order("-createdAt");
-        newBingoEntities.include("userEntity");
-        newBingoEntities.findObjects(getActivity(), new FindListener<BingoEntity>() {
-            @Override
-            public void onSuccess(List<BingoEntity> entities) {
-                recyclerView.setAdapter(new RecyclerViewAdapter(getActivity(), entities));
-                completeRefresh();
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                completeRefresh();
-            }
-        });
+    protected void onScrollLast() {
+        mControl.getMyBingoListDataMore(getActivity());
     }
 
     @Override
-    protected void loadingingData() {
-
+    protected int emptyDataString() {
+        return R.string.no_my_bingo_data;
     }
 }

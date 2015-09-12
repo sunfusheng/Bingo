@@ -95,8 +95,7 @@ public class BaseAsyncHelper<T extends FWBaseControl, R extends IRefreshBack> {
                     if (tClass.equals(FWBaseControl.class) || (tClass.getSuperclass() != null && tClass.getSuperclass().equals(FWBaseControl.class)
                     )) {
                         messageProxy = new MessageProxy(mHandler);
-                        mControl = ControlFactory.getControlInstance(tClass,
-                                messageProxy);
+                        mControl = ControlFactory.getControlInstance(tClass, messageProxy);
                         mModel = new ModelMap();
                         mControl.setModel(mModel);
                         return;
@@ -105,4 +104,5 @@ public class BaseAsyncHelper<T extends FWBaseControl, R extends IRefreshBack> {
             }
         }
     }
+
 }

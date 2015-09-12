@@ -20,7 +20,7 @@ public class Enhancer<T> implements InvocationHandler {
     private File dir;
 
     /**
-     * @param superClazz 構造函數需要的class
+     * @param superClazz 构造函数需要的class
      */
     Enhancer(File cacheFileDir, Class<T> superClazz) {
         this.superClazz = superClazz;
@@ -81,7 +81,6 @@ public class Enhancer<T> implements InvocationHandler {
      * @return
      */
     public T create() {
-
         ProxyBuilder<T> proxy = ProxyBuilder.forClass(superClazz);
         if (constructorArgTypes != null && constructorArgValues != null
                 && constructorArgValues.length == constructorArgTypes.length) {

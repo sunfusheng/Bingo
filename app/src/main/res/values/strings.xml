@@ -60,4 +60,11 @@
     <string name="hint_input_website">请输入网址</string>
     <string name="hint_input_describe">请输入描述</string>
 
+    <string name="no_data">暂无数据</string>
+    <string name="load_data_fail">加载失败</string>
+    <string name="load_data_adequate">已全部加载</string>
+    <string name="loading_data">加载中...</string>
+    <string name="no_favorite_data">暂无收藏数据</string>
+    <string name="no_my_bingo_data">您还没有提交任何Bingo哦</string>
+
 </resources>

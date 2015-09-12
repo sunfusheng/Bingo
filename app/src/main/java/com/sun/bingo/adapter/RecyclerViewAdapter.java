@@ -48,6 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int TYPE_LIST = 0;
     private static final int TYPE_FOOT_VIEW = 1;
 
+    private View footView;
+
     public RecyclerViewAdapter(Context context) {
         this.mContext = context;
     }
@@ -80,51 +82,56 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
+        RecyclerView.ViewHolder viewHolder;
         switch (viewType) {
             case TYPE_LIST:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
-                return new ListViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
+                viewHolder = new ListViewHolder(view);
+                break;
             case TYPE_FOOT_VIEW:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_footview_layout, parent, false);
-                return new FootViewHolder(view);
-
+                footView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_footview_layout, parent, false);
+                footView.setVisibility(View.GONE);
+                viewHolder = new FootViewHolder(footView);
+                break;
+            default:
+                viewHolder = new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false));
+                break;
         }
-        return null;
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ListViewHolder) {
-            final ListViewHolder viewHolder = (ListViewHolder) holder;
+            final ListViewHolder listViewHolder = (ListViewHolder) holder;
             final BingoEntity entity = mEntities.get(position);
             final int mPosition = position;
 
             if (entity.getUserEntity() != null) {
-                UserEntityUtil.setUserAvatarView(viewHolder.civUserAvatar, entity.getUserEntity().getUserAvatar());
-                UserEntityUtil.setTextViewData(viewHolder.tvNickName, entity.getUserEntity().getNickName());
+                UserEntityUtil.setUserAvatarView(listViewHolder.civUserAvatar, entity.getUserEntity().getUserAvatar());
+                UserEntityUtil.setTextViewData(listViewHolder.tvNickName, entity.getUserEntity().getNickName());
             }
 
-            viewHolder.tvDescribe.setText(entity.getDescribe());
+            listViewHolder.tvDescribe.setText(entity.getDescribe());
 
             if (entity.getCreateTime() > 0) {
-                viewHolder.tvTime.setVisibility(View.VISIBLE);
-                viewHolder.tvTime.setText(DateUtil.getDateStr(mContext, entity.getCreateTime()));
+                listViewHolder.tvTime.setVisibility(View.VISIBLE);
+                listViewHolder.tvTime.setText(DateUtil.getDateStr(mContext, entity.getCreateTime()));
             } else {
-                viewHolder.tvTime.setVisibility(View.GONE);
+                listViewHolder.tvTime.setVisibility(View.GONE);
             }
 
             if (entity.getImageList() != null && entity.getImageList().size() > 0) {
-                viewHolder.givImageGroup.setVisibility(View.VISIBLE);
-                viewHolder.givImageGroup.setPics(entity.getImageList());
+                listViewHolder.givImageGroup.setVisibility(View.VISIBLE);
+                listViewHolder.givImageGroup.setPics(entity.getImageList());
             } else {
-                viewHolder.givImageGroup.setVisibility(View.GONE);
+                listViewHolder.givImageGroup.setVisibility(View.GONE);
             }
 
-            viewHolder.llRootView.setOnClickListener(new View.OnClickListener() {
+            listViewHolder.llRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(viewHolder.llRootView, "translationZ", 20, 0);
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(listViewHolder.llRootView, "translationZ", 20, 0);
                     animator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
@@ -135,13 +142,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
 
-            viewHolder.ivItemMore.setOnClickListener(new View.OnClickListener() {
+            listViewHolder.ivItemMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showPopMenu(v, mPosition);
                 }
             });
         }
+    }
+
+    public void setLoadMoreViewText(String text) {
+        if (footView == null) return ;
+        ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).setText(text);
+        notifyDataSetChanged();
+    }
+
+    public void setLoadMoreViewVisibility(int visibility) {
+        if (footView == null) return ;
+        footView.setVisibility(visibility);
+        notifyDataSetChanged();
+    }
+
+    public boolean isLoadMoreShown() {
+        if (footView == null) return false;
+        return footView.isShown();
+    }
+
+    public String getLoadMoreViewText() {
+        if (footView == null) return "";
+        return ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).getText().toString();
     }
 
     /**

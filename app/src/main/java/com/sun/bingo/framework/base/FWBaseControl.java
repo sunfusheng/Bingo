@@ -71,6 +71,10 @@ public class FWBaseControl {
         }
     }
 
+    protected void dealWithExceptionMessage(String s) {
+        Logger.e("error: ", s + "");
+    }
+
     /**
      * 直接发送toast消息
      *
