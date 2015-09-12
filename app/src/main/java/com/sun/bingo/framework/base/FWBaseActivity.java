@@ -1,11 +1,8 @@
 package com.sun.bingo.framework.base;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.MenuItem;
 
 import com.sun.bingo.R;
@@ -13,9 +10,10 @@ import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
 import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
+import com.sun.bingo.ui.activity.MainActivity;
 
 /**
- * 默认使用Toolbar不用ActionBar 在Layout中定义好了Toolbar的布局文件
+ * 默认使用Toolbar不用ActionBar
  */
 public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity implements IRefreshBack {
 
@@ -50,7 +48,6 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
         super.onResume();
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return mHelper.onOptionsItemSelected(item);
@@ -77,70 +74,25 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     @Override
     public void finish() {
         super.finish();
-//        if (!((Object) this).getClass().equals(NewMainEntryActivity.class)) {
-//            if (AnimManager.isClose(((Object) this).getClass())) {
-//                overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
-//            } else {
-//                overridePendingTransition(0, 0);
-//            }
-//        } else {
-//            overridePendingTransition(0, 0);
-//        }
-        overridePendingTransition(0, 0);
+        if (!((Object) this).getClass().equals(MainActivity.class)) {
+            overridePendingTransition(R.anim.hold_long, R.anim.slide_right_out);
+        } else {
+            overridePendingTransition(0, 0);
+        }
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
-//        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(NewMainEntryActivity.class.getName())) {
-//            if (AnimManager.isClose(intent.getComponent().getClassName())) {
-//                overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
-//            } else {
-//                overridePendingTransition(0, 0);
-//            }
-//            overridePendingTransition(0, 0);
-//        }
-        overridePendingTransition(0, 0);
+        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName())) {
+            overridePendingTransition(R.anim.slide_right_in, R.anim.hold_long);
+        } else {
+            overridePendingTransition(0, 0);
+        }
     }
-
-
-//    public void initActionBar(boolean displayHomeAsUpEnabled, int resTitle) {
-//        initActionBar(displayHomeAsUpEnabled, getString(resTitle));
-//    }
-//
-//    public void initActionBar(boolean displayHomeAsUpEnabled, String strTitle) {
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled);
-//        getSupportActionBar().setTitle(strTitle);
-//    }
-
-    public void initActionBar(boolean displayHomeAsUpEnabled, int resTitle) {
-        initActionBar(displayHomeAsUpEnabled, getString(resTitle));
-    }
-
-    public void initActionBar(boolean displayHomeAsUpEnabled, String strTitle) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar == null) return;
-        toolbar.setTitle(strTitle);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(displayHomeAsUpEnabled);
-    }
-
 
     protected boolean isPaused() {
         return mHelper.isPause();
-    }
-
-    protected int getActionBarHeight() {
-        int actionBarHeight = getSupportActionBar().getHeight();
-        if (actionBarHeight != 0)
-            return actionBarHeight;
-        final TypedValue tv = new TypedValue();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true))
-                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        } else if (getTheme().resolveAttribute(R.attr.actionBarSize, tv, true))
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        return actionBarHeight;
     }
 
     @Override

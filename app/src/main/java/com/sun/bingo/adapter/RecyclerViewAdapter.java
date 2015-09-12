@@ -19,7 +19,6 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.ShareUtil;
@@ -43,7 +42,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public static final int NORMAL = 0;
     public static final int CANCEL_FAVORITE = 1;
-    protected LoadingDialog loadingDialog;
 
     private static final int TYPE_LIST = 0;
     private static final int TYPE_FOOT_VIEW = 1;
@@ -58,7 +56,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this(context);
         this.mEntities = entities;
         userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
-        loadingDialog = new LoadingDialog(context);
     }
 
     public RecyclerViewAdapter(Context context, List<BingoEntity> entities, int type) {
@@ -188,7 +185,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.pop_favorite:
-                        loadingDialog.show();
                         if (item.getTitle().equals("取消收藏")) {
                             cancelFavoriteBingo(entity.getObjectId(), position);
                         } else {
@@ -227,13 +223,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                loadingDialog.dismiss();
                 ToastTip.showToastDialog(mContext, "收藏成功");
             }
 
             @Override
             public void onFailure(int i, String s) {
-                loadingDialog.dismiss();
                 ToastTip.showToastDialog(mContext, "收藏失败");
             }
         });
@@ -256,7 +250,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                loadingDialog.dismiss();
                 ToastTip.showToastDialog(mContext, "取消成功");
                 if (type == CANCEL_FAVORITE) {
                     mEntities.remove(position);
@@ -266,7 +259,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             @Override
             public void onFailure(int i, String s) {
-                loadingDialog.dismiss();
                 ToastTip.showToastDialog(mContext, "取消失败");
             }
         });
