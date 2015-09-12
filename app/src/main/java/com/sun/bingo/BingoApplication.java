@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
+import com.sun.bingo.framework.proxy.ControlFactory;
 
 import cn.bmob.v3.Bmob;
 
@@ -35,9 +36,9 @@ public class BingoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        ControlFactory.init(this); //Control代理工场初始化
         initImageLoader(this);
         Bmob.initialize(this, ConstantParams.BMOB_APP_ID);
-
         Fresco.initialize(this);
 
         LogUtils.configAllowLog = true; //配置日志是否输出(默认true)

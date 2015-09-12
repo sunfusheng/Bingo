@@ -3,6 +3,7 @@ package com.sun.bingo.ui.fragment;
 import android.os.Bundle;
 
 import com.apkfuns.logutils.LogUtils;
+import com.sun.bingo.control.PageControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
-public class SquareBingoFragment extends BaseFragment {
+public class SquareBingoFragment extends BaseFragment<PageControl> {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

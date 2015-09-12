@@ -12,9 +12,9 @@ import com.mingle.widget.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
-import com.sun.bingo.control.PageControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.base.FWBaseControl;
 import com.sun.bingo.framework.base.FWBaseFragment;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
@@ -26,7 +26,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 
 
-public abstract class BaseFragment extends FWBaseFragment implements CircleRefreshLayout.OnCircleRefreshListener {
+public abstract class BaseFragment<T extends FWBaseControl> extends FWBaseFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
 
     @InjectView(R.id.recycler_view)
     RecyclerView recyclerView;

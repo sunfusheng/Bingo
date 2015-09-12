@@ -3,6 +3,7 @@ package com.sun.bingo.ui.fragment;
 import android.os.Bundle;
 
 import com.sun.bingo.adapter.RecyclerViewAdapter;
+import com.sun.bingo.control.PageControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 
@@ -12,7 +13,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 
-public class FavoriteFragment extends BaseFragment {
+public class FavoriteFragment extends BaseFragment<PageControl> {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
