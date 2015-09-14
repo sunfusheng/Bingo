@@ -65,9 +65,6 @@
         <activity android:name=".ui.activity.ProfileActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.FavoriteActivity"
-            android:screenOrientation="portrait"/>
-
         <activity android:name=".ui.activity.ImageActivity"
             android:screenOrientation="portrait"/>
 

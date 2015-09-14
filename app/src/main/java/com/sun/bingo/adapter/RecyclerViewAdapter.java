@@ -38,10 +38,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Context mContext;
     private List<BingoEntity> mEntities;
     private UserEntity userEntity;
-    private int type = NORMAL;
+    private int type = HANDLE_NORMAL;
 
-    public static final int NORMAL = 0;
-    public static final int CANCEL_FAVORITE = 1;
+    public static final int HANDLE_NORMAL = 0;
+    public static final int HANDLE_CANCEL_FAVORITE = 1;
 
     private static final int TYPE_LIST = 0;
     private static final int TYPE_FOOT_VIEW = 1;
@@ -58,8 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
     }
 
-    public RecyclerViewAdapter(Context context, List<BingoEntity> entities, int type) {
-        this(context, entities);
+    public void setHandleType(int type) {
         this.type = type;
     }
 
@@ -151,13 +150,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void setLoadMoreViewText(String text) {
         if (footView == null) return ;
         ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).setText(text);
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
+        notifyItemChanged(getItemCount());
     }
 
     public void setLoadMoreViewVisibility(int visibility) {
-        if (footView == null) return ;
+        if (footView == null) return;
         footView.setVisibility(visibility);
-        notifyDataSetChanged();
+        notifyItemChanged(getItemCount());
+//        notifyDataSetChanged();
     }
 
     public boolean isLoadMoreShown() {
@@ -199,7 +200,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return false;
             }
         });
-        if (type == CANCEL_FAVORITE || (favoriteList != null && favoriteList.indexOf(entity.getObjectId()) >= 0)) {
+        if (type == HANDLE_CANCEL_FAVORITE || (favoriteList != null && favoriteList.indexOf(entity.getObjectId()) >= 0)) {
             MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_favorite);
             menuItem.setTitle("取消收藏");
         }
@@ -251,7 +252,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onSuccess() {
                 ToastTip.showToastDialog(mContext, "取消成功");
-                if (type == CANCEL_FAVORITE) {
+                if (type == HANDLE_CANCEL_FAVORITE) {
                     mEntities.remove(position);
                     notifyDataSetChanged();
                 }

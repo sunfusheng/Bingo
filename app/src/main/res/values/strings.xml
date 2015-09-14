@@ -45,7 +45,7 @@
     <string name="msg_few_minutes_ago">分钟前</string>
     <string name="msg_male">男</string>
     <string name="msg_female">女</string>
-    <string name="msg_gender_unknow">未知</string>
+    <string name="msg_gender_unknown">未知</string>
 
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
@@ -62,9 +62,9 @@
 
     <string name="no_data">暂无数据</string>
     <string name="load_data_fail">加载失败</string>
-    <string name="load_data_adequate">已全部加载</string>
+    <string name="load_data_adequate">全部加载完毕</string>
     <string name="loading_data">加载中...</string>
-    <string name="no_favorite_data">暂无收藏数据</string>
+    <string name="no_favorite_data">您还没有收藏任何Bingo哦</string>
     <string name="no_my_bingo_data">您还没有提交任何Bingo哦</string>
 
 </resources>

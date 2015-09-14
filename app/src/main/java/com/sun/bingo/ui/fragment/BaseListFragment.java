@@ -25,6 +25,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
+import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 
 public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
@@ -76,7 +77,10 @@ public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFr
 
         mEntities = new ArrayList<>();
         mAdapter = new RecyclerViewAdapter(getActivity(), mEntities);
+        ScaleInAnimationAdapter animationAdapter = new ScaleInAnimationAdapter(mAdapter);
+        animationAdapter.setDuration(500);
         recyclerView.setAdapter(mAdapter);
+
     }
 
     private void _initListener() {
