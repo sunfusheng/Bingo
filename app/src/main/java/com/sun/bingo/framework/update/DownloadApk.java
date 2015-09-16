@@ -6,11 +6,11 @@ import android.net.Uri;
 import android.os.Environment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.apkfuns.logutils.LogUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.entity.AppEntity;
@@ -81,7 +81,7 @@ public class DownloadApk {
                 file.delete();
             }
         } catch (Exception e) {
-            LogUtils.e(e.getMessage());
+            Logger.i(e.getMessage());
         }
 
         HttpUtils http = new HttpUtils();

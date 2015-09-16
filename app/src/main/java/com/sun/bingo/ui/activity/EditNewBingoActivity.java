@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.apkfuns.logutils.LogUtils;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadBatchListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -36,7 +35,6 @@ import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -136,9 +134,6 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                             item.setProgressFinish();
                         }
                         bingoEntity.setImageList(getBmobUrls(files));
-                        LogUtils.e(Arrays.asList(fileNames));
-                        LogUtils.e(Arrays.asList(urls));
-                        LogUtils.e(Arrays.asList(files));
                         bingoEntity.save(EditNewBingoActivity.this, new SaveListener() {
                             @Override
                             public void onSuccess() {

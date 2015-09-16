@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.apkfuns.logutils.LogUtils;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
@@ -131,9 +131,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onSuccess(String fileName, String url, BmobFile file) {
-                LogUtils.e("fileName：" + fileName);
-                LogUtils.e("url：" + url);
-                LogUtils.e("file.getUrl()：" + file.getUrl());
+                Logger.i("fileName：" + fileName);
+                Logger.i("url：" + url);
+                Logger.i("file.getUrl()：" + file.getUrl());
 
                 userEntity.setUserAvatar(file.getUrl());
                 userEntity.update(ProfileActivity.this, userEntity.getObjectId(), new UpdateListener() {

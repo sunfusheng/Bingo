@@ -98,8 +98,7 @@ dependencies {
     //Shape Image View
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 
-    //LogUtils
-    compile 'com.apkfuns.logutils:library:1.0.4'
+    //Logger
     compile 'com.orhanobut:logger:1.4'
 
     //MaterialEditText
