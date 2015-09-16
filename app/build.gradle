@@ -126,6 +126,4 @@ dependencies {
     //Stetho Chrome debug app
     compile 'com.facebook.stetho:stetho:1.1.1'
 
-    compile 'jp.wasabeef:recyclerview-animators:1.3.0'
-
 }

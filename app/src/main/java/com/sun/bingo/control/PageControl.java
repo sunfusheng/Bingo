@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.annotation.AsyncMethod;
 import com.sun.bingo.framework.base.FWBaseControl;
 import com.sun.bingo.framework.proxy.MessageProxy;
 
@@ -28,6 +29,7 @@ public class PageControl extends FWBaseControl {
     /**
      * Bingo首页
      */
+    @AsyncMethod
     public void getSquareBingoListData(Context context) {
         pageSize = PAGE_SIZE;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -58,6 +60,7 @@ public class PageControl extends FWBaseControl {
     /**
      * Bingo首页 (More)
      */
+    @AsyncMethod
     public void getSquareBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
@@ -88,6 +91,7 @@ public class PageControl extends FWBaseControl {
     /**
      * 我的Bingo
      */
+    @AsyncMethod
     public void getMyBingoListData(Context context) {
         pageSize = PAGE_SIZE;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -119,6 +123,7 @@ public class PageControl extends FWBaseControl {
     /**
      * 我的Bingo (More)
      */
+    @AsyncMethod
     public void getMyBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
@@ -150,6 +155,7 @@ public class PageControl extends FWBaseControl {
     /**
      * 我的收藏
      */
+    @AsyncMethod
     public void getFavoriteBingoListData(Context context) {
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
@@ -182,6 +188,7 @@ public class PageControl extends FWBaseControl {
     /**
      * 我的收藏 (More)
      */
+    @AsyncMethod
     public void getFavoriteBingoListDataMore(Context context) {
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();

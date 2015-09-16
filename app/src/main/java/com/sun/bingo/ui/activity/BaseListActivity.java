@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
+import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
@@ -35,6 +36,7 @@ public abstract class BaseListActivity extends BaseActivity implements CircleRef
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bingo_list);
         ButterKnife.inject(this);
+        Logger.i("(" + getClass().getSimpleName() + ".java)");
 
         initView();
         getBingoEntityList();

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.mingle.widget.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
 import com.sun.bingo.entity.BingoEntity;
@@ -48,6 +49,7 @@ public abstract class BaseFragment<T extends FWBaseControl> extends FWBaseFragme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.i("(" + getClass().getSimpleName() + ".java)");
         _initData();
     }
 

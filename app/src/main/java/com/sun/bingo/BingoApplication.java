@@ -20,6 +20,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.framework.proxy.ControlFactory;
+import com.sun.bingo.module.LocationManager;
 
 import cn.bmob.v3.Bmob;
 
@@ -48,6 +49,7 @@ public class BingoApplication extends Application {
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                         .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                         .build());
+        initLocationManager();
     }
 
     public static synchronized BingoApplication getInstance() {
@@ -89,6 +91,11 @@ public class BingoApplication extends Application {
                 .discCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO).build();
         ImageLoader.getInstance().init(imageLoaderConfiguration);
+    }
+
+    private void initLocationManager() {
+        LocationManager locationManager = new LocationManager(this);
+        locationManager.startGetLocation();
     }
 
     @Override

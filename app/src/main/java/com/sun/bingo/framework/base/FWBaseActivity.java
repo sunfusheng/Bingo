@@ -10,6 +10,7 @@ import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
 import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
+import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
 
 /**
@@ -74,7 +75,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     @Override
     public void finish() {
         super.finish();
-        if (!((Object) this).getClass().equals(MainActivity.class)) {
+        if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
             overridePendingTransition(R.anim.hold_long, R.anim.slide_right_out);
         } else {
             overridePendingTransition(0, 0);

@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
@@ -36,6 +37,7 @@ public class BaseActivity<T extends FWBaseControl> extends FWBaseActivity<T> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.i("(" + getClass().getSimpleName() + ".java)");
 
         ThemeUtil.changeTheme(this);
         initSystemBarTint(true);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mingle.widget.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
 import com.sun.bingo.entity.BingoEntity;
@@ -25,7 +26,6 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
-import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 
 public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
@@ -52,6 +52,7 @@ public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFr
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Logger.i("(" + getClass().getSimpleName() + ".java)");
         _initData();
     }
 
@@ -77,10 +78,7 @@ public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFr
 
         mEntities = new ArrayList<>();
         mAdapter = new RecyclerViewAdapter(getActivity(), mEntities);
-        ScaleInAnimationAdapter animationAdapter = new ScaleInAnimationAdapter(mAdapter);
-        animationAdapter.setDuration(500);
         recyclerView.setAdapter(mAdapter);
-
     }
 
     private void _initListener() {
