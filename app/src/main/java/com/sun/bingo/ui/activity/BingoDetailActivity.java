@@ -55,15 +55,15 @@ public class BingoDetailActivity extends BaseActivity {
 
     private void initView() {
         settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
+//        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setUseWideViewPort(true); //将图片调整到适合WebView的大小
         settings.setSupportZoom(true); //支持缩放
         settings.setBuiltInZoomControls(true); //支持手势缩放
         settings.setDisplayZoomControls(false); //是否显示缩放按钮
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setLoadWithOverviewMode(true); //自适应屏幕
-        settings.setMinimumFontSize(18); //设置最小的字体大小
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //启动硬件加速
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             settings.setLoadsImagesAutomatically(true); //支持自动加载图片
@@ -71,6 +71,8 @@ public class BingoDetailActivity extends BaseActivity {
             settings.setLoadsImagesAutomatically(false);
         }
 
+        settings.setUseWideViewPort(true); //将图片调整到适合WebView的大小
+        settings.setLoadWithOverviewMode(true); //自适应屏幕
         settings.setDomStorageEnabled(true);
         settings.setAppCacheEnabled(true);
         settings.setSaveFormData(true);
@@ -81,10 +83,6 @@ public class BingoDetailActivity extends BaseActivity {
         webView.setHorizontalScrollbarOverlay(true);
         webView.setHorizontalScrollBarEnabled(true);
         webView.requestFocus();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //启动硬件加速
-        }
 
         webView.loadUrl(bingoEntity.getWebsite());
         webView.setWebViewClient(new WebViewClient() {
