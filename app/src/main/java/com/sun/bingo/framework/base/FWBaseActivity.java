@@ -12,6 +12,7 @@ import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
 import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 默认使用Toolbar不用ActionBar
@@ -47,6 +48,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     protected void onResume() {
         mHelper.onResume();
         super.onResume();
+        MobclickAgent.onResume(this); //友盟统计
     }
 
     @Override
@@ -58,6 +60,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     protected void onPause() {
         super.onPause();
         mHelper.onPause();
+        MobclickAgent.onPause(this); //友盟统计
     }
 
     @Override

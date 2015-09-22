@@ -37,6 +37,12 @@
         android:theme="@style/AppTheme" >
 
         <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="56010df167e58ec3fa000c9b" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${umengHolder}" />
+        <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="wUHSeG3wGU2588d6aSauMohh" />
 
