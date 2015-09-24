@@ -28,6 +28,8 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.framework.eventbus.EventEntity;
+import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
@@ -42,6 +44,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by sunfusheng on 15/7/18.
@@ -174,6 +177,7 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void resultSuccess() {
+        EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
         loadingDialog.dismiss();
         finish();
     }

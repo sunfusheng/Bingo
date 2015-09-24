@@ -18,6 +18,8 @@ import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.base.FWBaseControl;
 import com.sun.bingo.framework.base.FWBaseFragment;
+import com.sun.bingo.framework.eventbus.EventEntity;
+import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
+import de.greenrobot.event.EventBus;
 
 
 public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
@@ -54,6 +57,7 @@ public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFr
         super.onCreate(savedInstanceState);
         Logger.i("(" + getClass().getSimpleName() + ".java)");
         _initData();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -125,6 +129,15 @@ public abstract class BaseListFragment<T extends FWBaseControl> extends FWBaseFr
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEventMainThread(EventEntity event) {
+        switch (event.getType()) {
+            case EventType.UPDATE_BINGO_LIST:
+                onRefreshStart();
+                break;
+        }
     }
 
     @Override

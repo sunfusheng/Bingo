@@ -23,6 +23,8 @@ import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.framework.eventbus.EventEntity;
+import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
@@ -32,6 +34,7 @@ import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by sunfusheng on 15/7/22.
@@ -257,6 +260,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                             userEntity.update(ProfileActivity.this, userEntity.getObjectId(), new UpdateListener() {
                                 @Override
                                 public void onSuccess() {
+                                    EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
                                     setResult(NavigateManager.PROFILE_REQUEST_CODE);
                                     switch (type) {
                                         case NICK_NAME:
