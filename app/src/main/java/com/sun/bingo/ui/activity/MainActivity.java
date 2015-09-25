@@ -74,13 +74,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         checkToken();
     }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        EventBus.getDefault().unregister(this);
-    }
-
     private void initVersion() {
         new DownloadApk(this).checkVersion();
     }
@@ -250,10 +243,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    public void onEventMainThread(EventEntity event) {
-//        ToastTip.showToastDialog(this, event.getType());
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

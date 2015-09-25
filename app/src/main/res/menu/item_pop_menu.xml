@@ -11,4 +11,9 @@
         android:title="分享"
         android:icon="@drawable/ic_action_share"/>
 
+    <item
+        android:id="@+id/pop_delete"
+        android:title="删除"
+        android:icon="@drawable/ic_action_share"/>
+
 </menu>  

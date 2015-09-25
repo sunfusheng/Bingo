@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
@@ -31,6 +32,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -150,7 +152,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void setLoadMoreViewText(String text) {
         if (footView == null) return ;
         ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).setText(text);
-//        notifyDataSetChanged();
         notifyItemChanged(getItemCount());
     }
 
@@ -158,7 +159,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (footView == null) return;
         footView.setVisibility(visibility);
         notifyItemChanged(getItemCount());
-//        notifyDataSetChanged();
     }
 
     public boolean isLoadMoreShown() {
@@ -196,6 +196,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     case R.id.pop_share:
                         ShareUtil.share(mContext, entity.getDescribe() + entity.getWebsite() + "\n[来自" + mContext.getString(R.string.app_name) + "的分享，下载地址：https://fir.im/bingoworld]");
                         return true;
+                    case R.id.pop_delete:
+                        new MaterialDialog.Builder(mContext)
+                                .content("确认删除该Bingo么？")
+                                .contentColor(mContext.getResources().getColor(R.color.font_black_3))
+                                .positiveText(R.string.ok)
+                                .negativeText(R.string.cancel)
+                                .negativeColor(mContext.getResources().getColor(R.color.font_black_3))
+                                .callback(new MaterialDialog.ButtonCallback() {
+                                    @Override
+                                    public void onPositive(MaterialDialog dialog) {
+                                        deleteMyBingo(position);
+                                    }
+                                    @Override
+                                    public void onNegative(MaterialDialog dialog) {
+                                    }
+                                })
+                                .show();
+                        break;
                 }
                 return false;
             }
@@ -203,6 +221,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (type == HANDLE_CANCEL_FAVORITE || (favoriteList != null && favoriteList.indexOf(entity.getObjectId()) >= 0)) {
             MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_favorite);
             menuItem.setTitle("取消收藏");
+        }
+        if (entity.getUserId().equals(userEntity.getObjectId())) {
+            MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_delete);
+            menuItem.setVisible(true);
+        } else {
+            MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_delete);
+            menuItem.setVisible(false);
         }
         popupMenu.show();
     }
@@ -261,6 +286,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onFailure(int i, String s) {
                 ToastTip.showToastDialog(mContext, "取消失败");
+            }
+        });
+    }
+
+    /**
+     * 删除Bingo
+     */
+    private void deleteMyBingo(final int position) {
+        BingoEntity entity = mEntities.get(position);
+        entity.delete(mContext, new DeleteListener() {
+            @Override
+            public void onSuccess() {
+                ToastTip.showToastDialog(mContext, "删除成功");
+                mEntities.remove(position);
+                notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                ToastTip.showToastDialog(mContext, "删除失败");
             }
         });
     }

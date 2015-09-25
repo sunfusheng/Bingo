@@ -15,6 +15,7 @@ android {
         versionCode 4
         versionName "1.3"
         manifestPlaceholders = [umengHolder: "DEBUG"]
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -101,6 +102,9 @@ dependencies {
     compile project(':extras-libs:ImageLoader') //ImageLoader
     compile project(':extras-libs:orm-library') //Afinal DataBase
 
+    //multidex
+    compile 'com.android.support:multidex:1.0.0'
+
     //SharedPreferences
     apt 'de.devland.esperandro:esperandro:2.1.0'
     compile 'de.devland.esperandro:esperandro-api:2.1.0'
@@ -149,5 +153,4 @@ dependencies {
 
     //EventBus
     compile 'de.greenrobot:eventbus:2.4.0'
-
 }

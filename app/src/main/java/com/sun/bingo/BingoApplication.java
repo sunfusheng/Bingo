@@ -3,6 +3,7 @@ package com.sun.bingo;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
@@ -22,6 +23,7 @@ import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.module.LocationManager;
 
 import cn.bmob.v3.Bmob;
+import im.fir.sdk.FIR;
 
 /**
  * Created by sunfusheng on 15/7/18.
@@ -38,14 +40,15 @@ public class BingoApplication extends Application {
 
         ControlFactory.init(this); //Control代理工场初始化
         initImageLoader(this);
+        initLocationManager();
+
+        FIR.init(this);
         Bmob.initialize(this, ConstantParams.BMOB_APP_ID);
         Fresco.initialize(this);
-
         Stetho.initialize(Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build());
-        initLocationManager();
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build());
     }
 
     public static synchronized BingoApplication getInstance() {
@@ -105,5 +108,11 @@ public class BingoApplication extends Application {
     public void onTerminate() {
         super.onTerminate();
         ImageLoader.getInstance().destroy();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }
