@@ -291,7 +291,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     /**
-     * 删除Bingo
+     * 删除我的Bingo
      */
     private void deleteMyBingo(final int position) {
         BingoEntity entity = mEntities.get(position);

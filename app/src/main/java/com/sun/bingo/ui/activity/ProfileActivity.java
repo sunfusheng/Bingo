@@ -142,6 +142,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 userEntity.update(ProfileActivity.this, userEntity.getObjectId(), new UpdateListener() {
                     @Override
                     public void onSuccess() {
+                        EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
                         civUserAvatar.setProgressOver();
                         setResult(NavigateManager.PROFILE_REQUEST_CODE);
                     }

@@ -64,6 +64,7 @@ public class PageControl extends FWBaseControl {
     public void getSquareBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
+        list.setLimit(PAGE_SIZE);
         list.order("-createdAt");
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -127,6 +128,7 @@ public class PageControl extends FWBaseControl {
     public void getMyBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
+        list.setLimit(PAGE_SIZE);
         list.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(context).getObjectId());
         list.order("-createdAt");
         list.include("userEntity");
@@ -194,6 +196,7 @@ public class PageControl extends FWBaseControl {
         List<String> favoriteList = userEntity.getFavoriteList();
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
+        list.setLimit(PAGE_SIZE);
         list.addWhereContainedIn("objectId", favoriteList);
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
