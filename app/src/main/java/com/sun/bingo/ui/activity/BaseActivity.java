@@ -37,7 +37,7 @@ public class BaseActivity<T extends FWBaseControl> extends FWBaseActivity<T> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("(" + getClass().getSimpleName() + ".java)");
+        Logger.i("(" + getClass().getSimpleName() + ".java:1)");
 
         ThemeUtil.changeTheme(this);
         initSystemBarTint(true);

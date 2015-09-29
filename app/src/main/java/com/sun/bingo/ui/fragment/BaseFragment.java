@@ -49,7 +49,7 @@ public abstract class BaseFragment<T extends FWBaseControl> extends FWBaseFragme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("(" + getClass().getSimpleName() + ".java)");
+        Logger.i("(" + getClass().getSimpleName() + ".java:1)");
         _initData();
     }
 
