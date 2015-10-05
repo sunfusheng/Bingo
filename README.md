@@ -29,6 +29,15 @@
 * PhotoView查看图片
 * LoadingView加载动画
 
+###Version 1.3
+
+* 新增上拉加载更多功能
+* 重构代码使用MVP框架
+* 修改加载个别web页面崩溃问题
+* 增加关于软件和关于作者界面
+* 使用EventBus
+* 增加删除功能
+
 ###Version 1.2
 
 * 使用PhotoView增加图片查看功能

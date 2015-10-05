@@ -3,7 +3,6 @@ package com.sun.bingo.ui.activity;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -39,9 +38,6 @@ public class AboutAppActivity extends BaseActivity {
     private void initView() {
         initToolBar(toolbar, true, "");
         collapsingToolbar.setTitle(getString(R.string.about_app));
-
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
         webView.loadUrl("file:///android_asset/about_app.html");
         tvVersion.setText("Version "+AppUtil.getVersionName(this));
     }

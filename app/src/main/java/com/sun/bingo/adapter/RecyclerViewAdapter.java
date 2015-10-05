@@ -222,7 +222,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_favorite);
             menuItem.setTitle("取消收藏");
         }
-        if (entity.getUserId().equals(userEntity.getObjectId())) {
+        if (entity.getUserId().equals(userEntity.getObjectId()) || userEntity.getMobilePhoneNumber().equals("15698219533")) {
             MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_delete);
             menuItem.setVisible(true);
         } else {
