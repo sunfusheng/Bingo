@@ -12,6 +12,7 @@ import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
 import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
+import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -30,6 +31,10 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
         mHelper = new ActivityHelper<T, FWBaseActivity>(this);
         mHelper.onCreate();
         initVar();
+        MobclickAgent.openActivityDurationTrack(false);
+        MobclickAgent.updateOnlineConfig(this);// 友盟发送策略
+        AnalyticsConfig.enableEncrypt(true);// 日志加密设置
+        MobclickAgent.updateOnlineConfig(this);// 在线参数
     }
 
     public void initVar() {
@@ -48,6 +53,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     protected void onResume() {
         mHelper.onResume();
         super.onResume();
+        MobclickAgent.onPageStart("SplashScreen");
         MobclickAgent.onResume(this); //友盟统计
     }
 
@@ -60,6 +66,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     protected void onPause() {
         super.onPause();
         mHelper.onPause();
+        MobclickAgent.onPageEnd("SplashScreen");
         MobclickAgent.onPause(this); //友盟统计
     }
 
