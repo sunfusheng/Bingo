@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         civUserAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigateManager.gotoProfileActivity(MainActivity.this);
+                NavigateManager.gotoProfileActivity(MainActivity.this, false);
             }
         });
     }

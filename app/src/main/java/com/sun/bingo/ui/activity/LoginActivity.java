@@ -123,7 +123,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void done(UserEntity userEntity, BmobException e) {
                         if (e == null) {
-                            NavigateManager.gotoMainActivity(LoginActivity.this);
+                            if (TextUtils.isEmpty(userEntity.getNickName()) || TextUtils.isEmpty(userEntity.getUserSign()) || TextUtils.isEmpty(userEntity.getUserSign())) {
+                                NavigateManager.gotoProfileActivity(LoginActivity.this, true);
+                            } else {
+                                NavigateManager.gotoMainActivity(LoginActivity.this);
+                            }
                             finish();
                         } else {
                             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

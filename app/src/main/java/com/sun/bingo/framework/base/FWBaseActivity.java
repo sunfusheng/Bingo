@@ -80,8 +80,6 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
         super.finish();
         if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
             overridePendingTransition(R.anim.hold_long, R.anim.slide_right_out);
-        } else {
-            overridePendingTransition(0, 0);
         }
     }
 
@@ -90,8 +88,6 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
         super.startActivityForResult(intent, requestCode);
         if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName())) {
             overridePendingTransition(R.anim.slide_right_in, R.anim.hold_long);
-        } else {
-            overridePendingTransition(0, 0);
         }
     }
 

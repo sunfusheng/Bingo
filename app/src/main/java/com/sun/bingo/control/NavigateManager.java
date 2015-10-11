@@ -45,8 +45,9 @@ public class NavigateManager {
         activity.startActivity(intent);
     }
 
-    public static void gotoProfileActivity(Activity activity) {
+    public static void gotoProfileActivity(Activity activity, boolean isGotoMain) {
         Intent intent = new Intent(activity, ProfileActivity.class);
+        intent.putExtra("isGotoMain", isGotoMain);
         activity.startActivityForResult(intent, PROFILE_REQUEST_CODE);
     }
 

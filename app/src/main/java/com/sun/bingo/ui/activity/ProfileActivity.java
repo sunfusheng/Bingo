@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.UserEntityUtil;
@@ -68,6 +70,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     private final String NICK_NAME = "nick_name";
     private final String USER_SIGN = "user_sign";
+    private boolean isGotoMain = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +84,19 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     }
 
     private void initData() {
-
+        if (getIntent() != null && getIntent().hasExtra("isGotoMain")) {
+            isGotoMain = getIntent().getBooleanExtra("isGotoMain", isGotoMain);
+        }
     }
 
     private void initView() {
-        initToolBar(toolbar, true, "个人中心");
+        initToolBar(toolbar, !isGotoMain, "个人中心");
         tvLogout.setTextColor(getColorPrimary());
+
+        if (isGotoMain) {
+            tvLogout.setText("完成");
+            tvLogout.setGravity(Gravity.CENTER);
+        }
 
         UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
         UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
@@ -206,9 +216,29 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 updateNickName("个性签名", USER_SIGN, userEntity.getUserSign());
                 break;
             case R.id.tv_logout:
-                logout();
+                if (isGotoMain) {
+                    gotoMain();
+                } else {
+                    logout();
+                }
                 break;
         }
+    }
+
+    private void gotoMain() {
+        if (TextUtils.isEmpty(userEntity.getUserAvatar())) {
+            ToastTip.showToastDialog(this, "请上传您的靓照哦");
+            return ;
+        }
+        if (TextUtils.isEmpty(userEntity.getNickName())) {
+            ToastTip.showToastDialog(this, "给自己起个昵称吧");
+            return ;
+        }
+        if (TextUtils.isEmpty(userEntity.getUserSign())) {
+            ToastTip.showToastDialog(this, "来句个性说说吧");
+            return ;
+        }
+        NavigateManager.gotoMainActivity(this);
     }
 
     private void logout() {
