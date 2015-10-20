@@ -40,6 +40,7 @@ public class NavigateManager {
         activity.startActivityForResult(intent, CHOOSE_PICTURE_REQUEST_CODE);
     }
 
+    //使用系统浏览器打开
     public static void gotoSystemExplore(Context context, String url) {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
