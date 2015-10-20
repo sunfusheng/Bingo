@@ -57,19 +57,19 @@ android {
     }
 
     productFlavors {
-        aRelease {manifestPlaceholders = [umengHolder: "aRelease"]}
-        m360 {manifestPlaceholders = [umengHolder: "360"]}
-        baidu {manifestPlaceholders = [umengHolder: "baidu"]}
-        qq {manifestPlaceholders = [umengHolder: "qq"]}
-        googleplay {manifestPlaceholders = [umengHolder: "googleplay"]}
-        wandoujia {manifestPlaceholders = [umengHolder: "wandoujia"]}
-        m91 {manifestPlaceholders = [umengHolder: "91"]}
-        anzhi {manifestPlaceholders = [umengHolder: "anzhi"]}
+        Bingo {manifestPlaceholders = [umengHolder: "Bingo"]}
         xiaomi {manifestPlaceholders = [umengHolder: "xiaomi"]}
-        huawei {manifestPlaceholders = [umengHolder: "huawei"]}
-        lenovo {manifestPlaceholders = [umengHolder: "lenovo"]}
-        oppo {manifestPlaceholders = [umengHolder: "oppo"]}
-        meizu {manifestPlaceholders = [umengHolder: "meizu"]}
+//        m360 {manifestPlaceholders = [umengHolder: "360"]}
+//        baidu {manifestPlaceholders = [umengHolder: "baidu"]}
+//        qq {manifestPlaceholders = [umengHolder: "qq"]}
+//        googleplay {manifestPlaceholders = [umengHolder: "googleplay"]}
+//        wandoujia {manifestPlaceholders = [umengHolder: "wandoujia"]}
+//        m91 {manifestPlaceholders = [umengHolder: "91"]}
+//        anzhi {manifestPlaceholders = [umengHolder: "anzhi"]}
+//        huawei {manifestPlaceholders = [umengHolder: "huawei"]}
+//        lenovo {manifestPlaceholders = [umengHolder: "lenovo"]}
+//        oppo {manifestPlaceholders = [umengHolder: "oppo"]}
+//        meizu {manifestPlaceholders = [umengHolder: "meizu"]}
     }
 
 }
