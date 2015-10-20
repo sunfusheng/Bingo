@@ -1,11 +1,15 @@
 package com.sun.bingo.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -14,6 +18,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.sun.bingo.R;
+import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 
@@ -124,6 +129,23 @@ public class BingoDetailActivity extends BaseActivity {
                 initToolBar(toolbar, true, title);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_bingo_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_open_by_explore:
+                NavigateManager.gotoSystemExplore(this, bingoEntity.getWebsite());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

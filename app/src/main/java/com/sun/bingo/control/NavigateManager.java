@@ -40,6 +40,14 @@ public class NavigateManager {
         activity.startActivityForResult(intent, CHOOSE_PICTURE_REQUEST_CODE);
     }
 
+    public static void gotoSystemExplore(Context context, String url) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri uri = Uri.parse(url);
+        intent.setData(uri);
+        context.startActivity(intent);
+    }
+
     public static void gotoEditNewBingoActivity(Activity activity) {
         Intent intent = new Intent(activity, EditNewBingoActivity.class);
         activity.startActivity(intent);

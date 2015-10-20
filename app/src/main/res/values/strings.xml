@@ -66,5 +66,6 @@
     <string name="loading_data">加载中...</string>
     <string name="no_favorite_data">您还没有收藏任何Bingo哦</string>
     <string name="no_my_bingo_data">您还没有提交任何Bingo哦</string>
+    <string name="open_by_explore">使用浏览器打开</string>
 
 </resources>
