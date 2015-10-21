@@ -7,7 +7,7 @@ import android.support.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -68,26 +68,26 @@ public class BingoApplication extends Application {
     /**
      * 初始化图片加载管理器
      */
-    private void initImageLoader(Context mContext) {
+    private void initImageLoader(Context context) {
         // 初始化图片默认display options
         DisplayImageOptions imageOptions = new DisplayImageOptions.Builder()
                 .displayer(new FadeInBitmapDisplayer(1000))
-                .cacheInMemory(false)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-                .bitmapConfig(Bitmap.Config.RGB_565).cacheOnDisc(false).build();
+                .bitmapConfig(Bitmap.Config.RGB_565).build();
 
         // 初始化图片加载器
-        ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(
-                mContext)
+        ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(context)
                 .defaultDisplayImageOptions(imageOptions)
                 .denyCacheImageMultipleSizesInMemory()
                 .memoryCache(new WeakMemoryCache())
                 .memoryCacheSize(1024 * 1024)
-                .memoryCacheSizePercentage(13)
+                .memoryCacheSizePercentage(12)
                 .memoryCacheExtraOptions(480, 800)
                 .threadPoolSize(2)
-                .discCache(new UnlimitedDiscCache(StorageUtils.getOwnCacheDirectory(mContext, APP_CACHE_DIR)))
-                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .diskCache(new UnlimitedDiskCache(StorageUtils.getOwnCacheDirectory(context, APP_CACHE_DIR)))
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO).build();
         ImageLoader.getInstance().init(imageLoaderConfiguration);
     }

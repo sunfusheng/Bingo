@@ -99,7 +99,6 @@ dependencies {
     compile 'com.android.support:design:22.2.+'
     compile 'com.android.support:gridlayout-v7:22.2.+'
 
-    compile project(':extras-libs:ImageLoader') //ImageLoader
     compile project(':extras-libs:orm-library') //Afinal DataBase
 
     //multidex

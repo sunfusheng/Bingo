@@ -1,1 +1,2 @@
-include ':app', ':extras-libs:ImageLoader', ':extras-libs:orm-library'
+include ':app',
+        ':extras-libs:orm-library'
