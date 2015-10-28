@@ -32,6 +32,7 @@ import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
+import com.sun.bingo.util.GetPathFromUri4kitkat;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.theme.Selector;
 import com.sun.bingo.widget.ActionSheet;
@@ -310,14 +311,16 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
                     break;
                 case NavigateManager.CHOOSE_PICTURE_REQUEST_CODE:
                     Uri uri = data.getData();
-                    if (uri != null) {
+                    String imagePath = GetPathFromUri4kitkat.getPath(this, data.getData());
+                    if (TextUtils.isEmpty(imagePath)) {
                         String[] proj = {MediaStore.Images.Media.DATA};
                         Cursor cursor = getContentResolver().query(uri, proj, null, null, null);
                         if (cursor != null && cursor.moveToFirst()) {
-                            setImageViewWithPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)));
+                            imagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
                             cursor.close();
                         }
                     }
+                    setImageViewWithPath(imagePath);
                     break;
             }
         }

@@ -27,6 +27,7 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
+import com.sun.bingo.util.GetPathFromUri4kitkat;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
@@ -189,15 +190,16 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     break;
                 case NavigateManager.CHOOSE_PICTURE_REQUEST_CODE:
                     Uri uri = data.getData();
-                    if (uri != null) {
+                    imagePath = GetPathFromUri4kitkat.getPath(this, data.getData());
+                    if (TextUtils.isEmpty(imagePath)) {
                         String[] proj = {MediaStore.Images.Media.DATA};
                         Cursor cursor = getContentResolver().query(uri, proj, null, null, null);
                         if (cursor != null && cursor.moveToFirst()) {
                             imagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
-                            setImageViewWithPath(civUserAvatar, imagePath);
                             cursor.close();
                         }
                     }
+                    setImageViewWithPath(civUserAvatar, imagePath);
                     break;
             }
         }
