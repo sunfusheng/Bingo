@@ -43,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_user"
                 android:scaleType="centerCrop"
-                app:siBorderWidth="2dp"
+                app:siBorderWidth="0dp"
                 app:siBorderColor="@color/font_black_6"/>
         </RelativeLayout>
 
