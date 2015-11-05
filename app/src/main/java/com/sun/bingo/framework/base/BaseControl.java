@@ -14,12 +14,12 @@ import org.apache.http.conn.HttpHostConnectException;
 import java.io.InterruptedIOException;
 import java.net.UnknownHostException;
 
-public class FWBaseControl {
+public class BaseControl {
 
     protected ModelMap mModel;
     protected MessageProxy mMessageCallBack; //消息分发代理类型
 
-    public FWBaseControl(MessageProxy mMessageCallBack) {
+    public BaseControl(MessageProxy mMessageCallBack) {
         this.mMessageCallBack = mMessageCallBack;
     }
 

@@ -51,11 +51,15 @@ public abstract class BaseListAdapter<E> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public BaseListAdapter(Context context, List<E> list) {
+    public BaseListAdapter(Context context) {
         super();
         this.mContext = context;
-        this.list = list;
         mInflater = LayoutInflater.from(context);
+    }
+
+    public BaseListAdapter(Context context, List<E> list) {
+        this(context);
+        this.list = list;
     }
 
     @Override

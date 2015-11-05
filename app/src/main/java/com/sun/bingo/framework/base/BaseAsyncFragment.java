@@ -9,7 +9,9 @@ import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.handler.AsyncFragmentHandler;
 import com.sun.bingo.framework.proxy.helper.FragmentHelper;
 
-public class FWBaseFragment<T extends FWBaseControl> extends Fragment implements IRefreshBack {
+import de.devland.esperandro.Esperandro;
+
+public class BaseAsyncFragment<T extends BaseControl> extends Fragment implements IRefreshBack {
 
     protected T mControl;
     protected MessageProxy messageProxy;
@@ -21,10 +23,10 @@ public class FWBaseFragment<T extends FWBaseControl> extends Fragment implements
         super.onCreate(savedInstanceState);
         mHelper = new FragmentHelper(this, new AsyncFragmentHandler(this));
         mHelper.onCreate();
-        initVar();
+        initParams();
     }
 
-    public void initVar() {
+    public void initParams() {
         mModel = mHelper.getModelMap();
         messageProxy = mHelper.getMessageProxy();
         mControl = (T) mHelper.getControl();
@@ -34,11 +36,6 @@ public class FWBaseFragment<T extends FWBaseControl> extends Fragment implements
     public void onResume() {
         super.onResume();
         mHelper.onResume();
-    }
-
-    @Override
-    public void onRefresh(int requestCode, Bundle bundle) {
-
     }
 
     @Override
@@ -57,6 +54,15 @@ public class FWBaseFragment<T extends FWBaseControl> extends Fragment implements
     public void onDestroy() {
         mHelper.onDestroy();
         super.onDestroy();
+    }
+
+    protected <P> P getSharedPreferences(Class<P> spClass) {
+        return Esperandro.getPreferences(spClass, getActivity());
+    }
+
+    @Override
+    public void onRefresh(int requestCode, Bundle bundle) {
+
     }
 
 }

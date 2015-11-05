@@ -3,9 +3,9 @@ package com.sun.bingo.framework.proxy.handler;
 import android.app.Activity;
 import android.content.Context;
 
-public class ActivityHandler extends BaseHandler<Activity> {
+public class AsyncActivityHandler extends BaseHandler<Activity> {
 
-    public ActivityHandler(Activity activity) {
+    public AsyncActivityHandler(Activity activity) {
         super(activity);
     }
 

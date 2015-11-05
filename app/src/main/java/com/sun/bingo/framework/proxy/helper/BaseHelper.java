@@ -2,7 +2,7 @@ package com.sun.bingo.framework.proxy.helper;
 
 import android.content.Context;
 
-import com.sun.bingo.framework.base.FWBaseControl;
+import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
@@ -12,7 +12,7 @@ import com.sun.bingo.framework.proxy.handler.BaseHandler;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public class BaseAsyncHelper<T extends FWBaseControl, R extends IRefreshBack> {
+public class BaseHelper<T extends BaseControl, R extends IRefreshBack> {
 
     protected T mControl;
     protected MessageProxy messageProxy;
@@ -20,7 +20,7 @@ public class BaseAsyncHelper<T extends FWBaseControl, R extends IRefreshBack> {
     protected R mReferenceObj;
     protected BaseHandler mHandler;
 
-    public BaseAsyncHelper(R referenceObj, BaseHandler handler) {
+    public BaseHelper(R referenceObj, BaseHandler handler) {
         this.mReferenceObj = referenceObj;
         this.mHandler = handler;
     }
@@ -92,8 +92,8 @@ public class BaseAsyncHelper<T extends FWBaseControl, R extends IRefreshBack> {
             for (Type item : arrayClasses) {
                 if (item instanceof Class) {
                     Class<T> tClass = (Class<T>) item;
-                    if (tClass.equals(FWBaseControl.class) || (tClass.getSuperclass() != null && tClass.getSuperclass().equals(FWBaseControl.class)
-                    )) {
+                    if (tClass.equals(BaseControl.class) || (tClass.getSuperclass() != null &&
+                            tClass.getSuperclass().equals(BaseControl.class))) {
                         messageProxy = new MessageProxy(mHandler);
                         mControl = ControlFactory.getControlInstance(tClass, messageProxy);
                         mModel = new ModelMap();

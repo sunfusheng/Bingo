@@ -44,25 +44,24 @@ import de.greenrobot.event.EventBus;
  */
 public class ProfileActivity extends BaseActivity implements View.OnClickListener {
 
-
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
     @InjectView(R.id.civ_user_avatar)
     UploadAvatarView civUserAvatar;
     @InjectView(R.id.rl_user_avatar)
     RelativeLayout rlUserAvatar;
-    @InjectView(R.id.tv_user_sign_title)
-    TextView tvUserSignTitle;
-    @InjectView(R.id.tv_user_sign)
-    TextView tvUserSign;
-    @InjectView(R.id.rl_user_sign)
-    RelativeLayout rlUserSign;
     @InjectView(R.id.tv_nick_name_title)
     TextView tvNickNameTitle;
     @InjectView(R.id.tv_nick_name)
     TextView tvNickName;
     @InjectView(R.id.rl_nick_name)
     RelativeLayout rlNickName;
+    @InjectView(R.id.tv_user_sign_title)
+    TextView tvUserSignTitle;
+    @InjectView(R.id.tv_user_sign)
+    TextView tvUserSign;
+    @InjectView(R.id.rl_user_sign)
+    RelativeLayout rlUserSign;
     @InjectView(R.id.tv_logout)
     TextView tvLogout;
 
@@ -230,15 +229,15 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private void gotoMain() {
         if (TextUtils.isEmpty(userEntity.getUserAvatar())) {
             ToastTip.showToastDialog(this, "请上传您的靓照哦");
-            return ;
+            return;
         }
         if (TextUtils.isEmpty(userEntity.getNickName())) {
             ToastTip.showToastDialog(this, "给自己起个昵称吧");
-            return ;
+            return;
         }
         if (TextUtils.isEmpty(userEntity.getUserSign())) {
             ToastTip.showToastDialog(this, "来句个性说说吧");
-            return ;
+            return;
         }
         NavigateManager.gotoMainActivity(this);
     }
@@ -257,6 +256,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         NavigateManager.gotoMainActivity(ProfileActivity.this);
                         finish();
                     }
+
                     @Override
                     public void onNegative(MaterialDialog dialog) {
                     }

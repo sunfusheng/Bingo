@@ -5,7 +5,7 @@ import android.content.Context;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.annotation.AsyncMethod;
-import com.sun.bingo.framework.base.FWBaseControl;
+import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.proxy.MessageProxy;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import cn.bmob.v3.listener.FindListener;
 /**
  * Created by sunfusheng on 15/7/21.
  */
-public class PageControl extends FWBaseControl {
+public class PageControl extends BaseControl {
 
     public static final int PAGE_SIZE = 10;
     private int pageSize = PAGE_SIZE;
@@ -190,7 +190,7 @@ public class PageControl extends FWBaseControl {
     /**
      * 我的收藏 (More)
      */
-    @AsyncMethod
+    @AsyncMethod(withDialog = true)
     public void getFavoriteBingoListDataMore(Context context) {
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();

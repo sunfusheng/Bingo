@@ -16,18 +16,18 @@ import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.base.FWBaseActivity;
-import com.sun.bingo.framework.base.FWBaseControl;
+import com.sun.bingo.framework.base.BaseAsyncActivity;
+import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
+import com.sun.bingo.sharedpreferences.LocationSharedPreference;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
 import com.sun.bingo.util.theme.ThemeUtil;
 
 import cn.bmob.v3.BmobUser;
-import de.devland.esperandro.Esperandro;
 
-public class BaseActivity<T extends FWBaseControl> extends FWBaseActivity<T> {
+public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
     protected UserEntity userEntity;
     protected DisplayImageOptions userImageOptions;
@@ -116,12 +116,12 @@ public class BaseActivity<T extends FWBaseControl> extends FWBaseActivity<T> {
         }
     }
 
-    public <P> P getSharePrefence(Class<P> spClass) {
-        return Esperandro.getPreferences(spClass, this);
+    public SettingsSharedPreferences getSettingsSharedPreferences() {
+        return getSharedPreferences(SettingsSharedPreferences.class);
     }
 
-    public SettingsSharedPreferences getSettingsSharedPreferences() {
-        return getSharePrefence(SettingsSharedPreferences.class);
+    public LocationSharedPreference getLocationSharedPreference() {
+        return getSharedPreferences(LocationSharedPreference.class);
     }
 
 }

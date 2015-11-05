@@ -15,10 +15,12 @@ import com.sun.bingo.ui.activity.MainActivity;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
+import de.devland.esperandro.Esperandro;
+
 /**
  * 默认使用Toolbar不用ActionBar
  */
-public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity implements IRefreshBack {
+public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity implements IRefreshBack {
 
     protected T mControl;
     protected MessageProxy messageProxy;
@@ -28,7 +30,7 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mHelper = new ActivityHelper<T, FWBaseActivity>(this);
+        mHelper = new ActivityHelper<T, BaseAsyncActivity>(this);
         mHelper.onCreate();
         initVar();
         MobclickAgent.openActivityDurationTrack(false);
@@ -100,6 +102,10 @@ public class FWBaseActivity<T extends FWBaseControl> extends AppCompatActivity i
 
     protected boolean isPaused() {
         return mHelper.isPause();
+    }
+
+    protected <P> P getSharedPreferences(Class<P> spClass) {
+        return Esperandro.getPreferences(spClass, this);
     }
 
     @Override

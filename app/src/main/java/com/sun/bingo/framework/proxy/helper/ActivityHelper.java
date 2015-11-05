@@ -2,16 +2,16 @@ package com.sun.bingo.framework.proxy.helper;
 
 import android.view.MenuItem;
 
-import com.sun.bingo.framework.base.FWBaseActivity;
-import com.sun.bingo.framework.base.FWBaseControl;
-import com.sun.bingo.framework.proxy.handler.ActivityHandler;
+import com.sun.bingo.framework.base.BaseAsyncActivity;
+import com.sun.bingo.framework.base.BaseControl;
+import com.sun.bingo.framework.proxy.handler.AsyncActivityHandler;
 
-public class ActivityHelper<T extends FWBaseControl, R extends FWBaseActivity> extends BaseAsyncHelper<T, R> {
+public class ActivityHelper<T extends BaseControl, R extends BaseAsyncActivity> extends BaseHelper<T, R> {
 
     private boolean isPause;
 
     public ActivityHelper(R refrenceObj) {
-        super(refrenceObj, new ActivityHandler(refrenceObj));
+        super(refrenceObj, new AsyncActivityHandler(refrenceObj));
     }
 
     public void onCreate() {
