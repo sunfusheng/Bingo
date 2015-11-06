@@ -34,7 +34,6 @@ import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.GetPathFromUri4kitkat;
 import com.sun.bingo.util.KeyBoardUtil;
-import com.sun.bingo.util.theme.Selector;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
 
@@ -97,9 +96,9 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         initToolBar(toolbar, true, "新Bingo");
         hsImages.setVisibility(View.GONE);
-        rlBottomLayout.setBackgroundColor(getColorPrimary());
-        ivImage.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
-        tvCommit.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        setRectShapeViewBackground(rlBottomLayout);
+        setRoundRectShapeViewBackground(ivImage);
+        setRoundRectShapeViewBackground(tvCommit);
     }
 
     private void initListener() {

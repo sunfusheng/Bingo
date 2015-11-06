@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -23,6 +24,7 @@ import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.sharedpreferences.LocationSharedPreference;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
+import com.sun.bingo.util.theme.Selector;
 import com.sun.bingo.util.theme.ThemeUtil;
 
 import cn.bmob.v3.BmobUser;
@@ -88,6 +90,30 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         TypedValue typedValue = new  TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValue, true);
         return typedValue.data;
+    }
+
+    protected void setOvalShapeViewBackground(View view) {
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(Selector.createOvalShapeSelector(getColorPrimary()));
+        } else {
+            view.setBackgroundDrawable(Selector.createOvalShapeSelector(getColorPrimary()));
+        }
+    }
+
+    protected void setRoundRectShapeViewBackground(View view) {
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        } else {
+            view.setBackgroundDrawable(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        }
+    }
+
+    protected void setRectShapeViewBackground(View view) {
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(Selector.createRectShapeSelector(getColorPrimary()));
+        } else {
+            view.setBackgroundDrawable(Selector.createRectShapeSelector(getColorPrimary()));
+        }
     }
 
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {

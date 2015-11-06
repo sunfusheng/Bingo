@@ -18,7 +18,6 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.KeyBoardUtil;
-import com.sun.bingo.util.theme.Selector;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -66,8 +65,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, false, "登录");
-        tvVerifyCode.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
-        tvCommit.setBackground(Selector.createRoundRectShapeSelector(getColorPrimary()));
+        setRoundRectShapeViewBackground(tvVerifyCode);
+        setRoundRectShapeViewBackground(tvCommit);
     }
 
     private void initListener() {

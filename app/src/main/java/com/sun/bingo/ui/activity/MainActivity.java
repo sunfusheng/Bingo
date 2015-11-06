@@ -28,7 +28,6 @@ import com.sun.bingo.ui.fragment.SquareBingoFragment;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
-import com.sun.bingo.util.theme.Selector;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -101,8 +100,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         if (userEntity != null) {
             controlShowFragment(0);
         }
-
-        floatingActionButton.setBackground(Selector.createOvalShapeSelector(getColorPrimary()));
+        setOvalShapeViewBackground(floatingActionButton);
         civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
         tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);
         tvUserSign = (TextView) mainNavigationLayout.findViewById(R.id.tv_user_sign);
