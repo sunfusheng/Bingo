@@ -89,7 +89,7 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
         super.startActivity(intent);
         if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
                 !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.slide_right_in, R.anim.hold_long);
+            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
         }
     }
 
@@ -98,7 +98,7 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
         super.startActivityForResult(intent, requestCode);
         if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
                 !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.slide_right_in, R.anim.hold_long);
+            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
         }
     }
 
@@ -106,7 +106,7 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
     public void finish() {
         super.finish();
         if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
-            overridePendingTransition(R.anim.hold_long, R.anim.slide_right_out);
+            overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
         }
     }
 
