@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +23,12 @@ import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
-import com.sun.bingo.util.GetPathFromUri4kitkat;
 import com.sun.bingo.util.UserEntityUtil;
+import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
 
@@ -42,7 +42,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by sunfusheng on 15/7/22.
  */
-public class ProfileActivity extends BaseActivity implements View.OnClickListener {
+public class ProfileActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -134,9 +134,19 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 }).show();
     }
 
-    private void setImageViewWithPath(ImageView imageView, String imagePath) {
-        ImageLoader.getInstance().displayImage("file://" + imagePath, imageView, userImageOptions);
-        uploadAvatar(imagePath);
+
+    private void setImageViewWithPath(String imagePath) {
+        ImageLoader.getInstance().displayImage("file://" + imagePath, civUserAvatar, userImageOptions);
+        mControl.getCompressImagePath(this, imagePath); //异步压缩图片
+    }
+
+    public void getCompressImagePathCallBack() {
+        String compressImagePath = mModel.get(1);
+        if (TextUtils.isEmpty(compressImagePath)) {
+            ToastTip.showToastDialog(this, "请重新选择图片");
+        } else {
+            uploadAvatar(compressImagePath);
+        }
     }
 
     private void uploadAvatar(String imagePath) {
@@ -185,7 +195,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             switch (requestCode) {
                 case NavigateManager.TAKE_PICTURE_REQUEST_CODE:
                     imagePath = Environment.getExternalStorageDirectory() + takePicturePath;
-                    setImageViewWithPath(civUserAvatar, imagePath);
+                    setImageViewWithPath(imagePath);
                     break;
                 case NavigateManager.CHOOSE_PICTURE_REQUEST_CODE:
                     Uri uri = data.getData();
@@ -198,7 +208,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                             cursor.close();
                         }
                     }
-                    setImageViewWithPath(civUserAvatar, imagePath);
+                    setImageViewWithPath(imagePath);
                     break;
             }
         }

@@ -33,13 +33,13 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
     protected UserEntity userEntity;
     protected DisplayImageOptions userImageOptions;
-    protected HttpControl mControl = BingoApplication.getInstance().getHttpControl();
+    protected HttpControl mHttpControl = BingoApplication.getInstance().getHttpControl();
     protected LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("(" + getClass().getSimpleName() + ".java:1)");
+        Logger.i("log-activity", "(" + getClass().getSimpleName() + ".java:1)");
 
         ThemeUtil.changeTheme(this);
         initSystemBarTint(true);

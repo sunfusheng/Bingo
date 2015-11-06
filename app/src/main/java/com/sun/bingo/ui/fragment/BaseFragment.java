@@ -49,7 +49,7 @@ public abstract class BaseFragment<T extends BaseControl> extends BaseAsyncFragm
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("(" + getClass().getSimpleName() + ".java:1)");
+        Logger.i("log-fragment", "(" + getClass().getSimpleName() + ".java:1)");
         _initData();
     }
 

@@ -1,4 +1,4 @@
-package com.sun.bingo.util;
+package com.sun.bingo.util.image;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

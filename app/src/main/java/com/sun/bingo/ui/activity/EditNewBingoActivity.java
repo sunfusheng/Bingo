@@ -25,6 +25,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.CommonDialog;
@@ -32,7 +33,7 @@ import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
-import com.sun.bingo.util.GetPathFromUri4kitkat;
+import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
@@ -50,7 +51,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by sunfusheng on 15/7/18.
  */
-public class EditNewBingoActivity extends BaseActivity implements View.OnClickListener {
+public class EditNewBingoActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
@@ -289,15 +290,28 @@ public class EditNewBingoActivity extends BaseActivity implements View.OnClickLi
         llContainer.addView(view);
     }
 
-    private void setImageViewWithPath(String imagePath) {
+    private void handleCompressImageViewWithPath(String imagePath) {
+        hsImages.setVisibility(View.VISIBLE);
         List<String> list = bingoEntity.getImageList();
         if (list == null || list.size() == 0) {
             list = new ArrayList<>();
         }
-        hsImages.setVisibility(View.VISIBLE);
         list.add(imagePath);
         bingoEntity.setImageList(list);
         updateImageLayout();
+    }
+
+    private void setImageViewWithPath(String imagePath) {
+        mControl.getCompressImagePath(this, imagePath); //异步压缩图片
+    }
+
+    public void getCompressImagePathCallBack() {
+        String compressImagePath = mModel.get(1);
+        if (TextUtils.isEmpty(compressImagePath)) {
+            ToastTip.showToastDialog(this, "请重新选择图片");
+        } else {
+            handleCompressImageViewWithPath(compressImagePath);
+        }
     }
 
     @Override
