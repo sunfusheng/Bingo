@@ -110,13 +110,13 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     private void commitNewBingo() {
         String website = etWebsite.getText().toString().trim();
         if (TextUtils.isEmpty(website)) {
-            ToastTip.showToastDialog(this, getString(R.string.hint_input_website));
+            ToastTip.show(this, getString(R.string.hint_input_website));
             return;
         }
 
         String describe = etDescribe.getText().toString().trim();
         if (TextUtils.isEmpty(describe)) {
-            ToastTip.showToastDialog(this, getString(R.string.hint_input_describe));
+            ToastTip.show(this, getString(R.string.hint_input_describe));
             return;
         }
 
@@ -191,7 +191,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
 
     private void resultFail() {
         loadingDialog.dismiss();
-        ToastTip.showToastDialog(EditNewBingoActivity.this, "提交失败，请重试");
+        ToastTip.show(EditNewBingoActivity.this, "提交失败，请重试");
     }
 
     private List<String> getBmobUrls(BmobFile[] files) {
@@ -207,7 +207,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         switch (v.getId()) {
             case R.id.iv_image:
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    ToastTip.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.show(EditNewBingoActivity.this, "最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(this);
                     showSelectImageDialog();
@@ -279,7 +279,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
             @Override
             public void onClick(View v) {
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    ToastTip.showToastDialog(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.show(EditNewBingoActivity.this, "最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(EditNewBingoActivity.this);
                     showSelectImageDialog();
@@ -308,7 +308,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     public void getCompressImagePathCallBack() {
         String compressImagePath = mModel.get(1);
         if (TextUtils.isEmpty(compressImagePath)) {
-            ToastTip.showToastDialog(this, "请重新选择图片");
+            ToastTip.show(this, "请重新选择图片");
         } else {
             handleCompressImageViewWithPath(compressImagePath);
         }

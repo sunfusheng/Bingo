@@ -108,7 +108,7 @@ public class ShareUtil {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> infos = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         if (infos == null || infos.size() <= 0){
-            ToastTip.showToastDialog(context, context.getString(R.string.no_email_app_tip));
+            ToastTip.show(context, context.getString(R.string.no_email_app_tip));
             return;
         }
         context.startActivity(intent);

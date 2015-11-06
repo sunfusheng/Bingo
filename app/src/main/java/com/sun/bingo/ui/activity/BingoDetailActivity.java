@@ -1,8 +1,6 @@
 package com.sun.bingo.ui.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -54,7 +52,7 @@ public class BingoDetailActivity extends BaseActivity {
     private void initData() {
         bingoEntity = (BingoEntity) getIntent().getSerializableExtra("entity");
         if (bingoEntity == null) {
-            ToastTip.showToastDialog(this, "该作者提交的Bingo有问题");
+            ToastTip.show(this, "该作者提交的Bingo有问题");
         }
     }
 

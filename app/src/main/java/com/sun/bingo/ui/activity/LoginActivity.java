@@ -1,6 +1,7 @@
 package com.sun.bingo.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.Toolbar;
@@ -96,18 +97,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private void requestSMSCode() {
         String phoneNum = metPhoneNum.getText().toString().trim();
         if (TextUtils.isEmpty(phoneNum)) {
-            ToastTip.showToastDialog(LoginActivity.this, "请输入手机号码");
+            ToastTip.show(LoginActivity.this, "请输入手机号码");
             return ;
         }
         if (phoneNum.length() != 11) {
-            ToastTip.showToastDialog(LoginActivity.this, "请输入有效的手机号码");
+            ToastTip.show(LoginActivity.this, "请输入有效的手机号码");
             return ;
         }
         BmobSMS.requestSMSCode(this, metPhoneNum.getText().toString().trim(), ConstantParams.SMS_LOGIN_VERIFY_CODE, new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null) {
-                    ToastTip.showToastDialog(LoginActivity.this, "验证码发送成功，请注意查收");
+                    ToastTip.show(LoginActivity.this, "验证码发送成功，请注意查收");
                     mHandler.post(countDownThread);
                 }
             }
@@ -171,5 +172,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         public boolean getIsChanging() {
             return isChanging;
         }
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
     }
 }

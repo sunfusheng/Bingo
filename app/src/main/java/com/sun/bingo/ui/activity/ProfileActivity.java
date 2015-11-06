@@ -143,7 +143,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     public void getCompressImagePathCallBack() {
         String compressImagePath = mModel.get(1);
         if (TextUtils.isEmpty(compressImagePath)) {
-            ToastTip.showToastDialog(this, "请重新选择图片");
+            ToastTip.show(this, "请重新选择图片");
         } else {
             uploadAvatar(compressImagePath);
         }
@@ -238,15 +238,15 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
 
     private void gotoMain() {
         if (TextUtils.isEmpty(userEntity.getUserAvatar())) {
-            ToastTip.showToastDialog(this, "请上传您的靓照哦");
+            ToastTip.show(this, "请上传您的靓照哦");
             return;
         }
         if (TextUtils.isEmpty(userEntity.getNickName())) {
-            ToastTip.showToastDialog(this, "给自己起个昵称吧");
+            ToastTip.show(this, "给自己起个昵称吧");
             return;
         }
         if (TextUtils.isEmpty(userEntity.getUserSign())) {
-            ToastTip.showToastDialog(this, "来句个性说说吧");
+            ToastTip.show(this, "来句个性说说吧");
             return;
         }
         NavigateManager.gotoMainActivity(this);

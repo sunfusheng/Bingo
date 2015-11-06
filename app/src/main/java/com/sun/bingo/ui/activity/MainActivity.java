@@ -1,6 +1,5 @@
 package com.sun.bingo.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +21,7 @@ import com.shamanland.fab.FloatingActionButton;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.update.DownloadApk;
 import com.sun.bingo.ui.fragment.FavoriteFragment;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
@@ -60,7 +61,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
-        initVersion();
         checkToken();
         initData();
         initView();
@@ -90,9 +90,11 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         titles[0] = getString(R.string.menu_square_bingo);
         titles[1] = getString(R.string.menu_my_bingo);
         titles[2] = getString(R.string.menu_my_favorite);
+        if (userEntity != null) {
+            initVersion();
+        }
     }
 
-    @SuppressLint("NewApi")
     private void initView() {
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
@@ -240,6 +242,35 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private long lastTime = 0;
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis()-lastTime<2000){
+            super.onBackPressed();
+        }else {
+            lastTime = System.currentTimeMillis();
+            ToastTip.show(this, getString(R.string.toast_exit_tip), Gravity.BOTTOM);
+        }
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
     }
 
     @Override
