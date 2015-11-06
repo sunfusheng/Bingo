@@ -8,7 +8,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.module.listener.OnGetLocationListener;
-import com.sun.bingo.sharedpreferences.LocationSharedPreference;
+import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
 
 import de.devland.esperandro.Esperandro;
 
@@ -47,7 +47,7 @@ public class LocationManager {
     }
 
     public class MyLocationListener implements BDLocationListener {
-        LocationSharedPreference sharedPreference = Esperandro.getPreferences(LocationSharedPreference.class, mContext);
+        LocationSharedPreferences sharedPreference = Esperandro.getPreferences(LocationSharedPreferences.class, mContext);
         @Override
         public void onReceiveLocation(BDLocation location) {
 

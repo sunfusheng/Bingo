@@ -21,8 +21,10 @@ import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.module.LocationManager;
+import com.sun.bingo.sharedpreferences.FastJsonSerial;
 
 import cn.bmob.v3.Bmob;
+import de.devland.esperandro.Esperandro;
 import im.fir.sdk.FIR;
 
 /**
@@ -38,6 +40,7 @@ public class BingoApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Esperandro.setSerializer(new FastJsonSerial());
         ControlFactory.init(this); //Control代理工场初始化
         initImageLoader(this);
         initLocationManager();

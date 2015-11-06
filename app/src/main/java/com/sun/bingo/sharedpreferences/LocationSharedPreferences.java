@@ -8,7 +8,7 @@ import de.devland.esperandro.annotations.SharedPreferences;
  * Created by sunfusheng on 2015/4/23.
  */
 @SharedPreferences(name = "location", mode = SharedPreferenceMode.PRIVATE)
-public interface LocationSharedPreference extends SharedPreferenceActions {
+public interface LocationSharedPreferences extends SharedPreferenceActions {
 
     /*纬度*/
     String latitude();
