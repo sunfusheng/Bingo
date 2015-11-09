@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
     private String[] titles;
     private int mCurrentPosition = 0;
+    private long lastTime = 0;
 
     private CircularImageView civUserAvatar;
     private TextView tvNickName;
@@ -244,12 +245,15 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         }
     }
 
-    private long lastTime = 0;
     @Override
     public void onBackPressed() {
-        if(System.currentTimeMillis()-lastTime<2000){
+        if (mainDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            mainDrawerLayout.closeDrawers();
+            return ;
+        }
+        if (System.currentTimeMillis() - lastTime < 2000) {
             super.onBackPressed();
-        }else {
+        } else {
             lastTime = System.currentTimeMillis();
             ToastTip.show(this, getString(R.string.toast_exit_tip), Gravity.BOTTOM);
         }

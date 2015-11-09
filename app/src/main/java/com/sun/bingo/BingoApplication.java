@@ -118,4 +118,5 @@ public class BingoApplication extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
+    
 }

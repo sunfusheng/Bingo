@@ -148,7 +148,7 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
             public void run() {
                 onRefreshStart();
             }
-        }, 1000);
+        }, 500);
     }
 
     /**

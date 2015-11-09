@@ -60,7 +60,7 @@
     <string name="hint_input_website">请输入文章网址</string>
     <string name="hint_input_describe">请输入文章描述</string>
 
-    <string name="toast_exit_tip">再按一次退出</string>
+    <string name="toast_exit_tip">再按一次退出Bingo</string>
 
     <string name="no_data">暂无数据</string>
     <string name="load_data_fail">加载失败</string>
