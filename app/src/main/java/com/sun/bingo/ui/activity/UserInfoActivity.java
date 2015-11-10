@@ -1,25 +1,24 @@
-package com.sun.bingo.ui.fragment;
+package com.sun.bingo.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mingle.widget.LoadingView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
+import com.sun.bingo.control.PageControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.base.BaseControl;
-import com.sun.bingo.framework.base.BaseAsyncFragment;
-import com.sun.bingo.framework.eventbus.EventEntity;
-import com.sun.bingo.framework.eventbus.EventType;
+import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
 import java.util.ArrayList;
@@ -27,11 +26,11 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import cn.bmob.v3.BmobUser;
-import de.greenrobot.event.EventBus;
 
-
-public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
+/**
+ * Created by sunfusheng on 15/11/10.
+ */
+public class UserInfoActivity extends BaseActivity<PageControl> implements CircleRefreshLayout.OnCircleRefreshListener {
 
     @InjectView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -43,51 +42,67 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
     TextView tvStatus;
     @InjectView(R.id.ll_status)
     FrameLayout llStatus;
+    @InjectView(R.id.iv_back)
+    ImageView ivBack;
+    @InjectView(R.id.civ_user_avatar)
+    CircularImageView civUserAvatar;
+    @InjectView(R.id.tv_nick_name)
+    TextView tvNickName;
+    @InjectView(R.id.tv_user_sign)
+    TextView tvUserSign;
+    @InjectView(R.id.ll_user_layout)
+    LinearLayout llUserLayout;
+    @InjectView(R.id.tv_location)
+    TextView tvLocation;
 
-    protected UserEntity userEntity;
-
+    private UserEntity mUserEntity;
     private int lastVisibleItem;
     private LinearLayoutManager mLinearLayoutManager;
-
     protected List<BingoEntity> mEntities;
     protected RecyclerViewAdapter mAdapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.i("log-fragment", "(" + getClass().getSimpleName() + ".java)");
+        setContentView(R.layout.activity_user_info);
+        ButterKnife.inject(this);
+
         initData();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_bingo_list, container, false);
-        ButterKnife.inject(this, rootView);
-
         initView();
         initListener();
         startRefresh();
-        return rootView;
     }
 
+
     private void initData() {
-        userEntity = BmobUser.getCurrentUser(getActivity(), UserEntity.class);
+        mUserEntity = (UserEntity) getIntent().getSerializableExtra("userEntity");
     }
 
     private void initView() {
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        tvNickName.setText(TextUtils.isEmpty(userEntity.getNickName())? "未知":userEntity.getNickName());
+        tvUserSign.setText(TextUtils.isEmpty(userEntity.getUserSign())? "还没有个性签名":userEntity.getUserSign());
+        UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
+        tvLocation.setText(getLocationSharedPreferences().city() + " " + getLocationSharedPreferences().district());
+        llUserLayout.setBackgroundColor(getColorPrimary());
+
+        mLinearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLinearLayoutManager);
         loadingView.setVisibility(View.VISIBLE);
 
         mEntities = new ArrayList<>();
-        mAdapter = new RecyclerViewAdapter(getActivity(), mEntities);
+        mAdapter = new RecyclerViewAdapter(this, mEntities);
         recyclerView.setAdapter(mAdapter);
     }
 
     private void initListener() {
         recyclerView.addOnScrollListener(new PauseOnScrollListener());
         circleRefreshLayout.setOnRefreshListener(this);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     class PauseOnScrollListener extends RecyclerView.OnScrollListener {
@@ -126,21 +141,6 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-        EventBus.getDefault().unregister(this);
-    }
-
-    public void onEventMainThread(EventEntity event) {
-        switch (event.getType()) {
-            case EventType.UPDATE_BINGO_LIST:
-                onRefreshStart();
-                break;
-        }
-    }
-
-    @Override
     public void startRefresh() {
         //让子弹飞一会儿，防止刷新太快哦
         messageProxy.postRunnableDelay(new Runnable() {
@@ -151,11 +151,15 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
         }, 500);
     }
 
-    /**
-     * －－－－－－－－－－－－－－－－－－－－－
-     * 请求列表数据的回调接口们，嗨，你们好。
-     * －－－－－－－－－－－－－－－－－－－－－
-     */
+    //下拉刷新数据
+    protected void onRefreshStart() {
+        mControl.getMyBingoListData(this);
+    }
+
+    //上拉加载数据
+    protected void onScrollLast() {
+        mControl.getMyBingoListDataMore(this);
+    }
 
     //数据为空
     public void getDataEmpty() {
@@ -164,7 +168,7 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
         mAdapter.setLoadMoreViewVisibility(View.GONE);
 
         tvStatus.setVisibility(View.VISIBLE);
-        tvStatus.setText(getString(emptyDataString()));
+        tvStatus.setText("暂无分享的文章");
 
         mEntities.clear();
         mAdapter.notifyDataSetChanged();
@@ -235,15 +239,5 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
         mAdapter.setLoadMoreViewVisibility(View.VISIBLE);
         mAdapter.setLoadMoreViewText(getString(R.string.load_data_fail));
     }
-
-    /**
-     * －－－－－－－－－－－－－－－－－－－－－
-     * 抽象方法们，你们辛苦啦！
-     * －－－－－－－－－－－－－－－－－－－－－
-     */
-
-    protected abstract void onRefreshStart(); //下拉刷新数据
-    protected abstract void onScrollLast(); //上拉加载数据
-    protected abstract int emptyDataString(); //数据为空时的显示文字
 
 }

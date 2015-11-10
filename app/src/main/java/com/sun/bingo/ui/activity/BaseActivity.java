@@ -146,7 +146,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         return getSharedPreferences(SettingsSharedPreferences.class);
     }
 
-    public LocationSharedPreferences getLocationSharedPreference() {
+    public LocationSharedPreferences getLocationSharedPreferences() {
         return getSharedPreferences(LocationSharedPreferences.class);
     }
 

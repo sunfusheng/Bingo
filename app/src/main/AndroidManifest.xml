@@ -101,6 +101,9 @@
         <activity android:name=".ui.activity.AboutAuthorActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.activity.UserInfoActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

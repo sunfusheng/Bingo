@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 import com.sun.bingo.entity.BingoEntity;
+import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.ui.activity.AboutAppActivity;
 import com.sun.bingo.ui.activity.AboutAuthorActivity;
 import com.sun.bingo.ui.activity.BingoDetailActivity;
@@ -16,6 +17,7 @@ import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
 import com.sun.bingo.ui.activity.ProfileActivity;
 import com.sun.bingo.ui.activity.RichEditorActivity;
+import com.sun.bingo.ui.activity.UserInfoActivity;
 
 import java.io.File;
 
@@ -88,6 +90,12 @@ public class NavigateManager {
 
     public static void gotoAboutAuthorActivity(Context context) {
         Intent intent = new Intent(context, AboutAuthorActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void gotoUserInfoActivity(Context context, UserEntity userEntity) {
+        Intent intent = new Intent(context, UserInfoActivity.class);
+        intent.putExtra("userEntity", userEntity);
         context.startActivity(intent);
     }
 }

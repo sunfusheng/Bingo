@@ -146,6 +146,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     showPopMenu(v, mPosition);
                 }
             });
+
+            listViewHolder.civUserAvatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (entity.getUserEntity() != null) {
+                        NavigateManager.gotoUserInfoActivity(mContext, entity.getUserEntity());
+                    } else {
+                        ToastTip.show(mContext, "用户信息为空");
+                    }
+                }
+            });
         }
     }
 
