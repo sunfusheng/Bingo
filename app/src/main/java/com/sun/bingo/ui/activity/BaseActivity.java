@@ -31,7 +31,7 @@ import cn.bmob.v3.BmobUser;
 
 public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
-    protected UserEntity userEntity;
+    protected UserEntity myEntity;
     protected DisplayImageOptions userImageOptions;
     protected HttpControl mHttpControl = BingoApplication.getInstance().getHttpControl();
     protected LoadingDialog loadingDialog;
@@ -47,7 +47,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     }
 
     private void initData() {
-        userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
+        myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         userImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
                 .showImageOnLoading(R.drawable.ic_user)
                 .showImageForEmptyUri(R.drawable.ic_user)

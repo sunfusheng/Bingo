@@ -79,8 +79,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     }
 
     private void checkToken() {
-        userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
-        if (userEntity == null) {
+        myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
+        if (myEntity == null) {
             NavigateManager.gotoLoginActivity(this);
             finish();
         }
@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         titles[0] = getString(R.string.menu_square_bingo);
         titles[1] = getString(R.string.menu_my_bingo);
         titles[2] = getString(R.string.menu_my_favorite);
-        if (userEntity != null) {
+        if (myEntity != null) {
             initVersion();
         }
     }
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
-        if (userEntity != null) {
+        if (myEntity != null) {
             controlShowFragment(0);
         }
         setOvalShapeViewBackground(floatingActionButton);
@@ -108,10 +108,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);
         tvUserSign = (TextView) mainNavigationLayout.findViewById(R.id.tv_user_sign);
 
-        if (userEntity != null) {
-            UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-            UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
-            UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+        if (myEntity != null) {
+            UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+            UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
+            UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
         }
     }
 
@@ -282,11 +282,11 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case NavigateManager.PROFILE_REQUEST_CODE:
-                if (userEntity != null) {
-                    userEntity = BmobUser.getCurrentUser(MainActivity.this, UserEntity.class);
-                    UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-                    UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
-                    UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+                if (myEntity != null) {
+                    myEntity = BmobUser.getCurrentUser(MainActivity.this, UserEntity.class);
+                    UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+                    UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
+                    UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
                 }
                 break;
         }

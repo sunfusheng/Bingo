@@ -98,9 +98,9 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
             tvLogout.setGravity(Gravity.CENTER);
         }
 
-        UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-        UserEntityUtil.setTextViewData(tvNickName, userEntity.getNickName());
-        UserEntityUtil.setTextViewData(tvUserSign, userEntity.getUserSign());
+        UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+        UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
+        UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
     }
 
     private void initListener() {
@@ -158,8 +158,8 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                 Logger.i("url：" + url);
                 Logger.i("file.getUrl()：" + file.getUrl());
 
-                userEntity.setUserAvatar(file.getUrl());
-                userEntity.update(ProfileActivity.this, userEntity.getObjectId(), new UpdateListener() {
+                myEntity.setUserAvatar(file.getUrl());
+                myEntity.update(ProfileActivity.this, myEntity.getObjectId(), new UpdateListener() {
                     @Override
                     public void onSuccess() {
                         EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
@@ -221,10 +221,10 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                 showSelectAvatarDialog();
                 break;
             case R.id.rl_nick_name:
-                updateNickName("昵称", NICK_NAME, userEntity.getNickName());
+                updateNickName("昵称", NICK_NAME, myEntity.getNickName());
                 break;
             case R.id.rl_user_sign:
-                updateNickName("个性签名", USER_SIGN, userEntity.getUserSign());
+                updateNickName("个性签名", USER_SIGN, myEntity.getUserSign());
                 break;
             case R.id.tv_logout:
                 if (isGotoMain) {
@@ -237,15 +237,15 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     }
 
     private void gotoMain() {
-        if (TextUtils.isEmpty(userEntity.getUserAvatar())) {
+        if (TextUtils.isEmpty(myEntity.getUserAvatar())) {
             ToastTip.show(this, "请上传您的靓照哦");
             return;
         }
-        if (TextUtils.isEmpty(userEntity.getNickName())) {
+        if (TextUtils.isEmpty(myEntity.getNickName())) {
             ToastTip.show(this, "给自己起个昵称吧");
             return;
         }
-        if (TextUtils.isEmpty(userEntity.getUserSign())) {
+        if (TextUtils.isEmpty(myEntity.getUserSign())) {
             ToastTip.show(this, "来句个性说说吧");
             return;
         }
@@ -293,14 +293,14 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                         if (!TextUtils.isEmpty(inputText)) {
                             switch (type) {
                                 case NICK_NAME:
-                                    userEntity.setNickName(inputText);
+                                    myEntity.setNickName(inputText);
                                     break;
                                 case USER_SIGN:
-                                    userEntity.setUserSign(inputText);
+                                    myEntity.setUserSign(inputText);
                                     break;
                             }
 
-                            userEntity.update(ProfileActivity.this, userEntity.getObjectId(), new UpdateListener() {
+                            myEntity.update(ProfileActivity.this, myEntity.getObjectId(), new UpdateListener() {
                                 @Override
                                 public void onSuccess() {
                                     EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));

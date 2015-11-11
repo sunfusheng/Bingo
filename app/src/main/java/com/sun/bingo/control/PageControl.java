@@ -19,8 +19,8 @@ import cn.bmob.v3.listener.FindListener;
  */
 public class PageControl extends BaseControl {
 
-    public static final int PAGE_SIZE = 10;
-    private int pageSize = PAGE_SIZE;
+    public static final int PAGE_SIZE_LIMIT = 10;
+    private int pageSize = PAGE_SIZE_LIMIT;
 
     public PageControl(MessageProxy mMessageCallBack) {
         super(mMessageCallBack);
@@ -31,9 +31,9 @@ public class PageControl extends BaseControl {
      */
     @AsyncMethod
     public void getSquareBingoListData(Context context) {
-        pageSize = PAGE_SIZE;
+        pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.order("-createdAt");
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -42,7 +42,7 @@ public class PageControl extends BaseControl {
                 mModel.put(1, entities);
                 if (entities.size() == 0) {
                     sendMessage("getDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getDataAdequate");
                 } else {
                     sendMessage("getDataInadequate");
@@ -64,7 +64,7 @@ public class PageControl extends BaseControl {
     public void getSquareBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.order("-createdAt");
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -74,7 +74,7 @@ public class PageControl extends BaseControl {
                 mModel.put(2, entities);
                 if (entities.size() == 0) {
                     sendMessage("getMoreDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getMoreDataAdequate");
                 } else {
                     sendMessage("getMoreDataInadequate");
@@ -94,9 +94,9 @@ public class PageControl extends BaseControl {
      */
     @AsyncMethod
     public void getMyBingoListData(Context context) {
-        pageSize = PAGE_SIZE;
+        pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(context).getObjectId());
         list.order("-createdAt");
         list.include("userEntity");
@@ -106,7 +106,7 @@ public class PageControl extends BaseControl {
                 mModel.put(1, entities);
                 if (entities.size() == 0) {
                     sendMessage("getDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getDataAdequate");
                 } else {
                     sendMessage("getDataInadequate");
@@ -128,7 +128,7 @@ public class PageControl extends BaseControl {
     public void getMyBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(context).getObjectId());
         list.order("-createdAt");
         list.include("userEntity");
@@ -139,7 +139,7 @@ public class PageControl extends BaseControl {
                 mModel.put(2, entities);
                 if (entities.size() == 0) {
                     sendMessage("getMoreDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getMoreDataAdequate");
                 } else {
                     sendMessage("getMoreDataInadequate");
@@ -159,11 +159,11 @@ public class PageControl extends BaseControl {
      */
     @AsyncMethod
     public void getFavoriteBingoListData(Context context) {
+        pageSize = PAGE_SIZE_LIMIT;
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
-        pageSize = PAGE_SIZE;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.addWhereContainedIn("objectId", favoriteList);
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -172,7 +172,7 @@ public class PageControl extends BaseControl {
                 mModel.put(1, entities);
                 if (entities.size() == 0) {
                     sendMessage("getDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getDataAdequate");
                 } else {
                     sendMessage("getDataInadequate");
@@ -190,13 +190,13 @@ public class PageControl extends BaseControl {
     /**
      * 我的收藏 (More)
      */
-    @AsyncMethod(withDialog = true)
+    @AsyncMethod
     public void getFavoriteBingoListDataMore(Context context) {
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
-        list.setLimit(PAGE_SIZE);
+        list.setLimit(PAGE_SIZE_LIMIT);
         list.addWhereContainedIn("objectId", favoriteList);
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -206,7 +206,7 @@ public class PageControl extends BaseControl {
                 mModel.put(2, entities);
                 if (entities.size() == 0) {
                     sendMessage("getMoreDataEmpty");
-                } else if (entities.size() == PAGE_SIZE) {
+                } else if (entities.size() == PAGE_SIZE_LIMIT) {
                     sendMessage("getMoreDataAdequate");
                 } else {
                     sendMessage("getMoreDataInadequate");

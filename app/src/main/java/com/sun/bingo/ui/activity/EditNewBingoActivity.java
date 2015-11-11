@@ -123,9 +123,9 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         bingoEntity.setWebsite(website);
         bingoEntity.setDescribe(describe);
         bingoEntity.setCreateTime(DateUtil.getCurrentMillis());
-        userEntity = BmobUser.getCurrentUser(this, UserEntity.class);
-        bingoEntity.setUserId(userEntity.getObjectId());
-        bingoEntity.setUserEntity(userEntity);
+        myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
+        bingoEntity.setUserId(myEntity.getObjectId());
+        bingoEntity.setUserEntity(myEntity);
 
         loadingDialog.show();
         if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() > 0) {

@@ -79,10 +79,10 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
     }
 
     private void initView() {
-        tvNickName.setText(TextUtils.isEmpty(userEntity.getNickName())? "未知":userEntity.getNickName());
-        tvUserSign.setText(TextUtils.isEmpty(userEntity.getUserSign())? "还没有个性签名":userEntity.getUserSign());
-        UserEntityUtil.setUserAvatarView(civUserAvatar, userEntity.getUserAvatar());
-        tvLocation.setText(getLocationSharedPreferences().city() + " " + getLocationSharedPreferences().district());
+        tvNickName.setText(TextUtils.isEmpty(mUserEntity.getNickName())? "未知":mUserEntity.getNickName());
+        tvUserSign.setText(TextUtils.isEmpty(mUserEntity.getUserSign())? "还没有个性签名":mUserEntity.getUserSign());
+        UserEntityUtil.setUserAvatarView(civUserAvatar, mUserEntity.getUserAvatar());
+        tvLocation.setText(mUserEntity.getCity() + " " + mUserEntity.getDistrict());
         llUserLayout.setBackgroundColor(getColorPrimary());
 
         mLinearLayoutManager = new LinearLayoutManager(this);
