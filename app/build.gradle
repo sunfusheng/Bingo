@@ -45,14 +45,25 @@ android {
             zipAlignEnabled true
             //apk签名
             signingConfig signingConfigs.release
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationVariants.all { variant ->
-                appendVersionNameVersionCode(variant, defaultConfig)
+            applicationVariants.all {
+                variant -> generateAppName(variant)
             }
         }
 
         debug{
+            //压缩资源
+            shrinkResources false
+            //zip优化
+            zipAlignEnabled false
+            //apk签名
             signingConfig signingConfigs.release
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all {
+                variant -> generateAppName(variant)
+            }
         }
     }
 
@@ -61,30 +72,16 @@ android {
         xiaomi {manifestPlaceholders = [umengHolder: "xiaomi"]}
         "360" {manifestPlaceholders = [umengHolder: "360"]}
         baidu {manifestPlaceholders = [umengHolder: "baidu"]}
-//        qq {manifestPlaceholders = [umengHolder: "qq"]}
-//        googleplay {manifestPlaceholders = [umengHolder: "googleplay"]}
-//        wandoujia {manifestPlaceholders = [umengHolder: "wandoujia"]}
-//        m91 {manifestPlaceholders = [umengHolder: "91"]}
-//        anzhi {manifestPlaceholders = [umengHolder: "anzhi"]}
-//        huawei {manifestPlaceholders = [umengHolder: "huawei"]}
-//        lenovo {manifestPlaceholders = [umengHolder: "lenovo"]}
-//        oppo {manifestPlaceholders = [umengHolder: "oppo"]}
-//        meizu {manifestPlaceholders = [umengHolder: "meizu"]}
+        yingyongbao {manifestPlaceholders = [umengHolder: "yingyongbao"]}
     }
 
 }
 
-def appendVersionNameVersionCode(variant, defaultConfig) {
-    variant.outputs.each { output ->
-        if (output.zipAlign) {
-            def file = output.outputFile
-            def fileName = file.name.replace(".apk", "_" + defaultConfig.versionName +".apk").replaceFirst("app","bingo_world").replace("-","_")
-            output.outputFile = new File(file.parent, fileName)
-        }
-
-        def file = output.packageApplication.outputFile
-        def fileName = file.name.replace(".apk", "_" + defaultConfig.versionName  + ".apk").replaceFirst("app","bingo_world").replace("-","_")
-        output.packageApplication.outputFile = new File(file.parent, fileName)
+//生成自定义App名称
+def generateAppName(variant) {
+    variant.outputs.each {
+        output -> output.outputFile = new File (output.outputFile.parent,
+                "bingoworld_${variant.buildType.name}_${variant.versionName}_${variant.productFlavors[0].name}.apk".toLowerCase())
     }
 }
 
