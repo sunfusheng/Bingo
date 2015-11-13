@@ -14,7 +14,7 @@ android {
         targetSdkVersion 22
         versionCode 7
         versionName "1.3.3"
-        manifestPlaceholders = [umengHolder: "BingoDebug"]
+        manifestPlaceholders = [umengHolder: "bingo"]
         multiDexEnabled true
     }
 
@@ -68,7 +68,7 @@ android {
     }
 
     productFlavors {
-        Bingo {manifestPlaceholders = [umengHolder: "BingoRelease"]}
+        bingo {manifestPlaceholders = [umengHolder: "bingo"]}
         xiaomi {manifestPlaceholders = [umengHolder: "xiaomi"]}
         "360" {manifestPlaceholders = [umengHolder: "360"]}
         baidu {manifestPlaceholders = [umengHolder: "baidu"]}
@@ -81,13 +81,13 @@ android {
 def generateAppName(variant) {
     variant.outputs.each {
         output -> output.outputFile = new File (output.outputFile.parent,
-                "bingoworld_${variant.buildType.name}_${variant.versionName}_${variant.productFlavors[0].name}.apk".toLowerCase())
+            "bingoworld_${variant.buildType.name}_${variant.versionName}_${variant.productFlavors[0].name}.apk".toLowerCase())
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
     compile 'com.android.support:appcompat-v7:22.2.+'
     compile 'com.android.support:cardview-v7:22.2.+'

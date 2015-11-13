@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import com.sun.bingo.R;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
@@ -17,49 +17,49 @@ import jp.wasabeef.richeditor.RichEditor;
  */
 public class RichEditorActivity extends BaseActivity implements View.OnClickListener {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.action_undo)
+    @Bind(R.id.action_undo)
     ImageButton actionUndo;
-    @InjectView(R.id.action_redo)
+    @Bind(R.id.action_redo)
     ImageButton actionRedo;
-    @InjectView(R.id.action_bold)
+    @Bind(R.id.action_bold)
     ImageButton actionBold;
-    @InjectView(R.id.action_italic)
+    @Bind(R.id.action_italic)
     ImageButton actionItalic;
-    @InjectView(R.id.action_strikethrough)
+    @Bind(R.id.action_strikethrough)
     ImageButton actionStrikethrough;
-    @InjectView(R.id.action_underline)
+    @Bind(R.id.action_underline)
     ImageButton actionUnderline;
-    @InjectView(R.id.action_heading1)
+    @Bind(R.id.action_heading1)
     ImageButton actionHeading1;
-    @InjectView(R.id.action_heading2)
+    @Bind(R.id.action_heading2)
     ImageButton actionHeading2;
-    @InjectView(R.id.action_heading3)
+    @Bind(R.id.action_heading3)
     ImageButton actionHeading3;
-    @InjectView(R.id.action_heading4)
+    @Bind(R.id.action_heading4)
     ImageButton actionHeading4;
-    @InjectView(R.id.action_txt_color)
+    @Bind(R.id.action_txt_color)
     ImageButton actionTxtColor;
-    @InjectView(R.id.action_bg_color)
+    @Bind(R.id.action_bg_color)
     ImageButton actionBgColor;
-    @InjectView(R.id.action_indent)
+    @Bind(R.id.action_indent)
     ImageButton actionIndent;
-    @InjectView(R.id.action_outdent)
+    @Bind(R.id.action_outdent)
     ImageButton actionOutdent;
-    @InjectView(R.id.action_align_left)
+    @Bind(R.id.action_align_left)
     ImageButton actionAlignLeft;
-    @InjectView(R.id.action_align_center)
+    @Bind(R.id.action_align_center)
     ImageButton actionAlignCenter;
-    @InjectView(R.id.action_align_right)
+    @Bind(R.id.action_align_right)
     ImageButton actionAlignRight;
-    @InjectView(R.id.action_blockquote)
+    @Bind(R.id.action_blockquote)
     ImageButton actionBlockquote;
-    @InjectView(R.id.action_insert_image)
+    @Bind(R.id.action_insert_image)
     ImageButton actionInsertImage;
-    @InjectView(R.id.action_insert_link)
+    @Bind(R.id.action_insert_link)
     ImageButton actionInsertLink;
-    @InjectView(R.id.rich_editor)
+    @Bind(R.id.rich_editor)
     RichEditor richEditor;
 
     private boolean isTxtColorChanged = false;
@@ -69,7 +69,7 @@ public class RichEditorActivity extends BaseActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rich_editor);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();

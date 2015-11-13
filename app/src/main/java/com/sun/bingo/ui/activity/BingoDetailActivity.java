@@ -21,18 +21,18 @@ import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
 
 public class BingoDetailActivity extends BaseActivity {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.webView)
+    @Bind(R.id.webView)
     WebView webView;
-    @InjectView(R.id.smoothProgressBar)
+    @Bind(R.id.smoothProgressBar)
     SmoothProgressBar smoothProgressBar;
-    @InjectView(R.id.tv_error_msg)
+    @Bind(R.id.tv_error_msg)
     TextView tvErrorMsg;
 
     private BingoEntity bingoEntity;
@@ -42,7 +42,7 @@ public class BingoDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bingo_detail);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initToolBar(toolbar, true, "Bingo详情");
         initData();

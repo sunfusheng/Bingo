@@ -21,4 +21,5 @@ public class FavoriteFragment extends BaseListFragment<PageControl> {
     protected int emptyDataString() {
         return R.string.no_favorite_data;
     }
+
 }

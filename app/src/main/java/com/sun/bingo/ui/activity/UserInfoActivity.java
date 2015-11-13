@@ -25,34 +25,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 
 /**
  * Created by sunfusheng on 15/11/10.
  */
 public class UserInfoActivity extends BaseActivity<PageControl> implements CircleRefreshLayout.OnCircleRefreshListener {
 
-    @InjectView(R.id.recycler_view)
+    @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
-    @InjectView(R.id.circle_refresh_layout)
+    @Bind(R.id.circle_refresh_layout)
     CircleRefreshLayout circleRefreshLayout;
-    @InjectView(R.id.loadingView)
+    @Bind(R.id.loadingView)
     LoadingView loadingView;
-    @InjectView(R.id.tv_status)
+    @Bind(R.id.tv_status)
     TextView tvStatus;
-    @InjectView(R.id.ll_status)
+    @Bind(R.id.ll_status)
     FrameLayout llStatus;
-    @InjectView(R.id.iv_back)
+    @Bind(R.id.iv_back)
     ImageView ivBack;
-    @InjectView(R.id.civ_user_avatar)
+    @Bind(R.id.civ_user_avatar)
     CircularImageView civUserAvatar;
-    @InjectView(R.id.tv_nick_name)
+    @Bind(R.id.tv_nick_name)
     TextView tvNickName;
-    @InjectView(R.id.tv_user_sign)
+    @Bind(R.id.tv_user_sign)
     TextView tvUserSign;
-    @InjectView(R.id.ll_user_layout)
+    @Bind(R.id.ll_user_layout)
     LinearLayout llUserLayout;
-    @InjectView(R.id.tv_location)
+    @Bind(R.id.tv_location)
     TextView tvLocation;
 
     private UserEntity mUserEntity;
@@ -65,7 +65,7 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();

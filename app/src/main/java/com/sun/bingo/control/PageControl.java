@@ -29,7 +29,7 @@ public class PageControl extends BaseControl {
     /**
      * Bingo首页
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getSquareBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -60,7 +60,7 @@ public class PageControl extends BaseControl {
     /**
      * Bingo首页 (More)
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getSquareBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
@@ -92,7 +92,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的Bingo
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getMyBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -124,7 +124,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的Bingo (More)
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getMyBingoListDataMore(Context context) {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
@@ -157,7 +157,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的收藏
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getFavoriteBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
@@ -190,7 +190,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的收藏 (More)
      */
-    @AsyncMethod
+    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
     public void getFavoriteBingoListDataMore(Context context) {
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();

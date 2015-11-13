@@ -8,26 +8,26 @@ import android.webkit.WebView;
 
 import com.sun.bingo.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by sunfusheng on 15/9/8.
  */
 public class AboutAuthorActivity extends BaseActivity {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.collapsing_toolbar)
+    @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
-    @InjectView(R.id.webView)
+    @Bind(R.id.webView)
     WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_author);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initView();
     }

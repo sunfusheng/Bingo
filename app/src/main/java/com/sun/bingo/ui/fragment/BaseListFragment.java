@@ -26,22 +26,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 import de.greenrobot.event.EventBus;
 
 
 public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
 
-    @InjectView(R.id.recycler_view)
+    @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
-    @InjectView(R.id.circle_refresh_layout)
+    @Bind(R.id.circle_refresh_layout)
     CircleRefreshLayout circleRefreshLayout;
-    @InjectView(R.id.loadingView)
+    @Bind(R.id.loadingView)
     LoadingView loadingView;
-    @InjectView(R.id.tv_status)
+    @Bind(R.id.tv_status)
     TextView tvStatus;
-    @InjectView(R.id.ll_status)
+    @Bind(R.id.ll_status)
     FrameLayout llStatus;
 
     protected UserEntity userEntity;
@@ -63,7 +63,7 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_bingo_list, container, false);
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
 
         initView();
         initListener();
@@ -128,7 +128,7 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
+        ButterKnife.unbind(this);
         EventBus.getDefault().unregister(this);
     }
 

@@ -24,16 +24,14 @@ public class ControlFactory {
     }
 
     private static int getVersionCode(Context context) {
-        // 获取packagemanager的实例
-        int version = 0;
         try {
             PackageManager packageManager = context.getPackageManager();
-            // getPackageName()是你当前类的包名，0代表是获取版本信息
             PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            version = packInfo.versionCode;
-        } catch (Exception exception) {
+            return packInfo.versionCode;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return version;
+        return 0;
     }
 
     private static boolean deleteDirection(File file) {

@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
@@ -53,25 +53,25 @@ import de.greenrobot.event.EventBus;
  */
 public class EditNewBingoActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.et_website)
+    @Bind(R.id.et_website)
     EditText etWebsite;
-    @InjectView(R.id.cv_website)
+    @Bind(R.id.cv_website)
     CardView cvWebsite;
-    @InjectView(R.id.et_describe)
+    @Bind(R.id.et_describe)
     EditText etDescribe;
-    @InjectView(R.id.cv_describe)
+    @Bind(R.id.cv_describe)
     CardView cvDescribe;
-    @InjectView(R.id.ll_container)
+    @Bind(R.id.ll_container)
     LinearLayout llContainer;
-    @InjectView(R.id.hs_images)
+    @Bind(R.id.hs_images)
     HorizontalScrollView hsImages;
-    @InjectView(R.id.iv_image)
+    @Bind(R.id.iv_image)
     ImageView ivImage;
-    @InjectView(R.id.tv_commit)
+    @Bind(R.id.tv_commit)
     TextView tvCommit;
-    @InjectView(R.id.rl_bottom_layout)
+    @Bind(R.id.rl_bottom_layout)
     RelativeLayout rlBottomLayout;
 
     private String takePicturePath;
@@ -82,7 +82,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_new_bingo);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();

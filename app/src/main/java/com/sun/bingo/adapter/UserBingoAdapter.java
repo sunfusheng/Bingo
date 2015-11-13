@@ -18,7 +18,7 @@ import com.sun.bingo.widget.GroupImageView.GroupImageView;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 
 /**
@@ -71,43 +71,43 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.civ_user_avatar)
+        @Bind(R.id.civ_user_avatar)
         CircularImageView civUserAvatar;
-        @InjectView(R.id.tv_nick_name)
+        @Bind(R.id.tv_nick_name)
         TextView tvNickName;
-        @InjectView(R.id.tv_time)
+        @Bind(R.id.tv_time)
         TextView tvTime;
-        @InjectView(R.id.iv_item_more)
+        @Bind(R.id.iv_item_more)
         ImageView ivItemMore;
-        @InjectView(R.id.ll_icons)
+        @Bind(R.id.ll_icons)
         LinearLayout llIcons;
-        @InjectView(R.id.tv_describe)
+        @Bind(R.id.tv_describe)
         TextView tvDescribe;
-        @InjectView(R.id.img01)
+        @Bind(R.id.img01)
         ImageView img01;
-        @InjectView(R.id.img02)
+        @Bind(R.id.img02)
         ImageView img02;
-        @InjectView(R.id.img03)
+        @Bind(R.id.img03)
         ImageView img03;
-        @InjectView(R.id.img04)
+        @Bind(R.id.img04)
         ImageView img04;
-        @InjectView(R.id.img05)
+        @Bind(R.id.img05)
         ImageView img05;
-        @InjectView(R.id.img06)
+        @Bind(R.id.img06)
         ImageView img06;
-        @InjectView(R.id.img07)
+        @Bind(R.id.img07)
         ImageView img07;
-        @InjectView(R.id.img08)
+        @Bind(R.id.img08)
         ImageView img08;
-        @InjectView(R.id.img09)
+        @Bind(R.id.img09)
         ImageView img09;
-        @InjectView(R.id.giv_image_group)
+        @Bind(R.id.giv_image_group)
         GroupImageView givImageGroup;
-        @InjectView(R.id.ll_root_view)
+        @Bind(R.id.ll_root_view)
         LinearLayout llRootView;
 
         ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 }

@@ -65,8 +65,7 @@ public abstract class BaseHandler<Re> extends Handler implements IContext {
             }
             Method method;
             try {
-                method = callClazz.getClass().getMethod(
-                        msg.obj + "", Bundle.class);
+                method = callClazz.getClass().getMethod(msg.obj + "", Bundle.class);
             } catch (NoSuchMethodException e) {
                 invokeNoArgMethod(callClazz, msg);
                 return;

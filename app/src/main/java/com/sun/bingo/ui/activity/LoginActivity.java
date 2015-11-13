@@ -21,7 +21,7 @@ import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.KeyBoardUtil;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobSMS;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
@@ -32,17 +32,17 @@ import cn.bmob.v3.listener.RequestSMSCodeListener;
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.met_phone_num)
+    @Bind(R.id.met_phone_num)
     MaterialEditText metPhoneNum;
-    @InjectView(R.id.met_verify_code)
+    @Bind(R.id.met_verify_code)
     MaterialEditText metVerifyCode;
-    @InjectView(R.id.tv_verify_code)
+    @Bind(R.id.tv_verify_code)
     TextView tvVerifyCode;
-    @InjectView(R.id.tv_commit)
+    @Bind(R.id.tv_commit)
     TextView tvCommit;
-    @InjectView(R.id.ll_root_view)
+    @Bind(R.id.ll_root_view)
     LinearLayout llRootView;
 
     private Handler mHandler = new Handler();
@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();

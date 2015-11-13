@@ -29,8 +29,8 @@ import com.sun.bingo.widget.GroupImageView.GroupImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -161,8 +161,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void setLoadMoreViewText(String text) {
-        if (footView == null) return ;
-        ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).setText(text);
+        if (footView == null) return;
+        ((TextView) ButterKnife.findById(footView, R.id.tv_loading_more)).setText(text);
         notifyItemChanged(getItemCount());
     }
 
@@ -179,7 +179,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public String getLoadMoreViewText() {
         if (footView == null) return "";
-        return ((TextView)ButterKnife.findById(footView, R.id.tv_loading_more)).getText().toString();
+        return ((TextView) ButterKnife.findById(footView, R.id.tv_loading_more)).getText().toString();
     }
 
     /**
@@ -219,6 +219,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                     public void onPositive(MaterialDialog dialog) {
                                         deleteMyBingo(position);
                                     }
+
                                     @Override
                                     public void onNegative(MaterialDialog dialog) {
                                     }
@@ -322,36 +323,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.civ_user_avatar)
+        @Bind(R.id.civ_user_avatar)
         CircularImageView civUserAvatar;
-        @InjectView(R.id.tv_nick_name)
+        @Bind(R.id.tv_nick_name)
         TextView tvNickName;
-        @InjectView(R.id.tv_time)
+        @Bind(R.id.tv_time)
         TextView tvTime;
-        @InjectView(R.id.iv_item_more)
+        @Bind(R.id.iv_item_more)
         ImageView ivItemMore;
-        @InjectView(R.id.ll_icons)
-        LinearLayout llIcons;
-        @InjectView(R.id.tv_describe)
+        @Bind(R.id.tv_describe)
         TextView tvDescribe;
-        @InjectView(R.id.ll_root_view)
-        LinearLayout llRootView;
-        @InjectView(R.id.giv_image_group)
+        @Bind(R.id.giv_image_group)
         GroupImageView givImageGroup;
+        @Bind(R.id.ll_root_view)
+        LinearLayout llRootView;
 
         public ListViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 
     static class FootViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.tv_loading_more)
+        @Bind(R.id.tv_loading_more)
         TextView tvLoadingMore;
 
         public FootViewHolder(View view) {
             super(view);
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
+
 }

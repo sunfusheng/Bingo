@@ -31,21 +31,21 @@ import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 
 
 public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.fl_container)
+    @Bind(R.id.fl_container)
     FrameLayout flContainer;
-    @InjectView(R.id.floating_action_button)
+    @Bind(R.id.floating_action_button)
     FloatingActionButton floatingActionButton;
-    @InjectView(R.id.main_navigation_layout)
+    @Bind(R.id.main_navigation_layout)
     NavigationView mainNavigationLayout;
-    @InjectView(R.id.main_drawer_layout)
+    @Bind(R.id.main_drawer_layout)
     DrawerLayout mainDrawerLayout;
 
     private String[] titles;
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         checkToken();
         initData();

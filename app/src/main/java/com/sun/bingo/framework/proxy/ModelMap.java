@@ -3,11 +3,7 @@ package com.sun.bingo.framework.proxy;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-/**
- * Created by Mao on 22:58 2015/4/8
- */
 public class ModelMap {
     private Map map;
     private static String LIST = "list";
@@ -169,6 +165,4 @@ public class ModelMap {
         }
     }
 
-    public interface GInterface {
-    }
 }

@@ -17,14 +17,14 @@ public class Enhancer<T> implements InvocationHandler {
     private Class<T> superClazz;
     private Class<?>[] constructorArgTypes;
     private Object[] constructorArgValues;
-    private File dir;
+    private File mCacheDir;
 
     /**
      * @param superClazz 构造函数需要的class
      */
     Enhancer(File cacheFileDir, Class<T> superClazz) {
         this.superClazz = superClazz;
-        this.dir = cacheFileDir;
+        this.mCacheDir = cacheFileDir;
     }
 
     /**
@@ -32,17 +32,14 @@ public class Enhancer<T> implements InvocationHandler {
      * @param clazzes
      * @param args
      */
-    Enhancer(File cacheFileDir, Class<T> superClazz, Class<?>[] clazzes,
-             Object[] args) {
-        this.superClazz = superClazz;
-        constructorArgTypes = clazzes;
-        constructorArgValues = args;
-        this.dir = cacheFileDir;
+    Enhancer(File cacheFileDir, Class<T> superClazz, Class<?>[] clazzes, Object[] args) {
+        this(cacheFileDir, superClazz);
+        this.constructorArgTypes = clazzes;
+        this.constructorArgValues = args;
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (filter == null) {
             return null;
         }
@@ -50,15 +47,14 @@ public class Enhancer<T> implements InvocationHandler {
         if (accept >= callBacks.length) {
             return null;
         }
-        if (method.getName().equals("hashCode")
-                || method.getName().equals("toString")) {
+        if (method.getName().equals("hashCode") || method.getName().equals("toString")) {
             return ProxyBuilder.callSuper(proxy, method, args);
         }
         return callBacks[accept].intercept(proxy, method, args);
     }
 
     public void setCacheDir(File file) {
-        this.dir = file;
+        this.mCacheDir = file;
     }
 
     /*
@@ -82,13 +78,11 @@ public class Enhancer<T> implements InvocationHandler {
      */
     public T create() {
         ProxyBuilder<T> proxy = ProxyBuilder.forClass(superClazz);
-        if (constructorArgTypes != null && constructorArgValues != null
-                && constructorArgValues.length == constructorArgTypes.length) {
-            proxy.constructorArgTypes(constructorArgTypes)
-                    .constructorArgValues(constructorArgValues);
+        if (constructorArgTypes != null && constructorArgValues != null && constructorArgValues.length == constructorArgTypes.length) {
+            proxy.constructorArgTypes(constructorArgTypes).constructorArgValues(constructorArgValues);
         }
         proxy.handler(this);
-        proxy.dexCache(dir);
+        proxy.dexCache(mCacheDir);
         try {
             return proxy.build();
         } catch (IOException e) {

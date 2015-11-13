@@ -12,8 +12,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.widget.ViewPagerFixed;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import uk.co.senab.photoview.PhotoView;
 
 /**
@@ -21,9 +21,9 @@ import uk.co.senab.photoview.PhotoView;
  */
 public class ImageActivity extends BaseActivity {
 
-    @InjectView(R.id.view_pager)
+    @Bind(R.id.view_pager)
     ViewPagerFixed viewPager;
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
 
     private int index;
@@ -34,7 +34,7 @@ public class ImageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();

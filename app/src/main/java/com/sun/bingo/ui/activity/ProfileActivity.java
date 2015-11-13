@@ -33,7 +33,7 @@ import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
@@ -44,25 +44,25 @@ import de.greenrobot.event.EventBus;
  */
 public class ProfileActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.civ_user_avatar)
+    @Bind(R.id.civ_user_avatar)
     UploadAvatarView civUserAvatar;
-    @InjectView(R.id.rl_user_avatar)
+    @Bind(R.id.rl_user_avatar)
     RelativeLayout rlUserAvatar;
-    @InjectView(R.id.tv_nick_name_title)
+    @Bind(R.id.tv_nick_name_title)
     TextView tvNickNameTitle;
-    @InjectView(R.id.tv_nick_name)
+    @Bind(R.id.tv_nick_name)
     TextView tvNickName;
-    @InjectView(R.id.rl_nick_name)
+    @Bind(R.id.rl_nick_name)
     RelativeLayout rlNickName;
-    @InjectView(R.id.tv_user_sign_title)
+    @Bind(R.id.tv_user_sign_title)
     TextView tvUserSignTitle;
-    @InjectView(R.id.tv_user_sign)
+    @Bind(R.id.tv_user_sign)
     TextView tvUserSign;
-    @InjectView(R.id.rl_user_sign)
+    @Bind(R.id.rl_user_sign)
     RelativeLayout rlUserSign;
-    @InjectView(R.id.tv_logout)
+    @Bind(R.id.tv_logout)
     TextView tvLogout;
 
     private String takePicturePath = "/" + BingoApplication.APP_CACHE_DIR + "/avatar.jpg";
@@ -76,7 +76,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         initData();
         initView();
