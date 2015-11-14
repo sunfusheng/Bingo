@@ -14,11 +14,11 @@ import java.lang.reflect.Type;
 
 public class BaseHelper<T extends BaseControl, R extends IRefreshBack> {
 
+    protected R mReferenceObj;
     protected T mControl;
     protected MessageProxy messageProxy;
-    protected ModelMap mModel;
-    protected R mReferenceObj;
     protected BaseHandler mHandler;
+    protected ModelMap mModel;
 
     public BaseHelper(R referenceObj, BaseHandler handler) {
         this.mReferenceObj = referenceObj;
@@ -85,13 +85,15 @@ public class BaseHelper<T extends BaseControl, R extends IRefreshBack> {
     }
 
     private void generateControl(Class clazz) {
-        Type type = clazz.getGenericSuperclass();
+        Type type = clazz.getGenericSuperclass(); //获得带有泛型的父类
         if (type instanceof ParameterizedType) {
-            ParameterizedType p = (ParameterizedType) type;
-            Type[] arrayClasses = p.getActualTypeArguments();
+            ParameterizedType p = (ParameterizedType) type; //获得参数化类型，即泛型
+            Type[] arrayClasses = p.getActualTypeArguments(); //获取参数化类型的数组，泛型可能有多个
+
             for (Type item : arrayClasses) {
                 if (item instanceof Class) {
                     Class<T> tClass = (Class<T>) item;
+
                     if (tClass.equals(BaseControl.class) || (tClass.getSuperclass() != null &&
                             tClass.getSuperclass().equals(BaseControl.class))) {
                         messageProxy = new MessageProxy(mHandler);

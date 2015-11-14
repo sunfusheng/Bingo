@@ -8,7 +8,7 @@ public class MessageArg {
 
     public static class ARG1 {
         public static final int TOAST_MESSAGE = 1;
-        public static final int CALL_BACKMETHOD = 2;
+        public static final int CALL_BACK_METHOD = 2;
         public static final int PROGRESSDIALOG_MESSAGE = 3;
     }
 

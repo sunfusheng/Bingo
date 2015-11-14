@@ -53,14 +53,27 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
                 @Override
                 public void run() {
                     Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-
                     try {
-                        Object result = null;
-                        result = getResult(result);
-                        dealWithResult(result);
+                        dealWithResult(getResult());
                     } catch (Throwable e) {
                         e.printStackTrace();
                     }
+                }
+
+                private Object getResult() throws Throwable {
+                    Object obj = null;
+                    switch (asyncMethod.methodType()) {
+                        case normal:
+                            obj = ProxyBuilder.callSuper(proxy, method, args);
+                            break;
+                        case atom:
+                            obj = ProxyBuilder.callSuper(proxy, method, args);
+                            methodHashSet.remove(method.getName());
+                            break;
+                        default:
+                            break;
+                    }
+                    return obj;
                 }
 
                 private void dealWithResult(Object result) {
@@ -73,7 +86,7 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
                         switch (msg.arg1) {
                             case MessageArg.ARG1.TOAST_MESSAGE:
                                 break;
-                            case MessageArg.ARG1.CALL_BACKMETHOD:
+                            case MessageArg.ARG1.CALL_BACK_METHOD:
                                 if (msg.obj == null || !(msg.obj instanceof String) || "".equals(msg.obj.toString().trim())) {
                                     msg.obj = method.getName() + "CallBack";
                                 }
@@ -84,20 +97,6 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
                     }
                 }
 
-                private Object getResult(Object result) throws Throwable {
-                    switch (asyncMethod.methodType()) {
-                        case normal:
-                            result = ProxyBuilder.callSuper(proxy, method, args);
-                            break;
-                        case atom:
-                            result = ProxyBuilder.callSuper(proxy, method, args);
-                            methodHashSet.remove(method.getName());
-                            break;
-                        default:
-                            break;
-                    }
-                    return result;
-                }
             });
             return null;
         } else {

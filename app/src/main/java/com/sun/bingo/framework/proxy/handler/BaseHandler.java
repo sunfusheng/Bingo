@@ -36,7 +36,7 @@ public abstract class BaseHandler<Re> extends Handler implements IContext {
                         ToastTip.show(getContext(), msg.obj + "");
                     }
                     break;
-                case MessageArg.ARG1.CALL_BACKMETHOD:
+                case MessageArg.ARG1.CALL_BACK_METHOD:
                     invokeMethod(t, msg);
                     break;
                 case MessageArg.ARG1.PROGRESSDIALOG_MESSAGE:

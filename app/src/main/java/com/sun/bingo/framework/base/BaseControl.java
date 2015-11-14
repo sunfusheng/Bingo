@@ -101,7 +101,7 @@ public class BaseControl {
      */
     protected void sendMessage(String method) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         mMessageCallBack.sendMessage(msg);
     }
@@ -110,23 +110,24 @@ public class BaseControl {
      * 直接向指定方法发送消息
      *
      * @param method 指定的方法名称（方法可以有参数Bundle 也可以没有回调参数Bundle）
+     * @param delayMillis
      */
     protected void sendMessage(String method, long delayMillis) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         mMessageCallBack.sendMessageDelay(msg, delayMillis);
     }
 
     /**
-     * 直接向指定方法发送消息,同时将Bundle数据传递过去
+     * 直接向指定方法发送消息, 同时将Bundle数据传递过去
      *
      * @param method
      * @param bundle
      */
     protected void sendMessage(String method, Bundle bundle) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         msg.setData(bundle);
         mMessageCallBack.sendMessage(msg);
@@ -137,10 +138,11 @@ public class BaseControl {
      *
      * @param method
      * @param bundle
+     * @param delayMillis
      */
     protected void sendMessage(String method, Bundle bundle, long delayMillis) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         msg.setData(bundle);
         mMessageCallBack.sendMessageDelay(msg, delayMillis);
@@ -154,7 +156,7 @@ public class BaseControl {
      */
     protected Message getDataMessage(Bundle bundle) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.setData(bundle);
         return msg;
     }
@@ -162,12 +164,13 @@ public class BaseControl {
     /**
      * 回调参数的方法
      *
+     * @param method
      * @param bundle
      * @return
      */
     protected Message getDataMessage(String method, Bundle bundle) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         msg.setData(bundle);
         return msg;
@@ -180,20 +183,19 @@ public class BaseControl {
      */
     protected Message getMessage() {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         return msg;
     }
 
     /**
-     * @param @param  method 方法名字
-     * @param @return
+     * 返回method消息
+     *
+     * @param method 方法名字
      * @return Message 返回类型
-     * @throws
-     * @Title: getMessage
      */
-    protected Message getMessage(String method) {
+    protected Message getMethodMessage(String method) {
         Message msg = mMessageCallBack.obtionMessage(MessageArg.WHAT.UI_MESSAGE);
-        msg.arg1 = MessageArg.ARG1.CALL_BACKMETHOD;
+        msg.arg1 = MessageArg.ARG1.CALL_BACK_METHOD;
         msg.obj = method;
         return msg;
     }
