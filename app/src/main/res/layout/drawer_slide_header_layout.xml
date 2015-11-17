@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="孙福生"
-        android:textColor="@color/font_black_6"
+        android:textColor="@color/white"
         android:textSize="18sp"/>
 
     <TextView
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="相信一切皆有可能！"
-        android:textColor="@color/font_black_6"
+        android:textColor="@color/white"
         android:textSize="14sp"/>
 
 </LinearLayout>

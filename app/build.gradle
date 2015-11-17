@@ -111,6 +111,10 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.bingoogolapple:bga-refreshlayout:1.0.4@aar'
 
+    //LeakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+
     //Material Dialog
     compile 'com.afollestad:material-dialogs:0.7.6.0'
 

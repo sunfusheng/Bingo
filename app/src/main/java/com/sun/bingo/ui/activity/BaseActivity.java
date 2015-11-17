@@ -13,14 +13,12 @@ import android.view.WindowManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
-import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.base.BaseAsyncActivity;
 import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.dialog.LoadingDialog;
-import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
@@ -33,7 +31,6 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
     protected UserEntity myEntity;
     protected DisplayImageOptions userImageOptions;
-    protected HttpControl mHttpControl = BingoApplication.getInstance().getHttpControl();
     protected LoadingDialog loadingDialog;
 
     @Override

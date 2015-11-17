@@ -76,8 +76,7 @@ public class BaseHelper<T extends BaseControl, R extends IRefreshBack> {
     }
 
     private void controlInit() {
-        Class<?> clazz;
-        clazz = mReferenceObj.getClass();
+        Class<?> clazz = mReferenceObj.getClass();
         generateControl(clazz);
         if (mControl == null) {
             generateControl(clazz.getSuperclass());

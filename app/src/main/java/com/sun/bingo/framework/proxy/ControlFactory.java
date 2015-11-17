@@ -62,15 +62,8 @@ public class ControlFactory {
             enhancer = new Enhancer<T>(mCacheDir, clazz);
         }
 
-        /**
-         * 添加拦截器
-         */
         enhancer.addCallBacks(new Interceptor[]{new AsyncMethodAtomInterceptor(mMethodCallBack)});
-        /**
-         * 添加过滤器
-         */
         enhancer.addFilter(new AsyncMethodFilter());
-
         return enhancer.create();
     }
 

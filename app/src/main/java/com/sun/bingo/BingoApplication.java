@@ -17,8 +17,9 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.sun.bingo.constant.ConstantParams;
-import com.sun.bingo.framework.http.HttpControl.HttpControl;
 import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.module.LocationManager;
 import com.sun.bingo.sharedpreferences.FastJsonSerial;
@@ -34,12 +35,14 @@ public class BingoApplication extends Application {
 
     public static final String APP_CACHE_DIR = "Bingo/cache";
     private static BingoApplication instance;
-    private static HttpControl mHttpControl;
+    private static RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        instance = this;
+        refWatcher = LeakCanary.install(this);
         Esperandro.setSerializer(new FastJsonSerial());
         ControlFactory.init(this); //Control代理工场初始化
         initImageLoader(this);
@@ -54,18 +57,12 @@ public class BingoApplication extends Application {
                 .build());
     }
 
-    public static synchronized BingoApplication getInstance() {
-        if (instance == null) {
-            instance = new BingoApplication();
-        }
+    public static BingoApplication getInstance() {
         return instance;
     }
 
-    public HttpControl getHttpControl(){
-        if(mHttpControl==null){
-            mHttpControl=new HttpControl();
-        }
-        return mHttpControl;
+    public static RefWatcher getRefWatcher() {
+        return refWatcher;
     }
 
     /**
@@ -103,13 +100,15 @@ public class BingoApplication extends Application {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        // 内存不足，清空所有强引用图片
         ImageLoader.getInstance().clearMemoryCache();
+        ImageLoader.getInstance().clearDiskCache();
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
+        ImageLoader.getInstance().clearMemoryCache();
+        ImageLoader.getInstance().clearDiskCache();
         ImageLoader.getInstance().destroy();
     }
 

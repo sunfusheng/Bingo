@@ -1,7 +1,6 @@
 package com.sun.bingo.framework.proxy;
 
 import com.google.dexmaker.stock.ProxyBuilder;
-import com.orhanobut.logger.Logger;
 import com.sun.bingo.framework.proxy.callback.Interceptor;
 import com.sun.bingo.framework.proxy.filter.InterceptorFilter;
 
@@ -22,7 +21,7 @@ public class Enhancer<T> implements InvocationHandler {
     /**
      * @param superClazz 构造函数需要的class
      */
-    Enhancer(File cacheFileDir, Class<T> superClazz) {
+    public Enhancer(File cacheFileDir, Class<T> superClazz) {
         this.superClazz = superClazz;
         this.mCacheDir = cacheFileDir;
     }
@@ -32,7 +31,7 @@ public class Enhancer<T> implements InvocationHandler {
      * @param clazzes
      * @param args
      */
-    Enhancer(File cacheFileDir, Class<T> superClazz, Class<?>[] clazzes, Object[] args) {
+    public Enhancer(File cacheFileDir, Class<T> superClazz, Class<?>[] clazzes, Object[] args) {
         this(cacheFileDir, superClazz);
         this.constructorArgTypes = clazzes;
         this.constructorArgValues = args;
@@ -57,24 +56,22 @@ public class Enhancer<T> implements InvocationHandler {
         this.mCacheDir = file;
     }
 
-    /*
-     *
+    /**
+     * 添加拦截器
      */
     public void addCallBacks(Interceptor[] callBacks) {
         this.callBacks = callBacks;
     }
 
     /**
-     * @param filter
+     * 添加过滤器
      */
     public void addFilter(InterceptorFilter filter) {
         this.filter = filter;
     }
 
     /**
-     * 生成代理
-     *
-     * @return
+     * 生成代理类对象
      */
     public T create() {
         ProxyBuilder<T> proxy = ProxyBuilder.forClass(superClazz);
@@ -86,7 +83,6 @@ public class Enhancer<T> implements InvocationHandler {
         try {
             return proxy.build();
         } catch (IOException e) {
-            Logger.i("app", "error" + e.getClass() + "");
             e.printStackTrace();
         }
         return null;

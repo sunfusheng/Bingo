@@ -30,7 +30,6 @@ public class DownloadApk {
 
     private Context mContext;
     private DownloadDialog downloadDialog;
-    protected HttpControl mControl = BingoApplication.getInstance().getHttpControl();
 
     private AppEntity appEntity;
     private String fileName = "BingoWorld.apk";
@@ -43,7 +42,8 @@ public class DownloadApk {
     }
 
     public void checkVersion() {
-        mControl.getVersionInfo(new BaseParserCallBack<VersionEntity>() {
+        HttpControl httpControl = new HttpControl();
+        httpControl.getVersionInfo(new BaseParserCallBack<VersionEntity>() {
 
             @Override
             protected boolean onSuccessWithObject(VersionEntity versionEntity) {

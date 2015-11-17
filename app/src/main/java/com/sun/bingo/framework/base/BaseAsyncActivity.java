@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
@@ -82,6 +83,7 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
     protected void onDestroy() {
         mHelper.onDestroy();
         super.onDestroy();
+        BingoApplication.getRefWatcher().watch(this);
     }
 
     @Override
