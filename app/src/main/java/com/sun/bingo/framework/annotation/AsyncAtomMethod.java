@@ -7,14 +7,14 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface AsyncMethod {
+public @interface AsyncAtomMethod {
 
     enum ArgType {
         normal,
         atom
     }
 
-    ArgType methodType() default ArgType.normal;
+    ArgType methodType() default ArgType.atom;
     boolean withDialog() default false;
     boolean withCancelableDialog() default false;
 

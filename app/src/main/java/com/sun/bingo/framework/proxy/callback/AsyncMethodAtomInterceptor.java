@@ -4,7 +4,7 @@ import android.os.Message;
 import android.os.Process;
 
 import com.google.dexmaker.stock.ProxyBuilder;
-import com.sun.bingo.framework.annotation.AsyncMethod;
+import com.sun.bingo.framework.annotation.AsyncAtomMethod;
 import com.sun.bingo.framework.proxy.MessageArg;
 import com.sun.bingo.framework.proxy.MessageProxy;
 
@@ -28,18 +28,28 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
 
     @Override
     public Object intercept(final Object proxy, final Method method, final Object[] args) throws Throwable {
-        final AsyncMethod asyncMethod = method.getAnnotation(AsyncMethod.class);
+        final AsyncAtomMethod asyncMethod = method.getAnnotation(AsyncAtomMethod.class);
 
         if (asyncMethod != null) {
-            switch (asyncMethod.methodType()) {
-                case atom:
-                    if (methodHashSet.contains(method.getName())) {
-                        return null;
-                    } else {
-                        methodHashSet.add(method.getName());
-                    }
-                default:
-                    break;
+            if (asyncMethod.methodType() == null) {
+                //默认原子操作
+                if (methodHashSet.contains(method.getName())) {
+                    return null;
+                } else {
+                    methodHashSet.add(method.getName());
+                }
+            } else {
+                switch (asyncMethod.methodType()) {
+                    case atom: //原子操作
+                        if (methodHashSet.contains(method.getName())) {
+                            return null;
+                        } else {
+                            methodHashSet.add(method.getName());
+                        }
+                    case normal: //非原子操作
+                    default:
+                        break;
+                }
             }
 
             if (asyncMethod.withDialog()) {
@@ -50,6 +60,7 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
             }
 
             pool.execute(new Runnable() {
+
                 @Override
                 public void run() {
                     Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
@@ -96,7 +107,6 @@ public class AsyncMethodAtomInterceptor implements Interceptor {
                         mMethodCallBack.sendMessage(msg);
                     }
                 }
-
             });
             return null;
         } else {

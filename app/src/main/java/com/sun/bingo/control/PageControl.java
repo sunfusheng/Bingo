@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.annotation.AsyncMethod;
+import com.sun.bingo.framework.annotation.AsyncAtomMethod;
 import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.proxy.MessageProxy;
 
@@ -21,6 +21,7 @@ public class PageControl extends BaseControl {
 
     public static final int PAGE_SIZE_LIMIT = 10;
     private int pageSize = PAGE_SIZE_LIMIT;
+    private int lastPageSize = 0;
 
     public PageControl(MessageProxy mMessageCallBack) {
         super(mMessageCallBack);
@@ -29,7 +30,7 @@ public class PageControl extends BaseControl {
     /**
      * Bingo首页
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getSquareBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -60,8 +61,13 @@ public class PageControl extends BaseControl {
     /**
      * Bingo首页 (More)
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getSquareBingoListDataMore(Context context) {
+        if (lastPageSize == pageSize) {
+            return ;
+        } else {
+            lastPageSize = pageSize;
+        }
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
         list.setLimit(PAGE_SIZE_LIMIT);
@@ -92,7 +98,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的Bingo
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getMyBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
@@ -124,8 +130,13 @@ public class PageControl extends BaseControl {
     /**
      * 我的Bingo (More)
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getMyBingoListDataMore(Context context) {
+        if (lastPageSize == pageSize) {
+            return ;
+        } else {
+            lastPageSize = pageSize;
+        }
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
         list.setLimit(PAGE_SIZE_LIMIT);
@@ -157,7 +168,7 @@ public class PageControl extends BaseControl {
     /**
      * 我的收藏
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getFavoriteBingoListData(Context context) {
         pageSize = PAGE_SIZE_LIMIT;
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
@@ -190,8 +201,13 @@ public class PageControl extends BaseControl {
     /**
      * 我的收藏 (More)
      */
-    @AsyncMethod(methodType = AsyncMethod.ArgType.atom)
+    @AsyncAtomMethod
     public void getFavoriteBingoListDataMore(Context context) {
+        if (lastPageSize == pageSize) {
+            return ;
+        } else {
+            lastPageSize = pageSize;
+        }
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
         BmobQuery<BingoEntity> list = new BmobQuery<>();
