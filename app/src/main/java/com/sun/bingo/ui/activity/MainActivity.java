@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        //修复Fragment重叠问题
+        //空操作解决Fragment重叠问题
     }
 
     //设置主题

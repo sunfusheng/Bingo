@@ -60,6 +60,7 @@ public class LocationManager {
                 stopGetLocation();
                 if (mOnGetLocationListener != null) {
                     mOnGetLocationListener.onFailed();
+                    mOnGetLocationListener = null;
                 }
                 return;
             }
@@ -79,6 +80,7 @@ public class LocationManager {
             stopGetLocation();
             if (mOnGetLocationListener != null) {
                 mOnGetLocationListener.onSucceed(location);
+                mOnGetLocationListener = null;
             }
         }
     }

@@ -25,7 +25,7 @@ public class ToastTip {
         } else {
             duration = Toast.LENGTH_SHORT;
         }
-        mToast = Toast.makeText(context, message, duration);
+        mToast = Toast.makeText(context.getApplicationContext(), message, duration);
         if (gravity == Gravity.CENTER) {
             mToast.setGravity(gravity, 0, 0);
         }
