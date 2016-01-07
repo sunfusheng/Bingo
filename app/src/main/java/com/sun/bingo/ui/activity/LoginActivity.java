@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
@@ -94,22 +95,39 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    private void requestSMSCode() {
+    private boolean isPhoneNumOK() {
         String phoneNum = metPhoneNum.getText().toString().trim();
         if (TextUtils.isEmpty(phoneNum)) {
             ToastTip.show(LoginActivity.this, "请输入手机号码");
-            return ;
+            return false;
         }
         if (phoneNum.length() != 11) {
             ToastTip.show(LoginActivity.this, "请输入有效的手机号码");
-            return ;
+            return false;
         }
+        return true;
+    }
+
+    private boolean isVerifyCodeOK() {
+        String verifyCode = metVerifyCode.getText().toString().trim();
+        if (TextUtils.isEmpty(verifyCode)) {
+            ToastTip.show(LoginActivity.this, "请输入您收到的验证码");
+            return false;
+        }
+        return true;
+    }
+
+    private void requestSMSCode() {
+        if (!isPhoneNumOK()) return;
         BmobSMS.requestSMSCode(this, metPhoneNum.getText().toString().trim(), ConstantParams.SMS_LOGIN_VERIFY_CODE, new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 if (e == null) {
                     ToastTip.show(LoginActivity.this, "验证码发送成功，请注意查收");
                     mHandler.post(countDownThread);
+                } else {
+                    Logger.d("BmobException", "Error code: "+e.getErrorCode()+", "+e.getMessage());
+                    ToastTip.show(LoginActivity.this, "Error code: " + e.getErrorCode() + ", " + e.getMessage(), Toast.LENGTH_SHORT);
                 }
             }
 
@@ -117,6 +135,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void signOrLoginByMobilePhone() {
+        if (!isPhoneNumOK()) return;
+        if (!isVerifyCodeOK()) return;
         UserEntity userEntity = new UserEntity();
         userEntity.signOrLoginByMobilePhone(this, metPhoneNum.getText().toString().trim(),
                 metVerifyCode.getText().toString().trim(), new LogInListener<UserEntity>() {
@@ -130,7 +150,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             }
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Logger.d("BmobException", "Error code: "+e.getErrorCode()+", "+e.getMessage());
+                            ToastTip.show(LoginActivity.this, "Error code: " + e.getErrorCode() + ", " + e.getMessage(), Toast.LENGTH_SHORT);
                         }
                     }
                 });

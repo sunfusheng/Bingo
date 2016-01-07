@@ -80,10 +80,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
     private void checkToken() {
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
-        if (myEntity == null) {
-            NavigateManager.gotoLoginActivity(this);
-            finish();
-        }
+//        if (myEntity == null) {
+//            NavigateManager.gotoLoginActivity(this);
+//            finish();
+//        }
     }
 
     private void initData() {
@@ -100,9 +100,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
-        if (myEntity != null) {
-            controlShowFragment(0);
-        }
+        controlShowFragment(0);
         setOvalShapeViewBackground(floatingActionButton);
         civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
         tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);

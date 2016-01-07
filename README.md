@@ -4,11 +4,13 @@
 	BingoWorld是一款IT阅读学习类软件，在不久的将来会拥有丰富的学习内容，
 	包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
 
-	欢迎各路大神Star、Fork、Pull requests.
-
 ###[APP下载地址](https://fir.im/bingoworld)
 
 	欢迎您的加入，共同收集好的技术文章，一起学习共同进步！
+
+###[GitHub开源地址](https://github.com/sfsheng0322/Bingo)
+
+	欢迎各路大神Star、Fork、Pull requests.
 
 ###ScreenShots
 
