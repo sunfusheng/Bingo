@@ -19,7 +19,7 @@ import cn.bmob.v3.listener.FindListener;
  */
 public class PageControl extends BaseControl {
 
-    public static final int PAGE_SIZE_LIMIT = 10; 
+    public static final int PAGE_SIZE_LIMIT = 10;
     private int pageSize = PAGE_SIZE_LIMIT;
     private int lastPageSize = 0;
 
