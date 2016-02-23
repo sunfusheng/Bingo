@@ -80,10 +80,10 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
     private void checkToken() {
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
-//        if (myEntity == null) {
-//            NavigateManager.gotoLoginActivity(this);
-//            finish();
-//        }
+        if (myEntity == null) {
+            NavigateManager.gotoLoginActivity(this);
+            finish();
+        }
     }
 
     private void initData() {

@@ -14,6 +14,11 @@ import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WeiboAuthListener;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.exception.WeiboException;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
@@ -21,11 +26,18 @@ import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.util.KeyBoardUtil;
 
-import butterknife.ButterKnife;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobSMS;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
+import cn.bmob.v3.listener.OtherLoginListener;
 import cn.bmob.v3.listener.RequestSMSCodeListener;
 
 /**
@@ -45,9 +57,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     TextView tvCommit;
     @Bind(R.id.ll_root_view)
     LinearLayout llRootView;
+    @Bind(R.id.tv_logout)
+    TextView tvLogout;
 
     private Handler mHandler = new Handler();
     private CountDownThread countDownThread;
+
+    private AuthInfo mAuthInfo;
+    private SsoHandler mSsoHandler;
+    private Oauth2AccessToken mAccessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +80,56 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private void initData() {
         countDownThread = new CountDownThread();
+        mAuthInfo = new AuthInfo(this, ConstantParams.SINA_APP_KEY, ConstantParams.SINA_REDIRECT_URL, ConstantParams.SINA_SCOPE);
+        mSsoHandler = new SsoHandler(this, mAuthInfo);
+    }
+
+    class AuthListener implements WeiboAuthListener {
+        @Override
+        public void onComplete(Bundle values) {
+            // 从 Bundle 中解析 Token
+            mAccessToken = Oauth2AccessToken.parseAccessToken(values);
+            if (mAccessToken.isSessionValid()) {
+                ToastTip.show(LoginActivity.this, "oauth2AccessToken: " + mAccessToken);
+
+
+                String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(
+                        new Date(mAccessToken.getExpiresTime()));
+                String format = getString(R.string.weibosdk_demo_token_to_string_format_1);
+                String message = String.format(format, mAccessToken.getToken(), date);
+                Logger.d("--->onComplete", "message: " + message);
+                Logger.d("--->onComplete", "mAccessToken: " + mAccessToken);
+
+                BmobUser.BmobThirdUserAuth authEntity = new BmobUser.BmobThirdUserAuth(BmobUser.BmobThirdUserAuth.SNS_TYPE_WEIBO,
+                        mAccessToken.getToken(), mAccessToken.getExpiresTime()+"", mAccessToken.getUid());
+                BmobUser.loginWithAuthData(LoginActivity.this, authEntity, new OtherLoginListener() {
+                    @Override
+                    public void onSuccess(JSONObject jsonObject) {
+                        ToastTip.show(LoginActivity.this, "登录成功");
+                        Logger.d("--->onSuccess", "jsonObject: " + jsonObject.toString());
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        ToastTip.show(LoginActivity.this, "登录失败");
+                    }
+                });
+            } else {
+                // 当您注册的应用程序签名不正确时，就会收到 Code，请确保签名正确
+                String code = values.getString("code", "");
+                ToastTip.show(LoginActivity.this, "code: " + code);
+            }
+        }
+
+        @Override
+        public void onCancel() {
+            Logger.d("--->onCancel");
+        }
+
+        @Override
+        public void onWeiboException(WeiboException e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("NewApi")
@@ -81,6 +149,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         });
         tvVerifyCode.setOnClickListener(this);
         tvCommit.setOnClickListener(this);
+        tvLogout.setOnClickListener(this);
     }
 
     @Override
@@ -90,7 +159,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 requestSMSCode();
                 break;
             case R.id.tv_commit:
-                signOrLoginByMobilePhone();
+//                signOrLoginByMobilePhone();
+                mSsoHandler.authorize(new AuthListener());
+                break;
+            case R.id.tv_logout:
+
                 break;
         }
     }
@@ -126,7 +199,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     ToastTip.show(LoginActivity.this, "验证码发送成功，请注意查收");
                     mHandler.post(countDownThread);
                 } else {
-                    Logger.d("BmobException", "Error code: "+e.getErrorCode()+", "+e.getMessage());
+                    Logger.d("BmobException", "Error code: " + e.getErrorCode() + ", " + e.getMessage());
                     ToastTip.show(LoginActivity.this, "Error code: " + e.getErrorCode() + ", " + e.getMessage(), Toast.LENGTH_SHORT);
                 }
             }
@@ -150,7 +223,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             }
                             finish();
                         } else {
-                            Logger.d("BmobException", "Error code: "+e.getErrorCode()+", "+e.getMessage());
+                            Logger.d("BmobException", "Error code: " + e.getErrorCode() + ", " + e.getMessage());
                             ToastTip.show(LoginActivity.this, "Error code: " + e.getErrorCode() + ", " + e.getMessage(), Toast.LENGTH_SHORT);
                         }
                     }
@@ -205,6 +278,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (mSsoHandler != null) {
+            mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
     }
 
     @Override

@@ -76,7 +76,22 @@
         android:layout_marginTop="30dp"
         android:padding="15dp"
         android:gravity="center"
-        android:text="登录"
+        android:text="新浪微博账号登录"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/color_primary_selector"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:padding="15dp"
+        android:gravity="center"
+        android:text="退出新浪微博账号"
         android:textColor="@color/white"
         android:textSize="16sp"/>
 

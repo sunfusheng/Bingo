@@ -6,13 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.sun.bingo.BingoApplication;
-import com.sun.bingo.R;
 import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
 import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
-import com.sun.bingo.ui.activity.LoginActivity;
-import com.sun.bingo.ui.activity.MainActivity;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
@@ -89,27 +86,27 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
-        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
-                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
-        }
+//        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
+//                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
+//            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+//        }
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
-        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
-                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
-        }
+//        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
+//                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
+//            overridePendingTransition(R.anim.push_bottom_in, R.anim.hold_long);
+//        }
     }
 
     @Override
     public void finish() {
         super.finish();
-        if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
-            overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
-        }
+//        if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
+//            overridePendingTransition(R.anim.hold_long, R.anim.push_bottom_out);
+//        }
     }
 
     protected boolean isPaused() {

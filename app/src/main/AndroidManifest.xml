@@ -101,6 +101,13 @@
         <activity android:name=".ui.activity.UserInfoActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+                  android:configChanges="keyboardHidden|orientation"
+                  android:windowSoftInputMode="adjustResize"
+                  android:exported="false"/>
+        <service android:name="com.sina.weibo.sdk.net.DownloadService"
+                 android:exported="false"/>
+
     </application>
 
 </manifest>
