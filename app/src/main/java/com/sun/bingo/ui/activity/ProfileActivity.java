@@ -262,6 +262,10 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
                     public void onPositive(MaterialDialog dialog) {
+                        getAccountSharedPreferences().uid(null);
+                        getAccountSharedPreferences().access_token(null);
+                        getAccountSharedPreferences().refresh_token(null);
+                        getAccountSharedPreferences().expires_in(0);
                         BmobUser.logOut(ProfileActivity.this);
                         NavigateManager.gotoMainActivity(ProfileActivity.this);
                         finish();

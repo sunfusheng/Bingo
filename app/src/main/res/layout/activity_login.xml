@@ -36,31 +36,4 @@
         android:textColor="@color/font_black_4"
         android:textSize="12sp"/>
 
-    <TextView
-        android:id="@+id/tv_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/selector_bg_pressed_white"
-        android:paddingLeft="15dp"
-        android:text="刷新token"
-        android:textColor="@color/font_black_2"
-        android:textSize="16sp"
-        android:visibility="gone"/>
-
-    <TextView
-        android:id="@+id/tv_logout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/selector_bg_pressed_white"
-        android:paddingLeft="15dp"
-        android:text="退出登录"
-        android:textColor="@color/font_black_2"
-        android:textSize="16sp"
-        android:visibility="gone"/>
-
-
 </LinearLayout>

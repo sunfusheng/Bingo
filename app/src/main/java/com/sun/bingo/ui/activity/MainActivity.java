@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,21 +18,28 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
+import com.orhanobut.logger.Logger;
 import com.shamanland.fab.FloatingActionButton;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.sina.weibo.sdk.net.RequestListener;
+import com.sina.weibo.sdk.net.openapi.RefreshTokenApi;
 import com.sun.bingo.R;
+import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.entity.SinaRefreshTokenEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.update.DownloadApk;
 import com.sun.bingo.ui.fragment.FavoriteFragment;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
+import com.sun.bingo.util.FastJsonUtil;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
 
@@ -93,6 +101,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         titles[2] = getString(R.string.menu_my_favorite);
         if (myEntity != null) {
             initVersion();
+            sinaRefreshTokenRequest();
         }
     }
 
@@ -156,6 +165,33 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             @Override
             public void onClick(View v) {
                 NavigateManager.gotoProfileActivity(MainActivity.this, false);
+            }
+        });
+    }
+
+    // 新浪微博刷新Token请求
+    private void sinaRefreshTokenRequest() {
+        if (TextUtils.isEmpty(getAccountSharedPreferences().refresh_token())) {
+            return ;
+        }
+        RefreshTokenApi.create(this).refreshToken(ConstantParams.SINA_APP_KEY, getAccountSharedPreferences().refresh_token(), new RequestListener() {
+            @Override
+            public void onComplete(String s) {
+                if (!TextUtils.isEmpty(s)) {
+                    SinaRefreshTokenEntity entity = FastJsonUtil.parseJson(s, SinaRefreshTokenEntity.class);
+                    if (entity != null) {
+                        Logger.d("--->", entity.toString());
+                        getAccountSharedPreferences().uid(entity.getUid());
+                        getAccountSharedPreferences().access_token(entity.getAccess_token());
+                        getAccountSharedPreferences().refresh_token(entity.getRefresh_token());
+                        getAccountSharedPreferences().expires_in(entity.getExpires_in());
+                    }
+                }
+            }
+
+            @Override
+            public void onWeiboException(WeiboException e) {
+                e.printStackTrace();
             }
         });
     }

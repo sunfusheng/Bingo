@@ -2,8 +2,7 @@
 <resources>
 
     <string name="app_name">BingoWorld</string>
-    <string name="app_name_debug">BingoWorld-Beta</string>
-    <string name="app_copyright">Copyright ©2015 版权所有</string>
+    <string name="app_copyright">Copyright ©2016 版权所有</string>
 
     <string name="ok">确认</string>
     <string name="cancel">取消</string>

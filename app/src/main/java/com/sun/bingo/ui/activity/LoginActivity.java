@@ -16,16 +16,12 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.net.openapi.RefreshTokenApi;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
-import com.sun.bingo.entity.SinaRefreshTokenEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.util.FastJsonUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 
 import org.json.JSONObject;
@@ -47,12 +43,8 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
     Toolbar toolbar;
     @Bind(R.id.tv_login_sina)
     TextView tvLoginSina;
-    @Bind(R.id.tv_logout)
-    TextView tvLogout;
     @Bind(R.id.ll_root_view)
     LinearLayout llRootView;
-    @Bind(R.id.tv_refresh)
-    TextView tvRefresh;
 
     private AuthInfo mAuthInfo;
     private SsoHandler mSsoHandler;
@@ -88,8 +80,6 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
             }
         });
         tvLoginSina.setOnClickListener(this);
-        tvRefresh.setOnClickListener(this);
-        tvLogout.setOnClickListener(this);
     }
 
     @Override
@@ -98,30 +88,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
             case R.id.tv_login_sina:
                 mSsoHandler.authorize(new AuthListener());
                 break;
-            case R.id.tv_refresh:
-                refreshTokenRequest();
-                break;
-            case R.id.tv_logout:
-
-                break;
         }
-    }
-
-    private void refreshTokenRequest() {
-        RefreshTokenApi.create(this).refreshToken(ConstantParams.SINA_APP_KEY, getAccountSharedPreferences().refresh_token(), new RequestListener() {
-            @Override
-            public void onComplete(String s) {
-                if (!TextUtils.isEmpty(s)) {
-                    SinaRefreshTokenEntity entity = FastJsonUtil.parseJson(s, SinaRefreshTokenEntity.class);
-                    Logger.d("--->", entity.toString());
-                }
-            }
-
-            @Override
-            public void onWeiboException(WeiboException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     class AuthListener implements WeiboAuthListener {
@@ -138,7 +105,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
                 String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date(mAccessToken.getExpiresTime()));
                 String message = String.format(getString(R.string.weibo_token_format), mAccessToken.getToken(), date);
                 Logger.d("--->onComplete", "mAccessToken: " + mAccessToken + "\nmessage: " + message);
-//                loginSuccess();
+                loginSuccess();
             } else {
                 ToastTip.show(LoginActivity.this, values.getString("code", ""));
             }
