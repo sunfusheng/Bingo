@@ -144,9 +144,6 @@ dependencies {
     //Logger
     compile 'com.orhanobut:logger:1.4'
 
-    //MaterialEditText
-    compile 'com.rengwuxian.materialedittext:library:2.1.4'
-
     //GoogleProgressBar
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
 

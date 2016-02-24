@@ -19,6 +19,7 @@ import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.base.BaseAsyncActivity;
 import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.dialog.LoadingDialog;
+import com.sun.bingo.sharedpreferences.AccountSharedPreferences;
 import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
 import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
@@ -139,10 +140,12 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         }
     }
 
+    public AccountSharedPreferences getAccountSharedPreferences() {
+        return getSharedPreferences(AccountSharedPreferences.class);
+    }
     public SettingsSharedPreferences getSettingsSharedPreferences() {
         return getSharedPreferences(SettingsSharedPreferences.class);
     }
-
     public LocationSharedPreferences getLocationSharedPreferences() {
         return getSharedPreferences(LocationSharedPreferences.class);
     }

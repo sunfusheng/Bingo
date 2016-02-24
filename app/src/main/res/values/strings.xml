@@ -70,6 +70,6 @@
     <string name="no_favorite_data">您还没有收藏任何Bingo哦</string>
     <string name="no_my_bingo_data">您还没有提交任何Bingo哦</string>
     <string name="open_by_explore">使用浏览器打开</string>
-    <string name="weibosdk_demo_token_to_string_format_1">Token：%1$s \n有效期：%2$s</string>
+    <string name="weibo_token_format">Token：%1$s \n有效期：%2$s</string>
 
 </resources>
