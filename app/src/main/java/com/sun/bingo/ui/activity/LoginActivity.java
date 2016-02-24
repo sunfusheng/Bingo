@@ -107,6 +107,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     public void onSuccess(JSONObject jsonObject) {
                         ToastTip.show(LoginActivity.this, "登录成功");
                         Logger.d("--->onSuccess", "jsonObject: " + jsonObject.toString());
+                        myEntity = BmobUser.getCurrentUser(LoginActivity.this, UserEntity.class);
+                        if (TextUtils.isEmpty(myEntity.getNickName()) || TextUtils.isEmpty(myEntity.getUserSign())) {
+                            NavigateManager.gotoProfileActivity(LoginActivity.this, true);
+                        } else {
+                            NavigateManager.gotoMainActivity(LoginActivity.this);
+                        }
+                        finish();
                     }
 
                     @Override

@@ -7,12 +7,12 @@ public class MyBingoFragment extends BaseListFragment<PageControl> {
 
     @Override
     protected void onRefreshStart() {
-        mControl.getMyBingoListData(getActivity());
+        mControl.getMyBingoListData(getActivity(), userEntity.getObjectId());
     }
 
     @Override
     protected void onScrollLast() {
-        mControl.getMyBingoListDataMore(getActivity());
+        mControl.getMyBingoListDataMore(getActivity(), userEntity.getObjectId());
     }
 
     @Override

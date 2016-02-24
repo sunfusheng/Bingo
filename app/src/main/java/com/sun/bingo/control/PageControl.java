@@ -99,11 +99,11 @@ public class PageControl extends BaseControl {
      * 我的Bingo
      */
     @AsyncAtomMethod
-    public void getMyBingoListData(Context context) {
+    public void getMyBingoListData(Context context, String uid) {
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setLimit(PAGE_SIZE_LIMIT);
-        list.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(context).getObjectId());
+        list.addWhereEqualTo("userEntity", uid);
         list.order("-createdAt");
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {
@@ -131,7 +131,7 @@ public class PageControl extends BaseControl {
      * 我的Bingo (More)
      */
     @AsyncAtomMethod
-    public void getMyBingoListDataMore(Context context) {
+    public void getMyBingoListDataMore(Context context, String uid) {
         if (lastPageSize == pageSize) {
             return ;
         } else {
@@ -140,7 +140,7 @@ public class PageControl extends BaseControl {
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setSkip(pageSize);
         list.setLimit(PAGE_SIZE_LIMIT);
-        list.addWhereEqualTo("userEntity", BmobUser.getCurrentUser(context).getObjectId());
+        list.addWhereEqualTo("userEntity", uid);
         list.order("-createdAt");
         list.include("userEntity");
         list.findObjects(context, new FindListener<BingoEntity>() {

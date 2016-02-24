@@ -73,7 +73,6 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
         startRefresh();
     }
 
-
     private void initData() {
         mUserEntity = (UserEntity) getIntent().getSerializableExtra("userEntity");
     }
@@ -153,12 +152,12 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
 
     //下拉刷新数据
     protected void onRefreshStart() {
-        mControl.getMyBingoListData(this);
+        mControl.getMyBingoListData(this, mUserEntity.getObjectId());
     }
 
     //上拉加载数据
     protected void onScrollLast() {
-        mControl.getMyBingoListDataMore(this);
+        mControl.getMyBingoListDataMore(this, mUserEntity.getObjectId());
     }
 
     //数据为空
