@@ -16,14 +16,22 @@ public class SingleControl extends BaseControl {
         super(mMessageCallBack);
     }
 
-    /**
-     * 异步压缩图片, 返回压缩后的Url
-     */
+    // 异步压缩图片, 返回压缩后的Url
     @AsyncAtomMethod
     public void getCompressImagePath(Context context, String imagePath) {
         String path = CompressImageHelper.compressImageView(context, imagePath);
         mModel.put(1, path);
         sendMessage("getCompressImagePathCallBack");
+    }
+
+    @AsyncAtomMethod(withCancelableDialog = true)
+    public void getSinaUserInfo(String cityname) {
+        try {
+
+            sendMessage("getSinaUserInfoCallBack");
+        } catch (Exception e) {
+            dealWithException(e);
+        }
     }
 
 }

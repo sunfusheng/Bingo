@@ -69,6 +69,7 @@ public class NavigateManager {
 
     public static void gotoMainActivity(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         activity.startActivity(intent);
     }
 

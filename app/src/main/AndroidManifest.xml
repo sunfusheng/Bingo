@@ -47,6 +47,12 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="wUHSeG3wGU2588d6aSauMohh" />
+        <meta-data
+            android:name="WEIBO_APPKEY"
+            android:value="2013824991" />
+        <meta-data
+            android:name="WEIBO_CHANNEL"
+            android:value="weibo" />
 
         <service
             android:name="com.baidu.location.f"
@@ -71,42 +77,66 @@
             android:name=".framework.update.MutilDownloader"
             android:process=":downloader" />
 
-        <activity android:name=".ui.activity.LoginActivity"
+        <activity
+            android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
-        <activity android:name=".ui.activity.BingoDetailActivity"
+        <activity
+            android:name=".ui.activity.BingoDetailActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.EditNewBingoActivity"
+        <activity
+            android:name=".ui.activity.EditNewBingoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
-        <activity android:name=".ui.activity.RichEditorActivity"
+        <activity
+            android:name=".ui.activity.RichEditorActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
-        <activity android:name=".ui.activity.ProfileActivity"
+        <activity
+            android:name=".ui.activity.ProfileActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.ImageActivity"
+        <activity
+            android:name=".ui.activity.ImageActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.AboutAppActivity"
+        <activity
+            android:name=".ui.activity.AboutAppActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.AboutAuthorActivity"
+        <activity
+            android:name=".ui.activity.AboutAuthorActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.UserInfoActivity"
+        <activity
+            android:name=".ui.activity.UserInfoActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:windowSoftInputMode="adjustResize"
-                  android:exported="false"/>
-        <service android:name="com.sina.weibo.sdk.net.DownloadService"
-                 android:exported="false"/>
+        <!-- 新浪微博账号登录页面 -->
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+
+        <!-- 手机短信注册登录页面 -->
+        <activity
+            android:name="com.sina.weibo.sdk.register.mobile.MobileRegisterActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+
+        <!-- 注册选择国家页面 -->
+        <activity
+            android:name="com.sina.weibo.sdk.register.mobile.SelectCountryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
 
     </application>
 

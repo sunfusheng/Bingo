@@ -1,6 +1,7 @@
 package com.sun.bingo.framework.dialog;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -20,10 +21,10 @@ public class LoadingDialog {
         return dialog;
     }
 
-    public void show() {
+    public void show(String tip) {
         if (dialog == null) {
             dialog = new MaterialDialog.Builder(mContext)
-                    .content("加载中...")
+                    .content(TextUtils.isEmpty(tip)? "正在加载...":tip)
                     .progress(true, 0)
                     .progressIndeterminateStyle(false)
                     .build();
@@ -34,10 +35,14 @@ public class LoadingDialog {
         }
     }
 
-    public void showCancelDialog() {
+    public void show() {
+        show(null);
+    }
+
+    public void showCancelDialog(String tip) {
         if (dialog == null) {
             dialog = new MaterialDialog.Builder(mContext)
-                    .content("加载中...")
+                    .content(TextUtils.isEmpty(tip)? "正在加载...":tip)
                     .progress(true, 0)
                     .progressIndeterminateStyle(false)
                     .build();
@@ -46,6 +51,10 @@ public class LoadingDialog {
         if (!dialog.isShowing()) {
             dialog.show();
         }
+    }
+
+    public void showCancelDialog() {
+        showCancelDialog(null);
     }
 
     public void dismiss() {

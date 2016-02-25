@@ -32,6 +32,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getSquareBingoListData(Context context) {
+        if (context == null) return;
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setLimit(PAGE_SIZE_LIMIT);
@@ -63,6 +64,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getSquareBingoListDataMore(Context context) {
+        if (context == null) return;
         if (lastPageSize == pageSize) {
             return ;
         } else {
@@ -100,6 +102,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getMyBingoListData(Context context, String uid) {
+        if (context == null) return;
         pageSize = PAGE_SIZE_LIMIT;
         BmobQuery<BingoEntity> list = new BmobQuery<>();
         list.setLimit(PAGE_SIZE_LIMIT);
@@ -132,6 +135,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getMyBingoListDataMore(Context context, String uid) {
+        if (context == null) return;
         if (lastPageSize == pageSize) {
             return ;
         } else {
@@ -170,6 +174,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getFavoriteBingoListData(Context context) {
+        if (context == null) return;
         pageSize = PAGE_SIZE_LIMIT;
         UserEntity userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         List<String> favoriteList = userEntity.getFavoriteList();
@@ -203,6 +208,7 @@ public class PageControl extends BaseControl {
      */
     @AsyncAtomMethod
     public void getFavoriteBingoListDataMore(Context context) {
+        if (context == null) return;
         if (lastPageSize == pageSize) {
             return ;
         } else {
