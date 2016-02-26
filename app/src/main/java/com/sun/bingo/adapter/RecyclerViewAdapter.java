@@ -21,6 +21,8 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.ui.activity.MainActivity;
+import com.sun.bingo.ui.activity.UserInfoActivity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
@@ -204,6 +206,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         }
                         userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
                         return true;
+                    case R.id.pop_share_sina:
+                        if (mContext instanceof MainActivity) {
+                            MainActivity mainActivity = (MainActivity) mContext;
+                            mainActivity.sendMultiMessageToSina(entity);
+                        } else if (mContext instanceof UserInfoActivity) {
+                            UserInfoActivity userInfoActivity = (UserInfoActivity) mContext;
+                            userInfoActivity.sendMultiMessageToSina(entity);
+                        }
+                        break;
                     case R.id.pop_share:
                         ShareUtil.share(mContext, entity.getDescribe() + entity.getWebsite() + "\n[来自" + mContext.getString(R.string.app_name) + "的分享，下载地址：https://fir.im/bingoworld]");
                         return true;

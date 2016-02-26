@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_action_star"/>
 
     <item
+        android:id="@+id/pop_share_sina"
+        android:title="新浪微博分享"
+        android:icon="@drawable/ic_action_share"/>
+
+    <item
         android:id="@+id/pop_share"
         android:title="分享"
         android:icon="@drawable/ic_action_share"/>

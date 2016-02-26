@@ -44,7 +44,7 @@ public class BingoDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_bingo_detail);
         ButterKnife.bind(this);
 
-        initToolBar(toolbar, true, "Bingo详情");
+        initToolBar(toolbar, true, "加载中...");
         initData();
         initView();
     }
@@ -114,6 +114,8 @@ public class BingoDetailActivity extends BaseActivity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
+                smoothProgressBar.setVisibility(View.GONE);
+                toolbar.setTitle("加载失败");
                 if (!TextUtils.isEmpty(description)) {
                     tvErrorMsg.setVisibility(View.VISIBLE);
                     tvErrorMsg.setText("errorCode: " + errorCode + "\ndescription: " + description);
@@ -124,7 +126,7 @@ public class BingoDetailActivity extends BaseActivity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                initToolBar(toolbar, true, title);
+                toolbar.setTitle(title);
             }
         });
     }

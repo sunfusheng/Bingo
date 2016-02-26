@@ -3,6 +3,8 @@ package com.sun.bingo.ui.activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,16 +20,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.siyamed.shapeimageview.CircularImageView;
 import com.shamanland.fab.FloatingActionButton;
+import com.sina.weibo.sdk.api.TextObject;
+import com.sina.weibo.sdk.api.WebpageObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
+import com.sina.weibo.sdk.api.share.BaseResponse;
+import com.sina.weibo.sdk.api.share.IWeiboHandler;
+import com.sina.weibo.sdk.api.share.IWeiboShareAPI;
+import com.sina.weibo.sdk.api.share.SendMultiMessageToWeiboRequest;
+import com.sina.weibo.sdk.api.share.WeiboShareSDK;
+import com.sina.weibo.sdk.constant.WBConstants;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.net.openapi.RefreshTokenApi;
+import com.sina.weibo.sdk.utils.Utility;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.SinaRefreshTokenEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.TipDialog;
@@ -46,7 +60,7 @@ import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
 
-public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback {
+public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback, IWeiboHandler.Response {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -68,6 +82,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     private TextView tvUserSign;
 
     private boolean isShareUrl = true;
+    private IWeiboShareAPI mWeiboShareAPI; // 新浪微博分享接口实例
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +90,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        initSinaShare(savedInstanceState);
         checkBmobUser();
         initData();
         initView();
@@ -86,6 +102,79 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         super.onResume();
         checkBmobUser();
         checkClipboard();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        mWeiboShareAPI.handleWeiboResponse(intent, this);
+    }
+
+    private void initSinaShare(Bundle savedInstanceState) {
+        mWeiboShareAPI = WeiboShareSDK.createWeiboAPI(this, ConstantParams.SINA_APP_KEY);
+        mWeiboShareAPI.registerApp();
+        if (savedInstanceState != null) {
+            mWeiboShareAPI.handleWeiboResponse(getIntent(), this);
+        }
+    }
+
+    /**
+     * 第三方应用发送请求消息到微博，唤起微博分享界面。
+     * 同时可以分享文本、图片以及其它媒体资源（网页、音乐、视频、声音中的一种）。
+     */
+    public void sendMultiMessageToSina(BingoEntity entity) {
+        if (!mWeiboShareAPI.isWeiboAppSupportAPI()) {
+            Toast.makeText(this, "暂不支持新浪微博分享", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        // 1. 初始化微博的分享消息
+        WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
+        if (mWeiboShareAPI.getWeiboAppSupportAPI() >= 10351) {
+            TextObject textObject = new TextObject();
+            textObject.text = "【BingoWorld下载页面：https://fir.im/bingoworld】 \n "+entity.getDescribe();
+            weiboMessage.textObject = textObject;
+        }
+        weiboMessage.mediaObject = getWebpageObj(entity);
+
+        // 2. 初始化从第三方到微博的消息请求
+        SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
+        // 用transaction唯一标识一个请求
+        request.transaction = String.valueOf(System.currentTimeMillis());
+        request.multiMessage = weiboMessage;
+
+        // 3. 发送请求消息到微博，唤起微博分享界面
+        mWeiboShareAPI.sendRequest(mActivity, request);
+    }
+
+    // 创建新浪微博网页分享对象
+    private WebpageObject getWebpageObj(BingoEntity entity) {
+        WebpageObject mediaObject = new WebpageObject();
+        mediaObject.identify = Utility.generateGUID();
+        mediaObject.title = "来自BingoWorld分享";
+        mediaObject.description = entity.getDescribe();
+
+        Bitmap  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+        // 设置 Bitmap 类型的图片到视频对象里。 注意：最终压缩过的缩略图大小不得超过 32kb。
+        mediaObject.setThumbImage(bitmap);
+        mediaObject.actionUrl = entity.getWebsite();
+        mediaObject.defaultText = "BingoWorld分享";
+        return mediaObject;
+    }
+
+    @Override
+    public void onResponse(BaseResponse baseResponse) {
+        if(baseResponse!= null){
+            switch (baseResponse.errCode) {
+                case WBConstants.ErrorCode.ERR_OK:
+                    break;
+                case WBConstants.ErrorCode.ERR_CANCEL:
+                    break;
+                case WBConstants.ErrorCode.ERR_FAIL:
+                    ToastTip.show("分享失败 " + baseResponse.errMsg);
+                    break;
+            }
+        }
     }
 
     private void initVersion() {
@@ -138,6 +227,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             initVersion();
             sinaRefreshTokenRequest();
         }
+
     }
 
     private void initView() {
@@ -341,4 +431,5 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                 break;
         }
     }
+
 }
