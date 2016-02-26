@@ -29,11 +29,11 @@ public abstract class BaseHandler<Re> extends Handler implements IContext {
             switch (msg.arg1) {
                 case MessageArg.ARG1.TOAST_MESSAGE:
                     if (msg.obj instanceof String) {
-                        ToastTip.show(getContext(), msg.obj + "");
+                        ToastTip.show(msg.obj + "");
                     } else if (msg.obj instanceof Integer) {
-                        ToastTip.show(getContext(), getContext().getString((Integer) msg.obj) + "");
+                        ToastTip.show(getContext().getString((Integer) msg.obj) + "");
                     } else {
-                        ToastTip.show(getContext(), msg.obj + "");
+                        ToastTip.show(msg.obj + "");
                     }
                     break;
                 case MessageArg.ARG1.CALL_BACK_METHOD:
@@ -60,7 +60,7 @@ public abstract class BaseHandler<Re> extends Handler implements IContext {
     private void invokeMethod(Re callClazz, Message msg) {
         try {
             if (!(msg.obj instanceof String)) {
-                ToastTip.show(getContext(), "Method error:" + msg.obj);
+                ToastTip.show("Method error:" + msg.obj);
                 return;
             }
             Method method;
@@ -75,9 +75,9 @@ public abstract class BaseHandler<Re> extends Handler implements IContext {
                 method.invoke(callClazz, msg.getData());
             }
         } catch (NoSuchMethodException e) {
-            ToastTip.show(getContext(), "NoSuchMethodException: " + e.getMessage());
+            ToastTip.show("NoSuchMethodException: " + e.getMessage());
         } catch (IllegalAccessException e) {
-            ToastTip.show(getContext(), "IllegalAccessException: " + e.getMessage());
+            ToastTip.show("IllegalAccessException: " + e.getMessage());
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }

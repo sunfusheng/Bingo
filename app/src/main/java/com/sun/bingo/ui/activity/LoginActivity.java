@@ -105,25 +105,25 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
                 getAccountSharedPreferences().expires_in(mAccessToken.getExpiresTime());
                 loginSuccess();
             } else {
-                ToastTip.show(LoginActivity.this, values.getString("code", ""));
+                ToastTip.show(values.getString("code", ""));
             }
         }
 
         @Override
         public void onCancel() {
-            ToastTip.show(LoginActivity.this, "暂时只支持微博账号登录哦");
+            ToastTip.show("暂时只支持微博账号登录哦");
         }
 
         @Override
         public void onWeiboException(WeiboException e) {
-            e.printStackTrace();
+            ToastTip.show("微博授权异常");
         }
     }
 
     // 新浪账号登录成功后跳转
     private void loginSuccess() {
         if (mLoadingDialog != null) {
-            mLoadingDialog.showCancelDialog("正在加载，请稍候....");
+            mLoadingDialog.showCancelDialog("正在登录，请稍候....");
         }
         BmobUser.BmobThirdUserAuth authEntity = new BmobUser.BmobThirdUserAuth(BmobUser.BmobThirdUserAuth.SNS_TYPE_WEIBO, mAccessToken.getToken(), mAccessToken.getExpiresTime() + "", mAccessToken.getUid());
         BmobUser.loginWithAuthData(LoginActivity.this, authEntity, new OtherLoginListener() {
@@ -135,7 +135,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
 
             @Override
             public void onFailure(int i, String s) {
-                ToastTip.show(LoginActivity.this, "登录失败");
+                ToastTip.show("登录失败");
                 mLoadingDialog.dismiss();
             }
         });

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
@@ -51,8 +52,11 @@ public class NavigateManager {
         context.startActivity(intent);
     }
 
-    public static void gotoEditNewBingoActivity(Activity activity) {
+    public static void gotoEditNewBingoActivity(Activity activity, String url) {
         Intent intent = new Intent(activity, EditNewBingoActivity.class);
+        if (!TextUtils.isEmpty(url)) {
+            intent.putExtra("url", url);
+        }
         activity.startActivity(intent);
     }
 

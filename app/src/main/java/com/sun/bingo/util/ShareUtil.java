@@ -25,8 +25,6 @@ public class ShareUtil {
 
     /**
      * 获得应用的信息
-     * @param context
-     * @return
      */
     public static AppEntity getAppEntity(Context context) {
         AppEntity entity = new AppEntity();
@@ -51,7 +49,6 @@ public class ShareUtil {
 
     /**
      * 发送安装包
-     * @param context
      */
     public static void sendToFriend(Context context) {
         AppEntity entity = getAppEntity(context);
@@ -87,7 +84,6 @@ public class ShareUtil {
 
     /**
      * 分享
-     * @param content
      */
     public static void share(Context context, String content){
         Intent intent=new Intent(Intent.ACTION_SEND);
@@ -100,7 +96,6 @@ public class ShareUtil {
 
     /**
      * 反馈
-     * @param context
      */
     public static void feedback(Context context) {
         Uri uri = Uri.parse("mailto:sfsheng0322@126.com");
@@ -108,7 +103,7 @@ public class ShareUtil {
         PackageManager pm = context.getPackageManager();
         List<ResolveInfo> infos = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
         if (infos == null || infos.size() <= 0){
-            ToastTip.show(context, context.getString(R.string.no_email_app_tip));
+            ToastTip.show(context.getString(R.string.no_email_app_tip));
             return;
         }
         context.startActivity(intent);

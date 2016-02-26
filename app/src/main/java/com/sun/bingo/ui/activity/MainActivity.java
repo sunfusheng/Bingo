@@ -1,5 +1,7 @@
 package com.sun.bingo.ui.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -17,8 +19,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.siyamed.shapeimageview.CircularImageView;
-import com.orhanobut.logger.Logger;
 import com.shamanland.fab.FloatingActionButton;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
@@ -28,6 +30,7 @@ import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.SinaRefreshTokenEntity;
 import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.framework.dialog.TipDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.update.DownloadApk;
 import com.sun.bingo.ui.fragment.FavoriteFragment;
@@ -64,13 +67,15 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     private TextView tvNickName;
     private TextView tvUserSign;
 
+    private boolean isShareUrl = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        checkToken();
+        checkBmobUser();
         initData();
         initView();
         initListener();
@@ -79,18 +84,46 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     @Override
     protected void onResume() {
         super.onResume();
-        checkToken();
+        checkBmobUser();
+        checkClipboard();
     }
 
     private void initVersion() {
         new DownloadApk(this).checkVersion();
     }
 
-    private void checkToken() {
+    // 检查Bmob用户是否登录
+    private void checkBmobUser() {
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         if (myEntity == null) {
             NavigateManager.gotoLoginActivity(this);
             finish();
+        }
+    }
+
+    // 检查剪贴板上是否有http链接
+    private void checkClipboard() {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = clipboardManager.getPrimaryClip();
+        ClipData.Item item = clipData.getItemAt(0);
+        final String text = item.getText().toString();
+
+        if (!TextUtils.isEmpty(text) && text.startsWith("http") && isShareUrl) {
+            TipDialog tipDialog = new TipDialog(this);
+            tipDialog.show("将复制的URL分享到BingoWorld", text, "立即分享", "暂不", new MaterialDialog.ButtonCallback() {
+                @Override
+                public void onPositive(MaterialDialog dialog) {
+                    super.onPositive(dialog);
+                    isShareUrl = false;
+                    NavigateManager.gotoEditNewBingoActivity(mActivity, text);
+                }
+
+                @Override
+                public void onNegative(MaterialDialog dialog) {
+                    super.onNegative(dialog);
+                    isShareUrl = false;
+                }
+            });
         }
     }
 
@@ -99,6 +132,8 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         titles[0] = getString(R.string.menu_square_bingo);
         titles[1] = getString(R.string.menu_my_bingo);
         titles[2] = getString(R.string.menu_my_favorite);
+
+        myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         if (myEntity != null) {
             initVersion();
             sinaRefreshTokenRequest();
@@ -126,7 +161,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavigateManager.gotoEditNewBingoActivity(MainActivity.this);
+                NavigateManager.gotoEditNewBingoActivity(mActivity, null);
             }
         });
 
@@ -180,7 +215,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                 if (!TextUtils.isEmpty(s)) {
                     SinaRefreshTokenEntity entity = FastJsonUtil.parseJson(s, SinaRefreshTokenEntity.class);
                     if (entity != null) {
-                        Logger.d("--->", entity.toString());
                         getAccountSharedPreferences().uid(entity.getUid());
                         getAccountSharedPreferences().access_token(entity.getAccess_token());
                         getAccountSharedPreferences().refresh_token(entity.getRefresh_token());
@@ -289,7 +323,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             super.onBackPressed();
         } else {
             lastTime = System.currentTimeMillis();
-            ToastTip.show(this, getString(R.string.toast_exit_tip), Gravity.BOTTOM);
+            ToastTip.show(getString(R.string.toast_exit_tip));
         }
     }
 

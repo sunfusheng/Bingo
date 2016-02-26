@@ -52,7 +52,7 @@ public class BingoDetailActivity extends BaseActivity {
     private void initData() {
         bingoEntity = (BingoEntity) getIntent().getSerializableExtra("entity");
         if (bingoEntity == null) {
-            ToastTip.show(this, "该作者提交的Bingo有问题");
+            ToastTip.show("该作者提交的Bingo有问题");
         }
     }
 

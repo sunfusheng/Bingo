@@ -153,7 +153,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     if (entity.getUserEntity() != null) {
                         NavigateManager.gotoUserInfoActivity(mContext, entity.getUserEntity());
                     } else {
-                        ToastTip.show(mContext, "用户信息为空");
+                        ToastTip.show("用户信息为空");
                     }
                 }
             });
@@ -252,7 +252,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             favoriteList = new ArrayList<>();
         }
         if (favoriteList.indexOf(bingoId) >= 0) {
-            ToastTip.show(mContext, "您已收藏过了");
+            ToastTip.show("您已收藏过了");
             return;
         }
         favoriteList.add(bingoId);
@@ -260,12 +260,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                ToastTip.show(mContext, "收藏成功");
+                ToastTip.show("收藏成功");
             }
 
             @Override
             public void onFailure(int i, String s) {
-                ToastTip.show(mContext, "收藏失败");
+                ToastTip.show("收藏失败");
             }
         });
     }
@@ -279,7 +279,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             favoriteList = new ArrayList<>();
         }
         if (favoriteList.indexOf(bingoId) < 0) {
-            ToastTip.show(mContext, "您已取消收藏了");
+            ToastTip.show("您已取消收藏了");
             return;
         }
         favoriteList.remove(bingoId);
@@ -287,7 +287,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
             @Override
             public void onSuccess() {
-                ToastTip.show(mContext, "取消成功");
+                ToastTip.show("取消成功");
                 if (type == HANDLE_CANCEL_FAVORITE) {
                     mEntities.remove(position);
                     notifyDataSetChanged();
@@ -296,7 +296,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             @Override
             public void onFailure(int i, String s) {
-                ToastTip.show(mContext, "取消失败");
+                ToastTip.show("取消失败");
             }
         });
     }
@@ -309,14 +309,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         entity.delete(mContext, new DeleteListener() {
             @Override
             public void onSuccess() {
-                ToastTip.show(mContext, "删除成功");
+                ToastTip.show("删除成功");
                 mEntities.remove(position);
                 notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(int i, String s) {
-                ToastTip.show(mContext, "删除失败");
+                ToastTip.show("删除失败");
             }
         });
     }

@@ -1,6 +1,8 @@
 package com.sun.bingo.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadBatchListener;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,20 +32,21 @@ import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.CommonDialog;
+import com.sun.bingo.framework.dialog.TipDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
-import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.util.KeyBoardUtil;
+import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
@@ -78,6 +82,8 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     private BingoEntity bingoEntity;
     private List<UploadImageView> uploadImageViews;
 
+    private boolean isShareDes = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +95,19 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         initListener();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkClipboard();
+    }
+
     private void initData() {
         bingoEntity = new BingoEntity();
+        if (getIntent() != null) {
+            if (getIntent().hasExtra("url")) {
+                etWebsite.setText(getIntent().getStringExtra("url"));
+            }
+        }
     }
 
     @SuppressLint("NewApi")
@@ -107,16 +124,42 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         tvCommit.setOnClickListener(this);
     }
 
+    // 检查剪贴板上是否有分享的标题和描述
+    private void checkClipboard() {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = clipboardManager.getPrimaryClip();
+        ClipData.Item item = clipData.getItemAt(0);
+        final String text = item.getText().toString();
+
+        if (!TextUtils.isEmpty(text) && !text.startsWith("http") && isShareDes) {
+            TipDialog tipDialog = new TipDialog(this);
+            tipDialog.show("将复制的内容粘贴到文章描述处", text, "立即粘贴", "暂不", new MaterialDialog.ButtonCallback() {
+                @Override
+                public void onPositive(MaterialDialog dialog) {
+                    super.onPositive(dialog);
+                    isShareDes = false;
+                    etDescribe.setText(text);
+                }
+
+                @Override
+                public void onNegative(MaterialDialog dialog) {
+                    super.onNegative(dialog);
+                    isShareDes = false;
+                }
+            });
+        }
+    }
+
     private void commitNewBingo() {
         String website = etWebsite.getText().toString().trim();
         if (TextUtils.isEmpty(website)) {
-            ToastTip.show(this, getString(R.string.hint_input_website));
+            ToastTip.show(getString(R.string.hint_input_website));
             return;
         }
 
         String describe = etDescribe.getText().toString().trim();
         if (TextUtils.isEmpty(describe)) {
-            ToastTip.show(this, getString(R.string.hint_input_describe));
+            ToastTip.show(getString(R.string.hint_input_describe));
             return;
         }
 
@@ -191,7 +234,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
 
     private void resultFail() {
         loadingDialog.dismiss();
-        ToastTip.show(EditNewBingoActivity.this, "提交失败，请重试");
+        ToastTip.show("提交失败，请重试");
     }
 
     private List<String> getBmobUrls(BmobFile[] files) {
@@ -207,7 +250,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         switch (v.getId()) {
             case R.id.iv_image:
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    ToastTip.show(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.show("最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(this);
                     showSelectImageDialog();
@@ -279,7 +322,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
             @Override
             public void onClick(View v) {
                 if (bingoEntity.getImageList() != null && bingoEntity.getImageList().size() >= 9) {
-                    ToastTip.show(EditNewBingoActivity.this, "最多上传9张图片哦");
+                    ToastTip.show("最多上传9张图片哦");
                 } else {
                     KeyBoardUtil.hideKeyboard(EditNewBingoActivity.this);
                     showSelectImageDialog();
@@ -308,7 +351,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     public void getCompressImagePathCallBack() {
         String compressImagePath = mModel.get(1);
         if (TextUtils.isEmpty(compressImagePath)) {
-            ToastTip.show(this, "请重新选择图片");
+            ToastTip.show("请重新选择图片");
         } else {
             handleCompressImageViewWithPath(compressImagePath);
         }

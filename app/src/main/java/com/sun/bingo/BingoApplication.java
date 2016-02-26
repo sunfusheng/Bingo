@@ -34,17 +34,19 @@ import im.fir.sdk.FIR;
 public class BingoApplication extends Application {
 
     public static final String APP_CACHE_DIR = "Bingo/cache";
-    private static BingoApplication instance;
-    private static RefWatcher refWatcher;
+    private static BingoApplication mAppInstance;
+    private static Context mAppContext;
+    private static RefWatcher mRefWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        instance = this;
-        refWatcher = LeakCanary.install(this);
+        mAppInstance = this;
+        mAppContext = getApplicationContext();
+        mRefWatcher = LeakCanary.install(this);
         Esperandro.setSerializer(new FastJsonSerial());
-        ControlFactory.init(this); //Control代理工场初始化
+        ControlFactory.init(this);
         initImageLoader(this);
         initLocationManager();
 
@@ -58,11 +60,15 @@ public class BingoApplication extends Application {
     }
 
     public static BingoApplication getInstance() {
-        return instance;
+        return mAppInstance;
+    }
+
+    public static Context getContext() {
+        return mAppContext;
     }
 
     public static RefWatcher getRefWatcher() {
-        return refWatcher;
+        return mRefWatcher;
     }
 
     /**

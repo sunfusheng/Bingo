@@ -1,5 +1,7 @@
 package com.sun.bingo.ui.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +32,9 @@ import cn.bmob.v3.BmobUser;
 
 public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
+    protected Context mContext;
+    protected Activity mActivity;
+
     protected UserEntity myEntity;
     protected DisplayImageOptions userImageOptions;
     protected LoadingDialog loadingDialog;
@@ -38,6 +43,9 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.i("log-activity", "(" + getClass().getSimpleName() + ".java:1)");
+
+        mContext = this;
+        mActivity = this;
 
         ThemeUtil.changeTheme(this);
         initSystemBarTint(true);
