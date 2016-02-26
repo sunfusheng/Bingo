@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         ClipData.Item item = clipData.getItemAt(0);
         final String text = item.getText().toString();
 
-        if (!TextUtils.isEmpty(text) && text.startsWith("http") && isShareUrl) {
+        if (!TextUtils.isEmpty(text) && text.startsWith("http") && isShareUrl && !text.equals(getSettingsSharedPreferences().newBingoUrl())) {
             TipDialog tipDialog = new TipDialog(this);
             tipDialog.show("将复制的URL分享到BingoWorld", text, "立即分享", "暂不", new MaterialDialog.ButtonCallback() {
                 @Override

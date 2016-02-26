@@ -15,4 +15,10 @@ public interface SettingsSharedPreferences extends SharedPreferenceActions {
 
     int themeValue();
     void themeValue(int themeValue);
+
+    String newBingoUrl();
+    void newBingoUrl(String newBingoUrl);
+
+    String newBingoDes();
+    void newBingoDes(String newBingoDes);
 }

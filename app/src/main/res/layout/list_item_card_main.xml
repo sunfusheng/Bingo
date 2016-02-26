@@ -9,7 +9,7 @@
         android:id="@+id/ll_root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="15dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -41,8 +41,8 @@
                     android:layout_height="wrap_content"
                     android:text="未知"
                     android:singleLine="true"
-                    android:textSize="14sp"
-                    android:textColor="@color/font_black_1"/>
+                    android:textSize="12sp"
+                    android:textColor="@color/font_black_3"/>
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -73,11 +73,11 @@
             android:id="@+id/tv_describe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:text="内容描述"
             android:maxLines="16"
             android:textSize="14sp"
-            android:textColor="@color/font_black_2"/>
+            android:textColor="@color/font_black_1"/>
 
         <com.sun.bingo.widget.GroupImageView.GroupImageView
             android:id="@+id/giv_image_group"

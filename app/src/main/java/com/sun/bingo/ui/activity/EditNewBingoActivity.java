@@ -131,7 +131,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         ClipData.Item item = clipData.getItemAt(0);
         final String text = item.getText().toString();
 
-        if (!TextUtils.isEmpty(text) && !text.startsWith("http") && isShareDes) {
+        if (!TextUtils.isEmpty(text) && !text.startsWith("http") && isShareDes && !text.equals(getSettingsSharedPreferences().newBingoDes())) {
             TipDialog tipDialog = new TipDialog(this);
             tipDialog.show("将复制的内容粘贴到文章描述处", text, "立即粘贴", "暂不", new MaterialDialog.ButtonCallback() {
                 @Override
@@ -222,6 +222,8 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     }
 
     private void resultSuccess() {
+        getSettingsSharedPreferences().newBingoUrl(etWebsite.getText().toString());
+        getSettingsSharedPreferences().newBingoDes(etDescribe.getText().toString());
         EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
         loadingDialog.dismiss();
         CommonDialog.showSuccessDialog(this, new CommonDialog.DismissListener() {
