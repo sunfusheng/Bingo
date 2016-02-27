@@ -194,6 +194,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     private void checkClipboard() {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = clipboardManager.getPrimaryClip();
+        if (clipData == null) return ;
         ClipData.Item item = clipData.getItemAt(0);
         final String text = item.getText().toString();
 

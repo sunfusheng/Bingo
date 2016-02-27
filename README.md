@@ -20,7 +20,7 @@
 ![](/screenshots/icon_bingo_3.png) (图三)
 ![](/screenshots/icon_bingo_4.png) (图四)
 
-###用到的开源库
+### 用到的开源库，感谢
 
 * ImageLoader 图片缓存库
 * esperandro 保存本地数据
@@ -30,6 +30,13 @@
 * PhotoView 查看图片
 * LoadingView 加载动画
 * EventBus 事件总线
+
+###Version 1.4
+
+* 去掉短信注册登录功能
+* 增加新浪微博账号一键快速登录
+* 增加新浪微博SDK分享功能
+* 增加剪切版粘贴去添加新Bingo的功能
 
 ###Version 1.3
 

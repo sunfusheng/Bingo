@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.Bind;
 import cn.bmob.v3.BmobUser;
 
-/**
+/*BingoB
  * Created by sunfusheng on 15/11/10.
  */
 public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {

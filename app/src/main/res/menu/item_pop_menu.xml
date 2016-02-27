@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/pop_share"
-        android:title="分享"
+        android:title="系统分享"
         android:icon="@drawable/ic_action_share"/>
 
     <item

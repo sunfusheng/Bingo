@@ -128,6 +128,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     private void checkClipboard() {
         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
         ClipData clipData = clipboardManager.getPrimaryClip();
+        if (clipData == null) return ;
         ClipData.Item item = clipData.getItemAt(0);
         final String text = item.getText().toString();
 
