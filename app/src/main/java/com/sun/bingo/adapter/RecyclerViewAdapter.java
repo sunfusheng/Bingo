@@ -1,8 +1,5 @@
 package com.sun.bingo.adapter;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +21,7 @@ import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.ui.activity.MainActivity;
 import com.sun.bingo.ui.activity.UserInfoActivity;
 import com.sun.bingo.util.DateUtil;
+import com.sun.bingo.util.NetWorkUtil;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
@@ -131,14 +129,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             listViewHolder.llRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(listViewHolder.llRootView, "translationZ", 20, 0);
-                    animator.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            NavigateManager.gotoBingoDetailActivity(mContext, entity);
-                        }
-                    });
-                    animator.start();
+                    if (NetWorkUtil.isLinkAvailable(entity.getWebsite())) {
+                        NavigateManager.gotoBingoDetailActivity(mContext, entity);
+                    }
                 }
             });
 
@@ -154,8 +147,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 public void onClick(View v) {
                     if (entity.getUserEntity() != null) {
                         NavigateManager.gotoUserInfoActivity(mContext, entity.getUserEntity());
-                    } else {
-                        ToastTip.show("用户信息为空");
                     }
                 }
             });

@@ -38,6 +38,7 @@ import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
+import com.sun.bingo.util.NetWorkUtil;
 import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
@@ -112,7 +113,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
 
     @SuppressLint("NewApi")
     private void initView() {
-        initToolBar(toolbar, true, "新Bingo");
+        initToolBar(toolbar, true, "添加文章");
         hsImages.setVisibility(View.GONE);
         setRectShapeViewBackground(rlBottomLayout);
         setRoundRectShapeViewBackground(ivImage);
@@ -156,6 +157,11 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
         if (TextUtils.isEmpty(website)) {
             ToastTip.show(getString(R.string.hint_input_website));
             return;
+        }
+
+        if (!NetWorkUtil.isLinkAvailable(website)) {
+            ToastTip.show(getString(R.string.hint_input_website_available));
+            return ;
         }
 
         String describe = etDescribe.getText().toString().trim();
