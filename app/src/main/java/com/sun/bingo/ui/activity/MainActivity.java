@@ -212,6 +212,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
                 public void onNegative(MaterialDialog dialog) {
                     super.onNegative(dialog);
                     isShareUrl = false;
+                    getSettingsSharedPreferences().newBingoUrl(text);
                 }
             });
         }

@@ -147,6 +147,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
                 public void onNegative(MaterialDialog dialog) {
                     super.onNegative(dialog);
                     isShareDes = false;
+                    getSettingsSharedPreferences().newBingoDes(text);
                 }
             });
         }
