@@ -10,7 +10,7 @@ import com.sun.bingo.framework.okhttp.builder.OtherRequestBuilder;
 import com.sun.bingo.framework.okhttp.builder.PostFileBuilder;
 import com.sun.bingo.framework.okhttp.builder.PostFormBuilder;
 import com.sun.bingo.framework.okhttp.builder.PostStringBuilder;
-import com.sun.bingo.framework.okhttp.callback.Callback;
+import com.sun.bingo.framework.okhttp.callback.OkHttpCallBack;
 import com.sun.bingo.framework.okhttp.cookie.OkHttpCookieUtils;
 import com.sun.bingo.framework.okhttp.cookie.SimpleCookieJar;
 import com.sun.bingo.framework.okhttp.request.RequestCall;
@@ -113,7 +113,7 @@ public class OkHttpUtils {
         return new OtherRequestBuilder(METHOD.PATCH);
     }
 
-    public void execute(final RequestCall requestCall, Callback callback) {
+    public void execute(final RequestCall requestCall, OkHttpCallBack callback) {
         if (debug) {
             if (TextUtils.isEmpty(tag)) {
                 tag = TAG;
@@ -122,8 +122,8 @@ public class OkHttpUtils {
         }
 
         if (callback == null)
-            callback = Callback.CALLBACK_DEFAULT;
-        final Callback finalCallback = callback;
+            callback = OkHttpCallBack.DEFAULT_CALLBACK;
+        final OkHttpCallBack finalCallback = callback;
 
         requestCall.getCall().enqueue(new okhttp3.Callback() {
             @Override
@@ -135,7 +135,7 @@ public class OkHttpUtils {
             public void onResponse(final Call call, final Response response) {
                 try {
                     if (response.isSuccessful()) {
-                        sendSuccessResultCallback(finalCallback.parseNetworkResponse(response), finalCallback);
+                        sendSuccessResultCallback(finalCallback.parseResponse(response), finalCallback);
                     } else {
                         sendFailResultCallback(call, new RuntimeException(response.body().string()), finalCallback);
                     }
@@ -146,24 +146,22 @@ public class OkHttpUtils {
         });
     }
 
-    public void sendFailResultCallback(final Call call, final Exception e, final Callback callback) {
+    public void sendFailResultCallback(final Call call, final Exception e, final OkHttpCallBack callback) {
         if (callback == null) return;
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onError(call, e);
-                callback.onAfter();
+                callback.onFailure(call, e);
             }
         });
     }
 
-    public void sendSuccessResultCallback(final Object object, final Callback callback) {
+    public void sendSuccessResultCallback(final Object object, final OkHttpCallBack callback) {
         if (callback == null) return;
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                callback.onResponse(object);
-                callback.onAfter();
+                callback.onSuccess(object);
             }
         });
     }

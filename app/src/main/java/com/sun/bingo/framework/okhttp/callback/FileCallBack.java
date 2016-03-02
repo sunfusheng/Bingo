@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 import okhttp3.Response;
 
-public abstract class FileCallBack extends Callback<File> {
+public abstract class FileCallBack extends OkHttpCallBack<File> {
 
     private String dstFileDir; // 目标文件存储的文件夹路径
     private String dstFileName; // 目标文件存储的文件名
@@ -22,7 +22,7 @@ public abstract class FileCallBack extends Callback<File> {
     }
 
     @Override
-    public File parseNetworkResponse(Response response) throws Exception {
+    public File parseResponse(Response response) throws Exception {
         return saveFile(response);
     }
 

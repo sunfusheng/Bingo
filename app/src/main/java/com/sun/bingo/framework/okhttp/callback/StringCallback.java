@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import okhttp3.Response;
 
-public abstract class StringCallback extends Callback<String> {
+public abstract class StringCallback extends OkHttpCallBack<String> {
 
     @Override
-    public String parseNetworkResponse(Response response) throws IOException {
+    public String parseResponse(Response response) throws IOException {
         return response.body().string();
     }
 }

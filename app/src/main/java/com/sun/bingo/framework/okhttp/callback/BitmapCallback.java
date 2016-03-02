@@ -5,10 +5,10 @@ import android.graphics.BitmapFactory;
 
 import okhttp3.Response;
 
-public abstract class BitmapCallback extends Callback<Bitmap> {
+public abstract class BitmapCallback extends OkHttpCallBack<Bitmap> {
 
     @Override
-    public Bitmap parseNetworkResponse(Response response) throws Exception {
+    public Bitmap parseResponse(Response response) throws Exception {
         return BitmapFactory.decodeStream(response.body().byteStream());
     }
 }

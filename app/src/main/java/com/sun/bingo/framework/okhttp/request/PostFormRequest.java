@@ -3,7 +3,7 @@ package com.sun.bingo.framework.okhttp.request;
 
 import com.sun.bingo.framework.okhttp.OkHttpUtils;
 import com.sun.bingo.framework.okhttp.builder.PostFormBuilder;
-import com.sun.bingo.framework.okhttp.callback.Callback;
+import com.sun.bingo.framework.okhttp.callback.OkHttpCallBack;
 
 import java.net.FileNameMap;
 import java.net.URLConnection;
@@ -31,6 +31,7 @@ public class PostFormRequest extends OkHttpRequest {
         if (files == null || files.isEmpty()) {
             FormBody.Builder builder = new FormBody.Builder();
             addParams(builder);
+
             return builder.build();
         } else {
             MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -41,24 +42,23 @@ public class PostFormRequest extends OkHttpRequest {
                 RequestBody fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileInput.filename)), fileInput.file);
                 builder.addFormDataPart(fileInput.key, fileInput.filename, fileBody);
             }
+
             return builder.build();
         }
     }
 
     @Override
-    protected RequestBody wrapRequestBody(RequestBody requestBody, final Callback callback) {
+    protected RequestBody wrapRequestBody(RequestBody requestBody, final OkHttpCallBack callback) {
         if (callback == null) return requestBody;
         CountingRequestBody countingRequestBody = new CountingRequestBody(requestBody, new CountingRequestBody.Listener() {
             @Override
             public void onRequestProgress(final long bytesWritten, final long contentLength) {
-
                 OkHttpUtils.getInstance().getHandler().post(new Runnable() {
                     @Override
                     public void run() {
                         callback.inProgress(bytesWritten * 1.0f / contentLength);
                     }
                 });
-
             }
         });
         return countingRequestBody;

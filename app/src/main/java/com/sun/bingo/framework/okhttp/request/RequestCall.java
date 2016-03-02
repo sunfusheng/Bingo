@@ -1,7 +1,7 @@
 package com.sun.bingo.framework.okhttp.request;
 
 import com.sun.bingo.framework.okhttp.OkHttpUtils;
-import com.sun.bingo.framework.okhttp.callback.Callback;
+import com.sun.bingo.framework.okhttp.callback.OkHttpCallBack;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -42,7 +42,7 @@ public class RequestCall {
         return this;
     }
 
-    public Call generateCall(Callback callback) {
+    public Call generateCall(OkHttpCallBack callback) {
         request = generateRequest(callback);
 
         if (readTimeOut > 0 || writeTimeOut > 0 || connTimeOut > 0) {
@@ -63,15 +63,15 @@ public class RequestCall {
         return call;
     }
 
-    private Request generateRequest(Callback callback) {
+    private Request generateRequest(OkHttpCallBack callback) {
         return okHttpRequest.generateRequest(callback);
     }
 
-    public void execute(Callback callback) {
+    public void execute(OkHttpCallBack callback) {
         generateCall(callback);
 
         if (callback != null) {
-            callback.onBefore(request);
+            callback.onStart(request);
         }
 
         OkHttpUtils.getInstance().execute(this, callback);

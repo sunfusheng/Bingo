@@ -14,38 +14,19 @@ public abstract class OkHttpCallBack<T> {
 
     public void inProgress(float progress) {}
 
+    public abstract T parseResponse(Response response) throws Exception;
+
     public abstract void onSuccess(T response);
 
-    public abstract void onFailure(Request request, Exception e);
-
-    public abstract T parseNetworkResponse(Response response) throws Exception;
-
-    public abstract void onError(Call call, Exception e);
-
-    public abstract void onResponse(T response);
+    public abstract void onFailure(Call request, Exception e);
 
 
-    public static final OkHttpCallBack DEFAULT_CALLBACK = new OkHttpCallBack() {
+    public static final OkHttpCallBack DEFAULT_CALLBACK = new StringCallback() {
 
         @Override
-        public Object parseNetworkResponse(Response response) throws Exception {
-            return null;
-        }
+        public void onSuccess(String response) {}
 
         @Override
-        public void onError(Call call, Exception e) {
-
-        }
-
-        @Override
-        public void onResponse(Object response) {
-
-        }
-
-        @Override
-        public void onSuccess(Object obj) {}
-
-        @Override
-        public void onFailure(Request request, Exception e) {}
+        public void onFailure(Call request, Exception e) {}
     };
 }

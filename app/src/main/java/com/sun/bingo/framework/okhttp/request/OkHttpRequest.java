@@ -1,6 +1,6 @@
 package com.sun.bingo.framework.okhttp.request;
 
-import com.sun.bingo.framework.okhttp.callback.Callback;
+import com.sun.bingo.framework.okhttp.callback.OkHttpCallBack;
 
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public abstract class OkHttpRequest {
 
     protected abstract RequestBody buildRequestBody();
 
-    protected RequestBody wrapRequestBody(RequestBody requestBody, final Callback callback) {
+    protected RequestBody wrapRequestBody(RequestBody requestBody, final OkHttpCallBack callback) {
         return requestBody;
     }
 
@@ -41,7 +41,7 @@ public abstract class OkHttpRequest {
         return new RequestCall(this);
     }
 
-    public Request generateRequest(Callback callback) {
+    public Request generateRequest(OkHttpCallBack callback) {
         RequestBody requestBody = wrapRequestBody(buildRequestBody(), callback);
         prepareBuilder();
         return buildRequest(builder, requestBody);
