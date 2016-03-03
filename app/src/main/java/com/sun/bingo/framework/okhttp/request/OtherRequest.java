@@ -2,7 +2,7 @@ package com.sun.bingo.framework.okhttp.request;
 
 import android.text.TextUtils;
 
-import com.sun.bingo.framework.okhttp.OkHttpUtils;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
 
 import java.util.Map;
 
@@ -39,16 +39,16 @@ public class OtherRequest extends OkHttpRequest {
 
     @Override
     protected Request buildRequest(Request.Builder builder, RequestBody requestBody) {
-        if (method.equals(OkHttpUtils.METHOD.PUT)) {
+        if (method.equals(OkHttpProxy.METHOD.PUT)) {
             builder.put(requestBody);
-        } else if (method.equals(OkHttpUtils.METHOD.DELETE)) {
+        } else if (method.equals(OkHttpProxy.METHOD.DELETE)) {
             if (requestBody == null)
                 builder.delete();
             else
                 builder.delete(requestBody);
-        } else if (method.equals(OkHttpUtils.METHOD.HEAD)) {
+        } else if (method.equals(OkHttpProxy.METHOD.HEAD)) {
             builder.head();
-        } else if (method.equals(OkHttpUtils.METHOD.PATCH)) {
+        } else if (method.equals(OkHttpProxy.METHOD.PATCH)) {
             builder.patch(requestBody);
         }
         return builder.build();

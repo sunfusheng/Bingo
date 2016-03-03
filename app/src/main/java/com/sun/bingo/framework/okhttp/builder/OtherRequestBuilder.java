@@ -1,6 +1,6 @@
 package com.sun.bingo.framework.okhttp.builder;
 
-import com.sun.bingo.framework.okhttp.OkHttpUtils;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
 import com.sun.bingo.framework.okhttp.request.OtherRequest;
 import com.sun.bingo.framework.okhttp.request.RequestCall;
 
@@ -23,7 +23,7 @@ public class OtherRequestBuilder extends OkHttpRequestBuilder {
     @Override
     public RequestCall build() {
         //TODO check other method can use params
-        if (params != null && method.equals(OkHttpUtils.METHOD.DELETE)) {
+        if (params != null && method.equals(OkHttpProxy.METHOD.DELETE)) {
             url = appendParams(url, params);
         }
 

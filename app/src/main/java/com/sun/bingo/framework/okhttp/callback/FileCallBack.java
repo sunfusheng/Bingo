@@ -1,6 +1,6 @@
 package com.sun.bingo.framework.okhttp.callback;
 
-import com.sun.bingo.framework.okhttp.OkHttpUtils;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,7 +46,7 @@ public abstract class FileCallBack extends OkHttpCallBack<File> {
                 sum += len;
                 fos.write(buf, 0, len);
                 final long finalSum = sum;
-                OkHttpUtils.getInstance().getHandler().post(new Runnable() {
+                OkHttpProxy.getInstance().getHandler().post(new Runnable() {
                     @Override
                     public void run() {
                         inProgress(finalSum * 1.0f / total);

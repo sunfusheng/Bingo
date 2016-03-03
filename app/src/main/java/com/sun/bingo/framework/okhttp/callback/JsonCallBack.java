@@ -1,10 +1,8 @@
 package com.sun.bingo.framework.okhttp.callback;
 
-import com.google.gson.Gson;
-import com.google.gson.internal.$Gson$Types;
+import com.sun.bingo.util.FastJsonUtil;
 
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 
 import okhttp3.Response;
 
@@ -15,18 +13,11 @@ public abstract class JsonCallBack<T> extends OkHttpCallBack<T> {
 
     @Override
     public T parseResponse(Response response) throws Exception {
-        Type type = getSuperclassTypeParameter(getClass());
-        String string = response.body().string();
-        T obj = new Gson().fromJson(string, type);
-        return obj;
-    }
+        ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+        Class<T> clazz = (Class<T>) parameterizedType.getActualTypeArguments()[0];
 
-    private Type getSuperclassTypeParameter(Class<?> subclass) {
-        Type superclass = subclass.getGenericSuperclass();
-        if (superclass instanceof Class) {
-            throw new RuntimeException("Missing type parameter.");
-        }
-        ParameterizedType parameter = (ParameterizedType) superclass;
-        return $Gson$Types.canonicalize(parameter.getActualTypeArguments()[0]);
+        String string = response.body().string();
+        T obj = FastJsonUtil.parseJson(string, clazz);
+        return obj;
     }
 }

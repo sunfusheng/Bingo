@@ -26,19 +26,19 @@ import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
-public class OkHttpUtils {
+public class OkHttpProxy {
     
     public static final String TAG = "log-OkHttp3";
     public static final long DEFAULT_MILLISECONDS = 10000;
     
-    private static OkHttpUtils mInstance;
+    private static OkHttpProxy mInstance;
     private OkHttpClient mOkHttpClient;
     private Handler mHandler;
 
     private boolean debug;
     private String tag;
     
-    private OkHttpUtils() {
+    private OkHttpProxy() {
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         okHttpClientBuilder.cookieJar(new SimpleCookieJar());
         mHandler = new Handler(Looper.getMainLooper());
@@ -52,18 +52,18 @@ public class OkHttpUtils {
         mOkHttpClient = okHttpClientBuilder.build();
     }
 
-    public static OkHttpUtils getInstance() {
+    public static OkHttpProxy getInstance() {
         if (mInstance == null) {
-            synchronized (OkHttpUtils.class) {
+            synchronized (OkHttpProxy.class) {
                 if (mInstance == null) {
-                    mInstance = new OkHttpUtils();
+                    mInstance = new OkHttpProxy();
                 }
             }
         }
         return mInstance;
     }
 
-    public OkHttpUtils debug(String tag) {
+    public OkHttpProxy debug(String tag) {
         debug = true;
         this.tag = tag;
         return this;

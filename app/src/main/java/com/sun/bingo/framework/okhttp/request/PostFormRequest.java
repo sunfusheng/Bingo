@@ -1,7 +1,7 @@
 package com.sun.bingo.framework.okhttp.request;
 
 
-import com.sun.bingo.framework.okhttp.OkHttpUtils;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
 import com.sun.bingo.framework.okhttp.builder.PostFormBuilder;
 import com.sun.bingo.framework.okhttp.callback.OkHttpCallBack;
 
@@ -53,7 +53,7 @@ public class PostFormRequest extends OkHttpRequest {
         CountingRequestBody countingRequestBody = new CountingRequestBody(requestBody, new CountingRequestBody.Listener() {
             @Override
             public void onRequestProgress(final long bytesWritten, final long contentLength) {
-                OkHttpUtils.getInstance().getHandler().post(new Runnable() {
+                OkHttpProxy.getInstance().getHandler().post(new Runnable() {
                     @Override
                     public void run() {
                         callback.inProgress(bytesWritten * 1.0f / contentLength);
