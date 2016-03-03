@@ -5,8 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.multidex.MultiDex;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.stetho.Stetho;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
@@ -45,6 +43,7 @@ public class BingoApplication extends Application {
         mAppInstance = this;
         mAppContext = getApplicationContext();
         mRefWatcher = LeakCanary.install(this);
+
         Esperandro.setSerializer(new FastJsonSerial());
         ControlFactory.init(this);
         initImageLoader(this);
@@ -52,11 +51,6 @@ public class BingoApplication extends Application {
 
         FIR.init(this);
         Bmob.initialize(this, ConstantParams.BMOB_APP_ID);
-        Fresco.initialize(this);
-        Stetho.initialize(Stetho.newInitializerBuilder(this)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                .build());
     }
 
     public static BingoApplication getInstance() {
@@ -71,9 +65,6 @@ public class BingoApplication extends Application {
         return mRefWatcher;
     }
 
-    /**
-     * 初始化图片加载管理器
-     */
     private void initImageLoader(Context context) {
         // 初始化图片默认display options
         DisplayImageOptions imageOptions = new DisplayImageOptions.Builder()

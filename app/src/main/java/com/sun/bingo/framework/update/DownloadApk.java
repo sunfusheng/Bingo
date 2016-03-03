@@ -6,22 +6,24 @@ import android.net.Uri;
 import android.os.Environment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
+import com.sun.bingo.control.UrlManager;
 import com.sun.bingo.entity.AppEntity;
 import com.sun.bingo.entity.VersionEntity;
 import com.sun.bingo.framework.dialog.DownloadDialog;
 import com.sun.bingo.framework.dialog.TipDialog;
-import com.sun.bingo.framework.http.HttpCallBack.BaseParserCallBack;
-import com.sun.bingo.framework.http.HttpControl.HttpControl;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
+import com.sun.bingo.framework.okhttp.callback.FileCallBack;
+import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
+import com.sun.bingo.framework.okhttp.request.RequestCall;
 import com.sun.bingo.util.ShareUtil;
 
 import java.io.File;
+
+import okhttp3.Call;
+import okhttp3.Request;
 
 /**
  * Created by sunfusheng on 15/8/20.
@@ -42,21 +44,19 @@ public class DownloadApk {
     }
 
     public void checkVersion() {
-        HttpControl httpControl = new HttpControl();
-        httpControl.getVersionInfo(new BaseParserCallBack<VersionEntity>() {
-
+        RequestCall build = OkHttpProxy.get().url(UrlManager.URL_APP_VERSION).build();
+        build.execute(new JsonCallBack<VersionEntity>() {
             @Override
-            protected boolean onSuccessWithObject(VersionEntity versionEntity) {
-                int version = Integer.parseInt(versionEntity.getVersion());
+            public void onSuccess(VersionEntity response) {
+                int version = Integer.parseInt(response.getVersion());
                 if (version > appEntity.getVersionCode()) {
-                    dealWithVersion(versionEntity);
+                    dealWithVersion(response);
                 }
-                return super.onSuccessWithObject(versionEntity);
             }
 
             @Override
-            protected Class<VersionEntity> getCurrentClass() {
-                return VersionEntity.class;
+            public void onFailure(Call request, Exception e) {
+
             }
         });
     }
@@ -84,28 +84,29 @@ public class DownloadApk {
             Logger.i(e.getMessage());
         }
 
-        HttpUtils http = new HttpUtils();
-        http.download(url, filePath, true, false, new RequestCallBack<File>() {
+        RequestCall build = OkHttpProxy.get().url(url).build();
+        build.execute(new FileCallBack(filePath, fileName) {
+
             @Override
-            public void onStart() {
+            public void onStart(Request request) {
+                super.onStart(request);
                 downloadDialog.show();
             }
 
             @Override
-            public void onLoading(long total, long current, boolean isUploading) {
-                double progress = ((double)current/(double)total) * 100;
-                downloadDialog.getMaterialDialog().setProgress((int)progress);
+            public void inProgress(float progress) {
+                downloadDialog.getMaterialDialog().setProgress(((int)(progress*100)));
             }
 
             @Override
-            public void onFailure(HttpException error, String msg) {
-                downloadDialog.dismiss();
-            }
-
-            @Override
-            public void onSuccess(ResponseInfo<File> responseInfo) {
+            public void onSuccess(File response) {
                 downloadDialog.dismiss();
                 installPackage(filePath);
+            }
+
+            @Override
+            public void onFailure(Call request, Exception e) {
+                downloadDialog.dismiss();
             }
         });
     }

@@ -19,21 +19,27 @@ import com.sun.bingo.R;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
+import com.sun.bingo.control.UrlManager;
 import com.sun.bingo.entity.SinaUserInfoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.LoadingDialog;
 import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.framework.http.HttpCallBack.BaseParserCallBack;
-import com.sun.bingo.framework.http.HttpControl.HttpControl;
+import com.sun.bingo.framework.okhttp.OkHttpProxy;
+import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
+import com.sun.bingo.framework.okhttp.request.RequestCall;
 import com.sun.bingo.util.KeyBoardUtil;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.OtherLoginListener;
 import cn.bmob.v3.listener.UpdateListener;
+import okhttp3.Call;
 
 /**
  * Created by sunfusheng on 15/7/27.
@@ -143,26 +149,22 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
 
     // 获取新浪用户信息
     private void getSinaUserInfo() {
-        HttpControl httpControl = new HttpControl();
-        httpControl.getSinaUserInfo(getAccountSharedPreferences().access_token(), getAccountSharedPreferences().uid(),
-                new BaseParserCallBack<SinaUserInfoEntity>() {
-                    @Override
-                    protected boolean onSuccessWithObject(SinaUserInfoEntity sinaUserInfoEntity) {
-                        updateUserInfo(sinaUserInfoEntity);
-                        return super.onSuccessWithObject(sinaUserInfoEntity);
-                    }
+        Map<String, String> params = new HashMap<>();
+        params.put("access_token", getAccountSharedPreferences().access_token());
+        params.put("uid", getAccountSharedPreferences().uid());
 
-                    @Override
-                    protected void onFailureCallBack(Exception e, String msg) {
-                        super.onFailureCallBack(e, msg);
-                        gotoMainOrProfile();
-                    }
+        RequestCall build = OkHttpProxy.get().url(UrlManager.URL_SINA_USER_INFO).params(params).build();
+        build.execute(new JsonCallBack<SinaUserInfoEntity>() {
+            @Override
+            public void onSuccess(SinaUserInfoEntity response) {
+                updateUserInfo(response);
+            }
 
-                    @Override
-                    protected Class<SinaUserInfoEntity> getCurrentClass() {
-                        return SinaUserInfoEntity.class;
-                    }
-                });
+            @Override
+            public void onFailure(Call request, Exception e) {
+                gotoMainOrProfile();
+            }
+        });
     }
 
     // 更新Bmob用户信息
