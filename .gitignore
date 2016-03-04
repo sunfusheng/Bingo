@@ -1,10 +1,8 @@
-/extras-libs/ImageLoader/ImageLoader.iml
 .gradle
 /local.properties
 /.idea
-.DS_Store
+/*.iml
 /build
 /gradle
 /app/build
-/captures
-/app/signing.properties
+/app/*.iml

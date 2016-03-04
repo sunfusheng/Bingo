@@ -1,16 +1,20 @@
 
 ###BingoWorld介绍
 
-	BingoWorld是一款IT阅读学习类软件，在不久的将来会拥有丰富的学习内容，
+	BingoWorld是一款IT阅读学习类的开源软件，在不久的将来会拥有丰富的学习内容，
 	包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
+
+	该APP是通过新浪微博登录的，为防止大家clone下来后无法编译和不能正常使用微博登录，现将证书上传，
+	如果你还是不能编译，请通过下面的联系方式与我联系。
+
 
 ###[APP下载地址](https://fir.im/bingoworld)
 
-	欢迎您的加入，共同收集好的技术文章，一起学习共同进步！
+	欢迎您的加入，共同收集好的技术文章，一起学习！共同进步！
 
 ###[GitHub开源地址](https://github.com/sfsheng0322/Bingo)
 
-	欢迎各路大神Star、Fork、Pull requests.
+	欢迎各路大神Star、Fork、Pull requests，您的关注是我不断进步的动力。
 
 ###ScreenShots
 
@@ -22,14 +26,15 @@
 
 ### 用到的开源库，感谢
 
-* ImageLoader 图片缓存库
-* esperandro 保存本地数据
-* SystemBarTint 沉浸式状态栏
-* Material Dialog 对话框
-* LogUtils 打印日志信息
-* PhotoView 查看图片
-* LoadingView 加载动画
-* EventBus 事件总线
+* [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
+* [esperandro](https://github.com/dkunzler/esperandro)
+* [SystemBarTint](https://github.com/jgilfelt/SystemBarTint)
+* [Material Dialog](https://github.com/afollestad/material-dialogs)
+* [logger](https://github.com/orhanobut/logger)
+* [PhotoView](https://github.com/chrisbanes/PhotoView)
+* [android-shapeLoadingView](https://github.com/zzz40500/android-shapeLoadingView)
+* [EventBus](https://github.com/greenrobot/EventBus)
+* [OkHttp3](https://github.com/square/okhttp)
 
 ###Version 1.4
 
