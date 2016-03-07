@@ -18,8 +18,4 @@ public interface ConstantParams {
             + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
             + "follow_app_official_microblog," + "invitation_write";
 
-    // GitHub信息
-    String GITHUB_CLIENT_ID = "c2a4749964d945858564";
-    String GITHUB_CLIENT_SECRET = "337baf3350475f409be888de1ddb35f59f2c7b7a";
-
 }
