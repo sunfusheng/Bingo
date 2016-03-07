@@ -5,17 +5,17 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
 
-    <LinearLayout
-        android:id="@+id/ll_root_view"
+    <RelativeLayout
+        android:id="@+id/rl_root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_user_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:layout_height="wrap_content">
 
             <com.github.siyamed.shapeimageview.CircularImageView
                 android:id="@+id/civ_user_avatar"
@@ -30,7 +30,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_toLeftOf="@+id/ll_icons"
                 android:layout_toRightOf="@+id/civ_user_avatar"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true">
@@ -52,85 +51,80 @@
                     android:textSize="12sp"
                     android:textColor="@color/font_black_4"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_icons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentRight="true">
-
-                <ImageView
-                    android:id="@+id/iv_item_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_action_expand_more"/>
-
-            </LinearLayout>
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_item_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_black"
+            android:padding="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/selector_over_flow"/>
 
         <TextView
             android:id="@+id/tv_describe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_user_info"
             android:layout_marginTop="10dp"
             android:text="内容描述"
             android:maxLines="16"
             android:textSize="14sp"
             android:textColor="@color/font_black_1"/>
 
-        <com.sun.bingo.widget.GroupImageView.GroupImageView
-            android:id="@+id/giv_image_group"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/tv_describe">
 
-            <ImageView android:id="@+id/img01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
+            <com.sun.bingo.widget.GroupImageView.GroupImageView
+                android:id="@+id/giv_image_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/img04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img05"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img06"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
 
-            <ImageView
-                android:id="@+id/img07"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img08"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:id="@+id/img09"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"/>
-        </com.sun.bingo.widget.GroupImageView.GroupImageView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+            </com.sun.bingo.widget.GroupImageView.GroupImageView>
+        </LinearLayout>
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

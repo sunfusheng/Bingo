@@ -188,7 +188,7 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
             ImageView imgView = (ImageView) getChildAt(i);
 
             if (i >= picRects.length) {
-                //隐藏多余的View
+                // 隐藏多余的View
                 getChildAt(i).setVisibility(View.GONE);
             } else {
                 imgView.setOnClickListener(this);
@@ -209,7 +209,6 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
         int index = (int) v.getTag(R.id.tag_index);
         List<String> picUrls = (List<String>) v.getTag(R.id.tag_pic_urls);
         gotoImageActivity(index, picUrls);
-
     }
 
     private void gotoImageActivity(int index, List<String> picUrls) {
@@ -218,4 +217,5 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
         intent.putExtra("picUrls", picUrls.toArray(new String[picUrls.size()]));
         mContext.startActivity(intent);
     }
+
 }

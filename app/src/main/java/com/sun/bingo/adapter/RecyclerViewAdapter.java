@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -126,7 +126,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 listViewHolder.givImageGroup.setVisibility(View.GONE);
             }
 
-            listViewHolder.llRootView.setOnClickListener(new View.OnClickListener() {
+            listViewHolder.rlRootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (NetWorkUtil.isLinkAvailable(entity.getWebsite())) {
@@ -330,14 +330,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView tvNickName;
         @Bind(R.id.tv_time)
         TextView tvTime;
+        @Bind(R.id.rl_user_info)
+        RelativeLayout rlUserInfo;
         @Bind(R.id.iv_item_more)
         ImageView ivItemMore;
         @Bind(R.id.tv_describe)
         TextView tvDescribe;
         @Bind(R.id.giv_image_group)
         GroupImageView givImageGroup;
-        @Bind(R.id.ll_root_view)
-        LinearLayout llRootView;
+        @Bind(R.id.rl_root_view)
+        RelativeLayout rlRootView;
 
         public ListViewHolder(View view) {
             super(view);

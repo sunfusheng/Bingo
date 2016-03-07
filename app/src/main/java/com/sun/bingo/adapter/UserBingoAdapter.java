@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
@@ -17,11 +17,11 @@ import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
-/*BingoB
+/**
  * Created by sunfusheng on 15/11/10.
  */
 public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
@@ -77,34 +77,16 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
         TextView tvNickName;
         @Bind(R.id.tv_time)
         TextView tvTime;
+        @Bind(R.id.rl_user_info)
+        RelativeLayout rlUserInfo;
         @Bind(R.id.iv_item_more)
         ImageView ivItemMore;
-        @Bind(R.id.ll_icons)
-        LinearLayout llIcons;
         @Bind(R.id.tv_describe)
         TextView tvDescribe;
-        @Bind(R.id.img01)
-        ImageView img01;
-        @Bind(R.id.img02)
-        ImageView img02;
-        @Bind(R.id.img03)
-        ImageView img03;
-        @Bind(R.id.img04)
-        ImageView img04;
-        @Bind(R.id.img05)
-        ImageView img05;
-        @Bind(R.id.img06)
-        ImageView img06;
-        @Bind(R.id.img07)
-        ImageView img07;
-        @Bind(R.id.img08)
-        ImageView img08;
-        @Bind(R.id.img09)
-        ImageView img09;
         @Bind(R.id.giv_image_group)
         GroupImageView givImageGroup;
-        @Bind(R.id.ll_root_view)
-        LinearLayout llRootView;
+        @Bind(R.id.rl_root_view)
+        RelativeLayout rlRootView;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
