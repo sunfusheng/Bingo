@@ -58,19 +58,18 @@ public class BingoDetailActivity extends BaseActivity {
 
     private void initView() {
         settings = webView.getSettings();
-//        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
+        settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript
         settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setSupportZoom(true); //支持缩放
         settings.setBuiltInZoomControls(true); //支持手势缩放
         settings.setDisplayZoomControls(false); //是否显示缩放按钮
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null); //启动硬件加速
-        }
-
+        // >= 19(SDK4.4)启动硬件加速，否则启动软件加速
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             settings.setLoadsImagesAutomatically(true); //支持自动加载图片
         } else {
+            webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
             settings.setLoadsImagesAutomatically(false);
         }
 
@@ -105,6 +104,7 @@ public class BingoDetailActivity extends BaseActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+                webView.setLayerType(View.LAYER_TYPE_NONE, null);
                 smoothProgressBar.setVisibility(View.GONE);
                 if (!settings.getLoadsImagesAutomatically()) {
                     settings.setLoadsImagesAutomatically(true);
