@@ -3,7 +3,6 @@ package com.sun.bingo.framework.base;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.sun.bingo.BingoApplication;
 import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
 import com.sun.bingo.framework.proxy.common.IRefreshBack;
@@ -55,7 +54,6 @@ public class BaseAsyncFragment<T extends BaseControl> extends Fragment implement
     public void onDestroy() {
         mHelper.onDestroy();
         super.onDestroy();
-        BingoApplication.getRefWatcher().watch(this);
     }
 
     protected <P> P getSharedPreferences(Class<P> spClass) {

@@ -15,8 +15,6 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.module.LocationManager;
@@ -34,7 +32,6 @@ public class BingoApplication extends Application {
     public static final String APP_CACHE_DIR = "Bingo/cache";
     private static BingoApplication mAppInstance;
     private static Context mAppContext;
-    private static RefWatcher mRefWatcher;
 
     @Override
     public void onCreate() {
@@ -42,7 +39,6 @@ public class BingoApplication extends Application {
 
         mAppInstance = this;
         mAppContext = getApplicationContext();
-        mRefWatcher = LeakCanary.install(this);
 
         Esperandro.setSerializer(new FastJsonSerial());
         ControlFactory.init(this);
@@ -59,10 +55,6 @@ public class BingoApplication extends Application {
 
     public static Context getContext() {
         return mAppContext;
-    }
-
-    public static RefWatcher getRefWatcher() {
-        return mRefWatcher;
     }
 
     private void initImageLoader(Context context) {
