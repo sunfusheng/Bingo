@@ -18,4 +18,8 @@ public interface ConstantParams {
             + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
             + "follow_app_official_microblog," + "invitation_write";
 
+    // 微信信息
+    String WEIXIN_APP_ID = "wx19b6bd8addd9371b";
+    String WEIXIN_APP_SECRET = "d2921a2fd2e75d01ed50edeb148255a9";
+
 }

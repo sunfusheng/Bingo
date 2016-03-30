@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:id="@+id/ll_root_view"
-    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <include layout="@layout/app_toolbar"/>
@@ -13,26 +14,37 @@
         android:id="@+id/tv_login_sina"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_bg_pressed_white"
         android:drawableLeft="@drawable/ic_com_sina_weibo_sdk_logo"
         android:drawablePadding="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:gravity="center_vertical"
-        android:background="@drawable/selector_bg_pressed_white"
         android:paddingLeft="15dp"
-        android:layout_marginTop="20dp"
         android:text="新浪微博"
         android:textColor="@color/font_black_2"
         android:textSize="16sp"/>
 
     <TextView
+        android:id="@+id/tv_login_weixin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="1px"
+        android:background="@drawable/selector_bg_pressed_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="微信"
+        android:textColor="@color/font_black_2"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="一键快速登录"
+        android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:text="一键快速登录"
         android:textColor="@color/font_black_4"
         android:textSize="12sp"/>
 

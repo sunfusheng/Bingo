@@ -39,7 +39,7 @@
     <string name="copy_message">复制</string>
     <string name="delete_message">删除</string>
 
-    <string name="msg_now">刚刚</string>
+    <string name="msg_now">片刻之前</string>
     <string name="msg_today">今天</string>
     <string name="msg_yesterday">昨天</string>
     <string name="msg_few_minutes_ago">分钟前</string>

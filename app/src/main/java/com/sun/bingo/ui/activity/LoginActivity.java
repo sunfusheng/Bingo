@@ -52,6 +52,8 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
     TextView tvLoginSina;
     @Bind(R.id.ll_root_view)
     LinearLayout llRootView;
+    @Bind(R.id.tv_login_weixin)
+    TextView tvLoginWeixin;
 
     private AuthInfo mAuthInfo;
     private SsoHandler mSsoHandler;
@@ -89,6 +91,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
             }
         });
         tvLoginSina.setOnClickListener(this);
+        tvLoginWeixin.setOnClickListener(this);
     }
 
     @Override
@@ -96,6 +99,9 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
         switch (v.getId()) {
             case R.id.tv_login_sina:
                 mSsoHandler.authorize(new AuthListener());
+                break;
+            case R.id.tv_login_weixin:
+
                 break;
         }
     }
