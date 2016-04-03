@@ -53,14 +53,14 @@ Google 的dexmaker可以说是一个非常好的选择。
 * [EventBus](https://github.com/greenrobot/EventBus)
 * [OkHttp3](https://github.com/square/okhttp)
 
-### Version 1.4
+#### Version 1.4
 
 * 去掉短信注册登录功能
 * 增加新浪微博账号一键快速登录
 * 增加新浪微博SDK分享功能
 * 增加剪切版粘贴去添加新Bingo的功能
 
-### Version 1.3
+#### Version 1.3
 
 * 新增上拉加载更多功能
 * 重构代码使用MVP框架
@@ -69,20 +69,20 @@ Google 的dexmaker可以说是一个非常好的选择。
 * 使用EventBus
 * 增加删除功能
 
-### Version 1.2
+#### Version 1.2
 
 * 使用PhotoView增加图片查看功能
 * 修改了几个Bug
 * 使用正式版的证书
 
-### Version 1.1
+#### Version 1.1
 
 * 用户登录后可以收藏自己的技术链接文章
 * 使用WebView打开链接文章
 * 使用fir.im平台增加在线升级功能
 * 增加主题设置功能和分享功能
 
-### Version 1.0
+#### Version 1.0
 
 * 使用Bmob后端云服务
 * 采用Android MD设计风格
@@ -91,10 +91,15 @@ Google 的dexmaker可以说是一个非常好的选择。
 
 ### 关于我
 
-我的邮箱：sfsheng0322@126.com
+邮箱：sfsheng0322@126.com
 
-[我的GitHub](https://github.com/sfsheng0322)
+[GitHub主页](https://github.com/sfsheng0322)
 
-[我的博客](https://sfsheng0322.github.io)
+[简书主页](http://www.jianshu.com/users/88509e7e2ed1/latest_articles)
 
-[我的微博](http://weibo.com/3852192525/profile?rightmod=1&wvr=6&mod=personinfo)
+[个人博客](http://sunfusheng.com/)
+
+[新浪微博](http://weibo.com/3852192525/profile?rightmod=1&wvr=6&mod=personinfo)
+
+
+
