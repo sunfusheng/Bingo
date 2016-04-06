@@ -1,4 +1,4 @@
-package com.sun.bingo.module;
+package com.sun.bingo.control.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -8,8 +8,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.orhanobut.logger.Logger;
+import com.sun.bingo.control.manager.listener.OnGetLocationListener;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.module.listener.OnGetLocationListener;
 import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
 
 import cn.bmob.v3.BmobUser;

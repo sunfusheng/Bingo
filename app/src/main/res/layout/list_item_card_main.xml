@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
@@ -9,47 +9,46 @@
         android:id="@+id/rl_root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
         <RelativeLayout
             android:id="@+id/rl_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.github.siyamed.shapeimageview.CircularImageView
-                android:id="@+id/civ_user_avatar"
+            <ImageView
+                android:id="@+id/iv_user_avatar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_user"
                 android:layout_centerVertical="true"
-                app:siBorderWidth="1px"
-                app:siBorderColor="@color/font_black_6"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_user"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_toRightOf="@+id/civ_user_avatar"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true">
+                android:layout_toRightOf="@+id/iv_user_avatar"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_nick_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="未知"
                     android:singleLine="true"
-                    android:textSize="12sp"
-                    android:textColor="@color/font_black_3"/>
+                    android:text="未知"
+                    android:textColor="@color/font_black_3"
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:id="@+id/tv_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="时间"
-                    android:textSize="12sp"
-                    android:textColor="@color/font_black_4"/>
+                    android:textColor="@color/font_black_4"
+                    android:textSize="12sp"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -57,11 +56,11 @@
             android:id="@+id/iv_item_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_more_black"
-            android:padding="8dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@drawable/selector_over_flow"/>
+            android:background="@drawable/selector_over_flow"
+            android:padding="8dp"
+            android:src="@drawable/ic_more_black"/>
 
         <TextView
             android:id="@+id/tv_describe"
@@ -69,16 +68,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_user_info"
             android:layout_marginTop="10dp"
-            android:text="内容描述"
             android:maxLines="16"
-            android:textSize="14sp"
-            android:textColor="@color/font_black_1"/>
+            android:text="内容描述"
+            android:textColor="@color/font_black_1"
+            android:textSize="14sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/tv_describe">
+            android:layout_below="@+id/tv_describe"
+            android:orientation="vertical">
 
             <com.sun.bingo.widget.GroupImageView.GroupImageView
                 android:id="@+id/giv_image_group"
@@ -89,10 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,10 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -115,10 +108,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

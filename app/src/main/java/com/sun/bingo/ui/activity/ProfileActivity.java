@@ -18,12 +18,12 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.framework.dialog.ToastTip;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
@@ -32,8 +32,8 @@ import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
@@ -46,7 +46,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.civ_user_avatar)
+    @Bind(R.id.iv_user_avatar)
     UploadAvatarView civUserAvatar;
     @Bind(R.id.rl_user_avatar)
     RelativeLayout rlUserAvatar;
@@ -98,7 +98,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
             tvLogout.setGravity(Gravity.CENTER);
         }
 
-        UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+        UserEntityUtil.setUserAvatarView(mContext, myEntity.getUserAvatar(), civUserAvatar);
         UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
         UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
     }
@@ -136,7 +136,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
 
 
     private void setImageViewWithPath(String imagePath) {
-        ImageLoader.getInstance().displayImage("file://" + imagePath, civUserAvatar, userImageOptions);
+        ImageManager.getInstance().loadCircleLocalImage(mContext, imagePath, civUserAvatar);
         mControl.getCompressImagePath(this, imagePath); //异步压缩图片
     }
 

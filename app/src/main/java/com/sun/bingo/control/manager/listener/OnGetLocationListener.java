@@ -1,4 +1,4 @@
-package com.sun.bingo.module.listener;
+package com.sun.bingo.control.manager.listener;
 
 import com.baidu.location.BDLocation;
 

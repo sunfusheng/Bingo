@@ -43,15 +43,15 @@ Google 的dexmaker可以说是一个非常好的选择。
 
 ### 用到的开源库，感谢
 
-* [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
+* [OkHttp3](https://github.com/square/okhttp)
+* [Glide](https://github.com/bumptech/glide)
 * [esperandro](https://github.com/dkunzler/esperandro)
 * [SystemBarTint](https://github.com/jgilfelt/SystemBarTint)
 * [Material Dialog](https://github.com/afollestad/material-dialogs)
 * [logger](https://github.com/orhanobut/logger)
 * [PhotoView](https://github.com/chrisbanes/PhotoView)
-* [android-shapeLoadingView](https://github.com/zzz40500/android-shapeLoadingView)
 * [EventBus](https://github.com/greenrobot/EventBus)
-* [OkHttp3](https://github.com/square/okhttp)
+
 
 #### Version 1.4
 

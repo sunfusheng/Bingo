@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.sun.bingo.R;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
@@ -47,7 +46,7 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
         final BingoEntity entity = getItem(position);
 
         if (entity.getUserEntity() != null) {
-            UserEntityUtil.setUserAvatarView(holder.civUserAvatar, entity.getUserEntity().getUserAvatar());
+            UserEntityUtil.setUserAvatarView(mContext, entity.getUserEntity().getUserAvatar(), holder.ivUserAvatar);
             UserEntityUtil.setTextViewData(holder.tvNickName, entity.getUserEntity().getNickName());
         }
 
@@ -71,8 +70,8 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.civ_user_avatar)
-        CircularImageView civUserAvatar;
+        @Bind(R.id.iv_user_avatar)
+        ImageView ivUserAvatar;
         @Bind(R.id.tv_nick_name)
         TextView tvNickName;
         @Bind(R.id.tv_time)

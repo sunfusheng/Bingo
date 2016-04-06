@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="?attr/colorPrimary"
@@ -10,13 +10,12 @@
     android:paddingRight="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <com.github.siyamed.shapeimageview.CircularImageView
-        android:id="@+id/civ_user_avatar"
+    <ImageView
+        android:id="@+id/iv_user_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_user"
-        app:siBorderWidth="2dp"
-        app:siBorderColor="@color/font_black_6"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_user"/>
 
     <TextView
         android:id="@+id/tv_nick_name"

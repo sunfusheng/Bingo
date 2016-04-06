@@ -19,11 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.shamanland.fab.FloatingActionButton;
 import com.sina.weibo.sdk.api.TextObject;
 import com.sina.weibo.sdk.api.WebpageObject;
@@ -59,7 +59,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
-
 public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback, IWeiboHandler.Response {
 
     @Bind(R.id.toolbar)
@@ -77,7 +76,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     private int mCurrentPosition = 0;
     private long lastTime = 0;
 
-    private CircularImageView civUserAvatar;
+    private ImageView ivUserAvatar;
     private TextView tvNickName;
     private TextView tvUserSign;
 
@@ -239,12 +238,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
         controlShowFragment(0);
         setOvalShapeViewBackground(floatingActionButton);
-        civUserAvatar = ButterKnife.findById(mainNavigationLayout, R.id.civ_user_avatar);
+        ivUserAvatar = ButterKnife.findById(mainNavigationLayout, R.id.iv_user_avatar);
         tvNickName = ButterKnife.findById(mainNavigationLayout, R.id.tv_nick_name);
         tvUserSign = ButterKnife.findById(mainNavigationLayout, R.id.tv_user_sign);
 
         if (myEntity != null) {
-            UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+            UserEntityUtil.setUserAvatarView(mContext, myEntity.getUserAvatar(), ivUserAvatar);
             UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
             UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
         }
@@ -289,7 +288,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             }
         });
 
-        civUserAvatar.setOnClickListener(new View.OnClickListener() {
+        ivUserAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavigateManager.gotoProfileActivity(MainActivity.this, false);
@@ -427,7 +426,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             case NavigateManager.PROFILE_REQUEST_CODE:
                 if (myEntity != null) {
                     myEntity = BmobUser.getCurrentUser(MainActivity.this, UserEntity.class);
-                    UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());
+                    UserEntityUtil.setUserAvatarView(mContext, myEntity.getUserAvatar(), ivUserAvatar);
                     UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
                     UserEntityUtil.setTextViewData(tvUserSign, myEntity.getUserSign());
                 }

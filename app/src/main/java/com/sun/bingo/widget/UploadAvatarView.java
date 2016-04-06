@@ -8,14 +8,14 @@ import android.graphics.RectF;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.sun.bingo.util.DisplayUtil;
 
 /**
  * Created by sunfusheng on 15/7/28.
  */
-public class UploadAvatarView extends CircularImageView {
+public class UploadAvatarView extends ImageView {
 
     private Paint imagePaint;
     private Paint textPaint;

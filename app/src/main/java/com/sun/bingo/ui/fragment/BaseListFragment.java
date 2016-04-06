@@ -10,14 +10,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.mingle.widget.LoadingView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.base.BaseAsyncFragment;
+import com.sun.bingo.framework.base.BaseControl;
 import com.sun.bingo.framework.eventbus.EventEntity;
 import com.sun.bingo.framework.eventbus.EventType;
 import com.sun.bingo.widget.CircleRefreshLayout;
@@ -25,8 +24,8 @@ import com.sun.bingo.widget.CircleRefreshLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import de.greenrobot.event.EventBus;
 
@@ -96,7 +95,6 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
             super.onScrollStateChanged(recyclerView, newState);
             switch (newState) {
                 case RecyclerView.SCROLL_STATE_IDLE:
-                    ImageLoader.getInstance().resume();
                     int size = recyclerView.getAdapter().getItemCount();
                     if (lastVisibleItem + 1 == size && mAdapter.isLoadMoreShown() &&
                             !mAdapter.getLoadMoreViewText().equals(getString(R.string.load_data_adequate))) {
@@ -104,7 +102,6 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
                     }
                     break;
                 case RecyclerView.SCROLL_STATE_DRAGGING:
-                    ImageLoader.getInstance().pause();
                     break;
             }
         }

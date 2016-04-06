@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.ui.activity.ImageActivity;
 import com.sun.bingo.util.DisplayUtil;
 
@@ -35,7 +34,6 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
     private Rect[] picRects;
 
     private static Rect[] smallRectArr = null;
-    private DisplayImageOptions picOptions;
 
     private PhotoViewAttacher mAttacher;
 
@@ -57,11 +55,6 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
     private void init(Context context) {
         this.mContext = context;
         gap = getResources().getDimensionPixelSize(R.dimen.gap_pics);
-        picOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
-                .showImageOnLoading(R.color.font_black_6)
-                .showImageForEmptyUri(R.color.font_black_6)
-                .showImageOnFail(R.color.font_black_6)
-                .build();
     }
 
     @Override
@@ -114,8 +107,8 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
             int height = 0;
             switch (size) {
                 case 1:
-                    oneWidth = maxWidth / 2;
-                    height = oneWidth;
+                    oneWidth = maxWidth;
+                    height = maxWidth / 2;
                     break;
                 case 2:
                 case 3:
@@ -199,7 +192,7 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
                 imgView.setVisibility(View.VISIBLE);
                 imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imgView.setLayoutParams(new LayoutParams(imgRect.right - imgRect.left, imgRect.bottom - imgRect.top));
-                ImageLoader.getInstance().displayImage(picUrls.get(i), imgView, picOptions);
+                ImageManager.getInstance().loadUrlImage(mContext, picUrls.get(i), imgView);
             }
         }
     }

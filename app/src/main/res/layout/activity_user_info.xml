@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
     android:fitsSystemWindows="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <LinearLayout
@@ -23,21 +23,20 @@
             android:layout_gravity="center_vertical"
             android:src="@drawable/ic_back"/>
 
-        <com.github.siyamed.shapeimageview.CircularImageView
-            android:id="@+id/civ_user_avatar"
+        <ImageView
+            android:id="@+id/iv_user_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_user"
-            app:siBorderWidth="2dp"
-            app:siBorderColor="@color/font_black_6"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
-            android:layout_gravity="center_vertical">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_nick_name"

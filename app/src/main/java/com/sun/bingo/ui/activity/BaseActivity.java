@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.R;
@@ -36,7 +35,6 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     protected Activity mActivity;
 
     protected UserEntity myEntity;
-    protected DisplayImageOptions userImageOptions;
     protected LoadingDialog loadingDialog;
 
     @Override
@@ -54,12 +52,6 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
 
     private void initData() {
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
-        userImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
-                .showImageOnLoading(R.drawable.ic_user)
-                .showImageForEmptyUri(R.drawable.ic_user)
-                .showImageOnFail(R.drawable.ic_user)
-                .build();
-
         GlobalParams.screenWidth = DisplayUtil.getWindowWidth(this);
         GlobalParams.screenHeight = DisplayUtil.getWindowHeight(this);
         loadingDialog = new LoadingDialog(this);

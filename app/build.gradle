@@ -128,9 +128,6 @@ dependencies {
     //Floating Action Button
     compile 'com.shamanland:fab:0.0.8'
 
-    //Shape Image View
-    compile 'com.github.siyamed:android-shape-imageview:0.9.3@aar'
-
     //Logger
     compile 'com.orhanobut:logger:1.4'
 
@@ -154,5 +151,8 @@ dependencies {
 
     // OkHttp3
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
+
+    // Glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
 }

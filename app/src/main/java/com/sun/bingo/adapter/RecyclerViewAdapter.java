@@ -3,6 +3,7 @@ package com.sun.bingo.adapter;
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
@@ -23,7 +24,6 @@ import com.sun.bingo.ui.activity.UserInfoActivity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.NetWorkUtil;
 import com.sun.bingo.util.ShareUtil;
-import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
 import java.util.ArrayList;
@@ -103,11 +103,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (holder instanceof ListViewHolder) {
             final ListViewHolder listViewHolder = (ListViewHolder) holder;
             final BingoEntity entity = mEntities.get(position);
+            final UserEntity userEntity = entity.getUserEntity();
             final int mPosition = position;
 
-            if (entity.getUserEntity() != null) {
-                UserEntityUtil.setUserAvatarView(listViewHolder.civUserAvatar, entity.getUserEntity().getUserAvatar());
-                UserEntityUtil.setTextViewData(listViewHolder.tvNickName, entity.getUserEntity().getNickName());
+            if (userEntity != null && !TextUtils.isEmpty(userEntity.getUserAvatar())) {
+                ImageManager.getInstance().loadCircleImage(mContext, userEntity.getUserAvatar(), listViewHolder.ivUserAvatar);
+
+            } else {
+                ImageManager.getInstance().loadCircleResImage(mContext, R.drawable.ic_user, listViewHolder.ivUserAvatar);
+            }
+
+            if (userEntity != null && !TextUtils.isEmpty(userEntity.getNickName())) {
+                listViewHolder.tvNickName.setText(userEntity.getNickName());
+            } else {
+                listViewHolder.tvNickName.setText("NULL");
             }
 
             listViewHolder.tvDescribe.setText(entity.getDescribe());
@@ -142,7 +151,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             });
 
-            listViewHolder.civUserAvatar.setOnClickListener(new View.OnClickListener() {
+            listViewHolder.ivUserAvatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (entity.getUserEntity() != null) {
@@ -324,8 +333,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.civ_user_avatar)
-        CircularImageView civUserAvatar;
+        @Bind(R.id.iv_user_avatar)
+        ImageView ivUserAvatar;
         @Bind(R.id.tv_nick_name)
         TextView tvNickName;
         @Bind(R.id.tv_time)

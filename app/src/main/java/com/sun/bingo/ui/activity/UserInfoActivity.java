@@ -14,9 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.mingle.widget.LoadingView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sina.weibo.sdk.api.TextObject;
 import com.sina.weibo.sdk.api.WebpageObject;
 import com.sina.weibo.sdk.api.WeiboMultiMessage;
@@ -60,8 +58,8 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
     FrameLayout llStatus;
     @Bind(R.id.iv_back)
     ImageView ivBack;
-    @Bind(R.id.civ_user_avatar)
-    CircularImageView civUserAvatar;
+    @Bind(R.id.iv_user_avatar)
+    ImageView ivUserAvatar;
     @Bind(R.id.tv_nick_name)
     TextView tvNickName;
     @Bind(R.id.tv_user_sign)
@@ -172,7 +170,7 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
     private void initView() {
         tvNickName.setText(TextUtils.isEmpty(mUserEntity.getNickName())? "未知":mUserEntity.getNickName());
         tvUserSign.setText(TextUtils.isEmpty(mUserEntity.getUserSign())? "还没有个性签名":mUserEntity.getUserSign());
-        UserEntityUtil.setUserAvatarView(civUserAvatar, mUserEntity.getUserAvatar());
+        UserEntityUtil.setUserAvatarView(mContext, mUserEntity.getUserAvatar(), ivUserAvatar);
         tvLocation.setText(mUserEntity.getCity() + " " + mUserEntity.getDistrict());
         llUserLayout.setBackgroundColor(getColorPrimary());
 
@@ -202,7 +200,6 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
             super.onScrollStateChanged(recyclerView, newState);
             switch (newState) {
                 case RecyclerView.SCROLL_STATE_IDLE:
-                    ImageLoader.getInstance().resume();
                     int size = recyclerView.getAdapter().getItemCount();
                     if (lastVisibleItem + 1 == size && mAdapter.isLoadMoreShown() &&
                             !mAdapter.getLoadMoreViewText().equals(getString(R.string.load_data_adequate))) {
@@ -210,7 +207,6 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
                     }
                     break;
                 case RecyclerView.SCROLL_STATE_DRAGGING:
-                    ImageLoader.getInstance().pause();
                     break;
             }
         }

@@ -7,9 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.R;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.widget.ViewPagerFixed;
 
 import butterknife.Bind;
@@ -71,22 +70,16 @@ public class ImageActivity extends BaseActivity {
 
         private String[] picUrls;
         private int size;
-        private DisplayImageOptions picOptions;
 
         public CheckImageAdapter(String[] picUrls) {
             this.picUrls = picUrls;
             this.size = picUrls.length;
-            picOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
-                    .showImageOnLoading(R.color.font_black_6)
-                    .showImageForEmptyUri(R.color.font_black_6)
-                    .showImageOnFail(R.color.font_black_6)
-                    .build();
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             PhotoView photoView = new PhotoView(container.getContext());
-            ImageLoader.getInstance().displayImage(picUrls[position], photoView, picOptions);
+            ImageManager.getInstance().loadUrlImage(container.getContext(), picUrls[position], photoView);
             container.addView(photoView);
             return photoView;
         }

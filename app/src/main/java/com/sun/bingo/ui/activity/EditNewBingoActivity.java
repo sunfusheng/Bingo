@@ -24,11 +24,11 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadBatchListener;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sun.bingo.BingoApplication;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.entity.UserEntity;
 import com.sun.bingo.framework.dialog.CommonDialog;
@@ -319,7 +319,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
                     }
                 }
             });
-            ImageLoader.getInstance().displayImage("file://" + list.get(i), ivSelectedImage, userImageOptions);
+            ImageManager.getInstance().loadLocalImage(mContext, list.get(i), ivSelectedImage);
             llContainer.addView(view);
         }
 
