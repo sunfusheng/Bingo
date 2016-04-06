@@ -34,7 +34,7 @@ public class DownloadApk {
     private DownloadDialog downloadDialog;
 
     private AppEntity appEntity;
-    private String fileName = "BingoWorld.apk";
+    private String fileName = "Bingo.apk";
     private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApplication.APP_CACHE_DIR + File.separator + fileName;
 
     public DownloadApk(Context context) {

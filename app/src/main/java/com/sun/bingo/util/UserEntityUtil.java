@@ -16,6 +16,7 @@ public class UserEntityUtil {
     private static DisplayImageOptions userImageOptions;
 
     public static void setUserAvatarView(CircularImageView circularImageView, String path) {
+        if (circularImageView == null) return;
         if (!TextUtils.isEmpty(path)) {
             if (userImageOptions == null) {
                 userImageOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true)
@@ -31,6 +32,7 @@ public class UserEntityUtil {
     }
 
     public static void setTextViewData(TextView textView, String text) {
+        if (textView == null) return;
         if (!TextUtils.isEmpty(text)) {
             textView.setText(text);
         } else {

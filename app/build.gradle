@@ -90,20 +90,19 @@ android {
 def generateAppName(variant) {
     variant.outputs.each {
         output -> output.outputFile = new File (output.outputFile.parent,
-            "bingoworld_${variant.buildType.name}_${variant.versionName}_${variant.productFlavors[0].name}.apk".toLowerCase())
+            "Bingo_${variant.buildType.name}_${variant.versionName}_${variant.productFlavors[0].name}.apk".toLowerCase())
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:design:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:gridlayout-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
 
-    compile 'com.android.support:appcompat-v7:22.2.+'
-    compile 'com.android.support:cardview-v7:22.2.+'
-    compile 'com.android.support:recyclerview-v7:22.2.+'
-    compile 'com.android.support:palette-v7:22.2.+'
-    compile 'com.android.support:design:22.2.+'
-    compile 'com.android.support:gridlayout-v7:22.2.+'
+    // butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
 
     compile project(':extras-libs:orm-library') //Afinal DataBase
 
@@ -119,10 +118,6 @@ dependencies {
 
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.bingoogolapple:bga-refreshlayout:1.0.4@aar'
-
-    //LeakCanary
-//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
-//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
 
     //Material Dialog
     compile 'com.afollestad:material-dialogs:0.7.6.0'

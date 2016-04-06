@@ -1,7 +1,7 @@
 
-### BingoWorld介绍
+### Bingo介绍
 
-	BingoWorld是一款IT阅读学习类的开源软件，在不久的将来会拥有丰富的学习内容，
+	Bingo是一款IT阅读学习类的开源软件，在不久的将来会拥有丰富的学习内容，
 	包含Android、iOS技术文章和相关面试题等。推荐您也来用用来看看，您也可以发布自己的Bingo链接文章。
 
 	该APP是通过新浪微博登录的，为防止大家clone下来后无法编译和不能正常使用微博登录，现将证书上传，
@@ -25,7 +25,7 @@ Google 的dexmaker可以说是一个非常好的选择。
 
 封装映射Map为ModelMap，方便回调时的数据传递。
 
-### [APP下载地址](https://fir.im/bingoworld)
+### [APP下载地址](https://fir.im/Bingo)
 
 	欢迎您的加入，共同收集好的技术文章，一起学习！共同进步！
 

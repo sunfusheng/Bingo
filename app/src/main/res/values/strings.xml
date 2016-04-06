@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BingoWorld</string>
+    <string name="app_name">Bingo</string>
     <string name="app_copyright">Copyright ©2016 版权所有</string>
 
     <string name="ok">确认</string>
@@ -12,7 +12,7 @@
     <string name="about_app">关于软件</string>
     <string name="wechat">微信号：sfs321</string>
 
-    <string name="update_app">BingoWorld更新</string>
+    <string name="update_app">Bingo更新</string>
     <string name="update_rightnow">立即下载</string>
     <string name="update_no">暂不</string>
     <string name="new_version_yet">已是最新版本</string>
@@ -28,8 +28,8 @@
     <string name="action_settings">设置</string>
     <string name="action_notification">通知消息</string>
 
-    <string name="share_text">BingoWorld是一款阅读学习类软件，在不久的将来会拥有丰富的学习内容，
-        包含Android、iOS技术文章和相关面试题等， 推荐您也来用用来看看，您也可以发布自己的Bingo。下载页面：https://fir.im/bingoworld</string>
+    <string name="share_text">Bingo是一款阅读学习类软件，在不久的将来会拥有丰富的学习内容，
+        包含Android、iOS技术文章和相关面试题等， 推荐您也来用用来看看，您也可以发布自己的Bingo。下载页面：https://fir.im/Bingo</string>
     <string name="download_url" >下载地址</string>
     <string name="share">分享到</string>
     <string name="no_email_app_tip">请先安装邮件应用并设置账户，或直接发送邮件至sfsheng0322@126.com。</string>

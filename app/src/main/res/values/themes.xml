@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Base.Theme.Design">
+    <style name="AppTheme" parent="BaseAppTheme">
     </style>
 
-    <style name="Base.Theme.Design" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@color/bg</item>
         <item name="floatingActionButtonStyle">@style/AppTheme.Fab</item>
         <item name="actionSheetStyle">@style/ActionSheetStyleIOS7</item>

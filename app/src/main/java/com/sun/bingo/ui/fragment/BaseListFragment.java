@@ -128,7 +128,6 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
         EventBus.getDefault().unregister(this);
     }
 

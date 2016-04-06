@@ -9,7 +9,6 @@ import com.sun.bingo.framework.proxy.MessageArg;
 import com.sun.bingo.framework.proxy.MessageProxy;
 import com.sun.bingo.framework.proxy.ModelMap;
 
-import org.apache.http.conn.HttpHostConnectException;
 
 import java.io.InterruptedIOException;
 import java.net.UnknownHostException;
@@ -62,7 +61,7 @@ public class BaseControl {
     protected void dealWithException(Exception e) {
         if (e instanceof InterruptedIOException) {
             sendToastMessage("下载内容超时");
-        } else if (e instanceof UnknownHostException || e instanceof HttpHostConnectException) {
+        } else if (e instanceof UnknownHostException) {
             sendToastMessage("无法连接到服务器");
         } else if (e instanceof SQLException) {
             Logger.e("error: ", e);

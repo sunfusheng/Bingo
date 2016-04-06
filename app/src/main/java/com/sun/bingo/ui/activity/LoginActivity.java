@@ -28,6 +28,9 @@ import com.sun.bingo.framework.okhttp.OkHttpProxy;
 import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
 import com.sun.bingo.framework.okhttp.request.RequestCall;
 import com.sun.bingo.util.KeyBoardUtil;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.json.JSONObject;
 
@@ -101,9 +104,26 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
                 mSsoHandler.authorize(new AuthListener());
                 break;
             case R.id.tv_login_weixin:
-
+                WXLogin();
                 break;
         }
+    }
+
+    private void WXLogin() {
+        //api注册
+        IWXAPI wxapi = WXAPIFactory.createWXAPI(this, ConstantParams.WEIXIN_APP_ID, true);
+        wxapi.registerApp("APP_ID");
+
+        SendAuth.Req req = new SendAuth.Req();
+
+        //授权读取用户信息
+        req.scope = "snsapi_userinfo";
+
+        //自定义信息
+        req.state = "Bingo";
+
+        //向微信发送请求
+        wxapi.sendReq(req);
     }
 
     class AuthListener implements WeiboAuthListener {

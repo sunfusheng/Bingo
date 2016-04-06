@@ -207,7 +207,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         }
                         break;
                     case R.id.pop_share:
-                        ShareUtil.share(mContext, entity.getDescribe() + entity.getWebsite() + "\n[来自" + mContext.getString(R.string.app_name) + "的分享，下载地址：https://fir.im/bingoworld]");
+                        ShareUtil.share(mContext, entity.getDescribe() + entity.getWebsite() + "\n[来自" + mContext.getString(R.string.app_name) + "的分享，下载地址：https://fir.im/Bingo]");
                         return true;
                     case R.id.pop_delete:
                         new MaterialDialog.Builder(mContext)

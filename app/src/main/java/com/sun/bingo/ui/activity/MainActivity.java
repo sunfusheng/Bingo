@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
         if (mWeiboShareAPI.getWeiboAppSupportAPI() >= 10351) {
             TextObject textObject = new TextObject();
-            textObject.text = "【BingoWorld下载页面：https://fir.im/bingoworld】 \n "+entity.getDescribe();
+            textObject.text = "【Bingo下载页面：https://fir.im/Bingo】 \n "+entity.getDescribe();
             weiboMessage.textObject = textObject;
         }
         weiboMessage.mediaObject = getWebpageObj(entity);
@@ -151,14 +151,14 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     private WebpageObject getWebpageObj(BingoEntity entity) {
         WebpageObject mediaObject = new WebpageObject();
         mediaObject.identify = Utility.generateGUID();
-        mediaObject.title = "来自BingoWorld分享";
+        mediaObject.title = "来自Bingo分享";
         mediaObject.description = entity.getDescribe();
 
         Bitmap  bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         // 设置 Bitmap 类型的图片到视频对象里。 注意：最终压缩过的缩略图大小不得超过 32kb。
         mediaObject.setThumbImage(bitmap);
         mediaObject.actionUrl = entity.getWebsite();
-        mediaObject.defaultText = "BingoWorld分享";
+        mediaObject.defaultText = "Bingo分享";
         return mediaObject;
     }
 
@@ -200,7 +200,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
         if (!TextUtils.isEmpty(text) && text.startsWith("http") && isShareUrl && !text.equals(getSettingsSharedPreferences().newBingoUrl())) {
             TipDialog tipDialog = new TipDialog(this);
-            tipDialog.show("将复制的URL分享到BingoWorld", text, "立即分享", "暂不", new MaterialDialog.ButtonCallback() {
+            tipDialog.show("将复制的URL分享到Bingo", text, "立即分享", "暂不", new MaterialDialog.ButtonCallback() {
                 @Override
                 public void onPositive(MaterialDialog dialog) {
                     super.onPositive(dialog);
@@ -236,11 +236,12 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
         initToolBar(toolbar, false, R.string.app_name);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mainDrawerLayout, toolbar, 0, 0);
         drawerToggle.syncState();
+
         controlShowFragment(0);
         setOvalShapeViewBackground(floatingActionButton);
-        civUserAvatar = (CircularImageView) mainNavigationLayout.findViewById(R.id.civ_user_avatar);
-        tvNickName = (TextView) mainNavigationLayout.findViewById(R.id.tv_nick_name);
-        tvUserSign = (TextView) mainNavigationLayout.findViewById(R.id.tv_user_sign);
+        civUserAvatar = ButterKnife.findById(mainNavigationLayout, R.id.civ_user_avatar);
+        tvNickName = ButterKnife.findById(mainNavigationLayout, R.id.tv_nick_name);
+        tvUserSign = ButterKnife.findById(mainNavigationLayout, R.id.tv_user_sign);
 
         if (myEntity != null) {
             UserEntityUtil.setUserAvatarView(civUserAvatar, myEntity.getUserAvatar());

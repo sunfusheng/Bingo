@@ -120,7 +120,7 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
         if (mWeiboShareAPI.getWeiboAppSupportAPI() >= 10351) {
             TextObject textObject = new TextObject();
-            textObject.text = "【BingoWorld下载页面：https://fir.im/bingoworld】 \n "+entity.getDescribe();
+            textObject.text = "【Bingo下载页面：https://fir.im/Bingo】 \n "+entity.getDescribe();
             weiboMessage.textObject = textObject;
         }
         weiboMessage.mediaObject = getWebpageObj(entity);
@@ -139,14 +139,14 @@ public class UserInfoActivity extends BaseActivity<PageControl> implements Circl
     private WebpageObject getWebpageObj(BingoEntity entity) {
         WebpageObject mediaObject = new WebpageObject();
         mediaObject.identify = Utility.generateGUID();
-        mediaObject.title = "来自BingoWorld分享";
+        mediaObject.title = "来自Bingo分享";
         mediaObject.description = entity.getDescribe();
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         // 设置 Bitmap 类型的图片到视频对象里。 注意：最终压缩过的缩略图大小不得超过 32kb。
         mediaObject.setThumbImage(bitmap);
         mediaObject.actionUrl = entity.getWebsite();
-        mediaObject.defaultText = "BingoWorld分享";
+        mediaObject.defaultText = "Bingo分享";
         return mediaObject;
     }
 
