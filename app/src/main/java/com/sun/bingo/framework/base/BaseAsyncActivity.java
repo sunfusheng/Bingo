@@ -12,7 +12,6 @@ import com.sun.bingo.framework.proxy.common.IRefreshBack;
 import com.sun.bingo.framework.proxy.helper.ActivityHelper;
 import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
-import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
 import de.devland.esperandro.Esperandro;
@@ -34,9 +33,6 @@ public class BaseAsyncActivity<T extends BaseControl> extends AppCompatActivity 
         mHelper.onCreate();
         initVar();
         MobclickAgent.openActivityDurationTrack(false);
-        MobclickAgent.updateOnlineConfig(this);// 友盟发送策略
-        AnalyticsConfig.enableEncrypt(true);// 日志加密设置
-        MobclickAgent.updateOnlineConfig(this);// 在线参数
     }
 
     public void initVar() {

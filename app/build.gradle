@@ -106,6 +106,9 @@ dependencies {
 
     compile project(':extras-libs:orm-library') //Afinal DataBase
 
+    // 友盟统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
     //multidex
     compile 'com.android.support:multidex:1.0.0'
 
