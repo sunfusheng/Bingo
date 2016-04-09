@@ -433,7 +433,7 @@ public class ActionSheet extends Fragment implements OnClickListener {
 
 	}
 
-	public static interface ActionSheetListener {
+	public interface ActionSheetListener {
 
 		void onDismiss(ActionSheet actionSheet, boolean isCancel);
 

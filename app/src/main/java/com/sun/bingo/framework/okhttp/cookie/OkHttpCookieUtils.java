@@ -84,9 +84,8 @@ public class OkHttpCookieUtils {
                 try {
                     if (certificate != null)
                         certificate.close();
-                } catch (IOException e)
-
-                {
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             TrustManagerFactory trustManagerFactory = null;

@@ -95,7 +95,6 @@ public class CommonParameter {
                             + context.getPackageName() + File.separator + "cache";
             // CommonHelper.mkFiledir(parentPath);
             sCACHE_FILE_PATH = parentPath + File.separator + "house";
-            ;
         } else {
             sCACHE_FILE_PATH = context.getCacheDir().getAbsolutePath() + File.separator + "house";
         }

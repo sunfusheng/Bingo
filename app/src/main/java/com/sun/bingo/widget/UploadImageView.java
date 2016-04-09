@@ -95,6 +95,6 @@ public class UploadImageView extends ImageView {
     public void setProgress(int progress){
         this.progress=progress;
         postInvalidate();
-    };
+    }
 
 }

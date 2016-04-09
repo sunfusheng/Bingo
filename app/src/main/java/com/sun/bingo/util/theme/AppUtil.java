@@ -22,6 +22,7 @@ public class AppUtil {
                 return version;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return "";
     }

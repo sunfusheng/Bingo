@@ -33,6 +33,7 @@ public class DateUtil {
         try {
             return formatDate(Long.parseLong(longStr), format);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return "";
     }

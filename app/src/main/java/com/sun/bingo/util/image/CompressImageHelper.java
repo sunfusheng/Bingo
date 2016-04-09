@@ -28,7 +28,6 @@ public class CompressImageHelper {
     public static Bitmap rotaingImageView(int angle, Bitmap bitmap) {
         // 旋转图片 动作
         Matrix matrix = new Matrix();
-        ;
         matrix.postRotate(angle);
         // 创建新的图片
         Bitmap resizedBitmap =
@@ -45,6 +44,7 @@ public class CompressImageHelper {
                 try {
                     new File(filePath).deleteOnExit();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }).start();

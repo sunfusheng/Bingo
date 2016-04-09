@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:clickable="true"
-            android:src="@drawable/ic_discuss"
+            android:src="@drawable/ic_add_image"
             app:layout_anchor="@+id/appbar"
             app:layout_anchorGravity="bottom|right|end"/>
 

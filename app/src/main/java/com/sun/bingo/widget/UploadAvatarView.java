@@ -95,6 +95,6 @@ public class UploadAvatarView extends ImageView {
     public void setProgress(int progress){
         this.progress=progress;
         postInvalidate();
-    };
+    }
 
 }

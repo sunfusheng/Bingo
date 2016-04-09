@@ -2,8 +2,10 @@ package com.sun.bingo.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
@@ -117,7 +119,10 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnabled);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(homeAsUpEnabled);
+        }
     }
 
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, int resTitle) {
@@ -148,6 +153,32 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     }
     public LocationSharedPreferences getLocationSharedPreferences() {
         return getSharedPreferences(LocationSharedPreferences.class);
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
+                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
+            overridePendingTransition(R.anim.move_right_in_activity, R.anim.hold_long);
+        }
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
+                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
+            overridePendingTransition(R.anim.move_right_in_activity, R.anim.hold_long);
+        }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
+            overridePendingTransition(R.anim.hold_long, R.anim.move_right_out_activity);
+        }
     }
 
 }

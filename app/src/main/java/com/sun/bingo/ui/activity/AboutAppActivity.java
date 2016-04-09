@@ -1,9 +1,12 @@
 package com.sun.bingo.ui.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.sun.bingo.R;
@@ -39,8 +42,23 @@ public class AboutAppActivity extends BaseActivity {
     private void initView() {
         initToolBar(toolbar, true, "");
         collapsingToolbar.setTitle(getString(R.string.about_app));
-        webView.loadUrl("file:///android_asset/about_app.html");
         tvVersion.setText("Version " + AppUtil.getVersionName(this));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        } else {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        }
+
+        webView.loadUrl("file:///android_asset/about_app.html");
+        webView.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
 }

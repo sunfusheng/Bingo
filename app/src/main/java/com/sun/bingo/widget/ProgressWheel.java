@@ -299,7 +299,7 @@ public class ProgressWheel extends View {
             if(!linearProgress) {
                 float factor = 2.0f;
                 offset = (float) (1.0f - Math.pow(1.0f - mProgress / 360.0f, 2.0f * factor)) * 360.0f;
-                progress = (float) (1.0f - Math.pow(1.0f - mProgress / 360.0f, factor)) * 360.0f;;
+                progress = (float) (1.0f - Math.pow(1.0f - mProgress / 360.0f, factor)) * 360.0f;
             }
 
             if(isInEditMode()) {
@@ -706,6 +706,6 @@ public class ProgressWheel extends View {
          *
          * @param progress a double value between 0.00 and 1.00 both included
          */
-        public void onProgressUpdate(float progress);
+        void onProgressUpdate(float progress);
     }
 }
