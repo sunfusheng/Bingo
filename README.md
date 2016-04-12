@@ -39,6 +39,23 @@ Google 的dexmaker可以说是一个非常好的选择。
 ![](/screenshots/icon_bingo_3.png) (图三)
 ![](/screenshots/icon_bingo_4.png) (图四)
 
+
+
+
+<table>
+    <tr>
+        <td><img src="/screenshots/icon_bingo_1.png" style="width: 80%;"></td>
+        <td><img src="/screenshots/icon_bingo_2.png" style="width: 80%;"></td>
+        <td><img src="/screenshots/icon_bingo_3.png" style="width: 80%;"></td>
+    </tr>
+
+    <tr>
+        <td><img src="/screenshots/icon_bingo_3.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/icon_bingo_4.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/icon_bingo_3.png" style="width: 50%;"></td>
+    </tr>
+</table>
+
 ### 用到的开源库，感谢
 
 * [OkHttp3](https://github.com/square/okhttp)
