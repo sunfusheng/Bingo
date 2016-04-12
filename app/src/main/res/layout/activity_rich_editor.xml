@@ -10,7 +10,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_primary_light"
+        android:background="@color/colorPrimaryLight"
         android:fadeScrollbars="false"
         android:fadingEdge="none"
         android:scrollbars="none">

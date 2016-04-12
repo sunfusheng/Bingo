@@ -13,6 +13,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sun.bingo.R;
@@ -20,9 +21,8 @@ import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.entity.BingoEntity;
 import com.sun.bingo.framework.dialog.ToastTip;
 
-import butterknife.ButterKnife;
 import butterknife.Bind;
-import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
+import butterknife.ButterKnife;
 
 public class BingoDetailActivity extends BaseActivity {
 
@@ -30,10 +30,10 @@ public class BingoDetailActivity extends BaseActivity {
     Toolbar toolbar;
     @Bind(R.id.webView)
     WebView webView;
-    @Bind(R.id.smoothProgressBar)
-    SmoothProgressBar smoothProgressBar;
     @Bind(R.id.tv_error_msg)
     TextView tvErrorMsg;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
     private BingoEntity bingoEntity;
     private WebSettings settings;
@@ -98,14 +98,14 @@ public class BingoDetailActivity extends BaseActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                smoothProgressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 webView.setLayerType(View.LAYER_TYPE_NONE, null);
-                smoothProgressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 if (!settings.getLoadsImagesAutomatically()) {
                     settings.setLoadsImagesAutomatically(true);
                 }
@@ -114,7 +114,7 @@ public class BingoDetailActivity extends BaseActivity {
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 super.onReceivedError(view, errorCode, description, failingUrl);
-                smoothProgressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 toolbar.setTitle("加载失败");
                 if (!TextUtils.isEmpty(description)) {
                     tvErrorMsg.setVisibility(View.VISIBLE);
@@ -122,7 +122,23 @@ public class BingoDetailActivity extends BaseActivity {
                 }
             }
         });
+
         webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress >= 100) {
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    if (progressBar.getVisibility() == View.GONE) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                    progressBar.setProgress(newProgress);
+                }
+                super.onProgressChanged(view, newProgress);
+
+            }
+
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);

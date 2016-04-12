@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -35,14 +37,14 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/ic_launcher_reverse"/>
+                        android:src="@drawable/ic_action_edit_dark"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:gravity="center"
                         android:text="@string/app_name"
-                        android:layout_marginTop="5dp"
                         android:textColor="@color/white"
                         android:textSize="18sp"/>
 
@@ -51,9 +53,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:text="Version 1.2"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:text="Version 1.2"/>
+                        android:textSize="14sp"/>
                 </LinearLayout>
 
                 <android.support.v7.widget.Toolbar
@@ -75,14 +77,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
 
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
-
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>

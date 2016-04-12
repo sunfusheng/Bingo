@@ -9,6 +9,8 @@ import com.sun.bingo.control.manager.LocationManager;
 import com.sun.bingo.framework.proxy.ControlFactory;
 import com.sun.bingo.sharedpreferences.FastJsonSerial;
 
+import java.io.File;
+
 import cn.bmob.v3.Bmob;
 import de.devland.esperandro.Esperandro;
 import im.fir.sdk.FIR;
@@ -18,7 +20,8 @@ import im.fir.sdk.FIR;
  */
 public class BingoApplication extends Application {
 
-    public static final String APP_CACHE_DIR = "Bingo/cache";
+    public static final String APP_ROOT_DIR = "Bingo";
+    public static final String APP_CACHE_DIR = APP_ROOT_DIR + File.separator + "cache";
     private static BingoApplication mAppInstance;
     private static Context mAppContext;
 

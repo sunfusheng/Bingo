@@ -57,7 +57,7 @@
 
                 <com.sun.bingo.widget.CircleRefreshLayout
                     android:id="@+id/circle_refresh_layout"
-                    app:AniBackColor="@color/color_primary_light"
+                    app:AniBackColor="@color/colorPrimaryLight"
                     app:AniForeColor="@color/white"
                     app:CircleSmaller="10"
                     android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    app:matProg_barColor="@color/color_primary_light"
+                    app:matProg_barColor="@color/colorPrimaryLight"
                     app:matProg_progressIndeterminate="true"
                     app:matProg_barWidth="3dp" />
 

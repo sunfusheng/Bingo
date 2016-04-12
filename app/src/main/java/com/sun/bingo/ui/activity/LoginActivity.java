@@ -28,9 +28,6 @@ import com.sun.bingo.framework.okhttp.OkHttpProxy;
 import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
 import com.sun.bingo.framework.okhttp.request.RequestCall;
 import com.sun.bingo.util.KeyBoardUtil;
-import com.tencent.mm.sdk.modelmsg.SendAuth;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.json.JSONObject;
 
@@ -55,8 +52,6 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
     TextView tvLoginSina;
     @Bind(R.id.ll_root_view)
     LinearLayout llRootView;
-    @Bind(R.id.tv_login_weixin)
-    TextView tvLoginWeixin;
 
     private AuthInfo mAuthInfo;
     private SsoHandler mSsoHandler;
@@ -66,6 +61,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -94,7 +90,6 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
             }
         });
         tvLoginSina.setOnClickListener(this);
-        tvLoginWeixin.setOnClickListener(this);
     }
 
     @Override
@@ -103,27 +98,7 @@ public class LoginActivity extends BaseActivity<SingleControl> implements View.O
             case R.id.tv_login_sina:
                 mSsoHandler.authorize(new AuthListener());
                 break;
-            case R.id.tv_login_weixin:
-                WXLogin();
-                break;
         }
-    }
-
-    private void WXLogin() {
-        //api注册
-        IWXAPI wxapi = WXAPIFactory.createWXAPI(this, ConstantParams.WEIXIN_APP_ID, true);
-        wxapi.registerApp("APP_ID");
-
-        SendAuth.Req req = new SendAuth.Req();
-
-        //授权读取用户信息
-        req.scope = "snsapi_userinfo";
-
-        //自定义信息
-        req.state = "Bingo";
-
-        //向微信发送请求
-        wxapi.sendReq(req);
     }
 
     class AuthListener implements WeiboAuthListener {

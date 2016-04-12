@@ -16,12 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <fr.castorflex.android.smoothprogressbar.SmoothProgressBar
-            android:id="@+id/smoothProgressBar"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:indeterminate="true"
-            style="@style/GPlusProgressBar"/>
+            android:layout_height="3dp"
+            android:progressDrawable="@drawable/progressbar_selector"/>
 
         <TextView
             android:id="@+id/tv_error_msg"

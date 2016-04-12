@@ -34,8 +34,8 @@ public class DownloadApk {
     private DownloadDialog downloadDialog;
 
     private AppEntity appEntity;
-    private String fileName = "Bingo.apk";
-    private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApplication.APP_CACHE_DIR + File.separator + fileName;
+    private String fileName = "bingo.apk";
+    private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApplication.APP_ROOT_DIR + File.separator;
 
     public DownloadApk(Context context) {
         this.mContext = context;
@@ -101,7 +101,7 @@ public class DownloadApk {
             @Override
             public void onSuccess(File response) {
                 downloadDialog.dismiss();
-                installPackage(filePath);
+                installPackage(filePath+fileName);
             }
 
             @Override
@@ -111,9 +111,7 @@ public class DownloadApk {
         });
     }
 
-    /**
-     * 安装应用
-     */
+    // 安装应用
     private void installPackage(String apkPath) {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

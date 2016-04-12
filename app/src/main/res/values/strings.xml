@@ -57,9 +57,9 @@
     <string name="login_verify_code">获取验证码</string>
     <string name="login_get_verify_code">重新获取验证码(%s)</string>
 
-    <string name="hint_input_website">请输入文章网址</string>
+    <string name="hint_input_website">请输入文章有效链接</string>
     <string name="hint_input_website_available">链接不可用哦</string>
-    <string name="hint_input_describe">请输入文章描述</string>
+    <string name="hint_input_describe">请输入文章标题或描述</string>
 
     <string name="toast_exit_tip">再按一次退出Bingo</string>
 

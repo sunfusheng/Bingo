@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="color_primary1">#009688</color>
-    <color name="color_primary_light1">#4db6ac</color>
-    <color name="color_primary_dark1">#00796b</color>
-
-    <color name="color_primary">#607d8b</color>
-    <color name="color_primary_light">#90a4ae</color>
-    <color name="color_primary_dark">#455a64</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryLight">#4db6ac</color>
+    <color name="colorPrimaryDark">#00796b</color>
 
     <color name="color_accent">#f97b5c</color>
 
@@ -36,17 +32,5 @@
     <color name="tab_bg_light">#F3EEDE</color>
     <color name="tab_bg_line">#9B937B</color>
     <color name="toggle_button_on">#b6c761</color>
-
-    <color name="gplus_color_1">#3e802f</color>
-    <color name="gplus_color_2">#f4b400</color>
-    <color name="gplus_color_3">#427fed</color>
-    <color name="gplus_color_4">#b23424</color>
-
-    <integer-array name="gplus_colors">
-        <item>@color/gplus_color_1</item>
-        <item>@color/gplus_color_2</item>
-        <item>@color/gplus_color_3</item>
-        <item>@color/gplus_color_4</item>
-    </integer-array>
 
 </resources>

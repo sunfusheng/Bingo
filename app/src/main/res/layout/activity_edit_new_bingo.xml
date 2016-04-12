@@ -26,7 +26,7 @@
             android:padding="15dp"
             android:hint="@string/hint_input_website"
             android:textColorHint="@color/font_black_4"
-            android:textColor="@color/color_primary"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"/>
 
     </android.support.v7.widget.CardView>
@@ -51,7 +51,7 @@
             android:gravity="top"
             android:hint="@string/hint_input_describe"
             android:textColorHint="@color/font_black_4"
-            android:textColor="@color/color_primary"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp"/>
 
     </android.support.v7.widget.CardView>
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/color_primary">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/iv_image"

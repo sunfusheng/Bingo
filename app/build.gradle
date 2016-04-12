@@ -12,8 +12,8 @@ android {
         applicationId "com.sun.bingo"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 10
-        versionName "1.4.1"
+        versionCode 11
+        versionName "1.4.2"
         manifestPlaceholders = [umengHolder: "bingo"]
         multiDexEnabled true
     }
@@ -77,11 +77,9 @@ android {
     }
 
     productFlavors {
-        bingo {manifestPlaceholders = [umengHolder: "bingo"]}
+        fir {manifestPlaceholders = [umengHolder: "fir"]}
         xiaomi {manifestPlaceholders = [umengHolder: "xiaomi"]}
-        "360" {manifestPlaceholders = [umengHolder: "360"]}
         baidu {manifestPlaceholders = [umengHolder: "baidu"]}
-        yingyongbao {manifestPlaceholders = [umengHolder: "yingyongbao"]}
     }
 
 }
@@ -96,10 +94,10 @@ def generateAppName(variant) {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:design:22.2.0'
-    compile 'com.android.support:recyclerview-v7:22.2.0'
-    compile 'com.android.support:gridlayout-v7:22.2.0'
-    compile 'com.android.support:cardview-v7:22.2.0'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:gridlayout-v7:22.2.1'
+    compile 'com.android.support:cardview-v7:22.2.1'
 
     // butterknife
     compile 'com.jakewharton:butterknife:7.0.1'
@@ -130,12 +128,6 @@ dependencies {
 
     //Logger
     compile 'com.orhanobut:logger:1.4'
-
-    //GoogleProgressBar
-    compile 'com.jpardogo.googleprogressbar:library:1.2.0'
-
-    //SmoothProgressBar
-    compile 'com.github.castorflex.smoothprogressbar:library:1.1.0'
 
     //RichEditor
     compile 'jp.wasabeef:richeditor-android:0.1'
