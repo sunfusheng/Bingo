@@ -39,7 +39,11 @@ Google 的dexmaker可以说是一个非常好的选择。
         <td><img src="/screenshots/bingo2.png" style="width: 50%;"></td>
         <td><img src="/screenshots/bingo3.png" style="width: 50%;"></td>
     </tr>
+</table>
 
+<br/>
+
+<table>
     <tr>
         <td><img src="/screenshots/bingo4.png" style="width: 50%;"></td>
         <td><img src="/screenshots/bingo5.png" style="width: 50%;"></td>
