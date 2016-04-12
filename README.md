@@ -33,26 +33,17 @@ Google 的dexmaker可以说是一个非常好的选择。
 
 ### ScreenShots
 
-![](/screenshots/icon_bingo_1.png) (图一)
-![](/screenshots/icon_bingo_2.png) (图二)
-
-![](/screenshots/icon_bingo_3.png) (图三)
-![](/screenshots/icon_bingo_4.png) (图四)
-
-
-
-
 <table>
     <tr>
-        <td><img src="/screenshots/icon_bingo_1.png" style="width: 80%;"></td>
-        <td><img src="/screenshots/icon_bingo_2.png" style="width: 80%;"></td>
-        <td><img src="/screenshots/icon_bingo_3.png" style="width: 80%;"></td>
+        <td><img src="/screenshots/bingo1.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/bingo2.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/bingo3.png" style="width: 50%;"></td>
     </tr>
 
     <tr>
-        <td><img src="/screenshots/icon_bingo_3.png" style="width: 50%;"></td>
-        <td><img src="/screenshots/icon_bingo_4.png" style="width: 50%;"></td>
-        <td><img src="/screenshots/icon_bingo_3.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/bingo4.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/bingo5.png" style="width: 50%;"></td>
+        <td><img src="/screenshots/bingo6.png" style="width: 50%;"></td>
     </tr>
 </table>
 
