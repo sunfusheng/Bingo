@@ -168,7 +168,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     public void startActivity(Intent intent) {
         super.startActivity(intent);
         if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(SplashActivity.class.getName())) {
-            overridePendingTransition(android.R.anim.fade_in, R.anim.hold_long);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 
@@ -176,7 +176,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
         if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(SplashActivity.class.getName())) {
-            overridePendingTransition(android.R.anim.fade_in, R.anim.hold_long);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 
@@ -184,7 +184,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     public void finish() {
         super.finish();
         if (!((Object) this).getClass().equals(SplashActivity.class) && !((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
-            overridePendingTransition(R.anim.hold_long, android.R.anim.fade_out);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
 
