@@ -48,23 +48,32 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         mActivity = this;
 
         ThemeUtil.changeTheme(this);
-        initSystemBarTint(true);
-        initData();
+        initSystemBarTint();
+        init();
     }
 
-    private void initData() {
+    private void init() {
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         GlobalParams.screenWidth = DisplayUtil.getWindowWidth(this);
         GlobalParams.screenHeight = DisplayUtil.getWindowHeight(this);
         loadingDialog = new LoadingDialog(this);
     }
 
-    public void initSystemBarTint(boolean on) {
+    public void initSystemBarTint() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(on);
+            setTranslucentStatus(true);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(on);
+            tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintColor(getColorPrimary());
+        }
+    }
+
+    // 设置状态栏颜色
+    public void setStatusBarTintColor(int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            tintManager.setStatusBarTintColor(getResources().getColor(resId));
         }
     }
 
@@ -158,26 +167,24 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
-        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
-                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.move_right_in_activity, R.anim.hold_long);
+        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(SplashActivity.class.getName())) {
+            overridePendingTransition(android.R.anim.fade_in, R.anim.hold_long);
         }
     }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
-        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(MainActivity.class.getName()) &&
-                !intent.getComponent().getClassName().equals(LoginActivity.class.getName())) {
-            overridePendingTransition(R.anim.move_right_in_activity, R.anim.hold_long);
+        if (intent != null && intent.getComponent() != null && !intent.getComponent().getClassName().equals(SplashActivity.class.getName())) {
+            overridePendingTransition(android.R.anim.fade_in, R.anim.hold_long);
         }
     }
 
     @Override
     public void finish() {
         super.finish();
-        if (!((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
-            overridePendingTransition(R.anim.hold_long, R.anim.move_right_out_activity);
+        if (!((Object) this).getClass().equals(SplashActivity.class) && !((Object) this).getClass().equals(MainActivity.class) && !((Object) this).getClass().equals(LoginActivity.class)) {
+            overridePendingTransition(R.anim.hold_long, android.R.anim.fade_out);
         }
     }
 

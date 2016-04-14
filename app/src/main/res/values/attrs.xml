@@ -47,4 +47,11 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="IconWithTextView">
+        <attr name="iwtv_icon" format="reference"/>
+        <attr name="iwtv_color" format="color"/>
+        <attr name="iwtv_text" format="string"/>
+        <attr name="iwtv_text_size" format="dimension"/>
+    </declare-styleable>
+
 </resources>

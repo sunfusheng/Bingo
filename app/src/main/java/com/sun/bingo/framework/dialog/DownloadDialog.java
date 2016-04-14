@@ -24,7 +24,7 @@ public class DownloadDialog {
         if (materialDialog == null) {
             materialDialog = new MaterialDialog.Builder(mContext)
                     .content("正在下载...")
-                    .progress(false, 100, true)
+                    .progress(false, 100, false)
                     .build();
         }
         if (!materialDialog.isShowing()) {

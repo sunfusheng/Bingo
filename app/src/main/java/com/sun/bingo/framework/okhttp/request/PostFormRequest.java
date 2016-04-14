@@ -56,7 +56,7 @@ public class PostFormRequest extends OkHttpRequest {
                 OkHttpProxy.getInstance().getHandler().post(new Runnable() {
                     @Override
                     public void run() {
-                        callback.inProgress(bytesWritten * 1.0f / contentLength);
+                        callback.onProgress(bytesWritten * 1.0f / contentLength);
                     }
                 });
             }

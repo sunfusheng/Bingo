@@ -1,6 +1,5 @@
 package com.sun.bingo.framework.okhttp.callback;
 
-
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -12,7 +11,7 @@ public abstract class OkHttpCallBack<T> {
 
     public void onStart(Request request) {}
 
-    public void inProgress(float progress) {}
+    public void onProgress(float progress) {}
 
     public abstract T parseResponse(Response response) throws Exception;
 

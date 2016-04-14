@@ -36,6 +36,7 @@ public class DownloadApk {
     private AppEntity appEntity;
     private String fileName = "bingo.apk";
     private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApplication.APP_ROOT_DIR + File.separator;
+    private String apkPathName = filePath + fileName;
 
     public DownloadApk(Context context) {
         this.mContext = context;
@@ -86,7 +87,6 @@ public class DownloadApk {
 
         RequestCall build = OkHttpProxy.get().url(url).build();
         build.execute(new FileCallBack(filePath, fileName) {
-
             @Override
             public void onStart(Request request) {
                 super.onStart(request);
@@ -101,7 +101,7 @@ public class DownloadApk {
             @Override
             public void onSuccess(File response) {
                 downloadDialog.dismiss();
-                installPackage(filePath+fileName);
+                installPackage(apkPathName);
             }
 
             @Override
