@@ -45,20 +45,11 @@ public class IconWithTextView extends View {
         this(context, attrs, 0);
     }
 
-    /**
-     * 获取自定义属性的值
-     *
-     * @param context
-     * @param attrs
-     * @param defStyleAttr
-     */
-    public IconWithTextView(Context context, AttributeSet attrs,
-                            int defStyleAttr) {
+    // 获取自定义属性的值
+    public IconWithTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.IconWithTextView);
-
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconWithTextView);
         int n = a.getIndexCount();
 
         for (int i = 0; i < n; i++) {
@@ -75,9 +66,8 @@ public class IconWithTextView extends View {
                     mText = a.getString(attr);
                     break;
                 case R.styleable.IconWithTextView_iwtv_text_size:
-                    mTextSize = (int) a.getDimension(attr, TypedValue
-                            .applyDimension(TypedValue.COMPLEX_UNIT_SP, 12,
-                                    getResources().getDisplayMetrics()));
+                    mTextSize = (int) a.getDimension(attr, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                            12, getResources().getDisplayMetrics()));
                     break;
             }
 
@@ -90,7 +80,6 @@ public class IconWithTextView extends View {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setColor(0Xff555555);
         mTextPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
-
     }
 
     @Override
@@ -101,8 +90,7 @@ public class IconWithTextView extends View {
                 - getPaddingBottom() - mTextBound.height());
 
         int left = getMeasuredWidth() / 2 - iconWidth / 2;
-        int top = getMeasuredHeight() / 2 - (mTextBound.height() + iconWidth)
-                / 2;
+        int top = getMeasuredHeight() / 2 - (mTextBound.height() + iconWidth) / 2;
         mIconRect = new Rect(left, top, left + iconWidth, top + iconWidth);
     }
 
@@ -119,42 +107,27 @@ public class IconWithTextView extends View {
         drawTargetText(canvas, alpha);
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
-
     }
 
-    /**
-     * 绘制变色的文本
-     *
-     * @param canvas
-     * @param alpha
-     */
+    // 绘制变色的文本
     private void drawTargetText(Canvas canvas, int alpha) {
         mTextPaint.setColor(mColor);
         mTextPaint.setAlpha(alpha);
         int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
         int y = mIconRect.bottom + mTextBound.height();
         canvas.drawText(mText, x, y, mTextPaint);
-
     }
 
-    /**
-     * 绘制原文本
-     *
-     * @param canvas
-     * @param alpha
-     */
+    // 绘制原文本
     private void drawSourceText(Canvas canvas, int alpha) {
         mTextPaint.setColor(0xff333333);
         mTextPaint.setAlpha(255 - alpha);
         int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
         int y = mIconRect.bottom + mTextBound.height();
         canvas.drawText(mText, x, y, mTextPaint);
-
     }
 
-    /**
-     * 在内存中绘制可变色的Icon
-     */
+    // 在内存中绘制可变色的Icon
     private void setupTargetBitmap(int alpha) {
         mBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(),
                 Config.ARGB_8888);
@@ -197,9 +170,7 @@ public class IconWithTextView extends View {
         invalidateView();
     }
 
-    /**
-     * 重绘
-     */
+    // 重绘
     private void invalidateView() {
         if (Looper.getMainLooper() == Looper.myLooper()) {
             invalidate();
