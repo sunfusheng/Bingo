@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bingo="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 内容界面 -->
+        <include layout="@layout/drawer_content_layout"/>
+
+        <!-- 侧滑菜单内容 -->
+        <android.support.design.widget.NavigationView
+            android:id="@+id/main_navigation_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/drawer_slide_header_layout"
+            app:menu="@menu/drawer_slide_menu"/>
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <com.sun.bingo.widget.IconWithTextView
+            android:id="@+id/id_indicator_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:iwtv_color="#ff45c01a"
+            app:iwtv_icon="@drawable/tab_home_unpressed"
+            app:iwtv_text="@string/tab_home"
+            app:iwtv_text_size="12sp"/>
+
+        <com.sun.bingo.widget.IconWithTextView
+            android:id="@+id/id_indicator_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:iwtv_color="#ff45c01a"
+            app:iwtv_icon="@drawable/tab_msg_unpressed"
+            app:iwtv_text="@string/tab_msg"
+            app:iwtv_text_size="12sp"/>
+
+        <com.sun.bingo.widget.IconWithTextView
+            android:id="@+id/id_indicator_four"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:iwtv_color="#ff45c01a"
+            app:iwtv_icon="@drawable/tab_mine_unpressed"
+            app:iwtv_text="@string/tab_mine"
+            app:iwtv_text_size="12sp"/>
+    </LinearLayout>
+
+</LinearLayout>

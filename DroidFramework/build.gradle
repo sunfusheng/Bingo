@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 22
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:design:22.2.0'
+
+    // ButterKnife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // Logger
+    compile 'com.orhanobut:logger:1.4'
+
+    // OkHttp3
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+
+    //Material Dialog
+    compile 'com.afollestad:material-dialogs:0.7.6.0'
+
+}
