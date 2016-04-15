@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.framework.base.BaseAsyncFragment;
+import com.framework.base.BaseControl;
 import com.mingle.widget.LoadingView;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.base.BaseAsyncFragment;
-import com.sun.bingo.framework.base.BaseControl;
-import com.sun.bingo.framework.eventbus.EventEntity;
-import com.sun.bingo.framework.eventbus.EventType;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
+import com.sun.bingo.model.eventbus.EventEntity;
+import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
 import java.util.ArrayList;

@@ -8,8 +8,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sun.bingo.R;
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.GroupImageView.GroupImageView;

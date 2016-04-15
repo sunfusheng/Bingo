@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.framework.dialog.LoadingDialog;
+import com.framework.dialog.ToastTip;
+import com.framework.okhttp.OkHttpProxy;
+import com.framework.okhttp.callback.JsonCallBack;
+import com.framework.okhttp.request.RequestCall;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -20,13 +25,8 @@ import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.control.UrlManager;
-import com.sun.bingo.entity.SinaUserInfoEntity;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.LoadingDialog;
-import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.framework.okhttp.OkHttpProxy;
-import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
-import com.sun.bingo.framework.okhttp.request.RequestCall;
+import com.sun.bingo.model.SinaUserInfoEntity;
+import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.util.KeyBoardUtil;
 
 import org.json.JSONObject;

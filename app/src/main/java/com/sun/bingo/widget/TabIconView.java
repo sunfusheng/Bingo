@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.sun.bingo.R;
@@ -23,10 +22,6 @@ public class TabIconView extends View {
 
     private int mColor = 0xFF009688;
     private Bitmap mIconBitmap;
-    private String mText = "Bingo";
-    private int mTextSize = (int) TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_SP, 12, getResources().getDisplayMetrics());
-
     private Canvas mCanvas;
     private Bitmap mBitmap;
     private Paint mPaint;
@@ -34,8 +29,6 @@ public class TabIconView extends View {
     private float mAlpha;
 
     private Rect mIconRect;
-    private Rect mTextBound;
-    private Paint mTextPaint;
 
     public TabIconView(Context context) {
         this(context, null);
@@ -65,24 +58,10 @@ public class TabIconView extends View {
                 case R.styleable.IconWithTextView_iwtv_color:
                     mColor = typedArray.getColor(attr, 0xFF009688);
                     break;
-                case R.styleable.IconWithTextView_iwtv_text:
-                    mText = typedArray.getString(attr);
-                    break;
-                case R.styleable.IconWithTextView_iwtv_text_size:
-                    mTextSize = (int) typedArray.getDimension(attr, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                            12, getResources().getDisplayMetrics()));
-                    break;
             }
         }
 
         typedArray.recycle();
-
-        mTextBound = new Rect();
-        mTextPaint = new Paint();
-        mTextPaint.setTextSize(mTextSize);
-        mTextPaint.setColor(mColor);
-        mTextPaint.setAntiAlias(true);
-        mTextPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
     }
 
     @Override
@@ -90,10 +69,10 @@ public class TabIconView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int iconWidth = Math.min(getMeasuredWidth() - getPaddingLeft()
                 - getPaddingRight(), getMeasuredHeight() - getPaddingTop()
-                - getPaddingBottom() - mTextBound.height());
+                - getPaddingBottom());
 
         int left = getMeasuredWidth() / 2 - iconWidth / 2;
-        int top = getMeasuredHeight() / 2 - (mTextBound.height() + iconWidth) / 2;
+        int top = getMeasuredHeight() / 2 - (iconWidth) / 2;
         mIconRect = new Rect(left, top, left + iconWidth, top + iconWidth);
     }
 
@@ -106,30 +85,9 @@ public class TabIconView extends View {
 
         // 内存去准备mBitmap , setAlpha , 纯色 ，xfermode ， 图标
         setupTargetBitmap(alpha);
-        // 1、绘制原文本 ； 2、绘制变色的文本
-        drawSourceText(canvas, alpha);
-        drawTargetText(canvas, alpha);
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
 
-    }
-
-    // 绘制变色的文本
-    private void drawTargetText(Canvas canvas, int alpha) {
-        mTextPaint.setColor(mColor);
-        mTextPaint.setAlpha(alpha);
-        int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
-        int y = mIconRect.bottom + mTextBound.height();
-        canvas.drawText(mText, x, y, mTextPaint);
-    }
-
-    // 绘制原文本
-    private void drawSourceText(Canvas canvas, int alpha) {
-        mTextPaint.setColor(0xff333333);
-        mTextPaint.setAlpha(255 - alpha);
-        int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
-        int y = mIconRect.bottom + mTextBound.height();
-        canvas.drawText(mText, x, y, mTextPaint);
     }
 
     // 在内存中绘制可变色的Icon

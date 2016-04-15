@@ -10,9 +10,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
+import com.framework.dialog.ToastTip;
 import com.sun.bingo.R;
-import com.sun.bingo.entity.AppEntity;
-import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.model.AppEntity;
 
 import java.io.File;
 import java.util.ArrayList;

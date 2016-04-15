@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.sun.bingo.R;
-import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
+import com.sun.bingo.model.sharedpreferences.SettingsSharedPreferences;
 
 import de.devland.esperandro.Esperandro;
 

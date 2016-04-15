@@ -24,18 +24,18 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadBatchListener;
-import com.sun.bingo.BingoApplication;
+import com.framework.dialog.TipDialog;
+import com.framework.dialog.ToastTip;
+import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.control.manager.ImageManager;
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.CommonDialog;
-import com.sun.bingo.framework.dialog.TipDialog;
-import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.framework.eventbus.EventEntity;
-import com.sun.bingo.framework.eventbus.EventType;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
+import com.sun.bingo.model.eventbus.EventEntity;
+import com.sun.bingo.model.eventbus.EventType;
+import com.sun.bingo.ui.dialog.CommonDialog;
 import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.KeyBoardUtil;
 import com.sun.bingo.util.NetWorkUtil;
@@ -286,7 +286,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
                     public void onOtherButtonClick(ActionSheet actionSheet, int index) {
                         switch (index) {
                             case 0:
-                                takePicturePath = "/" + BingoApplication.APP_CACHE_DIR + "/" + DateUtil.getCurrentMillis() + ".jpg";
+                                takePicturePath = "/" + BingoApp.APP_CACHE_DIR + "/" + DateUtil.getCurrentMillis() + ".jpg";
                                 NavigateManager.gotoTakePicture(EditNewBingoActivity.this, takePicturePath);
                                 break;
                             case 1:

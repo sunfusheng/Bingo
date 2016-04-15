@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.framework.dialog.ToastTip;
 import com.mingle.widget.LoadingView;
 import com.sina.weibo.sdk.api.TextObject;
 import com.sina.weibo.sdk.api.WebpageObject;
@@ -29,9 +30,8 @@ import com.sun.bingo.R;
 import com.sun.bingo.adapter.RecyclerViewAdapter;
 import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.PageControl;
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.widget.CircleRefreshLayout;
 

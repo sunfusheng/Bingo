@@ -21,7 +21,8 @@ import com.sun.bingo.R;
 
 public class IconWithTextView extends View {
 
-    private int mColor = 0xFF45C01A;
+    private int mColor = 0xFF009688;
+    private int mTextColor = 0xFF97929e;
     private Bitmap mIconBitmap;
     private String mText = "Bingo";
     private int mTextSize = (int) TypedValue.applyDimension(
@@ -43,42 +44,45 @@ public class IconWithTextView extends View {
 
     public IconWithTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        init(context, attrs);
     }
 
-    // 获取自定义属性的值
     public IconWithTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.IconWithTextView);
-        int n = a.getIndexCount();
+    private void init(Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.IconWithTextView);
+        int index = typedArray.getIndexCount();
 
-        for (int i = 0; i < n; i++) {
-            int attr = a.getIndex(i);
+        for (int i = 0; i < index; i++) {
+            int attr = typedArray.getIndex(i);
             switch (attr) {
                 case R.styleable.IconWithTextView_iwtv_icon:
-                    BitmapDrawable drawable = (BitmapDrawable) a.getDrawable(attr);
+                    BitmapDrawable drawable = (BitmapDrawable) typedArray.getDrawable(attr);
                     mIconBitmap = drawable.getBitmap();
                     break;
                 case R.styleable.IconWithTextView_iwtv_color:
-                    mColor = a.getColor(attr, 0xFF45C01A);
+                    mColor = typedArray.getColor(attr, 0xFF009688);
                     break;
                 case R.styleable.IconWithTextView_iwtv_text:
-                    mText = a.getString(attr);
+                    mText = typedArray.getString(attr);
                     break;
                 case R.styleable.IconWithTextView_iwtv_text_size:
-                    mTextSize = (int) a.getDimension(attr, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                    mTextSize = (int) typedArray.getDimension(attr, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                             12, getResources().getDisplayMetrics()));
                     break;
             }
-
         }
 
-        a.recycle();
+        typedArray.recycle();
 
         mTextBound = new Rect();
         mTextPaint = new Paint();
         mTextPaint.setTextSize(mTextSize);
-        mTextPaint.setColor(0Xff555555);
+        mTextPaint.setColor(mColor);
+        mTextPaint.setAntiAlias(true);
         mTextPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
     }
 
@@ -96,6 +100,7 @@ public class IconWithTextView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (canvas == null) return;
         canvas.drawBitmap(mIconBitmap, null, mIconRect, null);
 
         int alpha = (int) Math.ceil(255 * mAlpha);
@@ -107,6 +112,7 @@ public class IconWithTextView extends View {
         drawTargetText(canvas, alpha);
 
         canvas.drawBitmap(mBitmap, 0, 0, null);
+
     }
 
     // 绘制变色的文本
@@ -120,7 +126,7 @@ public class IconWithTextView extends View {
 
     // 绘制原文本
     private void drawSourceText(Canvas canvas, int alpha) {
-        mTextPaint.setColor(0xff333333);
+        mTextPaint.setColor(mTextColor);
         mTextPaint.setAlpha(255 - alpha);
         int x = getMeasuredWidth() / 2 - mTextBound.width() / 2;
         int y = mIconRect.bottom + mTextBound.height();

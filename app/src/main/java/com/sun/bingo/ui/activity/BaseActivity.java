@@ -14,24 +14,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.framework.base.BaseAsyncActivity;
+import com.framework.base.BaseControl;
+import com.framework.dialog.LoadingDialog;
 import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.base.BaseAsyncActivity;
-import com.sun.bingo.framework.base.BaseControl;
-import com.sun.bingo.framework.dialog.LoadingDialog;
-import com.sun.bingo.sharedpreferences.AccountSharedPreferences;
-import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
-import com.sun.bingo.sharedpreferences.SettingsSharedPreferences;
+import com.sun.bingo.model.UserEntity;
+import com.sun.bingo.model.sharedpreferences.AccountSharedPreferences;
+import com.sun.bingo.model.sharedpreferences.LocationSharedPreferences;
+import com.sun.bingo.model.sharedpreferences.SettingsSharedPreferences;
 import com.sun.bingo.util.DisplayUtil;
 import com.sun.bingo.util.theme.Selector;
 import com.sun.bingo.util.theme.ThemeUtil;
 
 import cn.bmob.v3.BmobUser;
+import de.devland.esperandro.Esperandro;
 
-public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
+public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> implements View.OnClickListener {
 
     protected Context mContext;
     protected Activity mActivity;
@@ -154,6 +155,9 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         }
     }
 
+    protected <P> P getSharedPreferences(Class<P> spClass) {
+        return Esperandro.getPreferences(spClass, this);
+    }
     public AccountSharedPreferences getAccountSharedPreferences() {
         return getSharedPreferences(AccountSharedPreferences.class);
     }
@@ -188,4 +192,8 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

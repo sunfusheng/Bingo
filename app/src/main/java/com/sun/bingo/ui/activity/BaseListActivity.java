@@ -2,8 +2,8 @@ package com.sun.bingo.ui.activity;
 
 import android.os.Bundle;
 
+import com.framework.base.BaseControl;
 import com.orhanobut.logger.Logger;
-import com.sun.bingo.framework.base.BaseControl;
 
 /**
  * Created by sunfusheng on 15/8/14.

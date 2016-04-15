@@ -9,8 +9,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.control.manager.listener.OnGetLocationListener;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.sharedpreferences.LocationSharedPreferences;
+import com.sun.bingo.model.UserEntity;
+import com.sun.bingo.model.sharedpreferences.LocationSharedPreferences;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.UpdateListener;

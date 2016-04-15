@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Bingo</string>
+    <string name="app_name">GankBingo</string>
     <string name="app_copyright">Copyright ©2016 版权所有</string>
+
+    <string name="tab_home">主页</string>
+    <string name="tab_msg">消息</string>
+    <string name="tab_mine">我</string>
 
     <string name="ok">确认</string>
     <string name="cancel">取消</string>

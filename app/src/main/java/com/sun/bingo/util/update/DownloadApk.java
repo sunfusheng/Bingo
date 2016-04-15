@@ -6,18 +6,18 @@ import android.net.Uri;
 import android.os.Environment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.framework.dialog.DownloadDialog;
+import com.framework.dialog.TipDialog;
+import com.framework.okhttp.OkHttpProxy;
+import com.framework.okhttp.callback.FileCallBack;
+import com.framework.okhttp.callback.JsonCallBack;
+import com.framework.okhttp.request.RequestCall;
 import com.orhanobut.logger.Logger;
-import com.sun.bingo.BingoApplication;
+import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
 import com.sun.bingo.control.UrlManager;
-import com.sun.bingo.entity.AppEntity;
-import com.sun.bingo.entity.VersionEntity;
-import com.sun.bingo.framework.dialog.DownloadDialog;
-import com.sun.bingo.framework.dialog.TipDialog;
-import com.sun.bingo.framework.okhttp.OkHttpProxy;
-import com.sun.bingo.framework.okhttp.callback.FileCallBack;
-import com.sun.bingo.framework.okhttp.callback.JsonCallBack;
-import com.sun.bingo.framework.okhttp.request.RequestCall;
+import com.sun.bingo.model.AppEntity;
+import com.sun.bingo.model.VersionEntity;
 import com.sun.bingo.util.ShareUtil;
 
 import java.io.File;
@@ -35,7 +35,7 @@ public class DownloadApk {
 
     private AppEntity appEntity;
     private String fileName = "bingo.apk";
-    private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApplication.APP_ROOT_DIR + File.separator;
+    private String filePath = Environment.getExternalStorageDirectory() + File.separator + BingoApp.APP_ROOT_DIR + File.separator;
     private String apkPathName = filePath + fileName;
 
     public DownloadApk(Context context) {

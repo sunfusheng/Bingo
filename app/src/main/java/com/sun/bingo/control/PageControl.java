@@ -2,11 +2,11 @@ package com.sun.bingo.control;
 
 import android.content.Context;
 
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
-import com.sun.bingo.framework.annotation.AsyncAtomMethod;
-import com.sun.bingo.framework.base.BaseControl;
-import com.sun.bingo.framework.proxy.MessageProxy;
+import com.framework.annotation.AsyncAtomMethod;
+import com.framework.base.BaseControl;
+import com.framework.proxy.MessageProxy;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
 
 import java.util.List;
 

@@ -18,15 +18,15 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bmob.BmobProFile;
 import com.bmob.btp.callback.UploadListener;
+import com.framework.dialog.ToastTip;
 import com.orhanobut.logger.Logger;
-import com.sun.bingo.BingoApplication;
+import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
 import com.sun.bingo.control.manager.ImageManager;
-import com.sun.bingo.framework.dialog.ToastTip;
-import com.sun.bingo.framework.eventbus.EventEntity;
-import com.sun.bingo.framework.eventbus.EventType;
+import com.sun.bingo.model.eventbus.EventEntity;
+import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
@@ -65,7 +65,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     @Bind(R.id.tv_logout)
     TextView tvLogout;
 
-    private String takePicturePath = "/" + BingoApplication.APP_CACHE_DIR + "/avatar.jpg";
+    private String takePicturePath = "/" + BingoApp.APP_CACHE_DIR + "/avatar.jpg";
     private String imagePath;
 
     private final String NICK_NAME = "nick_name";

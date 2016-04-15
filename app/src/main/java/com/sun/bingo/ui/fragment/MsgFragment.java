@@ -28,7 +28,7 @@ public class MsgFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // 判断rootView是否为空，避免每次来到页面都加载
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_mine, null);
+            rootView = inflater.inflate(R.layout.fragment_msg, null);
             ButterKnife.bind(this, rootView);
 
             initData();

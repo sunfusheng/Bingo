@@ -16,10 +16,10 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.framework.dialog.ToastTip;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.framework.dialog.ToastTip;
+import com.sun.bingo.model.BingoEntity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

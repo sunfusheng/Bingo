@@ -8,8 +8,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 
-import com.sun.bingo.entity.BingoEntity;
-import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.model.BingoEntity;
+import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.ui.activity.AboutAppActivity;
 import com.sun.bingo.ui.activity.AboutAuthorActivity;
 import com.sun.bingo.ui.activity.BingoDetailActivity;
@@ -49,6 +49,11 @@ public class NavigateManager {
         intent.setAction("android.intent.action.VIEW");
         Uri uri = Uri.parse(url);
         intent.setData(uri);
+        context.startActivity(intent);
+    }
+
+    public static void gotoSpecifiedActivity(Context context, Class cls) {
+        Intent intent = new Intent(context, cls);
         context.startActivity(intent);
     }
 

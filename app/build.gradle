@@ -99,50 +99,39 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:22.2.1'
     compile 'com.android.support:cardview-v7:22.2.1'
 
-    // butterknife
-    compile 'com.jakewharton:butterknife:7.0.1'
-
-    compile project(':extras-libs:orm-library') //Afinal DataBase
+    // DroidFramework
+    compile project(':DroidFramework')
 
     // 友盟统计
     compile 'com.umeng.analytics:analytics:latest.integration'
 
-    //multidex
+    // multidex
     compile 'com.android.support:multidex:1.0.0'
 
-    //SharedPreferences
+    // SharedPreferences
     apt 'de.devland.esperandro:esperandro:2.2.0'
     compile 'de.devland.esperandro:esperandro-api:2.2.0'
 
-    //SystemBarTint
+    // SystemBarTint
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'cn.bingoogolapple:bga-refreshlayout:1.0.4@aar'
 
-    //Material Dialog
-    compile 'com.afollestad:material-dialogs:0.7.6.0'
-
-    //Floating Action Button
+    // Floating Action Button
     compile 'com.shamanland:fab:0.0.8'
 
-    //Logger
-    compile 'com.orhanobut:logger:1.4'
-
-    //RichEditor
+    // RichEditor
     compile 'jp.wasabeef:richeditor-android:0.1'
 
-    //PhotoView
+    // PhotoView
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
 
-    //LoadingView
+    // LoadingView
     compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 
-    //EventBus
+    // EventBus
     compile 'de.greenrobot:eventbus:2.4.0'
-
-    // OkHttp3
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
 
     // Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'

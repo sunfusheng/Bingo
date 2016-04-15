@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
-import com.sun.bingo.entity.UserEntity;
+import com.sun.bingo.model.UserEntity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -54,7 +54,7 @@ public class SplashActivity extends BaseActivity {
         ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.5f, 1.0f, 1.5f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         set.addAnimation(scaleAnim);
         set.setFillAfter(true);
-        set.setDuration(3000);
+        set.setDuration(1000);
 
         set.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -79,6 +79,7 @@ public class SplashActivity extends BaseActivity {
             NavigateManager.gotoLoginActivity(this);
         } else {
             NavigateManager.gotoMainActivity(this);
+//            NavigateManager.gotoSpecifiedActivity(this, MainV2Activity.class);
         }
         finish();
     }

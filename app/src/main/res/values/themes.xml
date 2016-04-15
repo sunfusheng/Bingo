@@ -10,6 +10,7 @@
         <item name="colorAccent">@color/color_accent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowBackground">@color/bg</item>
         <item name="floatingActionButtonStyle">@style/AppTheme.Fab</item>
         <item name="actionSheetStyle">@style/ActionSheetStyleIOS7</item>
