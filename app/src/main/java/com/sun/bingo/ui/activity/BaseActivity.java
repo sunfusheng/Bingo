@@ -155,6 +155,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> im
         }
     }
 
+    // SharedPreferences
     protected <P> P getSharedPreferences(Class<P> spClass) {
         return Esperandro.getPreferences(spClass, this);
     }
