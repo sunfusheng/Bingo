@@ -3,6 +3,7 @@ apply plugin: 'com.android.library'
 repositories {
     jcenter()
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 android {
@@ -34,5 +35,4 @@ dependencies {
 
     //Material Dialog
     compile 'com.afollestad:material-dialogs:0.7.6.0'
-
 }

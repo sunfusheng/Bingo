@@ -1,6 +1,7 @@
 package com.framework.dialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -25,6 +26,12 @@ public class DownloadDialog {
             materialDialog = new MaterialDialog.Builder(mContext)
                     .content("正在下载...")
                     .progress(false, 100, false)
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            ToastTip.show("已进入后台下载");
+                        }
+                    })
                     .build();
         }
         if (!materialDialog.isShowing()) {
