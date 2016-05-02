@@ -32,6 +32,7 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
 
     private List<String> picUrls;
     private Rect[] picRects;
+    private ImageManager imageManager;
 
     private static Rect[] smallRectArr = null;
 
@@ -54,6 +55,7 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
 
     private void init(Context context) {
         this.mContext = context;
+        imageManager = new ImageManager(context);
         gap = getResources().getDimensionPixelSize(R.dimen.gap_pics);
     }
 
@@ -192,7 +194,7 @@ public class GroupImageView extends ViewGroup implements View.OnClickListener {
                 imgView.setVisibility(View.VISIBLE);
                 imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imgView.setLayoutParams(new LayoutParams(imgRect.right - imgRect.left, imgRect.bottom - imgRect.top));
-                ImageManager.getInstance().loadUrlImage(mContext, picUrls.get(i), imgView);
+                imageManager.loadUrlImage(picUrls.get(i), imgView);
             }
         }
     }

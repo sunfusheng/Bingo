@@ -10,14 +10,11 @@ import android.text.TextUtils;
 
 import com.sun.bingo.model.BingoEntity;
 import com.sun.bingo.model.UserEntity;
-import com.sun.bingo.ui.activity.AboutAppActivity;
-import com.sun.bingo.ui.activity.AboutAuthorActivity;
 import com.sun.bingo.ui.activity.BingoDetailActivity;
 import com.sun.bingo.ui.activity.EditNewBingoActivity;
 import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
 import com.sun.bingo.ui.activity.ProfileActivity;
-import com.sun.bingo.ui.activity.RichEditorActivity;
 import com.sun.bingo.ui.activity.UserInfoActivity;
 
 import java.io.File;
@@ -82,24 +79,9 @@ public class NavigateManager {
         activity.startActivity(intent);
     }
 
-    public static void gotoRichEditorActivity(Activity activity) {
-        Intent intent = new Intent(activity, RichEditorActivity.class);
-        activity.startActivity(intent);
-    }
-
     public static void gotoBingoDetailActivity(Context context, BingoEntity entity) {
         Intent intent = new Intent(context, BingoDetailActivity.class);
         intent.putExtra("entity", entity);
-        context.startActivity(intent);
-    }
-
-    public static void gotoAboutAppActivity(Context context) {
-        Intent intent = new Intent(context, AboutAppActivity.class);
-        context.startActivity(intent);
-    }
-
-    public static void gotoAboutAuthorActivity(Context context) {
-        Intent intent = new Intent(context, AboutAuthorActivity.class);
         context.startActivity(intent);
     }
 

@@ -15,11 +15,11 @@ public class UserEntityUtil {
 
     public static void setUserAvatarView(Context context, String url, ImageView imageView) {
         if (imageView == null) return;
+        ImageManager imageManager = new ImageManager(context);
         if (!TextUtils.isEmpty(url)) {
-            ImageManager.getInstance().loadCircleImage(context, url, imageView);
-
+            imageManager.loadCircleImage(url, imageView);
         } else {
-            ImageManager.getInstance().loadCircleResImage(context, R.drawable.ic_user, imageView);
+            imageManager.loadCircleResImage(R.drawable.ic_user, imageView);
         }
     }
 

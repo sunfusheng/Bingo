@@ -13,7 +13,7 @@
     <color name="transparent">#00000000</color>
 
     <!-- background -->
-    <color name="bg">#FFF5F5F5</color>
+    <color name="bg">#f0f0f0</color>
     <color name="bg_pressed">#FFF2F2F2</color>
 
     <!-- material design black font color -->

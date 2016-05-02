@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -24,7 +23,6 @@ import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
-import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.model.eventbus.EventEntity;
 import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.util.UserEntityUtil;
@@ -34,7 +32,6 @@ import com.sun.bingo.widget.UploadAvatarView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
 import de.greenrobot.event.EventBus;
@@ -62,15 +59,12 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     TextView tvUserSign;
     @Bind(R.id.rl_user_sign)
     RelativeLayout rlUserSign;
-    @Bind(R.id.tv_logout)
-    TextView tvLogout;
 
     private String takePicturePath = "/" + BingoApp.APP_CACHE_DIR + "/avatar.jpg";
     private String imagePath;
 
     private final String NICK_NAME = "nick_name";
     private final String USER_SIGN = "user_sign";
-    private boolean isGotoMain = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,19 +78,11 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     }
 
     private void initData() {
-        if (getIntent() != null && getIntent().hasExtra("isGotoMain")) {
-            isGotoMain = getIntent().getBooleanExtra("isGotoMain", isGotoMain);
-        }
+
     }
 
     private void initView() {
-        initToolBar(toolbar, !isGotoMain, "个人中心");
-        tvLogout.setTextColor(getColorPrimary());
-
-        if (isGotoMain) {
-            tvLogout.setText("完成");
-            tvLogout.setGravity(Gravity.CENTER);
-        }
+        initToolBar(toolbar, true, "个人中心");
 
         UserEntityUtil.setUserAvatarView(mContext, myEntity.getUserAvatar(), civUserAvatar);
         UserEntityUtil.setTextViewData(tvNickName, myEntity.getNickName());
@@ -107,7 +93,6 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
         rlUserAvatar.setOnClickListener(this);
         rlNickName.setOnClickListener(this);
         rlUserSign.setOnClickListener(this);
-        tvLogout.setOnClickListener(this);
     }
 
     public void showSelectAvatarDialog() {
@@ -136,7 +121,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
 
 
     private void setImageViewWithPath(String imagePath) {
-        ImageManager.getInstance().loadCircleLocalImage(mContext, imagePath, civUserAvatar);
+        mImageManager.loadCircleLocalImage(imagePath, civUserAvatar);
         mControl.getCompressImagePath(this, imagePath); //异步压缩图片
     }
 
@@ -226,13 +211,6 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
             case R.id.rl_user_sign:
                 updateNickName("个性签名", USER_SIGN, myEntity.getUserSign());
                 break;
-            case R.id.tv_logout:
-                if (isGotoMain) {
-                    gotoMain();
-                } else {
-                    logout();
-                }
-                break;
         }
     }
 
@@ -250,32 +228,6 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
             return;
         }
         NavigateManager.gotoMainActivity(this);
-    }
-
-    private void logout() {
-        new MaterialDialog.Builder(this)
-                .content("确认退出登录？")
-                .contentColor(getResources().getColor(R.color.font_black_3))
-                .positiveText(R.string.ok)
-                .negativeText(R.string.cancel)
-                .negativeColor(getResources().getColor(R.color.font_black_3))
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        getAccountSharedPreferences().uid(null);
-                        getAccountSharedPreferences().access_token(null);
-                        getAccountSharedPreferences().refresh_token(null);
-                        getAccountSharedPreferences().expires_in(0);
-                        BmobUser.logOut(ProfileActivity.this);
-                        NavigateManager.gotoMainActivity(ProfileActivity.this);
-                        finish();
-                    }
-
-                    @Override
-                    public void onNegative(MaterialDialog dialog) {
-                    }
-                })
-                .show();
     }
 
     private View view;

@@ -112,11 +112,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.activity.AboutAppActivity"
+            android:name=".ui.activity.AboutActivity"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.activity.AboutAuthorActivity"
+            android:name=".ui.activity.SettingsActivity"
             android:screenOrientation="portrait"/>
 
         <activity

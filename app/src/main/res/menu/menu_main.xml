@@ -11,11 +11,7 @@
     <group android:id="@+id/group_more">
         <item
             android:id="@+id/item_menu_app"
-            android:title="@string/about_app"/>
-
-        <item
-            android:id="@+id/item_menu_author"
-            android:title="@string/about_author"/>
+            android:title="@string/about"/>
     </group>
 
 </menu>

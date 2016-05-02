@@ -395,10 +395,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_menu_app:
-                NavigateManager.gotoAboutAppActivity(this);
-                return true;
-            case R.id.item_menu_author:
-                NavigateManager.gotoAboutAuthorActivity(this);
+                NavigateManager.gotoSpecifiedActivity(mContext, AboutActivity.class);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -21,6 +21,7 @@ import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.R;
 import com.sun.bingo.constant.GlobalParams;
+import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.model.sharedpreferences.AccountSharedPreferences;
 import com.sun.bingo.model.sharedpreferences.LocationSharedPreferences;
@@ -38,6 +39,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> im
     protected Activity mActivity;
 
     protected UserEntity myEntity;
+    protected ImageManager mImageManager;
     protected LoadingDialog loadingDialog;
 
     @Override
@@ -54,6 +56,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> im
     }
 
     private void init() {
+        mImageManager = new ImageManager(mContext);
         myEntity = BmobUser.getCurrentUser(this, UserEntity.class);
         GlobalParams.screenWidth = DisplayUtil.getWindowWidth(this);
         GlobalParams.screenHeight = DisplayUtil.getWindowHeight(this);

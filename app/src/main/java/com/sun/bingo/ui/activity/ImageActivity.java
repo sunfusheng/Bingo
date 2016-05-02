@@ -1,5 +1,6 @@
 package com.sun.bingo.ui.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -47,7 +48,7 @@ public class ImageActivity extends BaseActivity {
 
     private void initView() {
         initToolBar(toolbar, true, index + 1 + "/"+size);
-        viewPager.setAdapter(new CheckImageAdapter(picUrls));
+        viewPager.setAdapter(new CheckImageAdapter(mContext, picUrls));
         viewPager.setCurrentItem(index);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -70,16 +71,18 @@ public class ImageActivity extends BaseActivity {
 
         private String[] picUrls;
         private int size;
+        private ImageManager imageManager;
 
-        public CheckImageAdapter(String[] picUrls) {
+        public CheckImageAdapter(Context context, String[]picUrls) {
             this.picUrls = picUrls;
             this.size = picUrls.length;
+            imageManager = new ImageManager(context);
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             PhotoView photoView = new PhotoView(container.getContext());
-            ImageManager.getInstance().loadUrlImage(container.getContext(), picUrls[position], photoView);
+            imageManager.loadUrlImage(picUrls[position], photoView);
             container.addView(photoView);
             return photoView;
         }

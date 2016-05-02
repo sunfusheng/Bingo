@@ -30,7 +30,6 @@ import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.SingleControl;
-import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.model.BingoEntity;
 import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.model.eventbus.EventEntity;
@@ -319,7 +318,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
                     }
                 }
             });
-            ImageManager.getInstance().loadLocalImage(mContext, list.get(i), ivSelectedImage);
+            mImageManager.loadLocalImage(list.get(i), ivSelectedImage);
             llContainer.addView(view);
         }
 

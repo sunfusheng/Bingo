@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ripple_color_primary"
+            android:background="@drawable/ripple_item_clicked_with_mask"
             android:gravity="center">
 
             <com.sun.bingo.widget.IconWithTextView
@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ripple_color_primary"
+            android:background="@drawable/ripple_item_clicked_with_mask"
             android:gravity="center">
 
             <com.sun.bingo.widget.IconWithTextView
@@ -70,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/ripple_color_primary"
+            android:background="@drawable/ripple_item_clicked_with_mask"
             android:gravity="center">
 
             <com.sun.bingo.widget.IconWithTextView

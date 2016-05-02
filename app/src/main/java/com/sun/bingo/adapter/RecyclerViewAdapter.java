@@ -47,6 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private static final int TYPE_LIST = 0;
     private static final int TYPE_FOOT_VIEW = 1;
+    private ImageManager mImageManager;
 
     private View footView;
 
@@ -58,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this(context);
         this.mEntities = entities;
         userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
+        mImageManager = new ImageManager(context);
     }
 
     public void setHandleType(int type) {
@@ -107,10 +109,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             final int mPosition = position;
 
             if (userEntity != null && !TextUtils.isEmpty(userEntity.getUserAvatar())) {
-                ImageManager.getInstance().loadCircleImage(mContext, userEntity.getUserAvatar(), listViewHolder.ivUserAvatar);
+                mImageManager.loadCircleImage(userEntity.getUserAvatar(), listViewHolder.ivUserAvatar);
 
             } else {
-                ImageManager.getInstance().loadCircleResImage(mContext, R.drawable.ic_user, listViewHolder.ivUserAvatar);
+                mImageManager.loadCircleResImage(R.drawable.ic_user, listViewHolder.ivUserAvatar);
             }
 
             if (userEntity != null && !TextUtils.isEmpty(userEntity.getNickName())) {
