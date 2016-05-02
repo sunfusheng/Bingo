@@ -1,14 +1,17 @@
 package com.sun.bingo.ui.activity;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.sun.bingo.R;
 
@@ -26,6 +29,8 @@ public class AboutActivity extends BaseActivity {
     CollapsingToolbarLayout collapsingToolbar;
     @Bind(R.id.webView)
     WebView webView;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
     private WebSettings settings;
 
@@ -79,6 +84,45 @@ public class AboutActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                webView.setLayerType(View.LAYER_TYPE_NONE, null);
+                progressBar.setVisibility(View.GONE);
+                if (!settings.getLoadsImagesAutomatically()) {
+                    settings.setLoadsImagesAutomatically(true);
+                }
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                if (newProgress >= 100) {
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    if (progressBar.getVisibility() == View.GONE) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                    progressBar.setProgress(newProgress);
+                }
+                super.onProgressChanged(view, newProgress);
+
             }
         });
     }

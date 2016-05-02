@@ -90,7 +90,8 @@
                 android:layout_centerInParent="true"
                 android:paddingBottom="30dp"
                 android:paddingLeft="40dp"
-                android:src="@drawable/drawable_round_red_icon"/>
+                android:src="@drawable/drawable_round_red_icon"
+                android:visibility="gone"/>
         </RelativeLayout>
 
     </LinearLayout>

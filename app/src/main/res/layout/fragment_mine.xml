@@ -79,7 +79,7 @@
             android:layout_height="1px"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@color/font_black_5"/>
+            android:background="@color/font_black_6"/>
 
         <TextView
             android:id="@+id/tv_my_favorite"

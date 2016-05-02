@@ -99,6 +99,10 @@ Google 的dexmaker可以说是一个非常好的选择。
 * 目标只有一个收集好的技术文章
 * 大量使用Github开源库
 
+### 我的公众号
+
+<img src="/assets/icon1/微信公众号15.jpg" style="width: 30%;">
+
 ### 关于我
 
 个人邮箱：sfsheng0322@126.com
