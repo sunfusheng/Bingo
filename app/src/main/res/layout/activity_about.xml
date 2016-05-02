@@ -22,9 +22,10 @@
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="55dp"
+                app:expandedTitleMarginStart="55dp"
                 app:expandedTitleTextAppearance="@style/CollapsingToolbarTitleStyle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -65,17 +66,11 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
+            <WebView
+                android:id="@+id/webView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"/>
 
-                <WebView
-                    android:id="@+id/webView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
 

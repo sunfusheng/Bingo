@@ -78,8 +78,8 @@ public class SplashActivity extends BaseActivity {
         if (myEntity == null) {
             NavigateManager.gotoLoginActivity(this);
         } else {
-//            NavigateManager.gotoMainActivity(this);
-            NavigateManager.gotoSpecifiedActivity(this, MainV2Activity.class);
+            NavigateManager.gotoMainActivity(this);
+//            NavigateManager.gotoSpecifiedActivity(this, MainV2Activity.class);
         }
         finish();
     }

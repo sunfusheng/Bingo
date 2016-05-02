@@ -91,8 +91,6 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
     //设置主题
     private void changeTheme() {
         new ColorChooserDialog().show(this, getSettingsSharedPreferences().themeValue());
-        NavigateManager.gotoMainActivity(mActivity);
-        finish();
     }
 
     @Override
