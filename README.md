@@ -101,7 +101,7 @@ Google 的dexmaker可以说是一个非常好的选择。
 
 ### 我的公众号
 
-<img src="/assets/icon1/微信公众号15.jpg" style="width: 30%;">
+<img src="/screenshots/微信公众号15.jpg" style="width: 30%;">
 
 ### 关于我
 
