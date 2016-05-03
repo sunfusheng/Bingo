@@ -10,6 +10,43 @@
 
     <include layout="@layout/app_toolbar"/>
 
+    <RelativeLayout
+        android:id="@+id/rl_check_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ripple_item_clicked_with_mask"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/action_check_update"
+            android:textColor="@color/font_black_2"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/iv_version_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tv_version"
+            android:src="@drawable/drawable_round_red_icon"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="V1.5.0"
+            android:textColor="@color/font_black_4"
+            android:textSize="13sp"/>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

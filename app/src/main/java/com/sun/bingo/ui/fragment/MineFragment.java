@@ -31,8 +31,14 @@ public class MineFragment extends BaseFragment {
     ImageView ivUserAvatar;
     @Bind(R.id.rl_user_info)
     RelativeLayout rlUserInfo;
-    @Bind(R.id.tv_settings)
-    TextView tvSettings;
+    @Bind(R.id.tv_my_bingo)
+    TextView tvMyBingo;
+    @Bind(R.id.tv_my_favorite)
+    TextView tvMyFavorite;
+    @Bind(R.id.iv_settings_dot)
+    ImageView ivSettingsDot;
+    @Bind(R.id.rl_settings)
+    RelativeLayout rlSettings;
 
     private MainV2Activity mActivity;
     private View rootView;
@@ -68,6 +74,7 @@ public class MineFragment extends BaseFragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             initUserInfo();
+            showDot(getAccountSharedPreferences().is_need_update());
         }
     }
 
@@ -81,15 +88,22 @@ public class MineFragment extends BaseFragment {
 
     private void initListener() {
         rlUserInfo.setOnClickListener(this);
-        tvSettings.setOnClickListener(this);
+        rlSettings.setOnClickListener(this);
     }
 
     private void initUserInfo() {
         mUserEntity = BmobUser.getCurrentUser(getActivity(), UserEntity.class);
         if (mUserEntity != null) {
-            tvNickName.setText(mUserEntity.getNickName()+"");
-            tvUserSign.setText(mUserEntity.getUserSign()+"");
+            tvNickName.setText(mUserEntity.getNickName() + "");
+            tvUserSign.setText(mUserEntity.getUserSign() + "");
             mImageManager.loadCircleImage(mUserEntity.getUserAvatar(), ivUserAvatar);
+        }
+    }
+
+    public void showDot(boolean isShow) {
+        if (ivSettingsDot != null) {
+            ivSettingsDot.setVisibility(isShow ? View.VISIBLE : View.INVISIBLE);
+            getAccountSharedPreferences().is_need_update(isShow);
         }
     }
 
@@ -100,7 +114,7 @@ public class MineFragment extends BaseFragment {
             case R.id.rl_user_info:
                 NavigateManager.gotoProfileActivity(mActivity, false);
                 break;
-            case R.id.tv_settings:
+            case R.id.rl_settings:
                 NavigateManager.gotoSpecifiedActivity(mContext, SettingsActivity.class);
                 break;
         }

@@ -3,13 +3,21 @@ package com.sun.bingo.ui.activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
+import com.sun.bingo.model.eventbus.EventEntity;
+import com.sun.bingo.model.eventbus.EventType;
+import com.sun.bingo.util.AppUtil;
 import com.sun.bingo.util.ShareUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
+import com.sun.bingo.util.update.DownloadApk;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,6 +42,12 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
     TextView tvAbout;
     @Bind(R.id.tv_logout)
     TextView tvLogout;
+    @Bind(R.id.iv_version_dot)
+    ImageView ivVersionDot;
+    @Bind(R.id.tv_version)
+    TextView tvVersion;
+    @Bind(R.id.rl_check_update)
+    RelativeLayout rlCheckUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +66,12 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
 
     private void initView() {
         initToolBar(toolbar, true, R.string.action_settings);
+        tvVersion.setText(AppUtil.getVersionName(this));
+        ivVersionDot.setVisibility(getAccountSharedPreferences().is_need_update()? View.VISIBLE:View.INVISIBLE);
     }
 
     private void initListener() {
+        rlCheckUpdate.setOnClickListener(this);
         tvChangeTheme.setOnClickListener(this);
         tvSendToFriend.setOnClickListener(this);
         tvShare.setOnClickListener(this);
@@ -67,6 +84,9 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
+            case R.id.rl_check_update:
+                new DownloadApk(this).checkVersion(true);
+                break;
             case R.id.tv_change_theme:
                 changeTheme();
                 break;
@@ -97,6 +117,7 @@ public class SettingsActivity extends BaseActivity implements ColorChooserDialog
     public void onColorSelection(int index, int color, int darker) {
         getSettingsSharedPreferences().themeValue(index);
         recreate();
+        EventBus.getDefault().post(new EventEntity(EventType.EVENT_TYPE_CHANGE_THEME));
     }
 
     // 退出登录

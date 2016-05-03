@@ -5,14 +5,23 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.sun.bingo.R;
+import com.sun.bingo.model.eventbus.EventEntity;
+import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.ui.fragment.MineFragment;
 import com.sun.bingo.ui.fragment.MsgFragment;
 import com.sun.bingo.ui.fragment.SquareBingoFragment;
+import com.sun.bingo.util.update.DownloadApk;
 import com.sun.bingo.widget.IconWithTextView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +51,20 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     IconWithTextView tabMine;
     @Bind(R.id.rl_tab_mine)
     RelativeLayout rlTabMine;
+    @Bind(R.id.iv_mine_dot)
+    ImageView ivMineDot;
 
     private List<IconWithTextView> mTabIconList = new ArrayList<>();
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentPagerAdapter mAdapter;
+    private MineFragment mineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_v2);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
 
         initData();
         initView();
@@ -63,9 +76,11 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
         mTabIconList.add(tabMsg);
         mTabIconList.add(tabMine);
 
+        mineFragment = new MineFragment();
+
         mFragmentList.add(new SquareBingoFragment());
         mFragmentList.add(new MsgFragment());
-        mFragmentList.add(new MineFragment());
+        mFragmentList.add(mineFragment);
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -78,6 +93,20 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
                 return mFragmentList.get(position);
             }
         };
+
+        checkVersion();
+    }
+
+    private void checkVersion() {
+        if (!TextUtils.isEmpty(getAccountSharedPreferences().ignore_version_name())) {
+            ivMineDot.setVisibility(View.VISIBLE);
+            getAccountSharedPreferences().is_need_update(true);
+            if (mineFragment != null) {
+                mineFragment.showDot(true);
+            }
+        } else {
+            new DownloadApk(this).checkVersion(false);
+        }
     }
 
     private void initView() {
@@ -94,7 +123,6 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
         rlTabHome.setOnClickListener(this);
         rlTabMsg.setOnClickListener(this);
         rlTabMine.setOnClickListener(this);
-
         viewPager.addOnPageChangeListener(this);
     }
 
@@ -141,5 +169,27 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void eventBusListener(EventEntity event) {
+        switch (event.getType()) {
+            case EventType.EVENT_TYPE_CHANGE_THEME:
+                recreate();
+                break;
+            case EventType.EVENT_TYPE_UPDATE_APP:
+                ivMineDot.setVisibility(event.getArg1() == 0? View.VISIBLE:View.INVISIBLE);
+                getAccountSharedPreferences().is_need_update(event.getArg1() == 0? true:false);
+                if (mineFragment != null) {
+                    mineFragment.showDot(event.getArg1() == 0? true:false);
+                }
+                break;
+        }
     }
 }

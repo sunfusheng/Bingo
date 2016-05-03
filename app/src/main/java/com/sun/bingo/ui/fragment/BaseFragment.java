@@ -10,6 +10,9 @@ import com.framework.base.BaseControl;
 import com.orhanobut.logger.Logger;
 import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.model.UserEntity;
+import com.sun.bingo.model.sharedpreferences.AccountSharedPreferences;
+import com.sun.bingo.model.sharedpreferences.LocationSharedPreferences;
+import com.sun.bingo.model.sharedpreferences.SettingsSharedPreferences;
 
 import cn.bmob.v3.BmobUser;
 import de.devland.esperandro.Esperandro;
@@ -43,8 +46,18 @@ public class BaseFragment<T extends BaseControl> extends BaseAsyncFragment<T> im
 
     }
 
+    // SharedPreferences
     protected <P> P getSharedPreferences(Class<P> spClass) {
         return Esperandro.getPreferences(spClass, getActivity());
+    }
+    public AccountSharedPreferences getAccountSharedPreferences() {
+        return getSharedPreferences(AccountSharedPreferences.class);
+    }
+    public SettingsSharedPreferences getSettingsSharedPreferences() {
+        return getSharedPreferences(SettingsSharedPreferences.class);
+    }
+    public LocationSharedPreferences getLocationSharedPreferences() {
+        return getSharedPreferences(LocationSharedPreferences.class);
     }
 
 }

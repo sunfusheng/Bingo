@@ -92,15 +92,29 @@
             android:textSize="16sp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_settings"
+    <RelativeLayout
+        android:id="@+id/rl_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/ripple_item_clicked_with_mask"
-        android:padding="15dp"
-        android:text="设置"
-        android:textColor="@color/font_black_2"
-        android:textSize="16sp"/>
+        android:padding="15dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/action_settings"
+            android:textColor="@color/font_black_2"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/iv_settings_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/drawable_round_red_icon"
+            android:visibility="invisible"/>
+    </RelativeLayout>
 </LinearLayout>

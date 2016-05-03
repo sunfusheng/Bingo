@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GankBingo</string>
+    <string name="app_name">Bingo</string>
     <string name="app_copyright">Copyright ©2016 版权所有</string>
 
     <string name="tab_home">主页</string>
@@ -28,6 +28,7 @@
     <string name="menu_feedback">反馈</string>
     <string name="menu_about">关于</string>
 
+    <string name="action_check_update">检查更新</string>
     <string name="action_settings">设置</string>
     <string name="action_logout">退出登录</string>
     <string name="action_notification">通知消息</string>

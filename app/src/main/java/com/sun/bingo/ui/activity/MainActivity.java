@@ -177,7 +177,7 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
     }
 
     private void initVersion() {
-        new DownloadApk(this).checkVersion();
+        new DownloadApk(this).checkVersion(false);
     }
 
     // 检查Bmob用户是否登录

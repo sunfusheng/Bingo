@@ -22,4 +22,10 @@ public interface AccountSharedPreferences extends SharedPreferenceActions {
     long expires_in();
     void expires_in(long expires_in);
 
+    boolean is_need_update();
+    void is_need_update(boolean is_need_update);
+
+    String ignore_version_name();
+    void ignore_version_name(String ignore_version_name);
+
 }

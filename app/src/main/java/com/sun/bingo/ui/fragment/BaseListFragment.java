@@ -21,13 +21,16 @@ import com.sun.bingo.model.eventbus.EventEntity;
 import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.widget.CircleRefreshLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
-import de.greenrobot.event.EventBus;
 
 
 public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
@@ -128,9 +131,10 @@ public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncF
         EventBus.getDefault().unregister(this);
     }
 
-    public void onEventMainThread(EventEntity event) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void eventBusListener(EventEntity event) {
         switch (event.getType()) {
-            case EventType.UPDATE_BINGO_LIST:
+            case EventType.EVENT_TYPE_UPDATE_BINGO_LIST:
                 onRefreshStart();
                 break;
         }

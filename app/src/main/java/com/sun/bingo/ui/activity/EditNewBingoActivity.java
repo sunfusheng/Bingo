@@ -42,6 +42,8 @@ import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +52,6 @@ import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.SaveListener;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by sunfusheng on 15/7/18.
@@ -231,7 +232,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
     private void resultSuccess() {
         getSettingsSharedPreferences().newBingoUrl(etWebsite.getText().toString());
         getSettingsSharedPreferences().newBingoDes(etDescribe.getText().toString());
-        EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
+        EventBus.getDefault().post(new EventEntity(EventType.EVENT_TYPE_UPDATE_BINGO_LIST));
         loadingDialog.dismiss();
         CommonDialog.showSuccessDialog(this, new CommonDialog.DismissListener() {
             @Override

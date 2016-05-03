@@ -12,8 +12,8 @@ android {
         applicationId "com.sun.bingo"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 12
-        versionName "1.4.3"
+        versionCode 13
+        versionName "1.5.0"
         manifestPlaceholders = [umengHolder: "bingo"]
         multiDexEnabled true
     }
@@ -131,7 +131,7 @@ dependencies {
     compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
 
     // EventBus
-    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 
     // Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'

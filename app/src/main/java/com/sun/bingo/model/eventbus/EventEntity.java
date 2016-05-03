@@ -16,6 +16,11 @@ public class EventEntity implements Serializable {
         this.type = type;
     }
 
+    public EventEntity(String type, int arg1) {
+        this.type = type;
+        this.arg1 = arg1;
+    }
+
     public EventEntity(String type, Object obj) {
         this.type = type;
         this.obj = obj;

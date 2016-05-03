@@ -30,11 +30,12 @@ import com.sun.bingo.util.image.GetPathFromUri4kitkat;
 import com.sun.bingo.widget.ActionSheet;
 import com.sun.bingo.widget.UploadAvatarView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by sunfusheng on 15/7/22.
@@ -147,7 +148,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                 myEntity.update(ProfileActivity.this, myEntity.getObjectId(), new UpdateListener() {
                     @Override
                     public void onSuccess() {
-                        EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
+                        EventBus.getDefault().post(new EventEntity(EventType.EVENT_TYPE_UPDATE_BINGO_LIST));
                         civUserAvatar.setProgressOver();
                         setResult(NavigateManager.PROFILE_REQUEST_CODE);
                     }
@@ -259,7 +260,7 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                             myEntity.update(ProfileActivity.this, myEntity.getObjectId(), new UpdateListener() {
                                 @Override
                                 public void onSuccess() {
-                                    EventBus.getDefault().post(new EventEntity(EventType.UPDATE_BINGO_LIST));
+                                    EventBus.getDefault().post(new EventEntity(EventType.EVENT_TYPE_UPDATE_BINGO_LIST));
                                     setResult(NavigateManager.PROFILE_REQUEST_CODE);
                                     switch (type) {
                                         case NICK_NAME:
