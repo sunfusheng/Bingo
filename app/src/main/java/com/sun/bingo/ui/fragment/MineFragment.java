@@ -12,6 +12,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.ui.activity.MainV2Activity;
+import com.sun.bingo.ui.activity.MineBingoActivity;
 import com.sun.bingo.ui.activity.SettingsActivity;
 
 import butterknife.Bind;
@@ -88,6 +89,8 @@ public class MineFragment extends BaseFragment {
 
     private void initListener() {
         rlUserInfo.setOnClickListener(this);
+        tvMyBingo.setOnClickListener(this);
+        tvMyFavorite.setOnClickListener(this);
         rlSettings.setOnClickListener(this);
     }
 
@@ -113,6 +116,12 @@ public class MineFragment extends BaseFragment {
         switch (v.getId()) {
             case R.id.rl_user_info:
                 NavigateManager.gotoProfileActivity(mActivity, false);
+                break;
+            case R.id.tv_my_bingo:
+                NavigateManager.gotoMineBingoActivity(mContext, MineBingoActivity.MY_SHARE);
+                break;
+            case R.id.tv_my_favorite:
+                NavigateManager.gotoMineBingoActivity(mContext, MineBingoActivity.MY_FAVORITE);
                 break;
             case R.id.rl_settings:
                 NavigateManager.gotoSpecifiedActivity(mContext, SettingsActivity.class);

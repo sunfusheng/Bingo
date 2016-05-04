@@ -14,6 +14,7 @@ import com.sun.bingo.ui.activity.BingoDetailActivity;
 import com.sun.bingo.ui.activity.EditNewBingoActivity;
 import com.sun.bingo.ui.activity.LoginActivity;
 import com.sun.bingo.ui.activity.MainActivity;
+import com.sun.bingo.ui.activity.MineBingoActivity;
 import com.sun.bingo.ui.activity.ProfileActivity;
 import com.sun.bingo.ui.activity.UserInfoActivity;
 
@@ -88,6 +89,12 @@ public class NavigateManager {
     public static void gotoUserInfoActivity(Context context, UserEntity userEntity) {
         Intent intent = new Intent(context, UserInfoActivity.class);
         intent.putExtra("userEntity", userEntity);
+        context.startActivity(intent);
+    }
+
+    public static void gotoMineBingoActivity(Context context, int index) {
+        Intent intent = new Intent(context, MineBingoActivity.class);
+        intent.putExtra("index", index);
         context.startActivity(intent);
     }
 }
