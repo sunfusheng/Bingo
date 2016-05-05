@@ -6,11 +6,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.sun.bingo.R;
+import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.model.eventbus.EventEntity;
 import com.sun.bingo.model.eventbus.EventType;
 import com.sun.bingo.ui.fragment.MineFragment;
@@ -143,6 +146,40 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
                 tabMine.setIconAlpha(1.0f);
                 viewPager.setCurrentItem(2, false);
                 break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_v2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                NavigateManager.gotoEditNewBingoActivity(mActivity, "");
+                return true;
+            case R.id.item_github:
+                NavigateManager.gotoWebPageActivity(mContext, getString(R.string.title_github), getString(R.string.url_github));
+                return true;
+            case R.id.item_jianshu:
+                NavigateManager.gotoWebPageActivity(mContext, getString(R.string.title_jianshu), getString(R.string.url_jianshu));
+                return true;
+            case R.id.item_blog:
+                NavigateManager.gotoWebPageActivity(mContext, getString(R.string.title_blog), getString(R.string.url_blog));
+                return true;
+            case R.id.item_weibo:
+                NavigateManager.gotoWebPageActivity(mContext, getString(R.string.title_weibo), getString(R.string.url_weibo));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

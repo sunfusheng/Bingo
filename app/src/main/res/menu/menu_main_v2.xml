@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_action_edit_dark"
+        app:showAsAction="ifRoom"
+        android:title=""/>
+
+    <group
+        android:id="@+id/group_about_me">
+        <item
+            android:id="@+id/item_github"
+            android:title="@string/title_github"/>
+
+        <item
+            android:id="@+id/item_jianshu"
+            android:title="@string/title_jianshu"/>
+
+        <item
+            android:id="@+id/item_blog"
+            android:title="@string/title_blog"/>
+
+        <item
+            android:id="@+id/item_weibo"
+            android:title="@string/title_weibo"/>
+
+    </group>
+
+</menu>

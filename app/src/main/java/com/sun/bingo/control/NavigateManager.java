@@ -17,6 +17,7 @@ import com.sun.bingo.ui.activity.MainActivity;
 import com.sun.bingo.ui.activity.MineBingoActivity;
 import com.sun.bingo.ui.activity.ProfileActivity;
 import com.sun.bingo.ui.activity.UserInfoActivity;
+import com.sun.bingo.ui.activity.WebPageActivity;
 
 import java.io.File;
 
@@ -95,6 +96,13 @@ public class NavigateManager {
     public static void gotoMineBingoActivity(Context context, int index) {
         Intent intent = new Intent(context, MineBingoActivity.class);
         intent.putExtra("index", index);
+        context.startActivity(intent);
+    }
+
+    public static void gotoWebPageActivity(Context context, String title, String url) {
+        Intent intent = new Intent(context, WebPageActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("url", url);
         context.startActivity(intent);
     }
 }

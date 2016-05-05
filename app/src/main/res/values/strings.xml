@@ -14,6 +14,16 @@
     <string name="exit">退出</string>
     <string name="wechat">我的公众号：孙福生</string>
 
+    <string name="title_github">GitHub主页</string>
+    <string name="title_jianshu">简书主页</string>
+    <string name="title_blog">个人博客</string>
+    <string name="title_weibo">新浪微博</string>
+
+    <string name="url_github">https://github.com/sfsheng0322</string>
+    <string name="url_jianshu">http://www.jianshu.com/users/88509e7e2ed1/latest_articles</string>
+    <string name="url_blog">http://sunfusheng.com/</string>
+    <string name="url_weibo">http://weibo.com/u/3852192525</string>
+
     <string name="update_app">Bingo更新</string>
     <string name="update_rightnow">立即下载</string>
     <string name="update_no">暂不</string>

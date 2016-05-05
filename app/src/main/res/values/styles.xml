@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="Widget.ActionButton.Overflow.Add" parent="@android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_more</item>
+    </style>
+
     <style name="AppTheme.Fab" parent="FloatingActionButton">
         <item name="floatingActionButtonColor">@color/colorPrimary</item>
     </style>

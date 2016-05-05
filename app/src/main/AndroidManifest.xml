@@ -124,6 +124,10 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.activity.WebPageActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.activity.UserInfoActivity"
             android:screenOrientation="portrait">
             <intent-filter>

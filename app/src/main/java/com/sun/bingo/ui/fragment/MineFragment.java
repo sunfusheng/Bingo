@@ -115,6 +115,11 @@ public class MineFragment extends BaseFragment {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.rl_user_info:
+//                if (mUserEntity == null) {
+//                    NavigateManager.gotoLoginActivity(mActivity);
+//                } else {
+//
+//                }
                 NavigateManager.gotoProfileActivity(mActivity, false);
                 break;
             case R.id.tv_my_bingo:

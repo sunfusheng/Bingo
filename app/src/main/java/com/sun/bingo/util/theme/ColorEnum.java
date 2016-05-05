@@ -41,6 +41,6 @@ public enum ColorEnum {
 
     static ColorEnum getDefault()
     {
-        return TEAL;
+        return ORANGE;
     }
 }
