@@ -10,6 +10,7 @@ public class EventEntity implements Serializable {
     private String type;
     private int arg1;
     private int arg2;
+    private String str;
     private Object obj;
 
     public EventEntity(String type) {
@@ -17,26 +18,38 @@ public class EventEntity implements Serializable {
     }
 
     public EventEntity(String type, int arg1) {
-        this.type = type;
+        this(type);
         this.arg1 = arg1;
     }
 
+    public EventEntity(String type, String str) {
+        this(type);
+        this.str = str;
+    }
+
     public EventEntity(String type, Object obj) {
-        this.type = type;
+        this(type);
         this.obj = obj;
     }
 
     public EventEntity(String type, int arg1, Object obj) {
-        this.type = type;
-        this.arg1 = arg1;
+        this(type, arg1);
         this.obj = obj;
     }
 
+    public EventEntity(String type, int arg1, String str) {
+        this(type, arg1);
+        this.str = str;
+    }
+
     public EventEntity(String type, int arg1, int arg2, Object obj) {
-        this.type = type;
-        this.arg1 = arg1;
+        this(type, arg1, obj);
         this.arg2 = arg2;
-        this.obj = obj;
+    }
+
+    public EventEntity(String type, int arg1, int arg2, String str) {
+        this(type, arg1, str);
+        this.arg2 = arg2;
     }
 
     public String getType() {
@@ -61,6 +74,14 @@ public class EventEntity implements Serializable {
 
     public void setArg2(int arg2) {
         this.arg2 = arg2;
+    }
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
+        this.str = str;
     }
 
     public Object getObj() {
