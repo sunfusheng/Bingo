@@ -70,4 +70,5 @@ public class EventEntity implements Serializable {
     public void setObj(Object obj) {
         this.obj = obj;
     }
+
 }

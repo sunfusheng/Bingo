@@ -200,13 +200,10 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     }
 
     @Override
-    public void onPageSelected(int position) {
-    }
+    public void onPageSelected(int position) {}
 
     @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
+    public void onPageScrollStateChanged(int state) {}
 
     @Override
     protected void onDestroy() {
