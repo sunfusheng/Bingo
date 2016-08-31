@@ -94,6 +94,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.activity.AddBingoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <activity
             android:name=".ui.activity.EditNewBingoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize"/>

@@ -228,7 +228,6 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
             initVersion();
             sinaRefreshTokenRequest();
         }
-
     }
 
     private void initView() {

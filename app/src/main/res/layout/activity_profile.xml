@@ -36,7 +36,7 @@
             android:minHeight="80dp"
             android:minWidth="80dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user"/>
+            android:src="@drawable/ic_user_avatar"/>
     </RelativeLayout>
 
     <LinearLayout

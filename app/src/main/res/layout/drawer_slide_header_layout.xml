@@ -15,7 +15,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_user"/>
+        android:src="@drawable/ic_user_avatar"/>
 
     <TextView
         android:id="@+id/tv_nick_name"

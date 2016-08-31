@@ -60,8 +60,8 @@ public class ImageManager {
     public void loadCircleImage(String url, ImageView imageView) {
         Glide.with(mContext)
                 .load(url)
-                .placeholder(R.drawable.ic_user)
-                .error(R.drawable.ic_user)
+                .placeholder(R.drawable.ic_user_avatar)
+                .error(R.drawable.ic_user_avatar)
                 .crossFade()
                 .transform(new GlideCircleTransform(mContext))
                 .into(imageView);

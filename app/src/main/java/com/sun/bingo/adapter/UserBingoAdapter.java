@@ -36,7 +36,7 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.list_item_card_main, null);
+            convertView = mInflater.inflate(R.layout.item_home_layout, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {

@@ -31,6 +31,6 @@
 
     <color name="tab_bg_light">#F3EEDE</color>
     <color name="tab_bg_line">#9B937B</color>
-    <color name="toggle_button_on">#b6c761</color>
+    <color name="light_green">#b6c761</color>
 
 </resources>

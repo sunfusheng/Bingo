@@ -22,7 +22,6 @@ public class UserEntity extends BmobUser {
     private double longitude;
     private List<String> favoriteList;
 
-
     public String getAddrStr() {
         return addrStr;
     }

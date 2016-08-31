@@ -9,24 +9,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.framework.dialog.ToastTip;
 import com.sun.bingo.R;
+import com.sun.bingo.control.BmobControl;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.model.BingoEntity;
 import com.sun.bingo.model.UserEntity;
 import com.sun.bingo.ui.activity.MainActivity;
 import com.sun.bingo.ui.activity.UserInfoActivity;
-import com.sun.bingo.util.DateUtil;
 import com.sun.bingo.util.NetWorkUtil;
 import com.sun.bingo.util.ShareUtil;
-import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -39,15 +38,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private Context mContext;
     private List<BingoEntity> mEntities;
-    private UserEntity userEntity;
-    private int type = HANDLE_NORMAL;
+    private UserEntity mineEntity;
 
+    private int type = HANDLE_NORMAL;
     public static final int HANDLE_NORMAL = 0;
     public static final int HANDLE_CANCEL_FAVORITE = 1;
-
     private static final int TYPE_LIST = 0;
     private static final int TYPE_FOOT_VIEW = 1;
+
     private ImageManager mImageManager;
+    private BmobControl mControl;
 
     private View footView;
 
@@ -58,8 +58,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerViewAdapter(Context context, List<BingoEntity> entities) {
         this(context);
         this.mEntities = entities;
-        userEntity = BmobUser.getCurrentUser(context, UserEntity.class);
+        mineEntity = BmobUser.getCurrentUser(context, UserEntity.class);
         mImageManager = new ImageManager(context);
+        mControl = new BmobControl(context, mineEntity);
     }
 
     public void setHandleType(int type) {
@@ -85,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         RecyclerView.ViewHolder viewHolder;
         switch (viewType) {
             case TYPE_LIST:
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_layout, parent, false);
                 viewHolder = new ListViewHolder(view);
                 break;
             case TYPE_FOOT_VIEW:
@@ -94,7 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 viewHolder = new FootViewHolder(footView);
                 break;
             default:
-                viewHolder = new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_card_main, parent, false));
+                viewHolder = new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_layout, parent, false));
                 break;
         }
         return viewHolder;
@@ -103,61 +104,80 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ListViewHolder) {
-            final ListViewHolder listViewHolder = (ListViewHolder) holder;
+            final ListViewHolder viewHolder = (ListViewHolder) holder;
             final BingoEntity entity = mEntities.get(position);
             final UserEntity userEntity = entity.getUserEntity();
             final int mPosition = position;
 
             if (userEntity != null && !TextUtils.isEmpty(userEntity.getUserAvatar())) {
-                mImageManager.loadCircleImage(userEntity.getUserAvatar(), listViewHolder.ivUserAvatar);
-
+                mImageManager.loadCircleImage(userEntity.getUserAvatar(), viewHolder.ivUserAvatar);
             } else {
-                mImageManager.loadCircleResImage(R.drawable.ic_user, listViewHolder.ivUserAvatar);
+                mImageManager.loadCircleResImage(R.drawable.ic_user_avatar, viewHolder.ivUserAvatar);
             }
 
-            if (userEntity != null && !TextUtils.isEmpty(userEntity.getNickName())) {
-                listViewHolder.tvNickName.setText(userEntity.getNickName());
+            if (TextUtils.isEmpty(entity.getTitle())) {
+                viewHolder.tvTitle.setText(entity.getDescribe());
+                viewHolder.tvDes.setVisibility(View.GONE);
             } else {
-                listViewHolder.tvNickName.setText("NULL");
+                viewHolder.tvTitle.setText(entity.getTitle());
+                if (TextUtils.isEmpty(entity.getDescribe())) {
+                    viewHolder.tvDes.setVisibility(View.GONE);
+                } else {
+                    viewHolder.tvDes.setVisibility(View.VISIBLE);
+                    viewHolder.tvDes.setText(entity.getDescribe());
+                }
             }
 
-            listViewHolder.tvDescribe.setText(entity.getDescribe());
-
-            if (entity.getCreateTime() > 0) {
-                listViewHolder.tvTime.setVisibility(View.VISIBLE);
-                listViewHolder.tvTime.setText(DateUtil.getDateStr(mContext, entity.getCreateTime()));
+            if (entity.getFavoriteUserIds() != null && entity.getFavoriteUserIds().size() > 0) {
+                viewHolder.tvFavoriteCount.setVisibility(View.VISIBLE);
+                viewHolder.tvFavoriteCount.setText(entity.getFavoriteUserIds().size() + "");
+                if (mineEntity.getFavoriteList() != null && mineEntity.getFavoriteList().indexOf(entity.getObjectId()) >= 0) {
+                    viewHolder.ivFavorite.setImageResource(R.drawable.ic_favorite);
+                } else {
+                    viewHolder.ivFavorite.setImageResource(R.drawable.ic_not_favorite);
+                }
             } else {
-                listViewHolder.tvTime.setVisibility(View.GONE);
+                viewHolder.tvFavoriteCount.setVisibility(View.GONE);
+                viewHolder.ivFavorite.setImageResource(R.drawable.ic_not_favorite);
             }
 
             if (entity.getImageList() != null && entity.getImageList().size() > 0) {
-                listViewHolder.givImageGroup.setVisibility(View.VISIBLE);
-                listViewHolder.givImageGroup.setPics(entity.getImageList());
+                viewHolder.ivImageCover.setVisibility(View.VISIBLE);
+                mImageManager.loadUrlImage(entity.getImageList().get(0), viewHolder.ivImageCover);
             } else {
-                listViewHolder.givImageGroup.setVisibility(View.GONE);
+                viewHolder.ivImageCover.setVisibility(View.GONE);
             }
 
-            listViewHolder.rlRootView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (NetWorkUtil.isLinkAvailable(entity.getWebsite())) {
-                        NavigateManager.gotoBingoDetailActivity(mContext, entity);
-                    }
-                }
-            });
-
-            listViewHolder.ivItemMore.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showPopMenu(v, mPosition);
-                }
-            });
-
-            listViewHolder.ivUserAvatar.setOnClickListener(new View.OnClickListener() {
+            viewHolder.ivUserAvatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (entity.getUserEntity() != null) {
                         NavigateManager.gotoUserInfoActivity(mContext, entity.getUserEntity());
+                    }
+                }
+            });
+
+            viewHolder.llFavorite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mControl.favoriteBingo(entity, new UpdateListener() {
+                        @Override
+                        public void onSuccess() {
+                            notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+                        }
+                    });
+                }
+            });
+
+            viewHolder.rlRootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (NetWorkUtil.isLinkAvailable(entity.getWebsite())) {
+                        NavigateManager.gotoBingoDetailActivity(mContext, entity);
                     }
                 }
             });
@@ -190,9 +210,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * 弹出菜单
      */
     private void showPopMenu(View ancho, final int position) {
-        userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
+        mineEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
         final BingoEntity entity = mEntities.get(position);
-        List<String> favoriteList = userEntity.getFavoriteList();
+        List<String> favoriteList = mineEntity.getFavoriteList();
 
         PopupMenu popupMenu = new PopupMenu(mContext, ancho);
         popupMenu.getMenuInflater().inflate(R.menu.item_pop_menu, popupMenu.getMenu());
@@ -201,12 +221,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.pop_favorite:
-                        if (item.getTitle().equals("取消收藏")) {
-                            cancelFavoriteBingo(entity.getObjectId(), position);
-                        } else {
-                            handleFavoriteBingo(entity.getObjectId());
-                        }
-                        userEntity = BmobUser.getCurrentUser(mContext, UserEntity.class);
                         return true;
                     case R.id.pop_share_sina:
                         if (mContext instanceof MainActivity) {
@@ -248,70 +262,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             menuItem.setTitle("取消收藏");
         }
         MenuItem menuItem = popupMenu.getMenu().findItem(R.id.pop_delete);
-        if (entity.getUserId().equals(userEntity.getObjectId())) {
+        if (entity.getUserId().equals(mineEntity.getObjectId())) {
             menuItem.setVisible(true);
         } else {
             menuItem.setVisible(false);
         }
         popupMenu.show();
-    }
-
-    /**
-     * 收藏
-     */
-    private void handleFavoriteBingo(String bingoId) {
-        List<String> favoriteList = userEntity.getFavoriteList();
-        if (favoriteList == null) {
-            favoriteList = new ArrayList<>();
-        }
-        if (favoriteList.indexOf(bingoId) >= 0) {
-            ToastTip.show("您已收藏过了");
-            return;
-        }
-        favoriteList.add(bingoId);
-        userEntity.setFavoriteList(favoriteList);
-        userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
-            @Override
-            public void onSuccess() {
-                ToastTip.show("收藏成功");
-            }
-
-            @Override
-            public void onFailure(int i, String s) {
-                ToastTip.show("收藏失败");
-            }
-        });
-    }
-
-    /**
-     * 取消收藏
-     */
-    private void cancelFavoriteBingo(String bingoId, final int position) {
-        List<String> favoriteList = userEntity.getFavoriteList();
-        if (favoriteList == null) {
-            favoriteList = new ArrayList<>();
-        }
-        if (favoriteList.indexOf(bingoId) < 0) {
-            ToastTip.show("您已取消收藏了");
-            return;
-        }
-        favoriteList.remove(bingoId);
-        userEntity.setFavoriteList(favoriteList);
-        userEntity.update(mContext, userEntity.getObjectId(), new UpdateListener() {
-            @Override
-            public void onSuccess() {
-                ToastTip.show("取消成功");
-                if (type == HANDLE_CANCEL_FAVORITE) {
-                    mEntities.remove(position);
-                    notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(int i, String s) {
-                ToastTip.show("取消失败");
-            }
-        });
     }
 
     /**
@@ -335,22 +291,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.iv_image_cover)
+        ImageView ivImageCover;
+        @Bind(R.id.tv_title)
+        TextView tvTitle;
         @Bind(R.id.iv_user_avatar)
         ImageView ivUserAvatar;
-        @Bind(R.id.tv_nick_name)
-        TextView tvNickName;
-        @Bind(R.id.tv_time)
-        TextView tvTime;
-        @Bind(R.id.rl_user_info)
-        RelativeLayout rlUserInfo;
-        @Bind(R.id.iv_item_more)
-        ImageView ivItemMore;
-        @Bind(R.id.tv_describe)
-        TextView tvDescribe;
-        @Bind(R.id.giv_image_group)
-        GroupImageView givImageGroup;
+        @Bind(R.id.ll_title_user)
+        RelativeLayout llTitleUser;
+        @Bind(R.id.tv_des)
+        TextView tvDes;
+        @Bind(R.id.tv_tag_from)
+        TextView tvTagFrom;
+        @Bind(R.id.tv_favorite_count)
+        TextView tvFavoriteCount;
+        @Bind(R.id.iv_favorite)
+        ImageView ivFavorite;
         @Bind(R.id.rl_root_view)
         RelativeLayout rlRootView;
+        @Bind(R.id.ll_favorite)
+        LinearLayout llFavorite;
 
         public ListViewHolder(View view) {
             super(view);
@@ -367,5 +327,4 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ButterKnife.bind(this, view);
         }
     }
-
 }

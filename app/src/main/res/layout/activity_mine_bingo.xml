@@ -28,7 +28,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user"/>
+            android:src="@drawable/ic_user_avatar"/>
 
         <LinearLayout
             android:layout_width="match_parent"

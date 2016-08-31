@@ -62,6 +62,8 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     private FragmentPagerAdapter mAdapter;
     private MineFragment mineFragment;
 
+    private int pageSelectedPosition = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,7 +166,11 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                NavigateManager.gotoEditNewBingoActivity(mActivity, "");
+                if (pageSelectedPosition == 1) {
+                    NavigateManager.gotoEditNewBingoActivity(mActivity, "");
+                } else {
+                    NavigateManager.gotoSpecifiedActivity(mActivity, AddBingoActivity.class);
+                }
                 return true;
             case R.id.item_github:
                 NavigateManager.gotoWebPageActivity(mContext, getString(R.string.title_github), getString(R.string.url_github));
@@ -200,7 +206,9 @@ public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChan
     }
 
     @Override
-    public void onPageSelected(int position) {}
+    public void onPageSelected(int position) {
+        pageSelectedPosition = position;
+    }
 
     @Override
     public void onPageScrollStateChanged(int state) {}

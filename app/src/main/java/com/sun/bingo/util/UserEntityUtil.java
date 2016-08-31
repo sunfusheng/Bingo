@@ -19,7 +19,7 @@ public class UserEntityUtil {
         if (!TextUtils.isEmpty(url)) {
             imageManager.loadCircleImage(url, imageView);
         } else {
-            imageManager.loadCircleResImage(R.drawable.ic_user, imageView);
+            imageManager.loadCircleResImage(R.drawable.ic_user_avatar, imageView);
         }
     }
 
