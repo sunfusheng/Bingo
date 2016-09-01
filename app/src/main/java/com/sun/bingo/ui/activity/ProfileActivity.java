@@ -2,7 +2,6 @@ package com.sun.bingo.ui.activity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -97,27 +96,27 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
     }
 
     public void showSelectAvatarDialog() {
-        ActionSheet.createBuilder(this, getSupportFragmentManager())
-                .setCancelButtonTitle("取消")
-                .setOtherButtonTitles("拍照", "从相册选择")
-                .setCancelableOnTouchOutside(true)
-                .setListener(new ActionSheet.ActionSheetListener() {
-                    @Override
-                    public void onDismiss(ActionSheet actionSheet, boolean isCancel) {
-                    }
+        ActionSheet.Builder builder = ActionSheet.createBuilder(mContext, getSupportFragmentManager());
+        builder.setOtherButtonTitles("拍照", "从相册选择");
+        builder.setCancelButtonTitle("取消");
+        builder.setCancelableOnTouchOutside(true);
+        builder.setListener(new ActionSheet.ActionSheetListener() {
+            @Override
+            public void onDismiss(ActionSheet actionSheet, boolean isCancel) {}
 
-                    @Override
-                    public void onOtherButtonClick(ActionSheet actionSheet, int index) {
-                        switch (index) {
-                            case 0:
-                                NavigateManager.gotoTakePicture(ProfileActivity.this, takePicturePath);
-                                break;
-                            case 1:
-                                NavigateManager.gotoChoosePicture(ProfileActivity.this);
-                                break;
-                        }
-                    }
-                }).show();
+            @Override
+            public void onOtherButtonClick(ActionSheet actionSheet, int index) {
+                switch (index) {
+                    case 0:
+                        NavigateManager.gotoTakePicture(ProfileActivity.this, takePicturePath);
+                        break;
+                    case 1:
+                        NavigateManager.gotoChoosePicture(ProfileActivity.this);
+                        break;
+                }
+            }
+        });
+        builder.show();
     }
 
 
@@ -184,11 +183,10 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
                     setImageViewWithPath(imagePath);
                     break;
                 case NavigateManager.CHOOSE_PICTURE_REQUEST_CODE:
-                    Uri uri = data.getData();
                     imagePath = GetPathFromUri4kitkat.getPath(this, data.getData());
                     if (TextUtils.isEmpty(imagePath)) {
                         String[] proj = {MediaStore.Images.Media.DATA};
-                        Cursor cursor = getContentResolver().query(uri, proj, null, null, null);
+                        Cursor cursor = getContentResolver().query(data.getData(), proj, null, null, null);
                         if (cursor != null && cursor.moveToFirst()) {
                             imagePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
                             cursor.close();
