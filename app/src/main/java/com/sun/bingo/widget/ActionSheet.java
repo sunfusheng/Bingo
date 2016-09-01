@@ -37,14 +37,15 @@ public class ActionSheet extends Fragment implements OnClickListener {
 	private static final int TRANSLATE_DURATION = 200;
 	private static final int ALPHA_DURATION = 300;
 
+	private ViewGroup mGroup;
+	private View mView;
+	private View mBg;
+	private LinearLayout mPanel;
+	private Attributes mAttrs;
+
+	private boolean isCancel = true;
 	private boolean mDismissed = true;
 	private ActionSheetListener mListener;
-	private View mView;
-	private LinearLayout mPanel;
-	private ViewGroup mGroup;
-	private View mBg;
-	private Attributes mAttrs;
-	private boolean isCancel = true;
 
 	public void show(FragmentManager manager, String tag) {
 		if (!mDismissed) {
@@ -69,11 +70,9 @@ public class ActionSheet extends Fragment implements OnClickListener {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		InputMethodManager imm = (InputMethodManager) getActivity()
-				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (imm.isActive()) {
 			View focusView = getActivity().getCurrentFocus();
 			if (focusView != null) {
@@ -96,8 +95,7 @@ public class ActionSheet extends Fragment implements OnClickListener {
 
 	private Animation createTranslationInAnimation() {
 		int type = TranslateAnimation.RELATIVE_TO_SELF;
-		TranslateAnimation an = new TranslateAnimation(type, 0, type, 0, type,
-				1, type, 0);
+		TranslateAnimation an = new TranslateAnimation(type, 0, type, 0, type, 1, type, 0);
 		an.setDuration(TRANSLATE_DURATION);
 		return an;
 	}
@@ -110,8 +108,7 @@ public class ActionSheet extends Fragment implements OnClickListener {
 
 	private Animation createTranslationOutAnimation() {
 		int type = TranslateAnimation.RELATIVE_TO_SELF;
-		TranslateAnimation an = new TranslateAnimation(type, 0, type, 0, type,
-				0, type, 1);
+		TranslateAnimation an = new TranslateAnimation(type, 0, type, 0, type, 0, type, 1);
 		an.setDuration(TRANSLATE_DURATION);
 		an.setFillAfter(true);
 		return an;
@@ -126,18 +123,15 @@ public class ActionSheet extends Fragment implements OnClickListener {
 
 	private View createView() {
 		FrameLayout parent = new FrameLayout(getActivity());
-		parent.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		parent.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		mBg = new View(getActivity());
-		mBg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT));
+		mBg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		mBg.setBackgroundColor(Color.argb(136, 0, 0, 0));
 		mBg.setId(BG_VIEW_ID);
 		mBg.setOnClickListener(this);
 
 		mPanel = new LinearLayout(getActivity());
-		FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		params.gravity = Gravity.BOTTOM;
 		mPanel.setLayoutParams(params);
 		mPanel.setOrientation(LinearLayout.VERTICAL);
@@ -315,8 +309,7 @@ public class ActionSheet extends Fragment implements OnClickListener {
 		}
 	}
 
-	public static Builder createBuilder(Context context,
-			FragmentManager fragmentManager) {
+	public static Builder createBuilder(Context context, FragmentManager fragmentManager) {
 		return new Builder(context, fragmentManager);
 	}
 
@@ -418,25 +411,20 @@ public class ActionSheet extends Fragment implements OnClickListener {
 			Bundle bundle = new Bundle();
 			bundle.putString(ARG_CANCEL_BUTTON_TITLE, mCancelButtonTitle);
 			bundle.putStringArray(ARG_OTHER_BUTTON_TITLES, mOtherButtonTitles);
-			bundle.putBoolean(ARG_CANCELABLE_ONTOUCHOUTSIDE,
-					mCancelableOnTouchOutside);
+			bundle.putBoolean(ARG_CANCELABLE_ONTOUCHOUTSIDE, mCancelableOnTouchOutside);
 			return bundle;
 		}
 
 		public ActionSheet show() {
-			ActionSheet actionSheet = (ActionSheet) Fragment.instantiate(
-                    mContext, ActionSheet.class.getName(), prepareArguments());
+			ActionSheet actionSheet = (ActionSheet) Fragment.instantiate(mContext, ActionSheet.class.getName(), prepareArguments());
 			actionSheet.setActionSheetListener(mListener);
 			actionSheet.show(mFragmentManager, mTag);
 			return actionSheet;
 		}
-
 	}
 
 	public interface ActionSheetListener {
-
 		void onDismiss(ActionSheet actionSheet, boolean isCancel);
-
 		void onOtherButtonClick(ActionSheet actionSheet, int index);
 	}
 
