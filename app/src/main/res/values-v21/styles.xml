@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="BaseAppTheme">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="actionSheetStyle">@style/ActionSheetStyleIOS7</item>
     </style>
 
     <style name="ActionSheetStyleIOS7">
