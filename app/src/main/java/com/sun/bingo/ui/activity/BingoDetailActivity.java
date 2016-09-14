@@ -9,10 +9,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,6 +16,10 @@ import com.framework.dialog.ToastTip;
 import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.model.BingoEntity;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
