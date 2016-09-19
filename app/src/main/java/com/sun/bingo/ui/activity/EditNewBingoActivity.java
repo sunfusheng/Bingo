@@ -274,8 +274,8 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
 
     public void showSelectImageDialog() {
         ActionSheet.createBuilder(this, getSupportFragmentManager())
-                .setCancelButtonTitle("取消")
-                .setOtherButtonTitles("拍照", "从相册选择")
+                .setCancelTextViewTitle("取消")
+                .setOtherTextViewTitles("拍照", "从相册选择")
                 .setCancelableOnTouchOutside(true)
                 .setListener(new ActionSheet.ActionSheetListener() {
                     @Override
@@ -283,7 +283,7 @@ public class EditNewBingoActivity extends BaseActivity<SingleControl> implements
                     }
 
                     @Override
-                    public void onOtherButtonClick(ActionSheet actionSheet, int index) {
+                    public void onOtherTextViewClick(ActionSheet actionSheet, int index) {
                         switch (index) {
                             case 0:
                                 takePicturePath = "/" + BingoApp.APP_CACHE_DIR + "/" + DateUtil.getCurrentMillis() + ".jpg";

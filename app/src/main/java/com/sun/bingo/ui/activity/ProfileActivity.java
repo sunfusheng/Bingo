@@ -97,15 +97,15 @@ public class ProfileActivity extends BaseActivity<SingleControl> implements View
 
     public void showSelectAvatarDialog() {
         ActionSheet.Builder builder = ActionSheet.createBuilder(mContext, getSupportFragmentManager());
-        builder.setOtherButtonTitles("拍照", "从相册选择");
-        builder.setCancelButtonTitle("取消");
+        builder.setOtherTextViewTitles("拍照", "从相册选择");
+        builder.setCancelTextViewTitle("取消");
         builder.setCancelableOnTouchOutside(true);
         builder.setListener(new ActionSheet.ActionSheetListener() {
             @Override
             public void onDismiss(ActionSheet actionSheet, boolean isCancel) {}
 
             @Override
-            public void onOtherButtonClick(ActionSheet actionSheet, int index) {
+            public void onOtherTextViewClick(ActionSheet actionSheet, int index) {
                 switch (index) {
                     case 0:
                         NavigateManager.gotoTakePicture(ProfileActivity.this, takePicturePath);
