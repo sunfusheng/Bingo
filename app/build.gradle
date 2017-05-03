@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 
 Properties prop = new Properties()
 prop.load(new FileInputStream(file("signing.properties")))
