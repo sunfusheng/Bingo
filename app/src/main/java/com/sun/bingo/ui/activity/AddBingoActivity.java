@@ -46,7 +46,7 @@ import com.sun.bingo.widget.UploadImageView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -57,41 +57,41 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class AddBingoActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.et_url)
+    @BindView(R.id.et_url)
     EditText etUrl;
-    @Bind(R.id.ll_url)
+    @BindView(R.id.ll_url)
     LinearLayout llUrl;
-    @Bind(R.id.et_title)
+    @BindView(R.id.et_title)
     EditText etTitle;
-    @Bind(R.id.ll_title)
+    @BindView(R.id.ll_title)
     LinearLayout llTitle;
-    @Bind(R.id.divider_title)
+    @BindView(R.id.divider_title)
     View dividerTitle;
-    @Bind(R.id.et_des)
+    @BindView(R.id.et_des)
     EditText etDes;
-    @Bind(R.id.ll_des)
+    @BindView(R.id.ll_des)
     LinearLayout llDes;
-    @Bind(R.id.divider_des)
+    @BindView(R.id.divider_des)
     View dividerDes;
-    @Bind(R.id.tv_tag)
+    @BindView(R.id.tv_tag)
     TextView tvTag;
-    @Bind(R.id.ll_tag)
+    @BindView(R.id.ll_tag)
     LinearLayout llTag;
-    @Bind(R.id.divider_tag)
+    @BindView(R.id.divider_tag)
     View dividerTag;
-    @Bind(R.id.iv_selected_image)
+    @BindView(R.id.iv_selected_image)
     UploadImageView ivSelectedImage;
-    @Bind(R.id.iv_delete_image)
+    @BindView(R.id.iv_delete_image)
     ImageView ivDeleteImage;
-    @Bind(R.id.ll_cover_image)
+    @BindView(R.id.ll_cover_image)
     LinearLayout llCoverImage;
-    @Bind(R.id.divider_image)
+    @BindView(R.id.divider_image)
     View dividerImage;
-    @Bind(R.id.ll_bingo_info)
+    @BindView(R.id.ll_bingo_info)
     LinearLayout llBingoInfo;
-    @Bind(R.id.tv_from)
+    @BindView(R.id.tv_from)
     TextView tvFrom;
 
     private String takePicturePath;

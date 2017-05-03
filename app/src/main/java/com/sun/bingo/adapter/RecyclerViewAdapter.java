@@ -28,7 +28,7 @@ import com.sun.bingo.util.ShareUtil;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.DeleteListener;
@@ -291,25 +291,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.iv_image_cover)
+        @BindView(R.id.iv_image_cover)
         ImageView ivImageCover;
-        @Bind(R.id.tv_title)
+        @BindView(R.id.tv_title)
         TextView tvTitle;
-        @Bind(R.id.iv_user_avatar)
+        @BindView(R.id.iv_user_avatar)
         ImageView ivUserAvatar;
-        @Bind(R.id.ll_title_user)
+        @BindView(R.id.ll_title_user)
         RelativeLayout llTitleUser;
-        @Bind(R.id.tv_des)
+        @BindView(R.id.tv_des)
         TextView tvDes;
-        @Bind(R.id.tv_tag_from)
+        @BindView(R.id.tv_tag_from)
         TextView tvTagFrom;
-        @Bind(R.id.tv_favorite_count)
+        @BindView(R.id.tv_favorite_count)
         TextView tvFavoriteCount;
-        @Bind(R.id.iv_favorite)
+        @BindView(R.id.iv_favorite)
         ImageView ivFavorite;
-        @Bind(R.id.rl_root_view)
+        @BindView(R.id.rl_root_view)
         RelativeLayout rlRootView;
-        @Bind(R.id.ll_favorite)
+        @BindView(R.id.ll_favorite)
         LinearLayout llFavorite;
 
         public ListViewHolder(View view) {
@@ -319,7 +319,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     static class FootViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.tv_loading_more)
+        @BindView(R.id.tv_loading_more)
         TextView tvLoadingMore;
 
         public FootViewHolder(View view) {

@@ -34,7 +34,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.OtherLoginListener;
@@ -46,11 +46,11 @@ import okhttp3.Call;
  */
 public class LoginActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tv_login_sina)
+    @BindView(R.id.tv_login_sina)
     TextView tvLoginSina;
-    @Bind(R.id.ll_root_view)
+    @BindView(R.id.ll_root_view)
     LinearLayout llRootView;
 
     private AuthInfo mAuthInfo;

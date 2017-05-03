@@ -28,22 +28,22 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
 
 public abstract class BaseListFragment<T extends BaseControl> extends BaseAsyncFragment<T> implements CircleRefreshLayout.OnCircleRefreshListener {
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @Bind(R.id.circle_refresh_layout)
+    @BindView(R.id.circle_refresh_layout)
     CircleRefreshLayout circleRefreshLayout;
-    @Bind(R.id.loadingView)
+    @BindView(R.id.loadingView)
     LoadingView loadingView;
-    @Bind(R.id.tv_status)
+    @BindView(R.id.tv_status)
     TextView tvStatus;
-    @Bind(R.id.ll_status)
+    @BindView(R.id.ll_status)
     FrameLayout llStatus;
 
     protected UserEntity userEntity;

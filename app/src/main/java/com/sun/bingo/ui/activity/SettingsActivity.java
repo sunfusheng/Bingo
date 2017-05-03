@@ -19,7 +19,7 @@ import com.sun.bingo.util.update.DownloadApk;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
@@ -28,25 +28,25 @@ import cn.bmob.v3.BmobUser;
  */
 public class SettingsActivity extends BaseActivity implements ColorChooserDialog.Callback {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tv_change_theme)
+    @BindView(R.id.tv_change_theme)
     TextView tvChangeTheme;
-    @Bind(R.id.tv_send_to_friend)
+    @BindView(R.id.tv_send_to_friend)
     TextView tvSendToFriend;
-    @Bind(R.id.tv_share)
+    @BindView(R.id.tv_share)
     TextView tvShare;
-    @Bind(R.id.tv_feedback)
+    @BindView(R.id.tv_feedback)
     TextView tvFeedback;
-    @Bind(R.id.tv_about)
+    @BindView(R.id.tv_about)
     TextView tvAbout;
-    @Bind(R.id.tv_logout)
+    @BindView(R.id.tv_logout)
     TextView tvLogout;
-    @Bind(R.id.iv_version_dot)
+    @BindView(R.id.iv_version_dot)
     ImageView ivVersionDot;
-    @Bind(R.id.tv_version)
+    @BindView(R.id.tv_version)
     TextView tvVersion;
-    @Bind(R.id.rl_check_update)
+    @BindView(R.id.rl_check_update)
     RelativeLayout rlCheckUpdate;
 
     @Override

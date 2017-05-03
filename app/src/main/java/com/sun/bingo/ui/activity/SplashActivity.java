@@ -14,7 +14,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.model.UserEntity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
@@ -23,9 +23,9 @@ import cn.bmob.v3.BmobUser;
  */
 public class SplashActivity extends BaseActivity {
 
-    @Bind(R.id.iv_logo)
+    @BindView(R.id.iv_logo)
     ImageView ivLogo;
-    @Bind(R.id.rl_root_view)
+    @BindView(R.id.rl_root_view)
     RelativeLayout rlRootView;
 
     @Override

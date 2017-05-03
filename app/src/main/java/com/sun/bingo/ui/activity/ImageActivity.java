@@ -12,7 +12,7 @@ import com.sun.bingo.R;
 import com.sun.bingo.control.manager.ImageManager;
 import com.sun.bingo.widget.ViewPagerFixed;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoView;
 
@@ -21,9 +21,9 @@ import uk.co.senab.photoview.PhotoView;
  */
 public class ImageActivity extends BaseActivity {
 
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPagerFixed viewPager;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     private int index;

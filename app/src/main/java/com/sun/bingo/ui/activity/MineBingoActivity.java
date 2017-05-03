@@ -16,7 +16,7 @@ import com.sun.bingo.ui.fragment.FavoriteFragment;
 import com.sun.bingo.ui.fragment.MyBingoFragment;
 import com.sun.bingo.util.UserEntityUtil;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -24,19 +24,19 @@ import butterknife.ButterKnife;
  */
 public class MineBingoActivity extends BaseActivity {
 
-    @Bind(R.id.iv_back)
+    @BindView(R.id.iv_back)
     ImageView ivBack;
-    @Bind(R.id.iv_user_avatar)
+    @BindView(R.id.iv_user_avatar)
     ImageView ivUserAvatar;
-    @Bind(R.id.tv_nick_name)
+    @BindView(R.id.tv_nick_name)
     TextView tvNickName;
-    @Bind(R.id.tv_user_sign)
+    @BindView(R.id.tv_user_sign)
     TextView tvUserSign;
-    @Bind(R.id.tv_location)
+    @BindView(R.id.tv_location)
     TextView tvLocation;
-    @Bind(R.id.ll_user_layout)
+    @BindView(R.id.ll_user_layout)
     LinearLayout llUserLayout;
-    @Bind(R.id.fl_container)
+    @BindView(R.id.fl_container)
     FrameLayout flContainer;
 
     public static final int MY_SHARE = 0;

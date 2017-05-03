@@ -38,7 +38,7 @@ import com.sun.bingo.widget.CircleRefreshLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -46,27 +46,27 @@ import butterknife.ButterKnife;
  */
 public class UserInfoActivity extends BaseActivity<PageControl> implements CircleRefreshLayout.OnCircleRefreshListener, IWeiboHandler.Response {
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @Bind(R.id.circle_refresh_layout)
+    @BindView(R.id.circle_refresh_layout)
     CircleRefreshLayout circleRefreshLayout;
-    @Bind(R.id.loadingView)
+    @BindView(R.id.loadingView)
     LoadingView loadingView;
-    @Bind(R.id.tv_status)
+    @BindView(R.id.tv_status)
     TextView tvStatus;
-    @Bind(R.id.ll_status)
+    @BindView(R.id.ll_status)
     FrameLayout llStatus;
-    @Bind(R.id.iv_back)
+    @BindView(R.id.iv_back)
     ImageView ivBack;
-    @Bind(R.id.iv_user_avatar)
+    @BindView(R.id.iv_user_avatar)
     ImageView ivUserAvatar;
-    @Bind(R.id.tv_nick_name)
+    @BindView(R.id.tv_nick_name)
     TextView tvNickName;
-    @Bind(R.id.tv_user_sign)
+    @BindView(R.id.tv_user_sign)
     TextView tvUserSign;
-    @Bind(R.id.ll_user_layout)
+    @BindView(R.id.ll_user_layout)
     LinearLayout llUserLayout;
-    @Bind(R.id.tv_location)
+    @BindView(R.id.tv_location)
     TextView tvLocation;
 
     private UserEntity mUserEntity;

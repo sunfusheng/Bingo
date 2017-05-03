@@ -31,7 +31,7 @@ import com.sun.bingo.widget.UploadAvatarView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
@@ -41,23 +41,23 @@ import cn.bmob.v3.listener.UpdateListener;
  */
 public class ProfileActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.iv_user_avatar)
+    @BindView(R.id.iv_user_avatar)
     UploadAvatarView civUserAvatar;
-    @Bind(R.id.rl_user_avatar)
+    @BindView(R.id.rl_user_avatar)
     RelativeLayout rlUserAvatar;
-    @Bind(R.id.tv_nick_name_title)
+    @BindView(R.id.tv_nick_name_title)
     TextView tvNickNameTitle;
-    @Bind(R.id.tv_nick_name)
+    @BindView(R.id.tv_nick_name)
     TextView tvNickName;
-    @Bind(R.id.rl_nick_name)
+    @BindView(R.id.rl_nick_name)
     RelativeLayout rlNickName;
-    @Bind(R.id.tv_user_sign_title)
+    @BindView(R.id.tv_user_sign_title)
     TextView tvUserSignTitle;
-    @Bind(R.id.tv_user_sign)
+    @BindView(R.id.tv_user_sign)
     TextView tvUserSign;
-    @Bind(R.id.rl_user_sign)
+    @BindView(R.id.rl_user_sign)
     RelativeLayout rlUserSign;
 
     private String takePicturePath = "/" + BingoApp.APP_CACHE_DIR + "/avatar.jpg";

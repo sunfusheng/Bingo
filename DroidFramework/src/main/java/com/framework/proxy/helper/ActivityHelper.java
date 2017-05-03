@@ -10,8 +10,8 @@ public class ActivityHelper<T extends BaseControl, R extends BaseAsyncActivity> 
 
     private boolean isPause;
 
-    public ActivityHelper(R refrenceObj) {
-        super(refrenceObj, new AsyncActivityHandler(refrenceObj));
+    public ActivityHelper(R referenceObj) {
+        super(referenceObj, new AsyncActivityHandler(referenceObj));
     }
 
     public void onCreate() {

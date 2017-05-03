@@ -29,7 +29,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -38,23 +38,23 @@ import butterknife.ButterKnife;
  */
 public class MainV2Activity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @Bind(R.id.tab_home)
+    @BindView(R.id.tab_home)
     IconWithTextView tabHome;
-    @Bind(R.id.rl_tab_home)
+    @BindView(R.id.rl_tab_home)
     RelativeLayout rlTabHome;
-    @Bind(R.id.tab_msg)
+    @BindView(R.id.tab_msg)
     IconWithTextView tabMsg;
-    @Bind(R.id.rl_tab_msg)
+    @BindView(R.id.rl_tab_msg)
     RelativeLayout rlTabMsg;
-    @Bind(R.id.tab_mine)
+    @BindView(R.id.tab_mine)
     IconWithTextView tabMine;
-    @Bind(R.id.rl_tab_mine)
+    @BindView(R.id.rl_tab_mine)
     RelativeLayout rlTabMine;
-    @Bind(R.id.iv_mine_dot)
+    @BindView(R.id.iv_mine_dot)
     ImageView ivMineDot;
 
     private List<IconWithTextView> mTabIconList = new ArrayList<>();

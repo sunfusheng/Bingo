@@ -47,7 +47,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
@@ -58,25 +58,25 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class EditNewBingoActivity extends BaseActivity<SingleControl> implements View.OnClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.et_website)
+    @BindView(R.id.et_website)
     EditText etWebsite;
-    @Bind(R.id.cv_website)
+    @BindView(R.id.cv_website)
     CardView cvWebsite;
-    @Bind(R.id.et_describe)
+    @BindView(R.id.et_describe)
     EditText etDescribe;
-    @Bind(R.id.cv_describe)
+    @BindView(R.id.cv_describe)
     CardView cvDescribe;
-    @Bind(R.id.ll_container)
+    @BindView(R.id.ll_container)
     LinearLayout llContainer;
-    @Bind(R.id.hs_images)
+    @BindView(R.id.hs_images)
     HorizontalScrollView hsImages;
-    @Bind(R.id.iv_image)
+    @BindView(R.id.iv_image)
     ImageView ivImage;
-    @Bind(R.id.tv_commit)
+    @BindView(R.id.tv_commit)
     TextView tvCommit;
-    @Bind(R.id.rl_bottom_layout)
+    @BindView(R.id.rl_bottom_layout)
     RelativeLayout rlBottomLayout;
 
     private String takePicturePath;

@@ -7,7 +7,7 @@ public interface ConstantParams {
 
     // fir.im信息
     String FIR_IM_ID = "55d40a70748aac58a6000047";
-    String FIR_IM_API_TOKEN = "071e514d156c894cc3d73ed2d9c8b538";
+    String FIR_IM_API_TOKEN = "3c57fb226edf7facf821501e4eba08d2";
 
     // 新浪微博信息
     String SINA_APP_KEY = "2013824991";

@@ -4,7 +4,7 @@ import android.util.SparseArray;
 import android.view.View;
 
 /**
- * @Description: Viewholder的简化
+ * @Description: ViewHolder的简化
  * @author: sunfusheng
  * @date: 2015-2-4 上午
  */

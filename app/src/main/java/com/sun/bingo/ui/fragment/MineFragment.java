@@ -15,7 +15,7 @@ import com.sun.bingo.ui.activity.MainV2Activity;
 import com.sun.bingo.ui.activity.MineBingoActivity;
 import com.sun.bingo.ui.activity.SettingsActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
@@ -24,21 +24,21 @@ import cn.bmob.v3.BmobUser;
  */
 public class MineFragment extends BaseFragment {
 
-    @Bind(R.id.tv_nick_name)
+    @BindView(R.id.tv_nick_name)
     TextView tvNickName;
-    @Bind(R.id.tv_user_sign)
+    @BindView(R.id.tv_user_sign)
     TextView tvUserSign;
-    @Bind(R.id.iv_user_avatar)
+    @BindView(R.id.iv_user_avatar)
     ImageView ivUserAvatar;
-    @Bind(R.id.rl_user_info)
+    @BindView(R.id.rl_user_info)
     RelativeLayout rlUserInfo;
-    @Bind(R.id.tv_my_bingo)
+    @BindView(R.id.tv_my_bingo)
     TextView tvMyBingo;
-    @Bind(R.id.tv_my_favorite)
+    @BindView(R.id.tv_my_favorite)
     TextView tvMyFavorite;
-    @Bind(R.id.iv_settings_dot)
+    @BindView(R.id.iv_settings_dot)
     ImageView ivSettingsDot;
-    @Bind(R.id.rl_settings)
+    @BindView(R.id.rl_settings)
     RelativeLayout rlSettings;
 
     private MainV2Activity mActivity;
@@ -134,9 +134,4 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

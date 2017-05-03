@@ -7,12 +7,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.0"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
-        minSdkVersion 11
-        targetSdkVersion 22
+        minSdkVersion 14
+        targetSdkVersion 25
     }
 
     lintOptions {
@@ -22,10 +22,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:design:22.2.0'
+    compile 'com.android.support:design:25.3.1'
 
-    // ButterKnife
-    compile 'com.jakewharton:butterknife:7.0.1'
+    // multidex
+    compile 'com.android.support:multidex:1.0.1'
 
     // Logger
     compile 'com.orhanobut:logger:1.4'
@@ -34,5 +34,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
 
     //Material Dialog
-    compile 'com.afollestad:material-dialogs:0.7.6.0'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.4'
 }

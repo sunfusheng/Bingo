@@ -16,7 +16,7 @@ import com.sun.bingo.widget.GroupImageView.GroupImageView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
@@ -70,21 +70,21 @@ public class UserBingoAdapter extends BaseListAdapter<BingoEntity> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.iv_user_avatar)
+        @BindView(R.id.iv_user_avatar)
         ImageView ivUserAvatar;
-        @Bind(R.id.tv_nick_name)
+        @BindView(R.id.tv_nick_name)
         TextView tvNickName;
-        @Bind(R.id.tv_time)
+        @BindView(R.id.tv_time)
         TextView tvTime;
-        @Bind(R.id.rl_user_info)
+        @BindView(R.id.rl_user_info)
         RelativeLayout rlUserInfo;
-        @Bind(R.id.iv_item_more)
+        @BindView(R.id.iv_item_more)
         ImageView ivItemMore;
-        @Bind(R.id.tv_describe)
+        @BindView(R.id.tv_describe)
         TextView tvDescribe;
-        @Bind(R.id.giv_image_group)
+        @BindView(R.id.giv_image_group)
         GroupImageView givImageGroup;
-        @Bind(R.id.rl_root_view)
+        @BindView(R.id.rl_root_view)
         RelativeLayout rlRootView;
 
         ViewHolder(View view) {

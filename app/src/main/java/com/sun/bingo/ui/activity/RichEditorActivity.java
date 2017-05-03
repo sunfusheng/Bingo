@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import com.sun.bingo.R;
 
 import butterknife.ButterKnife;
-import butterknife.Bind;
+import butterknife.BindView;
 import jp.wasabeef.richeditor.RichEditor;
 
 /**
@@ -17,49 +17,49 @@ import jp.wasabeef.richeditor.RichEditor;
  */
 public class RichEditorActivity extends BaseActivity implements View.OnClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.action_undo)
+    @BindView(R.id.action_undo)
     ImageButton actionUndo;
-    @Bind(R.id.action_redo)
+    @BindView(R.id.action_redo)
     ImageButton actionRedo;
-    @Bind(R.id.action_bold)
+    @BindView(R.id.action_bold)
     ImageButton actionBold;
-    @Bind(R.id.action_italic)
+    @BindView(R.id.action_italic)
     ImageButton actionItalic;
-    @Bind(R.id.action_strikethrough)
+    @BindView(R.id.action_strikethrough)
     ImageButton actionStrikethrough;
-    @Bind(R.id.action_underline)
+    @BindView(R.id.action_underline)
     ImageButton actionUnderline;
-    @Bind(R.id.action_heading1)
+    @BindView(R.id.action_heading1)
     ImageButton actionHeading1;
-    @Bind(R.id.action_heading2)
+    @BindView(R.id.action_heading2)
     ImageButton actionHeading2;
-    @Bind(R.id.action_heading3)
+    @BindView(R.id.action_heading3)
     ImageButton actionHeading3;
-    @Bind(R.id.action_heading4)
+    @BindView(R.id.action_heading4)
     ImageButton actionHeading4;
-    @Bind(R.id.action_txt_color)
+    @BindView(R.id.action_txt_color)
     ImageButton actionTxtColor;
-    @Bind(R.id.action_bg_color)
+    @BindView(R.id.action_bg_color)
     ImageButton actionBgColor;
-    @Bind(R.id.action_indent)
+    @BindView(R.id.action_indent)
     ImageButton actionIndent;
-    @Bind(R.id.action_outdent)
+    @BindView(R.id.action_outdent)
     ImageButton actionOutdent;
-    @Bind(R.id.action_align_left)
+    @BindView(R.id.action_align_left)
     ImageButton actionAlignLeft;
-    @Bind(R.id.action_align_center)
+    @BindView(R.id.action_align_center)
     ImageButton actionAlignCenter;
-    @Bind(R.id.action_align_right)
+    @BindView(R.id.action_align_right)
     ImageButton actionAlignRight;
-    @Bind(R.id.action_blockquote)
+    @BindView(R.id.action_blockquote)
     ImageButton actionBlockquote;
-    @Bind(R.id.action_insert_image)
+    @BindView(R.id.action_insert_image)
     ImageButton actionInsertImage;
-    @Bind(R.id.action_insert_link)
+    @BindView(R.id.action_insert_link)
     ImageButton actionInsertLink;
-    @Bind(R.id.rich_editor)
+    @BindView(R.id.rich_editor)
     RichEditor richEditor;
 
     private boolean isTxtColorChanged = false;

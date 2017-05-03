@@ -55,21 +55,21 @@ import com.sun.bingo.util.UserEntityUtil;
 import com.sun.bingo.util.theme.ColorChooserDialog;
 import com.sun.bingo.util.update.DownloadApk;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.BmobUser;
 
 public class MainActivity extends BaseActivity implements ColorChooserDialog.Callback, IWeiboHandler.Response {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.fl_container)
+    @BindView(R.id.fl_container)
     FrameLayout flContainer;
-    @Bind(R.id.floating_action_button)
+    @BindView(R.id.floating_action_button)
     FloatingActionButton floatingActionButton;
-    @Bind(R.id.main_navigation_layout)
+    @BindView(R.id.main_navigation_layout)
     NavigationView mainNavigationLayout;
-    @Bind(R.id.main_drawer_layout)
+    @BindView(R.id.main_drawer_layout)
     DrawerLayout mainDrawerLayout;
 
     private String[] titles;
@@ -237,9 +237,9 @@ public class MainActivity extends BaseActivity implements ColorChooserDialog.Cal
 
         controlShowFragment(0);
         setOvalShapeViewBackground(floatingActionButton);
-        ivUserAvatar = ButterKnife.findById(mainNavigationLayout, R.id.iv_user_avatar);
-        tvNickName = ButterKnife.findById(mainNavigationLayout, R.id.tv_nick_name);
-        tvUserSign = ButterKnife.findById(mainNavigationLayout, R.id.tv_user_sign);
+        ivUserAvatar = ButterKnife.findById(mainNavigationLayout.getHeaderView(0), R.id.iv_user_avatar);
+        tvNickName = ButterKnife.findById(mainNavigationLayout.getHeaderView(0), R.id.tv_nick_name);
+        tvUserSign = ButterKnife.findById(mainNavigationLayout.getHeaderView(0), R.id.tv_user_sign);
 
         if (myEntity != null) {
             UserEntityUtil.setUserAvatarView(mContext, myEntity.getUserAvatar(), ivUserAvatar);
