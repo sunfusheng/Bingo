@@ -5,13 +5,9 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.framework.DroidFramework;
-import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.manager.LocationManager;
 
 import java.io.File;
-
-import cn.bmob.v3.Bmob;
-import im.fir.sdk.FIR;
 
 /**
  * Created by sunfusheng on 15/7/18.
@@ -32,9 +28,6 @@ public class BingoApp extends Application {
 
         DroidFramework.init(this, BuildConfig.DEBUG, BuildConfig.LOG_DEBUG);
         initLocationManager();
-
-        FIR.init(this);
-        Bmob.initialize(this, ConstantParams.BMOB_APP_ID);
     }
 
     public static BingoApp getInstance() {
@@ -55,5 +48,5 @@ public class BingoApp extends Application {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
-    
+
 }

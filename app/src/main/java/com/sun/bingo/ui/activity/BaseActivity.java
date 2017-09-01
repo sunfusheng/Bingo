@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -17,6 +18,10 @@ import android.view.WindowManager;
 import com.framework.base.BaseAsyncActivity;
 import com.framework.base.BaseControl;
 import com.framework.dialog.LoadingDialog;
+import com.framework.util.Utils;
+import com.framework.util.permission.IPermission;
+import com.framework.util.permission.IPermissionCallback;
+import com.framework.util.permission.PermissionHelper;
 import com.orhanobut.logger.Logger;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sun.bingo.R;
@@ -33,7 +38,7 @@ import com.sun.bingo.util.theme.ThemeUtil;
 import cn.bmob.v3.BmobUser;
 import de.devland.esperandro.Esperandro;
 
-public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> implements View.OnClickListener {
+public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> implements View.OnClickListener, IPermission {
 
     protected Context mContext;
     protected Activity mActivity;
@@ -41,6 +46,7 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> im
     protected UserEntity myEntity;
     protected ImageManager mImageManager;
     protected LoadingDialog loadingDialog;
+    private PermissionHelper permissionHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,5 +205,25 @@ public class BaseActivity<T extends BaseControl> extends BaseAsyncActivity<T> im
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void checkPermission(@NonNull String[] permissions, IPermissionCallback callback) {
+        if (Utils.isEmpty(permissions)) {
+            return;
+        }
+
+        if (permissionHelper == null) {
+            permissionHelper = new PermissionHelper(this);
+        }
+        permissionHelper.checkPermission(permissions, callback);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (permissionHelper != null) {
+            permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

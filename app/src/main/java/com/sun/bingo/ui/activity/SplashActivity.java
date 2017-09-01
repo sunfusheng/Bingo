@@ -1,5 +1,6 @@
 package com.sun.bingo.ui.activity;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -10,13 +11,21 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.framework.util.Utils;
+import com.framework.util.permission.IPermissionCallback;
+import com.sun.bingo.BingoApp;
 import com.sun.bingo.R;
+import com.sun.bingo.constant.ConstantParams;
 import com.sun.bingo.control.NavigateManager;
 import com.sun.bingo.model.UserEntity;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
+import im.fir.sdk.FIR;
 
 /**
  * Created by sunfusheng on 16/4/14.
@@ -28,6 +37,8 @@ public class SplashActivity extends BaseActivity {
     @BindView(R.id.rl_root_view)
     RelativeLayout rlRootView;
 
+    private static final String[] PERMISSIONS = {Manifest.permission.READ_PHONE_STATE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -36,12 +47,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-        initData();
         initView();
-    }
-
-    private void initData() {
-
     }
 
     private void initView() {
@@ -63,7 +69,16 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivity();
+                checkPermission(PERMISSIONS, new IPermissionCallback() {
+                    @Override
+                    public void onCheckPermission(List<String> failedPermissions) {
+                        if (Utils.isEmpty(failedPermissions)) {
+                            FIR.init(BingoApp.getContext());
+                            Bmob.initialize(BingoApp.getContext(), ConstantParams.BMOB_APP_ID);
+                            startActivity();
+                        }
+                    }
+                });
             }
 
             @Override
